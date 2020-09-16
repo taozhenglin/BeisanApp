@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <include layout="@layout/activity_common_title"/>
+    <net.lucode.hackware.magicindicator.MagicIndicator
+        android:id="@+id/magicIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:background="@color/white" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+
+<!--    <RelativeLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginLeft="@dimen/dp8"-->
+<!--    android:layout_marginTop="@dimen/dp5"-->
+<!--    >-->
+<!--    <TextView-->
+<!--        android:id="@+id/tv_check_no"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="盘点单编号："-->
+<!--        android:textStyle="bold"-->
+<!--        android:textSize="@dimen/sp10"-->
+
+<!--        />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tv_check_desc"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="盘点备注："-->
+<!--        android:layout_below="@+id/tv_check_no"-->
+<!--        android:layout_marginTop="@dimen/dp3"-->
+<!--        android:textSize="@dimen/sp10"-->
+<!--        />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tv_check_by"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="盘点人："-->
+<!--        android:layout_below="@+id/tv_check_desc"-->
+<!--        android:layout_marginTop="@dimen/dp3"-->
+<!--        android:textSize="@dimen/sp10"-->
+<!--        />-->
+<!--    <TextView-->
+<!--        android:id="@+id/tv_check_starttime"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="盘点开始时间："-->
+<!--        android:layout_below="@+id/tv_check_by"-->
+<!--        android:layout_marginTop="@dimen/dp3"-->
+<!--        android:textSize="@dimen/sp10"        />-->
+<!--    <TextView-->
+<!--        android:id="@+id/tv_check_endtime"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="盘点结束时间："-->
+<!--        android:layout_below="@+id/tv_check_starttime"-->
+<!--        android:layout_marginTop="@dimen/dp3"-->
+<!--        android:textSize="@dimen/sp10"        />-->
+<!--    <TextView-->
+<!--        android:id="@+id/tv_created_by"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="创建人："-->
+<!--        android:layout_below="@+id/tv_check_endtime"-->
+<!--        android:layout_marginTop="@dimen/dp3"-->
+<!--        android:textSize="@dimen/sp10"        />-->
+<!--    <TextView-->
+<!--        android:id="@+id/tv_created_time"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="创建时间："-->
+<!--        android:layout_below="@+id/tv_created_by"-->
+<!--        android:layout_marginTop="@dimen/dp3"-->
+<!--        android:textSize="@dimen/sp10"        />-->
+<!--</RelativeLayout>-->
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/dp40"-->
+<!--        android:layout_below="@+id/tv_contract_endtime"-->
+<!--        android:background="@color/guide_blue"-->
+<!--        android:text="盘点明细行"-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:paddingLeft="@dimen/dp8"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="@dimen/sp12"-->
+<!--        />-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_marginTop="@dimen/dp5"-->
+<!--        android:id="@+id/ll_assert_container"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        />-->
+</LinearLayout>

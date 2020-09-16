@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/dp5"
+    android:padding="@dimen/dp5"
+    android:background="@drawable/radis8_layout_shape"
+    android:paddingBottom="@dimen/dp5"
+    >
+    <TextView
+        android:id="@+id/tv_attach_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp12"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="附件编号："
+        />
+    <TextView
+        android:id="@+id/tv_attach_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp12"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="附件描述："
+        />
+    <TextView
+        android:id="@+id/tv_upload_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp12"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="上传日期："
+        />
+    <TextView
+        android:id="@+id/tv_more1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp12"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="税款总计："
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/tv_more2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp12"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="发票金额总计："
+        android:visibility="gone"
+        />
+
+</LinearLayout>

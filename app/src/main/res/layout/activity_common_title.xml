@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/titlebar_height"
+    android:background="@color/guide_blue"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/ll_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp5"
+        >
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp20"
+            android:src="@drawable/icon_white_back_28"
+            android:layout_gravity="center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/tv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp14"
+            android:layout_gravity="center_vertical"
+
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_common_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="标题"
+        android:layout_centerVertical="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp14" />
+
+    <ImageView
+        android:id="@+id/iv_fun"
+        android:layout_width="@dimen/dp20"
+        android:layout_height="@dimen/dp20"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dp15" />
+
+
+</RelativeLayout>

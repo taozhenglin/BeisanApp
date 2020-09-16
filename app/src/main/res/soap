@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <soap:Header />
+    <soap:Body>
+        <wfservicestartWF xmlns="http://www.ibm.com/maximo">
+            <processname>CONTPURCH</processname>
+            <mbo>PURCHVIEW</mbo>
+            <keyValue>8936</keyValue>
+            <key>CONTRACTNUM</key>
+            <loginid>MAXADMIN</loginid>
+        </wfservicestartWF>
+    </soap:Body>
+</soap:Envelope>

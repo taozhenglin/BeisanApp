@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.cn.beisanproject">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission
+        android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission
+        android:name="android.permission.SET_DEBUG_APP"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".Base.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/luncher_48"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/luncher_48"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon"
+
+        >
+        <!--        主页面-->
+        <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".activity.MainActivity"></activity>
+
+        <!--        登录i页面-->
+        <activity android:name=".activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
+        </activity>
+        <!--        采购合同列表-->
+        <activity
+            android:name=".activity.PurchseContractListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        固定资产盘点 列表-->
+        <activity
+            android:name=".activity.AssertCheckListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        固定资产盘点详情-->
+        <activity android:name=".activity.AssertDetailActivity" />
+        <!--    固定资产盘点 操作类 rfid感应    -->
+        <activity android:name=".activity.AssertCheckActivity" />
+        <!--    固定资产盘点 操作类 手动修改    -->
+        <activity
+            android:name=".activity.AssertListItemDetailActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        采购合同详情-->
+        <activity android:name=".activity.PurchaseContractDetailActivity" />
+        <!--        项目合同列表-->
+        <activity
+            android:name=".activity.ProjectContractListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        项目合同详情-->
+        <activity android:name=".activity.ProjectContractDetailActivity" />
+        <!--        库存盘点 列表-->
+        <activity
+            android:name=".activity.StockTakeListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--     库存盘点 详情   -->
+        <activity android:name=".activity.StockTakeDetailActivity" />
+        <!--        库存盘点 手机 -->
+        <activity android:name=".activity.StockCheckScanActivity" />
+        <!--        库存盘点 斑马设备-->
+        <activity android:name=".activity.StockCheckScanZebraActivity" />
+        <!--      库存盘点 名细行条目修改  -->
+        <activity
+            android:name=".activity.StockListItemDetailActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        代办详情-->
+        <activity android:name=".activity.WaitDoDetailActivity" />
+        <!--        领料单列表-->
+        <activity
+            android:name=".activity.MaterialRequestListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--     领料单详情   -->
+        <activity
+            android:name=".activity.MaterialRequestDetailActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        领料单新建行-->
+        <activity
+            android:name=".activity.NewMaterialLineActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        领料单 选择项目列表-->
+        <activity
+            android:name=".activity.ChossenProjectACctivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        选择库房列表-->
+        <activity
+            android:name=".activity.ChossenStoreACctivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        预算 列表-->
+        <activity
+            android:name=".activity.YuSuanListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        库存转移 列表-->
+        <activity
+            android:name=".activity.StockMoveListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        库存转移 详情-->
+        <activity
+            android:name=".activity.StockMoveDetailActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+
+        <!--     项目立项/项目月度计划  列表  -->
+        <activity
+            android:name=".activity.ProjectMonthListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--      项目立项/项目月度计划 详情  -->
+        <activity android:name=".activity.ProjectMonthDetailActivity" />
+        <!--项目月度计划汇总列表-->
+        <activity
+            android:name=".activity.ProjectMonthColletListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        项目月度计划汇总详情-->
+        <activity android:name=".activity.ProjectMonthColletDetailActivity" />
+        <!--        项目询价单列表-->
+        <activity
+            android:name=".activity.ProjectEnquiryListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        项目询价单 详情 -->
+        <activity android:name=".activity.ProjectEnquiryDetailActivity" />
+        <!--        项目合同变更 列表-->
+        <activity
+            android:name=".activity.ProjectContractChangeListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        项目合同变更详情-->
+        <activity android:name=".activity.ProjectContractChangeActivity" />
+
+        <!--采购月度计划列表-->
+        <activity
+            android:name=".activity.PurchaseMonthPlanListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        采购月度计划详情-->
+        <activity android:name=".activity.PurchaseMonthPlanDetailActivity" />
+        <!--采购计划月度汇总列表-->
+        <activity
+            android:name=".activity.PurchasePlanMonthCollectListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        采购月度计划汇总详情-->
+        <activity android:name=".activity.PurchaseMonthColletDetailActivity" />
+        <!--        采购询价单列表-->
+        <activity
+            android:name=".activity.PurchaseEnquiryListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        采购询价单详情-->
+        <activity android:name=".activity.PurchaseEnquiryDetailActivity" />
+        <!--        入库单 列表-->
+        <activity
+            android:name=".activity.PurchaseListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        入库单 详情-->
+        <activity android:name=".activity.PurchaseListDetailActivity" />
+        <!--  采购订单列表      -->
+        <activity
+            android:name=".activity.PurchaseOrderListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--  采购订单详情      -->
+        <activity android:name=".activity.PurchaseOrderDetailActivity" />
+
+        <!--        设备台账增减申请列表-->
+        <activity
+            android:name=".activity.EqumentRequestListkActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        设备台账增减申请详情-->
+        <activity android:name=".activity.EqumentRequestDetailActivity" />
+
+        <!--    设施台账 列表    -->
+        <activity
+            android:name=".activity.FacilityRequestListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        设施台账 详情-->
+        <activity android:name=".activity.FacilityRequestDetailActivity" />
+
+        <!--        信息化台账 列表-->
+        <activity
+            android:name=".activity.InformationRequestListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        信息化台账 详情-->
+        <activity android:name=".activity.InformationRequestDetailActivity" />
+
+        <!--        计量设备台账 列表-->
+        <activity
+            android:name=".activity.CountEqmentRequestListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        计量设备台账 详情-->
+        <activity android:name=".activity.CountEqmentRequestDetailActivity" />
+
+        <!--        供配电台账 列表-->
+        <activity
+            android:name=".activity.ElectricRequestListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        供配电台账 详情-->
+        <activity android:name=".activity.ElectricRequestDetailActivity" />
+        <!--        供应商 列表-->
+        <activity
+            android:name=".activity.SupplierListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity android:name=".activity.SupplierDetailActivity" />
+        <activity android:name=".activity.StockScanZerbaActivity" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.cn.beisanproject.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+
+</manifest>

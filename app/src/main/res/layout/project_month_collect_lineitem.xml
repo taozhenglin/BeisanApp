@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp5"
+    android:padding="@dimen/dp5"
+    android:background="@drawable/radis8_layout_shape"
+    >
+
+
+    <TextView
+        android:id="@+id/tv_request_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="申请号："
+        android:textSize="@dimen/sp12"
+        />
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_request_no"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="描述："
+        android:textSize="@dimen/sp12" />
+
+    <TextView
+        android:id="@+id/tv_unit_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_desc"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="单价："
+        android:textSize="@dimen/sp12" />
+
+    <TextView
+        android:id="@+id/tv_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_desc"
+        android:layout_marginLeft="@dimen/dp30"
+        android:layout_marginTop="@dimen/dp3"
+        android:layout_toEndOf="@+id/tv_request_no"
+        android:text="数量："
+        android:textSize="@dimen/sp12" />
+
+    <TextView
+        android:id="@+id/tv_total_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_count"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="总成本："
+        android:textSize="@dimen/sp12" />
+
+    <TextView
+        android:id="@+id/tv_request_by"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_total_cost"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="申请人："
+        android:textSize="@dimen/sp12" />
+
+    <TextView
+        android:id="@+id/tv_request_dep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_total_cost"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="申请部门："
+        android:textSize="@dimen/sp12"
+        android:layout_toEndOf="@+id/tv_request_no"
+        android:layout_marginLeft="@dimen/dp30"
+        />
+
+    <TextView
+        android:id="@+id/tv_request_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_request_dep"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="申请班组："
+        android:textSize="@dimen/sp12" />
+
+    <TextView
+        android:id="@+id/tv_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_request_team"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="备注："
+        android:textSize="@dimen/sp12" />
+
+</RelativeLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/radis8_layout_shape"
+    android:layout_margin="@dimen/dp5"
+    android:padding="@dimen/dp5"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/tv_project"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="项目："
+        android:textSize="@dimen/sp12"
+
+        />
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="描述："
+        android:layout_marginTop="@dimen/dp3"
+        android:textSize="@dimen/sp12"
+        android:layout_marginRight="5dp"
+        />
+
+
+</LinearLayout>

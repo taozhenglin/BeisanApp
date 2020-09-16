@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp5"
+    android:background="@drawable/radis8_layout_shape"
+    android:padding="@dimen/dp5">
+
+    <TextView
+        android:id="@+id/tv_project_request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="项目申请："
+        android:textSize="@dimen/sp12"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_statue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp5"
+        android:text=""
+        android:textColor="@color/guide_blue"
+        android:textSize="@dimen/sp12" />
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_project_request"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="描述："
+        android:textSize="@dimen/sp12" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_desc"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp3"
+        >
+
+
+        <TextView
+            android:id="@+id/tv_huizong_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="1"
+            android:text="汇总年月："
+            android:textSize="@dimen/sp12" />
+
+        <TextView
+            android:id="@+id/tv_sum_amount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="总金额："
+            android:textSize="@dimen/sp12" />
+    </LinearLayout>
+
+</RelativeLayout>

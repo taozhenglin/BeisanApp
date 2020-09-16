@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/activity_common_title" />
+
+    <ScrollView
+        android:id="@+id/sc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_approval"
+        android:layout_below="@+id/include">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp5"
+                android:padding="@dimen/dp5">
+
+                <TextView
+                    android:id="@+id/tv_request_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="申请单号："
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_request_statue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp5"
+                    android:text=""
+                    android:textColor="@color/guide_blue"
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_supporter_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_request_no"
+                    android:layout_marginRight="@dimen/dp5"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="供应商编码："
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_supporter_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_supporter_no"
+                    android:layout_marginRight="@dimen/dp5"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="供应商名称："
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_zhuce_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_supporter_name"
+                    android:layout_marginRight="@dimen/dp5"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="工商注册号："
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_request_by"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_zhuce_no"
+                    android:text="申请人员："
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_zhuce_no"
+                    android:layout_marginLeft="@dimen/dp30"
+                    android:layout_toEndOf="@+id/tv_request_by"
+                    android:text="手机卡号："
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_request_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_request_by"
+                    android:text="申请时间："
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_start_statue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_request_time"
+                    android:text="启用状态："
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_start_statue"
+                    android:background="@color/config_color_gray_9"
+                    android:text="详细信息"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_line"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:text="联系人："
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_phone_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_line"
+                    android:layout_marginLeft="@dimen/dp30"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:layout_toEndOf="@+id/tv_request_by"
+                    android:text="电话："
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_fax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_contact"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:text="传真："
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_postal_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_contact"
+                    android:layout_marginLeft="@dimen/dp30"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:layout_toEndOf="@+id/tv_request_by"
+                    android:text="邮政编码："
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_fax"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:text="地址："
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_currency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_address"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:text="货币："
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_daibiao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_address"
+                    android:layout_marginLeft="@dimen/dp30"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:layout_toEndOf="@+id/tv_request_by"
+                    android:text="法人代表："
+                    android:textSize="@dimen/sp12" />
+
+
+                <TextView
+                    android:id="@+id/tv_bank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_currency"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:text="开户银行："
+                    android:textSize="@dimen/sp12" />
+
+
+                <TextView
+                    android:id="@+id/tv_bank_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_bank"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:text="银行账号："
+                    android:textSize="@dimen/sp12" />
+                <TextView
+                    android:id="@+id/tv_line1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_bank_no"
+                    android:background="@color/config_color_gray_9"
+                    android:text="注册信息"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_conunt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_line1"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:text="公司人数："
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_tax_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_line1"
+                    android:layout_marginLeft="@dimen/dp30"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:layout_toEndOf="@+id/tv_request_by"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="税号："
+                    android:textSize="@dimen/sp12"
+
+                    />
+
+
+                <TextView
+                    android:id="@+id/tv_licence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_conunt"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:text="许可证："
+                    android:textSize="@dimen/sp12" />
+
+
+                <TextView
+                    android:id="@+id/tv_rigester_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_licence"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:text="注册资金："
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_fanwei"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_rigester_count"
+                    android:text="经营范围："
+                    android:layout_marginTop="@dimen/dp3"
+                    android:textSize="@dimen/sp12" />
+
+
+                <TextView
+                    android:id="@+id/tv_fixed_assets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_fanwei"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:text="固定资产："
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_guanlian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_fixed_assets"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:text="关联业务："
+                    android:textSize="@dimen/sp12" />
+
+
+
+
+
+
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_approval"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:layout_alignParentBottom="true"
+        android:background="@color/guide_blue"
+        android:gravity="center"
+        android:text="工作流审批"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp12" />
+</RelativeLayout>

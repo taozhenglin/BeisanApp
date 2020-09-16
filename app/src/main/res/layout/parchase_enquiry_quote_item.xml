@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp5"
+    android:background="@drawable/radis8_layout_shape"
+    android:orientation="vertical"
+    android:padding="@dimen/dp5">
+
+    <TextView
+        android:id="@+id/tv_supporter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="供应商："
+        android:textSize="@dimen/sp12" />
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_supporter"
+        android:text="项目描述："
+        android:textSize="@dimen/sp12" />
+
+    <TextView
+        android:id="@+id/tv_model"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_desc"
+        android:text="规格型号："
+        android:textSize="@dimen/sp12" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp3"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_contacts"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="联系人："
+            android:textSize="@dimen/sp12" />
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="联系电话："
+
+            android:textSize="@dimen/sp12" />
+    </LinearLayout>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="@dimen/dp3"
+       android:orientation="horizontal">
+       <TextView
+           android:id="@+id/tv_enquiry_sum"
+           android:layout_width="0dp"
+           android:layout_weight="1"
+           android:layout_height="wrap_content"
+           android:text="报价金额："
+           android:textSize="@dimen/sp12" />
+
+       <TextView
+           android:id="@+id/tv_enquiry_tax"
+           android:layout_width="0dp"
+           android:layout_weight="1"
+           android:layout_height="wrap_content"
+           android:text="税额："
+           android:textSize="@dimen/sp12" />
+   </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_sum_tax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="授权金额(含税)："
+        android:textSize="@dimen/sp12" />
+
+    <TextView
+        android:id="@+id/tv_no_tax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="授权金额(不含税)："
+        android:textSize="@dimen/sp12" />
+
+</LinearLayout>

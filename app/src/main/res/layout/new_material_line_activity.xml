@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_common_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp3"
+            android:layout_marginRight="@dimen/dp5"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*项目："
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black"
+
+                />
+
+            <EditText
+                android:id="@+id/edt_project"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_weight="1"
+                android:background="@drawable/radis8_layout_shape"
+                android:enabled="false"
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black"
+                android:padding="@dimen/dp5"
+                />
+
+            <ImageView
+                android:id="@+id/iv_project"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp10"
+                android:padding="@dimen/dp8"
+                android:src="@drawable/next" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp3"
+            android:layout_marginRight="@dimen/dp5"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*描述："
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edt_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:background="@drawable/radis8_layout_shape"
+                android:enabled="true"
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black"
+                android:padding="@dimen/dp5"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp3"
+            android:layout_marginRight="@dimen/dp5"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*库房："
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edt_store"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_weight="1"
+                android:background="@drawable/radis8_layout_shape"
+                android:enabled="false"
+                android:padding="@dimen/dp5"
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black"
+                />
+
+            <ImageView
+                android:id="@+id/iv_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp10"
+                android:padding="@dimen/dp8"
+                android:src="@drawable/next" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+
+            android:orientation="horizontal"
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="小类："
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edt_small_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:background="@drawable/radis8_layout_shape"
+                android:enabled="false"
+                android:padding="@dimen/dp5"
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp3"
+            android:layout_marginRight="@dimen/dp5"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="型号规格："
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black"
+                />
+
+            <EditText
+                android:id="@+id/edt_xhgg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:background="@drawable/radis8_layout_shape"
+                android:enabled="false"
+                android:padding="@dimen/dp5"
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp3"
+            android:layout_marginRight="@dimen/dp5"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="品牌："
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edt_brand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:background="@drawable/radis8_layout_shape"
+                android:enabled="false"
+                android:padding="@dimen/dp5"
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp3"
+            android:layout_marginRight="@dimen/dp5"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="领用单位："
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edt_department"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:background="@drawable/radis8_layout_shape"
+                android:enabled="false"
+                android:padding="@dimen/dp5"
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp3"
+            android:layout_marginRight="@dimen/dp5"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*领用数量："
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edt_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:background="@drawable/radis8_layout_shape"
+                android:enabled="true"
+                android:padding="@dimen/dp5"
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black"
+                android:inputType="number"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp3"
+            android:layout_marginRight="@dimen/dp5"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="单位成本："
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edt_unit_cost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:background="@drawable/radis8_layout_shape"
+                android:enabled="false"
+                android:padding="@dimen/dp5"
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp3"
+            android:layout_marginRight="@dimen/dp5"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="行成本"
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edt_line_cost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:background="@drawable/radis8_layout_shape"
+                android:enabled="false"
+                android:padding="@dimen/dp5"
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp3"
+            android:layout_marginRight="@dimen/dp5"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="库存可用量："
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edt_store_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:background="@drawable/radis8_layout_shape"
+                android:enabled="false"
+                android:padding="@dimen/dp5"
+               android:textSize="@dimen/sp12"
+                android:textColor="@color/black"
+
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+<Button
+    android:id="@+id/btn_commit"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:text="保存"
+    android:background="@color/guide_blue"
+    android:textSize="@dimen/sp12"
+    android:textColor="@color/white"
+    />
+</LinearLayout>

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/activity_common_title" />
+
+    <ScrollView
+        android:id="@+id/sc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_approval"
+        android:layout_below="@+id/include">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp5"
+            android:orientation="vertical"
+            android:padding="@dimen/dp5">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_request_no"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="申请单号："
+                    android:textSize="@dimen/sp12"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_request_statue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp5"
+                    android:text=""
+                    android:textColor="@color/guide_blue"
+                    android:textSize="@dimen/sp12" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp3"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_system_no"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="系统编码："
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/tv_eq_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="设备名称："
+                    android:textSize="@dimen/sp12" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp3"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_eq_model"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_system_no"
+                    android:layout_weight="1"
+                    android:text="规格型号："
+                    android:textSize="@dimen/sp12" />
+
+
+                <TextView
+                    android:id="@+id/tv_eq_statue"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="设备状态："
+                    android:textSize="@dimen/sp12"
+
+                    />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_own_dept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_eq_model"
+                android:layout_marginTop="@dimen/dp3"
+                android:text="所属单位："
+                android:textSize="@dimen/sp12" />
+
+            <TextView
+                android:id="@+id/tv_used_dept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_own_dept"
+                android:layout_marginTop="@dimen/dp3"
+                android:text="使用单位："
+                android:textSize="@dimen/sp12" />
+
+            <TextView
+                android:id="@+id/tv_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_used_dept"
+                android:layout_marginTop="@dimen/dp3"
+                android:text="准确度等级："
+                android:textSize="@dimen/sp12" />
+
+            <TextView
+                android:id="@+id/tv_manufacturer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_level"
+                android:layout_marginTop="@dimen/dp3"
+                android:text="生产厂家："
+                android:textSize="@dimen/sp12" />
+
+
+            <TextView
+                android:id="@+id/tv_celiang_fanwei"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_manufacturer"
+                android:layout_marginTop="@dimen/dp3"
+                android:text="测量范围："
+                android:textSize="@dimen/sp12" />
+
+
+            <TextView
+                android:id="@+id/tv_jishuzhibiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_celiang_fanwei"
+                android:layout_marginTop="@dimen/dp3"
+                android:text="技术指标："
+                android:textSize="@dimen/sp12" />
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_jishuzhibiao"
+                android:layout_marginTop="@dimen/dp3"
+                android:text="安装使用地点及用途："
+                android:textSize="@dimen/sp12" />
+
+            <TextView
+                android:id="@+id/tv_dept_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_location"
+                android:text="用能单位管理编号："
+                android:textSize="@dimen/sp12" />
+
+
+            <TextView
+                android:id="@+id/tv_out_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_dept_no"
+                android:text="出场编号："
+                android:textSize="@dimen/sp12" />
+
+            <TextView
+                android:id="@+id/tv_xiaozhun_statue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_out_no"
+                android:text="检定/校准状态："
+                android:textSize="@dimen/sp12" />
+
+            <TextView
+                android:id="@+id/tv_xiaozhun_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_xiaozhun_statue"
+                android:text="检定/校准有效期："
+                android:textSize="@dimen/sp12" />
+
+            <TextView
+                android:id="@+id/tv_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_xiaozhun_date"
+                android:text="备注："
+                android:textSize="@dimen/sp12" />
+
+            <TextView
+                android:id="@+id/tv_created_by"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_note"
+                android:text="创建人："
+                android:textSize="@dimen/sp12" />
+
+            <TextView
+                android:id="@+id/tv_created_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_created_by"
+                android:text="创建时间："
+                android:textSize="@dimen/sp12" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_approval"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:layout_alignParentBottom="true"
+        android:background="@color/guide_blue"
+        android:gravity="center"
+        android:text="工作流审批"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp12" />
+</RelativeLayout>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp5"
+        android:padding="@dimen/dp5">
+
+        <TextView
+            android:id="@+id/tv_contract_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="计划汇总："
+            android:textSize="@dimen/sp12"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_contract_statue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp5"
+            android:text=""
+            android:textColor="@color/guide_blue"
+            android:textSize="@dimen/sp12" />
+
+        <TextView
+            android:id="@+id/tv_contract_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_contract_no"
+            android:layout_marginTop="@dimen/dp3"
+            android:text="描述："
+            android:textSize="@dimen/sp12" />
+
+        <TextView
+            android:id="@+id/tv_collet_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_contract_desc"
+            android:layout_marginTop="@dimen/dp3"
+            android:text="汇总年月："
+            android:textSize="@dimen/sp12" />
+
+        <TextView
+            android:id="@+id/tv_collet_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_collet_date"
+            android:layout_marginTop="@dimen/dp3"
+            android:text="汇总时间："
+            android:textSize="@dimen/sp12" />
+
+        <TextView
+            android:id="@+id/tv_collet_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_collet_time"
+            android:layout_marginTop="@dimen/dp3"
+            android:text="汇总类型："
+            android:textSize="@dimen/sp12" />
+
+        <TextView
+            android:id="@+id/tv_collet_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_collet_time"
+            android:layout_marginLeft="@dimen/dp30"
+            android:layout_marginTop="@dimen/dp3"
+            android:layout_toRightOf="@+id/tv_collet_time"
+            android:text="汇总人："
+            android:textSize="@dimen/sp12" />
+
+
+
+    </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_line1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:layout_marginTop="@dimen/dp3"
+            android:background="@color/guide_blue"
+            android:gravity="center_vertical"
+            android:text="已汇总计划列表"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp12" />
+
+        <LinearLayout
+            android:id="@+id/ll_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <TextView
+            android:id="@+id/tv_line2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:background="@color/guide_blue"
+            android:gravity="center_vertical"
+            android:text="本月末需汇总计划列表"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp12" />
+
+        <LinearLayout
+            android:id="@+id/ll_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </LinearLayout>
+</ScrollView>

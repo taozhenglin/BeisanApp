@@ -1,0 +1,9 @@
+include ':app'
+rootProject.name = "BeiSanProject"
+include ':app'
+include ':loadingdialog'
+include ':daterangepicker'
+include ':magicindicator'
+include ':RFIDAPI3Library'
+include ':zxing'
+include ':qrcodecore'

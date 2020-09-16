@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp8"
+        android:layout_marginTop="@dimen/dp5"
+        >
+        <TextView
+            android:id="@+id/tv_check_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="盘点单编号："
+            android:textStyle="bold"
+            android:textSize="@dimen/sp12"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_check_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="盘点备注："
+            android:layout_below="@+id/tv_check_no"
+            android:layout_marginTop="@dimen/dp3"
+            android:textSize="@dimen/sp12"
+            />
+
+        <TextView
+            android:id="@+id/tv_check_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="盘点人："
+            android:layout_below="@+id/tv_check_desc"
+            android:layout_marginTop="@dimen/dp3"
+            android:textSize="@dimen/sp12"
+            />
+        <TextView
+            android:id="@+id/tv_check_starttime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="盘点开始时间："
+            android:layout_below="@+id/tv_check_by"
+            android:layout_marginTop="@dimen/dp3"
+            android:textSize="@dimen/sp12"        />
+        <TextView
+            android:id="@+id/tv_check_endtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="盘点结束时间："
+            android:layout_below="@+id/tv_check_starttime"
+            android:layout_marginTop="@dimen/dp3"
+            android:textSize="@dimen/sp12"        />
+        <TextView
+            android:id="@+id/tv_created_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="创建人："
+            android:layout_below="@+id/tv_check_endtime"
+            android:layout_marginTop="@dimen/dp3"
+            android:textSize="@dimen/sp12"        />
+        <TextView
+            android:id="@+id/tv_created_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="创建时间："
+            android:layout_below="@+id/tv_created_by"
+            android:layout_marginTop="@dimen/dp3"
+            android:textSize="@dimen/sp12"        />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:layout_below="@+id/tv_contract_endtime"
+        android:background="@color/guide_blue"
+        android:text="未盘点明细行"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dp8"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp12"
+        />
+
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.scwang.smart.refresh.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dip"
+            android:paddingBottom="0dip"
+            android:scrollbars="vertical" />
+
+        <com.scwang.smart.refresh.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
