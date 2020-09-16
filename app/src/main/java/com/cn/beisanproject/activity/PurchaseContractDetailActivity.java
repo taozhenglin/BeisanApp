@@ -49,6 +49,7 @@ import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
 import com.flyco.dialog.listener.OnOperItemClickL;
 import com.flyco.dialog.widget.ActionSheetDialog;
+import com.guideelectric.loadingdialog.view.LoadingDialog;
 import com.yinglan.keyboard.HideUtil;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -96,6 +97,7 @@ public class PurchaseContractDetailActivity extends AppCompatActivity implements
     private String ownerid;
     PurchseContractDetailBean purchseContractDetailBean;
     private String[] stringItems = new String[]{"工作流审批"};
+    private LoadingDialog ld;
 
 
     @Override
@@ -108,7 +110,7 @@ public class PurchaseContractDetailActivity extends AppCompatActivity implements
         tv_start = findViewById(R.id.tv_start);
         pager = findViewById(R.id.pager);
         magicIndicator = findViewById(R.id.magicIndicator);
-
+        ld=new LoadingDialog(this);
         if (!StringUtils.isEmpty(getIntent().getStringExtra("from")) && getIntent().getStringExtra("from").equals("waitdolist")) {//来自代办事项列表
             needGet = true;
             waitdolistbean = (WaitDoListBean.ResultBean.ResultlistBean) getIntent().getExtras().get("ResultlistBean");
@@ -143,6 +145,7 @@ public class PurchaseContractDetailActivity extends AppCompatActivity implements
     }
 
     private void getContractDetail() {
+        ld.show();
 /**
  * {
  *   "objectname" : "PURCHVIEW",
@@ -177,11 +180,13 @@ public class PurchaseContractDetailActivity extends AppCompatActivity implements
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
                 ToastUtils.showShort(R.string.getDatafailed);
+                ld.close();
             }
 
             @Override
             public void onResponse(String response) {
                 LogUtils.d("onResponse==" + response);
+                ld.close();
                 if (!response.isEmpty()) {
                     purchseContractDetailBean = JSONObject.parseObject(response, new TypeReference<PurchseContractDetailBean>() {
                     });
@@ -517,6 +522,7 @@ public class PurchaseContractDetailActivity extends AppCompatActivity implements
     }
 
     private void start() {
+        ld.show();
 //        -----------------采购合同----------------
 //                --启动流程：草稿
 //                <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:max="http://www.ibm.com/maximo">
@@ -558,12 +564,13 @@ public class PurchaseContractDetailActivity extends AppCompatActivity implements
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
-
+ld.close();
             }
 
             @Override
             public void onResponse(String response) {
                 LogUtils.d("onResponse==" + response);
+                ld.close();
                 //xml 解析
                 if (!response.isEmpty()) {
                     if (response.contains("<return>")&&response.contains("</return>")){
