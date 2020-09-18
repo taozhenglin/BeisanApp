@@ -220,11 +220,11 @@ public class StockScanZerbaActivity extends AppCompatActivity implements View.On
             data = intent.getStringExtra(DATA_STRING_TAG);
             output_text = data + "\n";
 //            TextView tv = (TextView) findViewById(R.id.textView);
-            if (data.startsWith("W1")) {//库存盘点
+            if (data.startsWith("G1")) {//库存盘点
                 getStockDetail(data);
 
             }
-            if (data.startsWith("G1")) {//固定资产盘点
+            if (data.startsWith("A1")) {//固定资产盘点
                 getAssertDetail(data);
             }
 //            tv.setText(data);

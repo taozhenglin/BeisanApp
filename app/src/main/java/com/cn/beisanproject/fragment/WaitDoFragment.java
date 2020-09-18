@@ -143,6 +143,11 @@ public class WaitDoFragment extends Fragment {
                         waitDoListBean = JSONObject.parseObject(response, new TypeReference<WaitDoListBean>() {});
                     if (waitDoListBean.getErrcode().equals("GLOBAL-S-0")) {
                         totalepage = waitDoListBean.getResult().getTotalpage();
+                        int totalresult = waitDoListBean.getResult().getTotalresult();
+                            PostData postData=new PostData();
+                        postData.setCount(totalresult);
+                        postData.setTag("waitdocount");
+                        EventBus.getDefault().post(postData);
                         if (currentPageNum == 1) {
                             if (mWaitDoAdapter == null) {
                                 mWaitDoAdapter = new WaitDoAdapter(mContext, waitDoListBean.getResult().getResultlist());

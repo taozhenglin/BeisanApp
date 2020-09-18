@@ -27,8 +27,13 @@ import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.fragment.FunCtionFragment;
 import com.cn.beisanproject.fragment.PersonalCenterFragment;
 import com.cn.beisanproject.fragment.WaitDoFragment;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.widget.GSViewPager;
 import com.stx.xhb.commontitlebar.CustomTitleBar;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -89,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         tv_common_title.setText(mTopBarTitle[0]);
         mTopBar.setBackgroundColor(getResources().getColor(R.color.guide_blue));
         StatusBarUtils.setWhiteStatusBarColor(this, R.color.guide_blue);
-
+        EventBus.getDefault().register(this);
 
 //        application=(SmartApplication)getApplication();
     }
@@ -228,6 +233,12 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+    @Subscribe (threadMode = ThreadMode.MAIN)
+    public void getNotify(PostData data){
+        if (data.getTag().equals("waitdocount")){
+            setWaitDoNum(data.getCount());
+        }
+    }
 
     /**
      * 请求代办事项的数目
@@ -311,4 +322,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

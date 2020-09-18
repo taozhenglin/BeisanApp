@@ -133,7 +133,7 @@ public class StockCheckScanActivity extends AppCompatActivity implements QRCodeV
 
                 getStockDetail(result);
 
-            } else if (result.startsWith("G1")) {//固定资产展示
+            } else if (result.startsWith("A1")) {//固定资产展示
 
                 getAssertDetail(result);
 
@@ -825,15 +825,9 @@ public class StockCheckScanActivity extends AppCompatActivity implements QRCodeV
 
                     if (stockingLineListBean.getErrcode().equals("GLOBAL-S-0")) {
                         resultlist = stockingLineListBean.getResult().getResultlist();
-
-
                     }
-
                 }
-
             }
-
-
         });
 
     }

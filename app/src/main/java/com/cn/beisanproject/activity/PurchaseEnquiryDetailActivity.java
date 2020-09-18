@@ -271,7 +271,7 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
                 finish();
                 break;
             case R.id.tv_start:
-                if (statues.equals("进行中")){//可启动
+                if (statues.equals("等待批准")){//可启动
                     startWork();
                 }else {
                     showRemarkPopupwindow();

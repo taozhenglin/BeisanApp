@@ -194,6 +194,7 @@ public class PurchseContractListActivity extends AppCompatActivity implements Vi
                 break;
             case R.id.tv_search:
                 //搜索
+                currentPageNum=1;
                 query();
                 break;
         }

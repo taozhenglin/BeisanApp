@@ -445,37 +445,6 @@ public class InformationRequestDetailActivity extends AppCompatActivity {
                 LogUtils.d("不同意==");
             }
         });
-//        final TextView number_tv = (TextView) remarkView.findViewById(R.id.number_tv);
-//        title_tv.setText("给TA贴标签");
-//        input_et.setHint("请填写10个字以内的标签名称");
-//        finish_tv.setText("确定");
-//        number_tv.setText("0/10");
-
-        //用于检测输入的字数
-        input_et.addTextChangedListener(new TextWatcher() {
-            private CharSequence temp;
-            private int selectionStart;
-            private int selectionEnd;
-            private int num = 10;
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                temp = s;
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                int number = s.length();
-
-            }
-        });
-
-        //确定后，添加标签页
 
         finish_tv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -549,7 +518,7 @@ public class InformationRequestDetailActivity extends AppCompatActivity {
                 StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
                 });
                 if (startWorkProcessBean.getMsg().equals("审批成功")) {
-                    if (ifAgree == 1 && startWorkProcessBean.getNextStatus().equals("已批准")) {
+                    if (ifAgree == 1 ) {
                         tvApproval.setVisibility(View.GONE);
                     }
                     status = startWorkProcessBean.getNextStatus();

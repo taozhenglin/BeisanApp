@@ -70,7 +70,7 @@ public class SplashActivity extends AppCompatActivity {
                 String pwd = SharedPreferencesUtil.getString(mContext, "pwd");
                 LogUtils.d("222222 username = " + username + "pwd=" + pwd);
                 if (!StringUtils.isEmpty(username)) {
-                    login(username, pwd);
+                    login(username.toUpperCase(), pwd.toUpperCase());
                 } else {
                     Intent intent = new Intent(mContext, LoginActivity.class);
                     startActivity(intent);

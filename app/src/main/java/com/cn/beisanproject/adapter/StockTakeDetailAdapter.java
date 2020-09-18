@@ -46,7 +46,7 @@ public class StockTakeDetailAdapter extends RecyclerView.Adapter<StockTakeDetail
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
 
         holder.tv_line_no.setText("明细行序号:" + mResultlist.get(i).getLINENUM());
-        holder.tv_product_location.setText("货位：：" + mResultlist.get(i).getBINNUM());
+        holder.tv_product_location.setText("货位：" + mResultlist.get(i).getBINNUM());
         holder.tv_line_batch.setText("批次：" + mResultlist.get(i).getLOTNUM());
         holder.tv_prodution_no.setText("物资编码：" + mResultlist.get(i).getITEMNUM());
         holder.tv_prodution_desc.setText("物资描述：" + mResultlist.get(i).getITEMNUMDESC());

@@ -202,7 +202,6 @@ public class StockMoveListActivity extends AppCompatActivity implements View.OnC
             case R.id.tv_search:
                 currentPageNum = 1;
                 query();
-
                 break;
         }
     }

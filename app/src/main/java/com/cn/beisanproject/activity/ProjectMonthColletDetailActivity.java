@@ -166,15 +166,6 @@ public class ProjectMonthColletDetailActivity extends AppCompatActivity implemen
                         resultlistBean = projectMonthCollectBean.getResult().getResultlist().get(0);
                         statue = resultlistBean.getSTATUS();
                         PRNUM= resultlistBean.getPRNUM();
-                        if (statue.equals("已批准") || statue.equals("已取消")) {
-                            tv_start.setVisibility(View.GONE);
-                        } else {
-                            if (statue.equals("等待批准")) {
-                                tv_start.setText("启动工作流");
-                            } else {
-                                tv_start.setText("工作流审批");
-                            }
-                        }
                         PRID = resultlistBean.getPRID() + "";
                         initView();
 
@@ -521,20 +512,21 @@ public class ProjectMonthColletDetailActivity extends AppCompatActivity implemen
          *    </soap:Body>
          * </soap:Envelope>
          */
-        String request = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
-                "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">" +
-                "<soap:Header/>" +
-                "<soap:Body><wfservicestartWF xmlns=\"http://www.ibm.com/maximo\">" +
-                "<processname>PROJSUM</processname>" +
-                "<mbo>PR</mbo>" +
-                "<keyValue>%s</keyValue>" +
-                "<key>PRID</key>" +
-                "<opinion>%s</opinion>" +
-                "<ifAgree>%s</ifAgree>" +
-                "<loginid>%s</loginid>" +
-                "</wfservicestartWF>" +
-                "</soap:Body></soap:Envelope>";
-        request = String.format(request, PRID, opinion, ifAgree, SharedPreferencesUtil.getString(this, "personId"));
+        String request = "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:max=\"http://www.ibm.com/maximo\">\n" +
+                "   <soap:Header/>\n" +
+                "   <soap:Body>\n" +
+                "      <max:wfservicewfGoOn creationDateTime=\"\" baseLanguage=\"zh\" transLanguage=\"zh\" messageID=\"\" maximoVersion=\"\">\n" +
+                "         <max:processname>PROJSUM</max:processname>\n" +
+                "         <max:mboName>PR</max:mboName>\n" +
+                "         <max:keyValue>%s</max:keyValue>\n" +
+                "         <max:key>PRID</max:key>\n" +
+                "         <max:ifAgree>%s</max:ifAgree>\n" +
+                "         <max:opinion>%s</max:opinion>\n" +
+                "         <max:loginid>%s</max:loginid>\n" +
+                "      </max:wfservicewfGoOn>\n" +
+                "   </soap:Body>\n" +
+                "</soap:Envelope>";
+        request = String.format(request, PRID,  ifAgree,opinion, SharedPreferencesUtil.getString(this, "personId"));
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=utf-8");
         headermap.put("SOAPAction", "urn:action");

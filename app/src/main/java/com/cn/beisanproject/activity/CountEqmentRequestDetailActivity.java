@@ -124,7 +124,7 @@ public class CountEqmentRequestDetailActivity extends AppCompatActivity {
             mResultlistBean = (CountEqmentRequestListBean.ResultBean.ResultlistBean) getIntent().getExtras().get("ResultlistBean");//来自首页 项目立项/项目月度计划
             JD_MEASUREMENTID = mResultlistBean.getJD_MEASUREMENTID() + "";
             status = mResultlistBean.getSTATUS();
-            if (status.equals("已确认") || status.equals("取消")) {
+            if (status.equals("已取消") || status.equals("取消")||status.equals("已关闭") || status.equals("关闭")) {
                 tvApproval.setVisibility(View.GONE);
             }else {
                 if (status.equals("等待批准")){
@@ -221,7 +221,7 @@ public class CountEqmentRequestDetailActivity extends AppCompatActivity {
                     if (countEqumentRequestListBean.getErrcode().equals("GLOBAL-S-0")) {
                         CountEqumentRequestListBean.ResultBean.ResultlistBean resultlistBean = countEqumentRequestListBean.getResult().getResultlist().get(0);
                         status = resultlistBean.getSTATUS();
-                        if (status.equals("已确认") || status.equals("取消")) {
+                        if (status.equals("已取消") || status.equals("取消")||status.equals("已关闭") || status.equals("关闭")) {
                             tvApproval.setVisibility(View.GONE);
                         }else {
                             if (status.equals("等待批准")){

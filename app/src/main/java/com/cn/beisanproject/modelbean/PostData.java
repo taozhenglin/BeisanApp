@@ -9,6 +9,16 @@ public class PostData implements Serializable {
      List<StockingLineListBean.ResultBean.ResultlistBean> list;
      List<String> stringList;
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    int count;
+
     public int getId() {
         return id;
     }
