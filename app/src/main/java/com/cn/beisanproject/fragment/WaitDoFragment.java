@@ -181,9 +181,17 @@ public class WaitDoFragment extends Fragment {
     // 收到扫描盘点界面上传盘点ok后的通知 刷新列表
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getNotify(PostData postData) {
-        if (postData.getTag().equals("采购合同")||postData.getTag().equals("项目合同")||postData.getTag().equals("领料单")||
-                postData.getTag().equals("采购月度计划汇总")||postData.getTag().equals("项目月度计划汇总")||postData.getTag().equals("采购单")||
-                postData.getTag().equals("供应商申请")||postData.getTag().equals("采购月度计划")) {
+        if (postData.getTag().equals("采购合同")||postData.getTag().equals("项目合同")||
+                postData.getTag().equals("领料单")|| postData.getTag().equals("库存转移")||
+                postData.getTag().equals("计量设备台账增减申请")|| postData.getTag().equals("设备台账增减申请")||
+                postData.getTag().equals("信息化台账增减申请")||postData.getTag().equals("设施台账增减申请")||
+                postData.getTag().equals("供配电设备台账增减申请") ||postData.getTag().equals("供应商申请")||
+                postData.getTag().equals("采购月度计划汇总")||postData.getTag().equals("采购月度计划")||
+                postData.getTag().equals("采购询价单")||postData.getTag().equals("采购订单")||
+                postData.getTag().equals("入库单")||postData.getTag().equals("项目合同变更")||
+                postData.getTag().equals("项目月度计划汇总") ||postData.getTag().equals("项目询价单")||
+                postData.getTag().equals("项目立项/项目月度计划"))
+                {
            queryData();
         }
     }
