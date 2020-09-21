@@ -26,6 +26,7 @@ import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.adapter.PurchaseAdapter;
 import com.cn.beisanproject.adapter.PurchaseEnquiryAdapter;
 import com.cn.beisanproject.modelbean.JavaBean;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.PurchaseEnquiryListBean;
 import com.cn.beisanproject.modelbean.PurchaseListBean;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
@@ -240,9 +241,9 @@ public class PurchaseListActivity extends AppCompatActivity implements View.OnCl
         EventBus.getDefault().unregister(this);
     }
     @Subscribe (threadMode = ThreadMode.MAIN)
-    public void onEvent( StartWorkProcessBean startWorkProcessBean){
+    public void onEvent( PostData postData){
         LogUtils.d("onEvent==");
-        if (startWorkProcessBean.getTag().equals("采购单")){
+        if (postData.getTag().equals("入库单")){
            query();
         }
     }

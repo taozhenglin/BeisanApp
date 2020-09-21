@@ -24,6 +24,7 @@ import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.adapter.AsseertCheckAdapter;
 import com.cn.beisanproject.adapter.ProjectMothAdapter;
 import com.cn.beisanproject.modelbean.AssertCheckListBean;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.ProjectMonthListBean;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
@@ -32,6 +33,10 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.yinglan.keyboard.HideUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 
@@ -63,26 +68,12 @@ public class ProjectMonthListActivity extends AppCompatActivity implements View.
         initView();
         initEvent();
         initListener();
+        EventBus.getDefault().register(this);
+
     }
     private void initListener() {
         ll_back.setOnClickListener(this);
         tv_search.setOnClickListener(this);
-        edt_search_contract.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
     }
 
     private void initView() {
@@ -218,6 +209,17 @@ public class ProjectMonthListActivity extends AppCompatActivity implements View.
     private void finishRefresh() {
         if (isRefresh) refreshLayout.finishRefresh();
         else refreshLayout.finishLoadMore();
+    }
+    // 收到扫描盘点界面上传盘点ok后的通知 刷新列表
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getNotify(PostData postData) {
+        if (postData.getTag().equals("项目立项/项目月度计划"))
+            query();
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

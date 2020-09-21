@@ -29,6 +29,7 @@ import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.PuarchaseEnquiryBean;
 import com.cn.beisanproject.modelbean.PuarchaseEnquirySupportBean;
 import com.cn.beisanproject.modelbean.PuarchaseSupportQuoteBean;
@@ -39,6 +40,8 @@ import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
 import com.guideelectric.loadingdialog.view.LoadingDialog;
 import com.yinglan.keyboard.HideUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.List;
@@ -406,38 +409,6 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
                 LogUtils.d("不同意==");
             }
         });
-//        final TextView number_tv = (TextView) remarkView.findViewById(R.id.number_tv);
-//        title_tv.setText("给TA贴标签");
-//        input_et.setHint("请填写10个字以内的标签名称");
-//        finish_tv.setText("确定");
-//        number_tv.setText("0/10");
-
-        //用于检测输入的字数
-        input_et.addTextChangedListener(new TextWatcher() {
-            private CharSequence temp;
-            private int selectionStart;
-            private int selectionEnd;
-            private int num = 10;
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                temp = s;
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                int number = s.length();
-
-            }
-        });
-
-        //确定后，添加标签页
-
         finish_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -513,6 +484,9 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
                 if (startWorkProcessBean.getMsg().equals("审批成功")) {
                     statues = startWorkProcessBean.getNextStatus();
                     tv_statues.setText(startWorkProcessBean.getNextStatus());
+                    PostData postData=new PostData();
+                    postData.setTag("采购询价单");
+                    EventBus.getDefault().post(postData);
                     getBaoJiaSupport();
                 } else {
 

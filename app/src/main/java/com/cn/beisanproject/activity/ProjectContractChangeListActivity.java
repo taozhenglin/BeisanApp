@@ -23,6 +23,7 @@ import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.adapter.ProjectContractChangeAdapter;
 import com.cn.beisanproject.adapter.ProjectMothAdapter;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.ProjectContractChangeBean;
 import com.cn.beisanproject.modelbean.ProjectMonthListBean;
 import com.cn.beisanproject.net.CallBackUtil;
@@ -32,6 +33,10 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.yinglan.keyboard.HideUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 
@@ -59,14 +64,13 @@ public class ProjectContractChangeListActivity extends AppCompatActivity impleme
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.project_month_list_activity);
-        //键盘自动隐藏
-        HideUtil.init(this);
         //隐藏标题栏
         getSupportActionBar().hide();
         StatusBarUtils.setWhiteStatusBarColor(this, R.color.guide_blue);
         initView();
         initEvent();
         initListener();
+        EventBus.getDefault().register(this);
     }
     private void initListener() {
         ll_back.setOnClickListener(this);
@@ -218,5 +222,17 @@ public class ProjectContractChangeListActivity extends AppCompatActivity impleme
         if (isRefresh) refreshLayout.finishRefresh();
         else refreshLayout.finishLoadMore();
 
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getNotify(PostData postData) {
+        if (postData.getTag().equals("项目合同变更")) {
+            query();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

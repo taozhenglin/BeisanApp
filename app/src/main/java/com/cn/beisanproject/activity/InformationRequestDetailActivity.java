@@ -33,6 +33,7 @@ import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.modelbean.InformationRequestDetailBean;
 import com.cn.beisanproject.modelbean.InformationRequestListBean;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
 import com.cn.beisanproject.modelbean.WaitDoListBean;
 import com.cn.beisanproject.net.CallBackUtil;
@@ -41,6 +42,8 @@ import com.flyco.dialog.listener.OnOperItemClickL;
 import com.flyco.dialog.widget.ActionSheetDialog;
 import com.guideelectric.loadingdialog.view.LoadingDialog;
 import com.yinglan.keyboard.HideUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 
@@ -333,15 +336,10 @@ public class InformationRequestDetailActivity extends AppCompatActivity {
          *    <soap:Header/>
          *    <soap:Body>
          *       <max:wfservicestartWF creationDateTime="" baseLanguage="zh" transLanguage="zh" messageID="" maximoVersion="">
-         *          <!--Optional:-->
          *          <max:processname>XXHTZ</max:processname>
-         *          <!--Optional:-->
          *          <max:mbo>JD_INFORMANAGE</max:mbo>
-         *          <!--Optional:-->
          *          <max:keyValue>121</max:keyValue>
-         *          <!--Optional:-->
          *          <max:key>JD_INFORMANAGEID</max:key>
-         *          <!--Optional:-->
          *          <max:loginid>MAXADMIN</max:loginid>
          *       </max:wfservicestartWF>
          *    </soap:Body>
@@ -386,6 +384,9 @@ public class InformationRequestDetailActivity extends AppCompatActivity {
                             status=startWorkProcessBean.getNextStatus();
                             tvApproval.setText("工作流审批");
                             tvRequestStatue.setText(startWorkProcessBean.getNextStatus());
+                            PostData postData=new PostData();
+                            postData.setTag("信息化台账增减申请");
+                            EventBus.getDefault().post(postData);
                         }else {
 
                         }

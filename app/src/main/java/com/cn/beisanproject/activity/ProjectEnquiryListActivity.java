@@ -23,6 +23,7 @@ import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.adapter.ProjectMonthColletAdapter;
 import com.cn.beisanproject.adapter.PurchaseEnquiryAdapter;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.ProjectMonthCollectBean;
 import com.cn.beisanproject.modelbean.PurchaseEnquiryListBean;
 import com.cn.beisanproject.net.CallBackUtil;
@@ -33,6 +34,9 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.yinglan.keyboard.HideUtil;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 
@@ -232,5 +236,12 @@ public class ProjectEnquiryListActivity extends AppCompatActivity implements Vie
         if (isRefresh) refreshLayout.finishRefresh();
         else refreshLayout.finishLoadMore();
 
+    }
+    // 收到扫描盘点界面上传盘点ok后的通知 刷新列表
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getNotify(PostData postData) {
+        if (postData.getTag().equals("项目询价单")) {
+            query();
+        }
     }
 }

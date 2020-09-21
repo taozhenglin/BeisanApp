@@ -32,6 +32,7 @@ import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.modelbean.ElectricRequestListBean;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
 import com.cn.beisanproject.modelbean.WaitDoListBean;
 import com.cn.beisanproject.net.CallBackUtil;
@@ -40,6 +41,8 @@ import com.flyco.dialog.listener.OnOperItemClickL;
 import com.flyco.dialog.widget.ActionSheetDialog;
 import com.guideelectric.loadingdialog.view.LoadingDialog;
 import com.yinglan.keyboard.HideUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 
@@ -308,15 +311,10 @@ public class ElectricRequestDetailActivity extends AppCompatActivity {
          *    <soap:Header/>
          *    <soap:Body>
          *       <max:wfservicestartWF creationDateTime="" baseLanguage="zh" transLanguage="zh" messageID="" maximoVersion="">
-         *          <!--Optional:-->
          *          <max:processname>GPDTZ</max:processname>
-         *          <!--Optional:-->
          *          <max:mbo>JD_POSUDIAPPLY</max:mbo>
-         *          <!--Optional:-->
          *          <max:keyValue>4</max:keyValue>
-         *          <!--Optional:-->
          *          <max:key>JD_POSUDIAPPLYID</max:key>
-         *          <!--Optional:-->
          *          <max:loginid>MAXADMIN</max:loginid>
          *       </max:wfservicestartWF>
          *    </soap:Body>
@@ -362,6 +360,9 @@ public class ElectricRequestDetailActivity extends AppCompatActivity {
                             status=startWorkProcessBean.getNextStatus();
                             tvApproval.setText("工作流审批");
                             tvRequestStatue.setText(startWorkProcessBean.getNextStatus());
+                            PostData postData=new PostData();
+                            postData.setTag("供配电设备台账增减申请");
+                            EventBus.getDefault().post(postData);
                         }else {
 
                         }
@@ -532,6 +533,9 @@ public class ElectricRequestDetailActivity extends AppCompatActivity {
                     }
                     status = startWorkProcessBean.getNextStatus();
                     tvRequestStatue.setText(startWorkProcessBean.getNextStatus());
+                    PostData postData=new PostData();
+                    postData.setTag("供配电设备台账增减申请");
+                    EventBus.getDefault().post(postData);
                 } else {
 
                 }

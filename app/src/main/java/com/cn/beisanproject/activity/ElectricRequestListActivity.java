@@ -24,6 +24,7 @@ import com.cn.beisanproject.adapter.ElectricRequestAdapter;
 import com.cn.beisanproject.adapter.InformationRequestAdapter;
 import com.cn.beisanproject.modelbean.ElectricRequestListBean;
 import com.cn.beisanproject.modelbean.InformationRequestListBean;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
 import com.guideelectric.loadingdialog.view.LoadingDialog;
@@ -32,6 +33,10 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.yinglan.keyboard.HideUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 
@@ -64,6 +69,7 @@ public class ElectricRequestListActivity extends AppCompatActivity implements Vi
         initView();
         initEvent();
         initListener();
+        EventBus.getDefault().register(this);
 
     }
     private void initListener() {
@@ -222,6 +228,17 @@ public class ElectricRequestListActivity extends AppCompatActivity implements Vi
     private void finishRefresh() {
         if (isRefresh) refreshLayout.finishRefresh();
         else refreshLayout.finishLoadMore();
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getNotify(PostData postData) {
+        if (postData.getTag().equals("供配电设备台账增减申请")) {
+            query();
+        }
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

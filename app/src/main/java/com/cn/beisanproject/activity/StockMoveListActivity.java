@@ -22,6 +22,7 @@ import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.adapter.StockingMoveAdapter;
 import com.cn.beisanproject.adapter.StockingTakeAdapter;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.StockMoveListBean;
 import com.cn.beisanproject.modelbean.StockingTakeListBean;
 import com.cn.beisanproject.net.CallBackUtil;
@@ -31,6 +32,10 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 
@@ -65,6 +70,7 @@ public class StockMoveListActivity extends AppCompatActivity implements View.OnC
         initView();
         initEvent();
         initListener();
+        EventBus.getDefault().register(this);
     }
 
     private void initListener() {
@@ -204,5 +210,17 @@ public class StockMoveListActivity extends AppCompatActivity implements View.OnC
                 query();
                 break;
         }
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getNotify(PostData postData) {
+        if (postData.getTag().equals("库存转移")) {
+            query();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

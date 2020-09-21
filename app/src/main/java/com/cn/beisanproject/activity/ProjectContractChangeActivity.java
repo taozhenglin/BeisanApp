@@ -31,6 +31,7 @@ import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.ProjectChangeBean;
 import com.cn.beisanproject.modelbean.ProjectContractChangeBean;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
@@ -41,6 +42,8 @@ import com.flyco.dialog.listener.OnOperItemClickL;
 import com.flyco.dialog.widget.ActionSheetDialog;
 import com.guideelectric.loadingdialog.view.LoadingDialog;
 import com.yinglan.keyboard.HideUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 
@@ -303,15 +306,10 @@ public class ProjectContractChangeActivity extends AppCompatActivity  {
          *    <soap:Header/>
          *    <soap:Body>
          *       <max:wfservicestartWF creationDateTime="" baseLanguage="zh" transLanguage="zh" messageID="" maximoVersion="">
-         *          <!--Optional:-->
          *          <max:processname>UDXMHTBG</max:processname>
-         *          <!--Optional:-->
          *          <max:mbo>UDPURCHBG</max:mbo>
-         *          <!--Optional:-->
          *          <max:keyValue>1004</max:keyValue>
-         *          <!--Optional:-->
          *          <max:key>UDBGNUM</max:key>
-         *          <!--Optional:-->
          *          <max:loginid>maxadmin</max:loginid>
          *       </max:wfservicestartWF>
          *    </soap:Body>
@@ -358,6 +356,9 @@ public class ProjectContractChangeActivity extends AppCompatActivity  {
                         statues = startWorkProcessBean.getNextStatus();
                         tvChangeStatue.setText(startWorkProcessBean.getNextStatus());
                         tvApproval.setText("工作流审批");
+                        PostData postData=new PostData();
+                        postData.setTag("项目合同变更");
+                        EventBus.getDefault().post(postData);
                     } else {
 
                     }
@@ -417,13 +418,6 @@ public class ProjectContractChangeActivity extends AppCompatActivity  {
                 LogUtils.d("不同意==");
             }
         });
-//        final TextView number_tv = (TextView) remarkView.findViewById(R.id.number_tv);
-//        title_tv.setText("给TA贴标签");
-//        input_et.setHint("请填写10个字以内的标签名称");
-//        finish_tv.setText("确定");
-//        number_tv.setText("0/10");
-
-        //用于检测输入的字数
         input_et.addTextChangedListener(new TextWatcher() {
             private CharSequence temp;
             private int selectionStart;
@@ -529,6 +523,9 @@ public class ProjectContractChangeActivity extends AppCompatActivity  {
                 if (startWorkProcessBean.getMsg().equals("审批成功")) {
                     if (ifAgree == 1&&startWorkProcessBean.getNextStatus().equals("已批准")) {
                         tvApproval.setVisibility(View.GONE);
+                        PostData postData=new PostData();
+                        postData.setTag("项目合同变更");
+                        EventBus.getDefault().post(postData);
                     }
                     statues = startWorkProcessBean.getNextStatus();
                     tvChangeStatue.setText(startWorkProcessBean.getNextStatus());

@@ -24,6 +24,7 @@ import com.cn.beisanproject.adapter.EqumentRequestAdapter;
 import com.cn.beisanproject.adapter.FacilityRequestAdapter;
 import com.cn.beisanproject.modelbean.EqumentRequestListBean;
 import com.cn.beisanproject.modelbean.FacilityRequestListBean;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
@@ -31,6 +32,9 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.yinglan.keyboard.HideUtil;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 
@@ -213,4 +217,12 @@ public class FacilityRequestListActivity extends AppCompatActivity implements Vi
         else refreshLayout.finishLoadMore();
 
     }
+    // 收到扫描盘点界面上传盘点ok后的通知 刷新列表
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getNotify(PostData postData) {
+        if (postData.getTag().equals("设施台账增减申请")) {
+            query();
+        }
+    }
+
 }

@@ -30,6 +30,7 @@ import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.ProjectMonthLineBean;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
 import com.cn.beisanproject.modelbean.StockMoveDetailBean;
@@ -713,8 +714,9 @@ public class StockMoveDetailActivity extends AppCompatActivity {
                     tvApproval.setText("工作流审批");
                     statues = startWorkProcessBean.getNextStatus();
                     tvStatue.setText(startWorkProcessBean.getNextStatus());
-                    startWorkProcessBean.setTag("库存转移");//领料单列表刷新
-                    EventBus.getDefault().post(startWorkProcessBean);
+                    PostData postData=new PostData();
+                    postData.setTag("库存转移");//库存转移列表刷新
+                    EventBus.getDefault().post(postData);
                 }
                 ToastUtils.showShort(startWorkProcessBean.getMsg());
             }

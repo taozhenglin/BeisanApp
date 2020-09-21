@@ -33,6 +33,7 @@ import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.modelbean.CountEqmentRequestListBean;
 import com.cn.beisanproject.modelbean.CountEqumentRequestListBean;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
 import com.cn.beisanproject.modelbean.WaitDoListBean;
 import com.cn.beisanproject.net.CallBackUtil;
@@ -41,6 +42,8 @@ import com.flyco.dialog.listener.OnOperItemClickL;
 import com.flyco.dialog.widget.ActionSheetDialog;
 import com.guideelectric.loadingdialog.view.LoadingDialog;
 import com.yinglan.keyboard.HideUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 
@@ -356,6 +359,9 @@ public class CountEqmentRequestDetailActivity extends AppCompatActivity {
                             status=startWorkProcessBean.getNextStatus();
                             tvApproval.setText("工作流审批");
                             tvRequestStatue.setText(startWorkProcessBean.getNextStatus());
+                            PostData postData=new PostData();
+                            postData.setTag("计量设备台账增减申请");
+                            EventBus.getDefault().post(postData);
                         }else {
 
                         }

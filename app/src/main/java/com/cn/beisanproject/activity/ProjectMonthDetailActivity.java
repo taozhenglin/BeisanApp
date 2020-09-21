@@ -45,6 +45,7 @@ import com.cn.beisanproject.Utils.OpenFileUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.modelbean.CommonAttachBean;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.ProjectMonthAttachBean;
 import com.cn.beisanproject.modelbean.ProjectMonthLineBean;
 import com.cn.beisanproject.modelbean.ProjectMonthListBean;
@@ -740,8 +741,9 @@ public class ProjectMonthDetailActivity extends AppCompatActivity {
                         status = startWorkProcessBean.getNextStatus();
                         tvStatue.setText(startWorkProcessBean.getNextStatus());
                         tvApproval.setText("工作流审批");
-//                        startWorkProcessBean.setTag("项目合同");
-//                        EventBus.getDefault().post(startWorkProcessBean);
+                        PostData postData=new PostData();
+                        postData.setTag("项目立项/项目月度计划");
+                        EventBus.getDefault().post(postData);
                     } else {
 
 

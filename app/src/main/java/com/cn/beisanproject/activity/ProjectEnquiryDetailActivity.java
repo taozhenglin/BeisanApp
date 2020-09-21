@@ -29,6 +29,7 @@ import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.PuarchaseEnquirySupportBean;
 import com.cn.beisanproject.modelbean.PuarchaseSupportQuoteBean;
 import com.cn.beisanproject.modelbean.PurchaseEnquiryListBean;
@@ -38,6 +39,8 @@ import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
 import com.guideelectric.loadingdialog.view.LoadingDialog;
 import com.yinglan.keyboard.HideUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.List;
@@ -503,6 +506,9 @@ public class ProjectEnquiryDetailActivity extends AppCompatActivity implements V
                         tv_start.setText("工作流审批");
                         statues = startWorkProcessBean.getNextStatus();
                         tv_statues.setText(startWorkProcessBean.getNextStatus());
+                        PostData postData=new PostData();
+                        postData.setTag("项目询价单");
+                        EventBus.getDefault().post(postData);
                         getBaoJiaSupport();
                     } else {
 

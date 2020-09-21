@@ -32,6 +32,7 @@ import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.ProjectMonthLineBean;
 import com.cn.beisanproject.modelbean.PurchaseListBean;
 import com.cn.beisanproject.modelbean.PurchaseListDetailBean;
@@ -435,8 +436,9 @@ public class PurchaseListDetailActivity extends AppCompatActivity {
                         statues = startWorkProcessBean.getNextStatus();
                         tvStatue.setText(startWorkProcessBean.getNextStatus());
                         tvApproval.setText("工作流审批");
-                        startWorkProcessBean.setTag("采购单");
-                        EventBus.getDefault().post(startWorkProcessBean);
+                        PostData postData=new PostData();
+                        postData.setTag("入库单");
+                        EventBus.getDefault().post(postData);
                     } else {
 
                     }

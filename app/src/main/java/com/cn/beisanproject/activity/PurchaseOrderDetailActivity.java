@@ -43,6 +43,7 @@ import com.cn.beisanproject.fragment.PurchaseContractDetailFragment;
 import com.cn.beisanproject.fragment.PurchaseContractLineFragment;
 import com.cn.beisanproject.fragment.PurchaseOrderDetailFragment;
 import com.cn.beisanproject.fragment.PurchaseOrdertLineFragment;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.PurchaseOrderListBean;
 import com.cn.beisanproject.modelbean.PurchseContractDetailBean;
 import com.cn.beisanproject.modelbean.PurchseContractListBean;
@@ -451,8 +452,9 @@ public class PurchaseOrderDetailActivity extends AppCompatActivity implements Vi
                         if (startWorkProcessBean.getMsg().equals("流程启动成功！")) {
                             statue = startWorkProcessBean.getNextStatus();
                             tv_start.setText("工作流审批");
-                            startWorkProcessBean.setTag("采购订单");
-                            EventBus.getDefault().post(startWorkProcessBean);
+                            PostData postData=new PostData();
+                            postData.setTag("采购订单");
+                            EventBus.getDefault().post(postData);
                         } else {
 
                         }
@@ -525,8 +527,9 @@ public class PurchaseOrderDetailActivity extends AppCompatActivity implements Vi
                     });
                     if (startWorkProcessBean.getMsg().equals("审批成功")) {
                         statue = startWorkProcessBean.getNextStatus();
-                        startWorkProcessBean.setTag("采购订单");
-                        EventBus.getDefault().post(startWorkProcessBean);
+                        PostData postData=new PostData();
+                        postData.setTag("采购订单");
+                        EventBus.getDefault().post(postData);
                     } else {
 
                     }
