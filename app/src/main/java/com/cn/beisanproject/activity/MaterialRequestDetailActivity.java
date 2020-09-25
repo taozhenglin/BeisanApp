@@ -198,7 +198,7 @@ public class MaterialRequestDetailActivity extends AppCompatActivity implements 
                 edt_yusuanno_desc.setEnabled(false);
                 edt_zhineng_dep.setEnabled(false);
                 edt_shiyong_fangiang.setEnabled(false);
-                tv_start.setVisibility(View.GONE);
+//                tv_start.setVisibility(View.GONE);
                 iv_fun.setVisibility(View.GONE);
 //                tv_new_line.setVisibility(View.GONE);
             } else  {
@@ -267,7 +267,7 @@ public class MaterialRequestDetailActivity extends AppCompatActivity implements 
                             SITEID=resultlist.get(0).getSITEID();
                             WORKORDERID=resultlist.get(0).getWORKORDERID()+"";
 
-                            if (statues.equals("已取消")){
+                            if (statues.equals("已取消")||statues.equals("取消")||statues.equals("关闭")||statues.equals("已关闭")){
                                 tv_start.setVisibility(View.GONE);
                             }else {
                                 if (statues.equals("起草")){
@@ -287,7 +287,7 @@ public class MaterialRequestDetailActivity extends AppCompatActivity implements 
                                 edt_yusuanno_desc.setEnabled(false);
                                 edt_zhineng_dep.setEnabled(false);
                                 edt_shiyong_fangiang.setEnabled(false);
-                                tv_start.setVisibility(View.GONE);
+//                                tv_start.setVisibility(View.GONE);
                                 iv_fun.setVisibility(View.GONE);
 //                                tv_new_line.setVisibility(View.GONE);
                             } else  {

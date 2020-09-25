@@ -147,7 +147,8 @@ public class CountEqmentRequestListActivity extends AppCompatActivity implements
         sinorsearch.put("ASSETNUM",edt_search_contract.getText().toString());
         sinorsearch.put("JD_MEASUREMENTID",edt_search_contract.getText().toString());
         object.put("sinorsearch", sinorsearch);
-
+        String sqlSearch=" status !='已确认'";
+        object.put("sqlSearch", sqlSearch);
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
         HashMap<String, String> map = new HashMap<>();

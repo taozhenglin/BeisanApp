@@ -161,7 +161,8 @@ public class ElectricRequestListActivity extends AppCompatActivity implements Vi
         sinorsearch.put("ASSETNUM",edt_search_contract.getText().toString());
         sinorsearch.put("JD_POSUDIAPPLYID",edt_search_contract.getText().toString());
         object.put("sinorsearch", sinorsearch);
-
+        String sqlSearch=" status !='已确认'";
+        object.put("sqlSearch", sqlSearch);
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
         HashMap<String, String> map = new HashMap<>();
@@ -221,6 +222,7 @@ public class ElectricRequestListActivity extends AppCompatActivity implements Vi
                 finish();
                 break;
             case R.id.tv_search:
+                currentPageNum=1;
                 query();
                 break;
         }

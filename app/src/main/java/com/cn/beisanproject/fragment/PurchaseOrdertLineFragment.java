@@ -19,6 +19,7 @@ import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.activity.PurchaseOrderDetailActivity;
 import com.cn.beisanproject.modelbean.ContractLIneDetailBean;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.PurchaseOrderListBean;
 import com.cn.beisanproject.modelbean.PurchseContractDetailBean;
 import com.cn.beisanproject.modelbean.PurchseContractListBean;
@@ -216,13 +217,12 @@ public class PurchaseOrdertLineFragment extends Fragment {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(StartWorkProcessBean startWorkProcessBean) {
+    public void onEvent(PostData postData) {
         LogUtils.d("onEvent==");
-        if (startWorkProcessBean.getTag().equals("采购订单")) {
-            tv_contract_statue.setText(startWorkProcessBean.getNextStatus());
+        if (postData.getTag().equals("采购订单")) {
+            tv_contract_statue.setText(postData.getNextStatus());
             getContractLine();
         }
-
     }
 
     @Override

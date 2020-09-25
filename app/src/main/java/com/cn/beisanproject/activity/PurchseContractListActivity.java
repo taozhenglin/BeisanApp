@@ -132,7 +132,7 @@ public class PurchseContractListActivity extends AppCompatActivity implements Vi
         searchobj.put("DESCRIPTION", edt_search_contract.getText().toString());
         searchobj.put("HTYF", edt_search_contract.getText().toString());
         object.put("sinorsearch", searchobj);
-        object.put("sqlSearch", "LB='采购合同'  and UDCGHTLX <> '采购订单'");
+        object.put("sqlSearch", "LB='采购合同'  and nvl(UDCGHTLX,'1') <> '采购订单'");
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
         HashMap<String, String> map = new HashMap<>();

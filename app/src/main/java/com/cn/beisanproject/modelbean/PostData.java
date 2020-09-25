@@ -16,6 +16,7 @@ public class PostData implements Serializable {
     public void setCount(int count) {
         this.count = count;
     }
+    private String nextStatus;
 
     int count;
 
@@ -34,7 +35,13 @@ public class PostData implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
+    public String getNextStatus() {
+        return nextStatus;
+    }
 
+    public void setNextStatus(String nextStatus) {
+        this.nextStatus = nextStatus;
+    }
 
 
     public String getTag() {

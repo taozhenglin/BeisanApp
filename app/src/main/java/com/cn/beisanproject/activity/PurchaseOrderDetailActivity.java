@@ -454,6 +454,7 @@ public class PurchaseOrderDetailActivity extends AppCompatActivity implements Vi
                             tv_start.setText("工作流审批");
                             PostData postData=new PostData();
                             postData.setTag("采购订单");
+                            postData.setNextStatus(statue);
                             EventBus.getDefault().post(postData);
                         } else {
 

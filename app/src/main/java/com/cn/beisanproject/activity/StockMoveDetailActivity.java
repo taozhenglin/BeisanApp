@@ -103,7 +103,7 @@ public class StockMoveDetailActivity extends AppCompatActivity {
     private String siteid;
     private String statues;
     private PopupWindow pop;
-    private int selected;
+    private int selected=1;
     private String INVUSEID;
     private int isAgree = 1;
 

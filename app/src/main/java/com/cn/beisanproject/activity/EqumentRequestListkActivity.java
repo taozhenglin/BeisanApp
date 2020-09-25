@@ -68,22 +68,6 @@ public class EqumentRequestListkActivity extends AppCompatActivity implements Vi
     private void initListener() {
         tv_back.setOnClickListener(this);
         tv_search.setOnClickListener(this);
-        edt_search_contract.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
     }
 
     private void initView() {
@@ -155,6 +139,8 @@ public class EqumentRequestListkActivity extends AppCompatActivity implements Vi
         sinorsearchobject.put("JD_SBTZID",  edt_search_contract.getText().toString());
         sinorsearchobject.put("NAME",  edt_search_contract.getText().toString());
         object.put("sinorsearch", sinorsearchobject);
+        String sqlSearch=" status !='已确认'";
+        object.put("sqlSearch", sqlSearch);
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
         HashMap<String, String> map = new HashMap<>();

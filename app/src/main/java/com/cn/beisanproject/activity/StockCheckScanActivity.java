@@ -244,15 +244,15 @@ public class StockCheckScanActivity extends AppCompatActivity implements QRCodeV
         /**
          * 通用扫码-物资
          * http://192.168.1.180:7009/maximo/mobile/common/api?data=
-         * {"appid":"MATRECTRANS","objectname":"MATRECTRANS","option":"read","sqlSearch":" UDTOLOT=:扫到的码 "}
+         * {"appid":"INVBALANCES","objectname":"INVBALANCES","option":"read","sqlSearch":" UDTOLOT=:扫到的码 "}
          */
         LogUtils.d("query==");
         String url = Constants.COMMONURL;
         JSONObject object = new JSONObject();
-        object.put("appid", "MATRECTRANS");
-        object.put("objectname", "MATRECTRANS");
+        object.put("appid", "INVBALANCES");
+        object.put("objectname", "INVBALANCES");
         object.put("option", "read");
-        object.put("sqlSearch", " UDTOLOT= " + "'" + result + "'");
+        object.put("sqlSearch", " UDLOTNUM= " + "'" + result + "'");
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
         HashMap<String, String> map = new HashMap<>();

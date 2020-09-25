@@ -24,7 +24,7 @@
     <TextView
         android:id="@+id/tv_start"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp50"
+        android:layout_height="@dimen/dp40"
         android:background="@color/guide_blue"
         android:text="启动工作流"
         android:gravity="center"

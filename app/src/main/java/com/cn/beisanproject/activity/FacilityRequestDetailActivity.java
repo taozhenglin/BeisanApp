@@ -332,7 +332,7 @@ public class FacilityRequestDetailActivity extends AppCompatActivity {
          *    </soap:Body>
          * </soap:Envelope>
          */
-        String request="<<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:max=\"http://www.ibm.com/maximo\">\n" +
+        String request="<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:max=\"http://www.ibm.com/maximo\">\n" +
                 "   <soap:Header/>\n" +
                 "   <soap:Body>\n" +
                 "      <max:wfservicestartWF creationDateTime=\"\" baseLanguage=\"zh\" transLanguage=\"zh\" messageID=\"\" maximoVersion=\"\">\n" +

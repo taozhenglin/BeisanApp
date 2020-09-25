@@ -151,6 +151,8 @@ public class InformationRequestListActivity extends AppCompatActivity implements
         sinorsearchobject.put("JD_INFORMANAGENUM", edt_search_contract.getText().toString());
         sinorsearchobject.put("ASSETNUM",  edt_search_contract.getText().toString());
         object.put("sinorsearch", sinorsearchobject);
+        String sqlSearch=" status !='已确认'";
+        object.put("sqlSearch", sqlSearch);
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
         HashMap<String, String> map = new HashMap<>();
