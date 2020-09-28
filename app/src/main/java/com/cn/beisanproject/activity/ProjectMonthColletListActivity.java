@@ -25,6 +25,7 @@ import com.cn.beisanproject.adapter.ProjectMonthColletAdapter;
 import com.cn.beisanproject.modelbean.ProjectMonthCollectBean;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
+import com.guideelectric.loadingdialog.view.LoadingDialog;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
@@ -53,6 +54,7 @@ public class ProjectMonthColletListActivity extends AppCompatActivity implements
     private EditText edt_search_contract;
     private TextView tv_search;
     private int totalpage;
+    private LoadingDialog ld;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -102,6 +104,7 @@ public class ProjectMonthColletListActivity extends AppCompatActivity implements
     }
 
     private void initEvent() {
+        ld=new LoadingDialog(this);
         query();
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -127,6 +130,7 @@ public class ProjectMonthColletListActivity extends AppCompatActivity implements
     }
 
     private void query() {
+        ld.show();
         /**
          * {
          *   "objectname" : "PR",
@@ -167,6 +171,8 @@ public class ProjectMonthColletListActivity extends AppCompatActivity implements
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure=" + e.toString());
                 finishRefresh();
+                ld.close();
+                ToastUtils.showShort(R.string.getDatafailed);
             }
 
             @Override
@@ -174,6 +180,7 @@ public class ProjectMonthColletListActivity extends AppCompatActivity implements
                 LogUtils.d("onResponse=" + response);
                 ProjectMonthCollectBean projectMonthCollectBean;
                 finishRefresh();
+                ld.close();
                 if (!response.isEmpty()) {
                     projectMonthCollectBean = JSONObject.parseObject(response, new TypeReference<ProjectMonthCollectBean>() {
                     });

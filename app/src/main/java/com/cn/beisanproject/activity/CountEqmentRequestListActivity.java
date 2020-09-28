@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.blankj.utilcode.util.ToastUtils;
 import com.cn.beisanproject.Base.Constants;
 import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
@@ -26,6 +27,7 @@ import com.cn.beisanproject.modelbean.CountEqmentRequestListBean;
 import com.cn.beisanproject.modelbean.InformationRequestListBean;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
+import com.guideelectric.loadingdialog.view.LoadingDialog;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
@@ -49,6 +51,8 @@ public class CountEqmentRequestListActivity extends AppCompatActivity implements
     private boolean isRefresh = true;//是否刷新数据
     private EditText edt_search_contract;
     private TextView tv_search;
+    private LoadingDialog ld;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,22 +70,6 @@ public class CountEqmentRequestListActivity extends AppCompatActivity implements
     private void initListener() {
         tv_back.setOnClickListener(this);
         tv_search.setOnClickListener(this);
-        edt_search_contract.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
     }
 
     private void initView() {
@@ -99,6 +87,7 @@ public class CountEqmentRequestListActivity extends AppCompatActivity implements
     }
 
     private void initEvent() {
+        ld=new LoadingDialog(this);
         query();
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -133,6 +122,7 @@ public class CountEqmentRequestListActivity extends AppCompatActivity implements
          *   "showcount" : 20
          * }
          */
+        ld.show();
 
         LogUtils.d("query==");
         LogUtils.d("currentPageNum" + currentPageNum);
@@ -158,14 +148,16 @@ public class CountEqmentRequestListActivity extends AppCompatActivity implements
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure=" + e.toString());
+                ToastUtils.showShort("获取数据失败");
                 finishRefresh();
+                ld.close();
             }
-
             @Override
             public void onResponse(String response) {
                 LogUtils.d("onResponse=" + response);
                 CountEqmentRequestListBean countEqmentRequestListBean;
                 finishRefresh();
+                ld.close();
                 if (!response.isEmpty()) {
                     countEqmentRequestListBean = JSONObject.parseObject(response, new TypeReference<CountEqmentRequestListBean>() {
                     });
@@ -180,7 +172,6 @@ public class CountEqmentRequestListActivity extends AppCompatActivity implements
                                 countEqmentRequestAdapter.setData(countEqmentRequestListBean.getResult().getResultlist(),edt_search_contract.getText().toString());
                                 countEqmentRequestAdapter.notifyDataSetChanged();
                             }
-
                         } else {
                             if (currentPageNum<=totalPage){
                                 countEqmentRequestAdapter.addAllList(countEqmentRequestListBean.getResult().getResultlist());

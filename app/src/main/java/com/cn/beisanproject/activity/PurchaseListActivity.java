@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.EventLog;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -32,6 +33,7 @@ import com.cn.beisanproject.modelbean.PurchaseListBean;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
+import com.guideelectric.loadingdialog.view.LoadingDialog;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
@@ -63,6 +65,8 @@ public class PurchaseListActivity extends AppCompatActivity implements View.OnCl
     private TextView tv_search;
     int totalpage;
     int totalresult;
+    private LoadingDialog ld;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,6 +118,7 @@ public class PurchaseListActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void initEvent() {
+        ld=new LoadingDialog(this);
         query();
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -139,6 +144,7 @@ public class PurchaseListActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void query() {
+        ld.show();
         /**
          * {
          *   "objectname" : "PO",
@@ -174,6 +180,7 @@ public class PurchaseListActivity extends AppCompatActivity implements View.OnCl
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
                 finishRefresh();
+                ld.close();
             }
 
             @Override
@@ -181,6 +188,7 @@ public class PurchaseListActivity extends AppCompatActivity implements View.OnCl
                 LogUtils.d("onResponse==" + response);
                 PurchaseEnquiryListBean purchaseEnquiryListBean;
                 finishRefresh();
+                ld.close();
                 if (!response.isEmpty()) {
                     PurchaseListBean  purchaseListBean = JSONObject.parseObject(response, new TypeReference<PurchaseListBean>() {});
 

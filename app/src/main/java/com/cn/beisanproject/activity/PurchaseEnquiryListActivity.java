@@ -27,6 +27,7 @@ import com.cn.beisanproject.modelbean.ProjectMonthListBean;
 import com.cn.beisanproject.modelbean.PurchaseEnquiryListBean;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
+import com.guideelectric.loadingdialog.view.LoadingDialog;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
@@ -54,6 +55,8 @@ public class PurchaseEnquiryListActivity extends AppCompatActivity implements Vi
     private TextView tv_search;
     int totalpage;
     int totalresult;
+    private LoadingDialog ld;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +106,7 @@ public class PurchaseEnquiryListActivity extends AppCompatActivity implements Vi
     }
 
     private void initEvent() {
+        ld=new LoadingDialog(this);
         query();
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -128,6 +132,7 @@ public class PurchaseEnquiryListActivity extends AppCompatActivity implements Vi
     }
 
     private void query() {
+        ld.show();
         /**
          * {
          *   "objectname" : "RFQ",
@@ -164,6 +169,8 @@ public class PurchaseEnquiryListActivity extends AppCompatActivity implements Vi
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure=" + e.toString());
                 finishRefresh();
+                ld.close();
+                ToastUtils.showShort(R.string.getDatafailed);
             }
 
             @Override
@@ -171,6 +178,7 @@ public class PurchaseEnquiryListActivity extends AppCompatActivity implements Vi
                 LogUtils.d("onResponse=" + response);
                 PurchaseEnquiryListBean purchaseEnquiryListBean;
                 finishRefresh();
+                ld.close();
                 if (!response.isEmpty()) {
                     purchaseEnquiryListBean = JSONObject.parseObject(response, new TypeReference<PurchaseEnquiryListBean>() {
                     });
