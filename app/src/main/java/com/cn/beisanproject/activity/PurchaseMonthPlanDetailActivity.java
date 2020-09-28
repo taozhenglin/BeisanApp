@@ -32,6 +32,7 @@ import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.ProjectMonthLineBean;
 import com.cn.beisanproject.modelbean.PurchaseMonthPlanDetailBean;
 import com.cn.beisanproject.modelbean.PurchaseMonthPlanLineBean;
@@ -449,8 +450,9 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
                         statues = startWorkProcessBean.getNextStatus();
                         tvStatue.setText(startWorkProcessBean.getNextStatus());
                         tvApproval.setText("工作流审批");
-                        startWorkProcessBean.setTag("采购月度计划");
-                        EventBus.getDefault().post(startWorkProcessBean);
+                        PostData data=new PostData();
+                        data.setTag("采购月度计划");
+                        EventBus.getDefault().post(data);
                     } else {
 
                     }

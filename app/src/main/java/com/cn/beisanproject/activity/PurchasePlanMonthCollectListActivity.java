@@ -24,6 +24,7 @@ import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.adapter.ProjectMonthColletAdapter;
 import com.cn.beisanproject.adapter.PurchaseMonthPlanAdapter;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.ProjectMonthCollectBean;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
 import com.cn.beisanproject.net.CallBackUtil;
@@ -240,9 +241,9 @@ public class PurchasePlanMonthCollectListActivity extends AppCompatActivity impl
 
     }
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent( StartWorkProcessBean startWorkProcessBean){
+    public void onEvent( PostData data){
         LogUtils.d("onEvent==");
-        if (startWorkProcessBean.getTag().equals("采购月度计划汇总")){
+        if (data.getTag().equals("采购月度计划汇总")){
            query();
         }
     }
