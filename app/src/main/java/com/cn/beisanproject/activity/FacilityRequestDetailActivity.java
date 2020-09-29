@@ -551,6 +551,9 @@ public class FacilityRequestDetailActivity extends AppCompatActivity {
                     }
                     status = startWorkProcessBean.getNextStatus();
                     tvRequestStatue.setText(startWorkProcessBean.getNextStatus());
+                    PostData postData=new PostData();
+                    postData.setTag("设施台账增减申请");
+                    EventBus.getDefault().post(postData);
                 } else {
 
                 }

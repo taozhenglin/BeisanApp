@@ -21,6 +21,7 @@ import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.adapter.PurchseContractAdapter;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.PurchseContractListBean;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
@@ -30,6 +31,10 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.yinglan.keyboard.HideUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 
@@ -67,6 +72,7 @@ public class PurchseContractListActivity extends AppCompatActivity implements Vi
         initView();
         initEvent();
         initListener();
+        EventBus.getDefault().register(this);
 
     }
 
@@ -97,8 +103,6 @@ public class PurchseContractListActivity extends AppCompatActivity implements Vi
                 isRefresh = true;
                 currentPageNum = 1;
                 query();
-
-
             }
         });
         refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -107,7 +111,6 @@ public class PurchseContractListActivity extends AppCompatActivity implements Vi
                 isRefresh = false;
                 currentPageNum++;
                 query();
-
             }
         });
 
@@ -204,5 +207,19 @@ public class PurchseContractListActivity extends AppCompatActivity implements Vi
     private void finishRefresh() {
         if (isRefresh) refreshLayout.finishRefresh();
         else refreshLayout.finishLoadMore();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+    // 收到扫描盘点界面上传盘点ok后的通知 刷新列表
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getNotify(PostData postData) {
+        if (postData.getTag().equals("采购合同"))
+        {
+            query();
+        }
     }
 }

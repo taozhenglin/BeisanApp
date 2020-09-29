@@ -475,25 +475,24 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
             public void onResponse(String response) {
                 ld.close();
                 LogUtils.d("onResponse==" + response);
-                int start = response.indexOf("<return>");
-                int end = response.indexOf("</return>");
-                String substring = response.substring(start + 8, end);
-                LogUtils.d("substring==" + substring);
-                StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
-                });
-                if (startWorkProcessBean.getMsg().equals("审批成功")) {
-                    statues = startWorkProcessBean.getNextStatus();
-                    tv_statues.setText(startWorkProcessBean.getNextStatus());
-                    PostData postData=new PostData();
-                    postData.setTag("采购询价单");
-                    EventBus.getDefault().post(postData);
-                    getBaoJiaSupport();
-                } else {
+                if (response.contains("<return>")&&response.contains("</return>")){
+                    int start = response.indexOf("<return>");
+                    int end = response.indexOf("</return>");
+                    String substring = response.substring(start + 8, end);
+                    LogUtils.d("substring==" + substring);
+                    StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {});
+                    if (startWorkProcessBean.getMsg().equals("审批成功")) {
+                        statues = startWorkProcessBean.getNextStatus();
+                        tv_statues.setText(startWorkProcessBean.getNextStatus());
+                        PostData postData=new PostData();
+                        postData.setTag("采购询价单");
+                        EventBus.getDefault().post(postData);
+                        getBaoJiaSupport();
+                    } else {
 
+                    }
+                    ToastUtils.showShort(startWorkProcessBean.getMsg());
                 }
-                ToastUtils.showShort(startWorkProcessBean.getMsg());
-
-
             }
         });
 

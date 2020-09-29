@@ -683,6 +683,9 @@ public class ProjectEnquiryDetailActivity extends AppCompatActivity implements V
                 if (startWorkProcessBean.getMsg().equals("审批成功")) {
                     statues = startWorkProcessBean.getNextStatus();
                     tv_statues.setText(startWorkProcessBean.getNextStatus());
+                    PostData postData=new PostData();
+                    postData.setTag("项目询价单");
+                    EventBus.getDefault().post(postData);
                     getBaoJiaSupport();
                 } else {
 

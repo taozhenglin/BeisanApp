@@ -49,7 +49,7 @@ public class PersonalCenterFragment extends Fragment implements View.OnClickList
         this.mContext = context;
            model= android.os.Build.MODEL;//手机型号
            carrier= Build.MANUFACTURER;//手机厂商
-        LogUtils.d("model== "+model + "       carrie=r="+carrier);
+        LogUtils.d("model== "+model + "       carrier="+carrier);
 
     }
 

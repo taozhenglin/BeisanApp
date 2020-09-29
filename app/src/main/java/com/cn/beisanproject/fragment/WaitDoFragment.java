@@ -144,7 +144,7 @@ public class WaitDoFragment extends Fragment {
                     if (waitDoListBean.getErrcode().equals("GLOBAL-S-0")) {
                         totalepage = waitDoListBean.getResult().getTotalpage();
                         int totalresult = waitDoListBean.getResult().getTotalresult();
-                            PostData postData=new PostData();
+                        PostData postData=new PostData();
                         postData.setCount(totalresult);
                         postData.setTag("waitdocount");
                         EventBus.getDefault().post(postData);

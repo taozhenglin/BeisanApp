@@ -41,6 +41,7 @@ import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.Utils.Tools;
 import com.cn.beisanproject.fragment.PurchaseContractDetailFragment;
 import com.cn.beisanproject.fragment.PurchaseContractLineFragment;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.PurchseContractDetailBean;
 import com.cn.beisanproject.modelbean.PurchseContractListBean;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
@@ -110,7 +111,7 @@ public class PurchaseContractDetailActivity extends AppCompatActivity implements
         tv_start = findViewById(R.id.tv_start);
         pager = findViewById(R.id.pager);
         magicIndicator = findViewById(R.id.magicIndicator);
-        ld=new LoadingDialog(this);
+        ld = new LoadingDialog(this);
         if (!StringUtils.isEmpty(getIntent().getStringExtra("from")) && getIntent().getStringExtra("from").equals("waitdolist")) {//来自代办事项列表
             needGet = true;
             waitdolistbean = (WaitDoListBean.ResultBean.ResultlistBean) getIntent().getExtras().get("ResultlistBean");
@@ -498,7 +499,7 @@ public class PurchaseContractDetailActivity extends AppCompatActivity implements
             @Override
             public void onResponse(String response) {
                 LogUtils.d("onResponse==" + response);
-                if (response.contains("<return>")&&response.contains("</return>")){
+                if (response.contains("<return>") && response.contains("</return>")) {
                     int start = response.indexOf("<return>");
                     int end = response.indexOf("</return>");
                     String substring = response.substring(start + 8, end);
@@ -513,7 +514,7 @@ public class PurchaseContractDetailActivity extends AppCompatActivity implements
 
                     }
                     ToastUtils.showShort(startWorkProcessBean.getMsg());
-                }else
+                } else
                     ToastUtils.showShort("操作失败");
 
 
@@ -564,7 +565,7 @@ public class PurchaseContractDetailActivity extends AppCompatActivity implements
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
-ld.close();
+                ld.close();
             }
 
             @Override
@@ -573,7 +574,7 @@ ld.close();
                 ld.close();
                 //xml 解析
                 if (!response.isEmpty()) {
-                    if (response.contains("<return>")&&response.contains("</return>")){
+                    if (response.contains("<return>") && response.contains("</return>")) {
                         int start = response.indexOf("<return>");
                         int end = response.indexOf("</return>");
                         String substring = response.substring(start + 8, end);
@@ -583,13 +584,14 @@ ld.close();
                         if (startWorkProcessBean.getMsg().equals("流程启动成功！")) {
                             statue = startWorkProcessBean.getNextStatus();
                             tv_start.setText("工作流审批");
-                            startWorkProcessBean.setTag("采购合同");
-                            EventBus.getDefault().post(startWorkProcessBean);
+                            PostData data=new PostData();
+                            data.setTag("采购合同");
+                            EventBus.getDefault().post(data);
                         } else {
 
                         }
                         ToastUtils.showShort(startWorkProcessBean.getMsg());
-                    }else {
+                    } else {
                         ToastUtils.showShort("启动失败");
 
                     }
