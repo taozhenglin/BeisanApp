@@ -19,3 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keepclassmembers class com.cn.beisanproject.Base.MyApplication {
+    public <init>();
+}
+-keep class com.cn.beisanproject.Base.SophixStubApplication.RealApplicationStub

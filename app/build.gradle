@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 android {
     signingConfigs {
         debug {
@@ -7,6 +6,11 @@ android {
             storePassword '000517'
             keyAlias 'key0'
             keyPassword '000517'
+        }
+    }
+    repositories {
+        maven {
+            url "http://maven.aliyun.com/nexus/content/repositories/releases"
         }
     }
     compileSdkVersion 29
@@ -20,6 +24,11 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            //热修复支持五种
+            abiFilters 'arm64-v8a', 'armeabi', 'armeabi-v7a', 'x86', 'x86_64'
+        }
     }
 
     buildTypes {
@@ -91,6 +100,8 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     //noinspection GradleCompatible
     implementation 'com.android.support:design:22.2.0'
+    //阿里热修复
+    compile 'com.aliyun.ams:alicloud-android-hotfix:3.2.14'
 
 
 
