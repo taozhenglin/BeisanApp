@@ -121,7 +121,9 @@ public class InformationRequestDetailActivity extends AppCompatActivity {
 
     String status;
     private LoadingDialog ld;
-    private String[] stringItems = new String[]{"工作流审批"};
+    private String[] stringItems1 = new String[]{"启动工作流"};
+
+    private String[] stringItems2 = new String[]{"工作流审批"};
     private PopupWindow pop;
     int isAgree = 1;
     private InformationRequestListBean.ResultBean.ResultlistBean mResultlistBean;
@@ -300,10 +302,32 @@ public class InformationRequestDetailActivity extends AppCompatActivity {
                 break;
             case R.id.tv_approval:
                 if (status.equals("等待批准")) {
-                    start();
+
+                    ActionSheetDialog dialog = new ActionSheetDialog(this, stringItems1, tvApproval);
+                    dialog.isTitleShow(false)
+                            .titleTextSize_SP(12)
+                            .titleTextColor(Color.parseColor("#33000000"))
+                            .cancelText("取消")
+                            .cancelText(getResources().getColor(R.color.guide_blue))
+                            .itemTextColor(getResources().getColor(R.color.guide_blue))
+                            .layoutAnimation(null)
+                            .show();
+                    dialog.setOnOperItemClickL(new OnOperItemClickL() {
+                        @Override
+                        public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            switch (position) {
+                                case 0://
+                                   start();
+                                    dialog.dismiss();
+                                    break;
+                                case 1:
+                                    break;
+                            }
+                        }
+                    });
                 }else {
 
-                    ActionSheetDialog dialog = new ActionSheetDialog(this, stringItems, tvApproval);
+                    ActionSheetDialog dialog = new ActionSheetDialog(this, stringItems2, tvApproval);
                     dialog.isTitleShow(false)
                             .titleTextSize_SP(12)
                             .titleTextColor(Color.parseColor("#33000000"))

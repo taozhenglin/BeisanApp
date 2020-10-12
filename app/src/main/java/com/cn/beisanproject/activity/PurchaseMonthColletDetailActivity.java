@@ -89,7 +89,9 @@ public class PurchaseMonthColletDetailActivity extends AppCompatActivity impleme
     private Fragment currentFragment;
     private ArrayList<String> titles;
     private String statue;
-    private String[] stringItems = new String[]{"工作流审批"};
+    private String[] stringItems1 = new String[]{"启动工作流"};
+
+    private String[] stringItems2 = new String[]{"工作流审批"};
     private PopupWindow pop;
     private int isAgree=1;
     private String PRID;
@@ -339,9 +341,31 @@ public class PurchaseMonthColletDetailActivity extends AppCompatActivity impleme
             case R.id.tv_start:
 
                     if (statue.equals("等待批准")){
-                        start();
+
+                        ActionSheetDialog dialog = new ActionSheetDialog(this, stringItems1, tv_start);
+                        dialog.isTitleShow(false)
+                                .titleTextSize_SP(12)
+                                .titleTextColor(Color.parseColor("#33000000"))
+                                .cancelText("取消")
+                                .cancelText(getResources().getColor(R.color.guide_blue))
+                                .itemTextColor(getResources().getColor(R.color.guide_blue))
+                                .layoutAnimation(null)
+                                .show();
+                        dialog.setOnOperItemClickL(new OnOperItemClickL() {
+                            @Override
+                            public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                switch (position) {
+                                    case 0://
+                                        start();
+                                        dialog.dismiss();
+                                        break;
+                                    case 1:
+                                        break;
+                                }
+                            }
+                        });
                     }else {
-                        ActionSheetDialog dialog = new ActionSheetDialog(this, stringItems, tv_start);
+                        ActionSheetDialog dialog = new ActionSheetDialog(this, stringItems2, tv_start);
                         dialog.isTitleShow(false)
                                 .titleTextSize_SP(12)
                                 .titleTextColor(Color.parseColor("#33000000"))

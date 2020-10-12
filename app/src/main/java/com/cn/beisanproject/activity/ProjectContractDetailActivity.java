@@ -96,7 +96,9 @@ public class ProjectContractDetailActivity extends AppCompatActivity implements 
     ProjectContractDetailBean projectContractDetailBean;
     private String CONTRACTID;
     private String CONTRACTNUM;
-    private String[] stringItems = new String[]{"工作流审批"};
+    private String[] stringItems1 = new String[]{"工作流审批"};
+
+    private String[] stringItems2 = new String[]{"工作流审批"};
     private LoadingDialog ld;
 
 
@@ -344,10 +346,31 @@ public class ProjectContractDetailActivity extends AppCompatActivity implements 
                 finish();
                 break;
             case R.id.tv_start:
+                //启动工作流
                 if (statue.equals("草稿")) {
-                    start();//启动工作流
+                    ActionSheetDialog dialog = new ActionSheetDialog(this, stringItems1, tv_start);
+                    dialog.isTitleShow(false)
+                            .titleTextSize_SP(12)
+                            .titleTextColor(Color.parseColor("#33000000"))
+                            .cancelText("取消")
+                            .cancelText(getResources().getColor(R.color.guide_blue))
+                            .itemTextColor(getResources().getColor(R.color.guide_blue))
+                            .layoutAnimation(null)
+                            .show();
+                    dialog.setOnOperItemClickL(new OnOperItemClickL() {
+                        @Override
+                        public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            switch (position) {
+                                case 0://
+                                    start();
+                                    dialog.dismiss();
+                                    break;
+                            }
+                        }
+                    });
+
                 } else {//工作流审批
-                    ActionSheetDialog dialog = new ActionSheetDialog(this, stringItems, tv_start);
+                    ActionSheetDialog dialog = new ActionSheetDialog(this, stringItems2, tv_start);
                     dialog.isTitleShow(false)
                             .titleTextSize_SP(12)
                             .titleTextColor(Color.parseColor("#33000000"))

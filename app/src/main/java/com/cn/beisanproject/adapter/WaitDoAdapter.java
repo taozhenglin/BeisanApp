@@ -83,7 +83,7 @@ public class WaitDoAdapter extends RecyclerView.Adapter<WaitDoAdapter.MyViewHold
             case "SBTZZJSQ":
                 holder.tv_title.setText( "设备台账增减申请");
                 break;
-            case "SSTZZJSQ":
+            case "SSTZ":
                 holder.tv_title.setText( "设施台账增减申请");
                 break;
             case "WZBMSQ":
@@ -161,7 +161,6 @@ public class WaitDoAdapter extends RecyclerView.Adapter<WaitDoAdapter.MyViewHold
                         mContext.startActivity(intent);
                         break;
                     case "VENAPPLY"://供应商
-
                         intent=new Intent(mContext, SupplierDetailActivity.class);
                         intent.putExtra("ResultlistBean",mResultList.get(position));
                         intent.putExtra("from","waitdolist");//从代办事项列表进入详情的还需要接口请求数据 列表数据不够用
@@ -185,27 +184,22 @@ public class WaitDoAdapter extends RecyclerView.Adapter<WaitDoAdapter.MyViewHold
                         intent.putExtra("from","waitdolist");//从代办事项列表进入详情的还需要接口请求数据 列表数据不够用
                         mContext.startActivity(intent);
                         break;
-                    case "SSTZZJSQ"://设施台账增减申请 facility
+                    case "SSTZ"://设施台账增减申请 facility
                         intent=new Intent(mContext, FacilityRequestDetailActivity.class);
                         intent.putExtra("ResultlistBean",mResultList.get(position));
                         intent.putExtra("from","waitdolist");//从代办事项列表进入详情的还需要接口请求数据 列表数据不够用
                         mContext.startActivity(intent);
-
-                        break;
-                    case "WZBMSQ":
                         break;
                     case "XMHT"://项目合同
                         intent=new Intent(mContext, ProjectContractDetailActivity.class);
                         intent.putExtra("ResultlistBean", mResultList.get(position));
                         intent.putExtra("from","waitdolist");//从代办事项列表进入详情的还需要接口请求数据 列表数据不够用
-
                         mContext.startActivity(intent);
                         break;
                     case "UDXMHTBG"://项目合同变更
                         intent=new Intent(mContext, ProjectContractChangeActivity.class);
                         intent.putExtra("ResultlistBean", mResultList.get(position));
                         intent.putExtra("from","waitdolist");//从代办事项列表进入详情的还需要接口请求数据 列表数据不够用
-
                         mContext.startActivity(intent);
                         break;
                     case "PRPROJ"://项目立项/项目月度计划

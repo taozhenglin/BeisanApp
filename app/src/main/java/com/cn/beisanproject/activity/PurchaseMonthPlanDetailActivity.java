@@ -110,7 +110,9 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
     private PopupWindow pop;
     static String PRID;
     private String PRNUM;
-    private String[] stringItems = new String[]{"工作流审批"};
+    private String[] stringItems1 = new String[]{"启动工作流"};
+
+    private String[] stringItems2 = new String[]{"工作流审批"};
     private int isAgree = 1;
     private String statues;
 
@@ -356,10 +358,32 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
                 break;
             case R.id.tv_approval:
                 if (statues.equals("等待批准")) {
-                    start();
+
+                    ActionSheetDialog dialog = new ActionSheetDialog(this, stringItems1, tvApproval);
+                    dialog.isTitleShow(false)
+                            .titleTextSize_SP(12)
+                            .titleTextColor(Color.parseColor("#33000000"))
+                            .cancelText("取消")
+                            .cancelText(getResources().getColor(R.color.guide_blue))
+                            .itemTextColor(getResources().getColor(R.color.guide_blue))
+                            .layoutAnimation(null)
+                            .show();
+                    dialog.setOnOperItemClickL(new OnOperItemClickL() {
+                        @Override
+                        public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            switch (position) {
+                                case 0://
+                                    start();
+                                    dialog.dismiss();
+                                    break;
+                                case 1:
+                                    break;
+                            }
+                        }
+                    });
                 } else {
                     if (!statues.equals("部门领导已批准")) {
-                        ActionSheetDialog dialog = new ActionSheetDialog(this, stringItems, tvApproval);
+                        ActionSheetDialog dialog = new ActionSheetDialog(this, stringItems2, tvApproval);
                         dialog.isTitleShow(false)
                                 .titleTextSize_SP(12)
                                 .titleTextColor(Color.parseColor("#33000000"))
@@ -397,15 +421,10 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
          *    <soap:Header/>
          *    <soap:Body>
          *       <max:wfservicestartWF creationDateTime="" baseLanguage="zh" transLanguage="zh" messageID="" maximoVersion="">
-         *          <!--Optional:-->
          *          <max:processname>PR</max:processname>
-         *          <!--Optional:-->
          *          <max:mbo>PR</max:mbo>
-         *          <!--Optional:-->
          *          <max:keyValue>WZ00526</max:keyValue>
-         *          <!--Optional:-->
          *          <max:key>PRNUM</max:key>
-         *          <!--Optional:-->
          *          <max:loginid>maxadmin</max:loginid>
          *       </max:wfservicestartWF>
          *    </soap:Body>
