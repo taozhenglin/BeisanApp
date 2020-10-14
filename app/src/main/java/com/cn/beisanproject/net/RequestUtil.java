@@ -3,6 +3,9 @@ package com.cn.beisanproject.net;
 import android.text.TextUtils;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.ToastUtils;
+import com.cn.beisanproject.Base.MyApplication;
+import com.cn.beisanproject.Utils.NetWorkUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -468,9 +471,7 @@ public class RequestUtil {
             public void onFailure(final Call call, final IOException e) {
 
                 if (mCallBack != null) {
-
                     mCallBack.onError(call, e);
-
                 }
 
             }

@@ -517,7 +517,6 @@ public class StockCheckScanZebraActivity extends AppCompatActivity implements Vi
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure=" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
                 ld.close();
             }
 

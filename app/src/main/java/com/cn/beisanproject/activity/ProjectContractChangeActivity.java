@@ -208,7 +208,6 @@ public class ProjectContractChangeActivity extends AppCompatActivity  {
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
                 ld.close();
             }
 
@@ -545,12 +544,12 @@ public class ProjectContractChangeActivity extends AppCompatActivity  {
                 StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
                 });
                 if (startWorkProcessBean.getMsg().equals("审批成功")) {
-                    if (ifAgree == 1&&startWorkProcessBean.getNextStatus().equals("已批准")) {
-                        tvApproval.setVisibility(View.GONE);
-                        PostData postData=new PostData();
-                        postData.setTag("项目合同变更");
-                        EventBus.getDefault().post(postData);
-                    }
+//                    if (ifAgree == 1&&startWorkProcessBean.getNextStatus().equals("已批准")) {
+//                        tvApproval.setVisibility(View.GONE);
+//                    }
+                    PostData postData=new PostData();
+                    postData.setTag("项目合同变更");
+                    EventBus.getDefault().post(postData);
                     statues = startWorkProcessBean.getNextStatus();
                     tvChangeStatue.setText(startWorkProcessBean.getNextStatus());
                 } else {

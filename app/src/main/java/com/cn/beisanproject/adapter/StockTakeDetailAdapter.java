@@ -2,9 +2,11 @@ package com.cn.beisanproject.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -59,6 +61,12 @@ public class StockTakeDetailAdapter extends RecyclerView.Adapter<StockTakeDetail
 
         }
         holder.tv_store.setText("仓库："+mResultlist.get(i).getLOCATION());
+        if (! mTag.equals("diff")) {
+            holder.iv_modify.setVisibility(View.VISIBLE);
+        }else {
+            holder.iv_modify.setVisibility(View.GONE);
+
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,6 +104,7 @@ public class StockTakeDetailAdapter extends RecyclerView.Adapter<StockTakeDetail
         TextView tv_actually_count;
         TextView tv_diff_count;
         TextView tv_store;
+        ImageView iv_modify;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -108,6 +117,7 @@ public class StockTakeDetailAdapter extends RecyclerView.Adapter<StockTakeDetail
             tv_actually_count = itemView.findViewById(R.id.tv_actually_count);
             tv_diff_count = itemView.findViewById(R.id.tv_diff_count);
             tv_store= itemView.findViewById(R.id.tv_store);
+            iv_modify= itemView.findViewById(R.id.iv_modify);
         }
     }
 

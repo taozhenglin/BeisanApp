@@ -25,6 +25,7 @@ import com.cn.beisanproject.modelbean.ProjectInvoiceAttachBean;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
+import com.guideelectric.loadingdialog.view.LoadingDialog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -68,6 +69,7 @@ public class ProjectInvoiceFragment extends Fragment {
     String contractnum;
     String orgid;
     String company;
+    private LoadingDialog ld;
 
     public ProjectInvoiceFragment(Context context, ProjectContractListBean.ResultBean.ResultlistBean resultlistBean, boolean needGet, ProjectContractDetailBean projectContractDetailBean) {
         this.mContext = context;
@@ -79,6 +81,7 @@ public class ProjectInvoiceFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ld=new LoadingDialog(mContext);
 
     }
 
@@ -140,6 +143,7 @@ public class ProjectInvoiceFragment extends Fragment {
         return view;
     }
     private void getInvoiceDetail() {
+        ld.show();
         /**
          * --合同相关发票明细行查询
          * http://192.168.1.180:7009/maximo/mobile/common/api?data=
@@ -165,12 +169,13 @@ public class ProjectInvoiceFragment extends Fragment {
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
+                ld.close();
             }
 
             @Override
             public void onResponse(String response) {
                 LogUtils.d("onResponse==" + response);
+                ld.close();
                 if (!response.isEmpty()){
                     ProjectInvoiceAttachBean projectInvoiceAttachBean = JSONObject.parseObject(response, new TypeReference<ProjectInvoiceAttachBean>() {});
                     if (projectInvoiceAttachBean.getErrcode().equals("GLOBAL-S-0")){

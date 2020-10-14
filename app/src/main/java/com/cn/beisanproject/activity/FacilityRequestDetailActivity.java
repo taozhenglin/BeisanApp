@@ -376,7 +376,6 @@ public class FacilityRequestDetailActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
                 ld.close();
             }
 

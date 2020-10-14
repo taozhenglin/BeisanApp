@@ -6,6 +6,11 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.ImageView;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.cn.beisanproject.Base.MyApplication;
+import com.cn.beisanproject.R;
+import com.cn.beisanproject.Utils.NetWorkUtil;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -34,6 +39,12 @@ public abstract  class CallBackUtil<T>  {
 
             public void run() {
 
+                if (!NetWorkUtil.isConnected(MyApplication.applicationContext)){
+                    ToastUtils.showShort("无网络连接");
+                }else {
+                    ToastUtils.showShort(R.string.getDatafailed);
+
+                }
                 onFailure(call,e);
 
             }

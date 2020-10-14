@@ -147,6 +147,7 @@ public class ProjectContractDetailActivity extends AppCompatActivity implements 
     }
 
     private void getContractDetail() {
+        ld.show();
         /**
          * {
          *   "objectname" : "PURCHVIEW",
@@ -180,12 +181,13 @@ public class ProjectContractDetailActivity extends AppCompatActivity implements 
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
+                ld.close();
             }
 
             @Override
             public void onResponse(String response) {
                 LogUtils.d("onResponse==" + response);
+                ld.close();
                 if (!response.isEmpty()) {
                     projectContractDetailBean = JSONObject.parseObject(response, new TypeReference<ProjectContractDetailBean>() {
                     });
@@ -526,7 +528,6 @@ public class ProjectContractDetailActivity extends AppCompatActivity implements 
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
             }
 
             @Override

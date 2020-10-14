@@ -142,7 +142,6 @@ public class PurchaseMonthColletDetailFragment extends Fragment {
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
             }
 
             @Override
@@ -222,7 +221,6 @@ public class PurchaseMonthColletDetailFragment extends Fragment {
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
             }
 
             @Override

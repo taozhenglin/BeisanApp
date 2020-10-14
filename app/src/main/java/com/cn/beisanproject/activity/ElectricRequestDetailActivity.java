@@ -220,8 +220,7 @@ public class ElectricRequestDetailActivity extends AppCompatActivity {
                 LogUtils.d("onResponse=" + response);
                 ElectricRequestListBean electricRequestListBean;
                 if (!response.isEmpty()) {
-                    electricRequestListBean = JSONObject.parseObject(response, new TypeReference<ElectricRequestListBean>() {
-                    });
+                    electricRequestListBean = JSONObject.parseObject(response, new TypeReference<ElectricRequestListBean>() {});
                     ElectricRequestListBean.ResultBean.ResultlistBean resultlistBean = electricRequestListBean.getResult().getResultlist().get(0);
                     status = resultlistBean.getSTATUS();
                     if (status.equals("已确认") || status.equals("取消")) {
@@ -365,7 +364,6 @@ public class ElectricRequestDetailActivity extends AppCompatActivity {
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
                 ld.close();
-                ToastUtils.showShort(R.string.getDatafailed);
             }
 
             @Override

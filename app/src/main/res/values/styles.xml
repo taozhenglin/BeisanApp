@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -39,7 +39,7 @@
     </style>  <!-- textvalue样式 -->
     <style name="usertextvalue">
         <item name="android:textSize">@dimen/sp14</item>
-        <item name="android:textColor">@color/text_clo</item>
+        <item name="android:textColor">@color/textColor</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
@@ -47,7 +47,7 @@
     <!-- textview样式 -->
     <style name="usertext">
         <item name="android:textSize">@dimen/sp14</item>
-        <item name="android:textColor">@color/text_clo</item>
+        <item name="android:textColor">@color/textColor</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>

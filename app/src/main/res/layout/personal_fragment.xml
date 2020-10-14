@@ -4,7 +4,6 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F0F3F6"
     android:orientation="vertical">
 
     <ImageView
@@ -132,12 +131,12 @@
     <Button
         android:id="@+id/btnLogOut"
         android:layout_width="match_parent"
-        android:layout_height="50dip"
-        android:layout_marginLeft="0dip"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginLeft="@dimen/dp15"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="0dip"
+        android:layout_marginRight="15dp"
         android:background="@drawable/login_button_style"
         android:text="退出登录"
-        android:textColor="@color/white"
+        android:textColor="@color/main_backgroundColor"
         android:textSize="@dimen/sp16" />
 </LinearLayout>

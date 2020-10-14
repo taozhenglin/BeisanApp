@@ -26,6 +26,7 @@ import com.cn.beisanproject.modelbean.PurchseAttachBean;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
+import com.guideelectric.loadingdialog.view.LoadingDialog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -54,6 +55,7 @@ public class ProjectMonthColletLineFragment extends Fragment {
     private LinearLayout ll_top;
     private LinearLayout ll_button;
     private String PRNUM;
+    private LoadingDialog ld;
 
     public ProjectMonthColletLineFragment(Context context, ProjectMonthCollectBean.ResultBean.ResultlistBean resultlistBean, ProjectMonthCollectBean.ResultBean.ResultlistBean projectMonthCollectBean, boolean needGet) {
         mContext=context;
@@ -111,9 +113,11 @@ public class ProjectMonthColletLineFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
+        ld=new LoadingDialog(mContext);
     }
 
     private void getLine() {
+        ld.show();
         /**
          * {
          *   "objectname" : "PRLINE",
@@ -145,12 +149,13 @@ public class ProjectMonthColletLineFragment extends Fragment {
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
+                ld.close();
             }
 
             @Override
             public void onResponse(String response) {
                 LogUtils.d("onResponse==" + response);
+                ld.close();
                 if (!response.isEmpty()) {
                     ProjectMonthColletLineBean projectMonthColletLineBean = JSONObject.parseObject(response, new TypeReference<ProjectMonthColletLineBean>() {
                     });

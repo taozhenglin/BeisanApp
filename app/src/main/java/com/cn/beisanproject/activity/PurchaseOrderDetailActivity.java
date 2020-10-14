@@ -53,6 +53,7 @@ import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
 import com.flyco.dialog.listener.OnOperItemClickL;
 import com.flyco.dialog.widget.ActionSheetDialog;
+import com.guideelectric.loadingdialog.view.LoadingDialog;
 import com.yinglan.keyboard.HideUtil;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -100,6 +101,7 @@ public class PurchaseOrderDetailActivity extends AppCompatActivity implements Vi
     private String[] stringItems2 = new String[]{"工作流审批"};
 
     private String CONTRACTNUM;
+    private LoadingDialog ld;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -111,7 +113,7 @@ public class PurchaseOrderDetailActivity extends AppCompatActivity implements Vi
         tv_start = findViewById(R.id.tv_start);
         pager = findViewById(R.id.pager);
         magicIndicator = findViewById(R.id.magicIndicator);
-
+        ld=new LoadingDialog(this);
         if (!StringUtils.isEmpty(getIntent().getStringExtra("from")) && getIntent().getStringExtra("from").equals("waitdolist")) {//来自代办事项列表
             needGet = true;
             waitdolistbean = (WaitDoListBean.ResultBean.ResultlistBean) getIntent().getExtras().get("ResultlistBean");
@@ -145,6 +147,7 @@ public class PurchaseOrderDetailActivity extends AppCompatActivity implements Vi
         initListener();
     }
     private void getContractDetail() {
+        ld.show();
 /**
  * {"appid":"PURCHVIEW",
  * "objectname":"PURCHVIEW",
@@ -171,12 +174,13 @@ public class PurchaseOrderDetailActivity extends AppCompatActivity implements Vi
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
+                ld.close();
             }
 
             @Override
             public void onResponse(String response) {
                 LogUtils.d("onResponse==" + response);
+                ld.close();
                 if (!response.isEmpty()) {
                     purchseContractDetailBean = JSONObject.parseObject(response, new TypeReference<PurchseContractDetailBean>() {
                     });

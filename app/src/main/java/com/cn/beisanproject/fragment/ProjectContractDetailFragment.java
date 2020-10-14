@@ -232,7 +232,6 @@ public class ProjectContractDetailFragment extends Fragment {
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
             }
 
             @Override
@@ -327,6 +326,7 @@ public class ProjectContractDetailFragment extends Fragment {
      * or (ownertable='COMPANIES' and ownerid = (select companiesid from companies where company=:vendor and orgid=:orgid)) "}
      */
     private void getContractAttach() {
+        ld.show();
         LogUtils.d("getContractAttach");
         JSONObject object = new JSONObject();
         object.put("appid", "DOCLINKS");
@@ -349,12 +349,13 @@ public class ProjectContractDetailFragment extends Fragment {
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
+                ld.close();
             }
 
             @Override
             public void onResponse(String response) {
                 LogUtils.d("onResponse==" + response);
+                ld.close();
                 if (!response.isEmpty()) {
                     PurchseAttachBean attachBean = JSONObject.parseObject(response, new TypeReference<PurchseAttachBean>() {
                     });

@@ -218,7 +218,6 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure=" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
             }
 
             @Override
@@ -233,7 +232,7 @@ public class SplashActivity extends AppCompatActivity {
                         if (waitDoListBean.getErrcode().equals("GLOBAL-S-0")) {
                            int  totalresult = waitDoListBean.getResult().getTotalresult();
                             LogUtils.d("totalresult=="+totalresult);
-                            SharedPreferencesUtil.setInt(SplashActivity.this,"totalresult",totalresult);
+                            SharedPreferencesUtil.setInt(SplashActivity.this,"waitdototalresult",totalresult);
                         }
                     }
                 }

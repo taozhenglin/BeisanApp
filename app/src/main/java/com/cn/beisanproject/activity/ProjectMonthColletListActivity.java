@@ -172,7 +172,6 @@ public class ProjectMonthColletListActivity extends AppCompatActivity implements
                 LogUtils.d("onFailure=" + e.toString());
                 finishRefresh();
                 ld.close();
-                ToastUtils.showShort(R.string.getDatafailed);
             }
 
             @Override

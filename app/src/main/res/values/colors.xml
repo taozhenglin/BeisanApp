@@ -6,7 +6,8 @@
     <color name="white">#fcf8f8</color>
     <color name="red">#ff0000</color>
     <color name="black">#000000</color>
-
+    <color name="textColor">#FF000000</color>
+    <color name="backgroundColor">#FFFFFF</color>
     <!--菜单栏 描边颜色 -->
     <color name="border_clo">#ccc</color>
     <color name="text_clo">#333</color>
@@ -33,6 +34,7 @@
     <color name="green">#33cc66</color>
     <color name="gray_3">#666666</color>
     <color name="gray_4" />
+    <color name="main_buttom_backgroundColor">#C0FFFFFF</color>
 
 
 </resources>

@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 //        requsetWaitDo();
-        totalresult=SharedPreferencesUtil.getInt(this,"totalresult");
+        totalresult=SharedPreferencesUtil.getInt(this,"waitdototalresult");
         setWaitDoNum(totalresult);
     }
 
@@ -194,14 +194,16 @@ public class MainActivity extends AppCompatActivity {
          * Item的颜色（ActiveColor），也就是setActiveColorResource这个设置的颜色
          * 点击的时候有水波纹效果
          */
-        bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
+        bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_RIPPLE);
+//        bottomNavigationBar.setBackgroundColor(getResources().getColor(R.color.main_buttom_backgroundColor));
+
         //设置导航条背景颜色
         //在BACKGROUND_STYLE_STATIC下，表示整个容器的背景色。
         // 而在BACKGROUND_STYLE_RIPPLE下，表示选中Item的图标和文本颜色。默认 Color.WHITE
         //bottomNavigationBar.setBarBackgroundColor(R.color.main_backgroundColor);
         //选中时的颜色,在BACKGROUND_STYLE_STATIC下，表示选中Item的图标和文本颜色。
         // 而在BACKGROUND_STYLE_RIPPLE下，表示整个容器的背景色。默认Theme's Primary Color
-        bottomNavigationBar.setActiveColor(R.color.tab_checked);
+        bottomNavigationBar.setActiveColor(R.color.guide_blue);
         //未选中时的颜色，表示未选中Item中的图标和文本颜色。默认为 Color.LTGRAY
         bottomNavigationBar.setInActiveColor(R.color.tab_unchecked);
 

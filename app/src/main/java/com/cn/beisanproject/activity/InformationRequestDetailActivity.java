@@ -543,9 +543,12 @@ public class InformationRequestDetailActivity extends AppCompatActivity {
                 StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
                 });
                 if (startWorkProcessBean.getMsg().equals("审批成功")) {
-                    if (ifAgree == 1 ) {
-                        tvApproval.setVisibility(View.GONE);
-                    }
+//                    if (ifAgree == 1 ) {
+//                        tvApproval.setVisibility(View.GONE);
+//                    }
+                    PostData postData=new PostData();
+                    postData.setTag("信息化台账增减申请");
+                    EventBus.getDefault().post(postData);
                     status = startWorkProcessBean.getNextStatus();
                     tvRequestStatue.setText(startWorkProcessBean.getNextStatus());
                 } else {

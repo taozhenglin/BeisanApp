@@ -32,6 +32,7 @@ import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.adapter.SupplierAdapter;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.PurchaseMonthPlanListBean;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
 import com.cn.beisanproject.modelbean.SupplierListBean;
@@ -123,7 +124,6 @@ public class SupplierDetailActivity extends AppCompatActivity {
     private String statues;
     private LoadingDialog ld;
     private String[] stringItems1 = new String[]{"启动工作流"};
-
     private String[] stringItems2 = new String[]{"工作流审批"};
     private PopupWindow pop;
     private int isAgree;
@@ -390,7 +390,6 @@ public class SupplierDetailActivity extends AppCompatActivity {
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
                 ld.close();
-                ToastUtils.showShort(R.string.getDatafailed);
             }
 
             @Override
@@ -570,21 +569,25 @@ public class SupplierDetailActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 ld.close();
                 LogUtils.d("onResponse==" + response);
-                int start = response.indexOf("<return>");
-                int end = response.indexOf("</return>");
-                String substring = response.substring(start + 8, end);
-                LogUtils.d("substring==" + substring);
-                StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
-                });
-                if (startWorkProcessBean.getMsg().equals("审批成功")) {
-                    statues = startWorkProcessBean.getNextStatus();
-                    tvRequestStatue.setText(startWorkProcessBean.getNextStatus());
-                    startWorkProcessBean.setTag("供应商申请");
-                    EventBus.getDefault().post(startWorkProcessBean);
-                } else {
+                if (response.contains("<return>")&&response.contains("</return>")){
+                    int start = response.indexOf("<return>");
+                    int end = response.indexOf("</return>");
+                    String substring = response.substring(start + 8, end);
+                    LogUtils.d("substring==" + substring);
+                    StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
+                    });
+                    if (startWorkProcessBean.getMsg().equals("审批成功")) {
+                        statues = startWorkProcessBean.getNextStatus();
+                        tvRequestStatue.setText(startWorkProcessBean.getNextStatus());
+                        PostData postData=new PostData();
+                        postData.setTag("供应商申请");
+                        EventBus.getDefault().post(postData);
+                    } else {
 
+                    }
+                    ToastUtils.showShort(startWorkProcessBean.getMsg());
                 }
-                ToastUtils.showShort(startWorkProcessBean.getMsg());
+
             }
         });
     }

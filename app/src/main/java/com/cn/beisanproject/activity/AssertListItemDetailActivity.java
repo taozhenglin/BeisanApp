@@ -231,7 +231,6 @@ public class AssertListItemDetailActivity extends AppCompatActivity {
             public void onFailure(Call call, Exception e) {
 
                 LogUtils.d("222222onFailure" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
                 ld.close();
             }
 

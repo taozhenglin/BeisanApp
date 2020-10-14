@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <shape android:name="buttonStyle" xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#008FD7"/>
+    <solid android:color="@color/guide_blue"/>
     <corners android:radius="15px"/>
     <padding android:left="3dip" android:top="3dip" android:right="3dip" android:bottom="3dip"/>
     <stroke android:width="0.5dip" android:color="#008FD7" />

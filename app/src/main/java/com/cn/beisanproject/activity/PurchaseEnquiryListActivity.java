@@ -170,7 +170,6 @@ public class PurchaseEnquiryListActivity extends AppCompatActivity implements Vi
                 LogUtils.d("onFailure=" + e.toString());
                 finishRefresh();
                 ld.close();
-                ToastUtils.showShort(R.string.getDatafailed);
             }
 
             @Override

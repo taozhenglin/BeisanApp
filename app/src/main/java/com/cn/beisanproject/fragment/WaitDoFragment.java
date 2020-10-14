@@ -125,7 +125,6 @@ public class WaitDoFragment extends Fragment {
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure=" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
                 finishRefresh();
                 ld.close();
             }
@@ -147,6 +146,7 @@ public class WaitDoFragment extends Fragment {
                         PostData postData=new PostData();
                         postData.setCount(totalresult);
                         postData.setTag("waitdocount");
+                        SharedPreferencesUtil.setInt(mContext,"waitdototalresult",totalresult);
                         EventBus.getDefault().post(postData);
                         if (currentPageNum == 1) {
                             if (mWaitDoAdapter == null) {

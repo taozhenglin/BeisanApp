@@ -30,7 +30,8 @@
             android:layout_height="wrap_content"
             android:text="搜索"
             android:paddingRight="@dimen/dp8"
-            android:textSize="@dimen/sp14"
+            android:textSize="@dimen/sp12"
+            android:textColor="@color/guide_blue"
             />
 
 

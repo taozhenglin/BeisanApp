@@ -361,7 +361,6 @@ public class CountEqmentRequestDetailActivity extends AppCompatActivity {
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
                 ld.close();
-                ToastUtils.showShort(R.string.getDatafailed);
             }
 
             @Override

@@ -205,7 +205,6 @@ public class StockCheckScanActivity extends AppCompatActivity implements QRCodeV
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("222222onFailure=" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
                 ld.close();
                 mZXingView.startSpot(); // 开始识别
                 mZXingView.startCamera();
@@ -261,7 +260,6 @@ public class StockCheckScanActivity extends AppCompatActivity implements QRCodeV
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("222222onFailure=" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
                 ld.close();
                 mZXingView.startSpot(); // 开始识别
                 mZXingView.startCamera();
@@ -810,7 +808,6 @@ public class StockCheckScanActivity extends AppCompatActivity implements QRCodeV
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure=" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
                 ld.close();
             }
 

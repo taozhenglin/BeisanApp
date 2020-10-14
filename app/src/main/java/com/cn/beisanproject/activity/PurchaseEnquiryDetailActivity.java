@@ -210,7 +210,6 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
                 ld.close();
             }
 
@@ -536,7 +535,6 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
                 ld.close();
             }
 
@@ -622,7 +620,6 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
-                ToastUtils.showShort(R.string.getDatafailed);
                 ld.close();
             }
 

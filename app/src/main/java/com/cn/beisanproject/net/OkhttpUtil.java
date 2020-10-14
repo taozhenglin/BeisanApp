@@ -1,7 +1,4 @@
 package com.cn.beisanproject.net;
-
-import com.blankj.utilcode.util.NetworkUtils;
-
 import java.io.File;
 import java.util.List;
 import java.util.Map;
@@ -239,8 +236,8 @@ public class OkhttpUtil {
      */
 
     public static Call okHttpPostJson(String url, String jsonStr, Map<String, String> headerMap, CallBackUtil callBack) {
+            return new RequestUtil(METHOD_POST, url, jsonStr, headerMap, callBack).execute();
 
-        return new RequestUtil(METHOD_POST, url, jsonStr, headerMap, callBack).execute();
 
     }
 

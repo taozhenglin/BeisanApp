@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.blankj.utilcode.util.AppUtils;
+import com.blankj.utilcode.util.StringUtils;
 import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
@@ -73,7 +74,17 @@ public class PersonalCenterFragment extends Fragment implements View.OnClickList
         btnLogOut = view.findViewById(R.id.btnLogOut);
         tv_name.setText(userLoginDetails.getDisplayName());
         tv_num.setText(userLoginDetails.getUserName());
-        tv_current_env.setText("开发环境");
+        if (!StringUtils.isEmpty(SharedPreferencesUtil.getString(mContext,"envirment"))){
+            if (SharedPreferencesUtil.getString(mContext,"envirment").equals("测试")){
+                tv_current_env.setText("测试环境");
+            }else
+                tv_current_env.setText("开发环境");
+
+        }else {
+            tv_current_env.setText("测试环境");
+
+        }
+
         txtCurVersion.setText(AppUtils.getAppVersionName());
         btnLogOut.setOnClickListener(this);
         ll_scan.setOnClickListener(this);

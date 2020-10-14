@@ -12,6 +12,8 @@ import android.os.Environment;
 import android.os.Handler;
 import android.text.TextUtils;
 
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.blankj.utilcode.util.StringUtils;
@@ -154,6 +156,9 @@ public class MyApplication extends Application {
         disableAPIDialog();
         applicationContext = this;
         instance = this;
+        // 默认设置为日间模式
+        AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_NO);
 //        String username = SharedPreferencesUtil.getString(this, "username");
 //        String pwd = SharedPreferencesUtil.getString(this, "pwd");
 //        LogUtils.d("222222 username = " + username + "\npwd=" + pwd);

@@ -80,7 +80,7 @@ public class WaitDoAdapter extends RecyclerView.Adapter<WaitDoAdapter.MyViewHold
             case "MATREQ":
                 holder.tv_title.setText( "领料申请单");
                 break;
-            case "SBTZZJSQ":
+            case "SBTZ":
                 holder.tv_title.setText( "设备台账增减申请");
                 break;
             case "SSTZ":
@@ -178,7 +178,7 @@ public class WaitDoAdapter extends RecyclerView.Adapter<WaitDoAdapter.MyViewHold
                         intent.putExtra("from","waitdolist");//从代办事项列表进入详情的还需要接口请求数据 列表数据不够用
                         mContext.startActivity(intent);
                         break;
-                    case "SBTZZJSQ"://设备台账增减申请
+                    case "SBTZ"://设备台账增减申请
                         intent=new Intent(mContext, EqumentRequestDetailActivity.class);
                         intent.putExtra("ResultlistBean",mResultList.get(position));
                         intent.putExtra("from","waitdolist");//从代办事项列表进入详情的还需要接口请求数据 列表数据不够用
