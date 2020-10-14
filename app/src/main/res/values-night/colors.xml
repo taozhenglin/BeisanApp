@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color><!--标题栏-->
+    <color name="colorPrimaryDark">#303F9F</color><!--状态栏-->
+    <color name="colorAccent">#FF4081</color><!--编辑颜色-->
+    <!--港迪蓝 -->
+    <color name="guide_blue">#22008FD7</color>
+    <color name="textColor">#77ffffff</color>
+    <color name="backgroundColor">#3b3b3b</color>
+    <color name="tab_checked">#3b3b3b</color>
+    <color name="main_backgroundColor">#88FAFAFA</color>
+    <color name="main_buttom_backgroundColor">#22008FD7</color>
+
+
+</resources>
