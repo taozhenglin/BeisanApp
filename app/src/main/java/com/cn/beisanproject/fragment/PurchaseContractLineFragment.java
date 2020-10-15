@@ -185,7 +185,7 @@ public class PurchaseContractLineFragment extends Fragment {
                         if (contractLIneDetailBean.getResult().getResultlist().size() > 0) {
                             ll_line_container.removeAllViews();
                             for (int i = 0; i < contractLIneDetailBean.getResult().getResultlist().size(); i++) {
-                                View inflate = LayoutInflater.from(mContext).inflate(R.layout.contract_line_item, null, false);
+                                View inflate = LayoutInflater.from(mContext).inflate(R.layout.contract_line_item, ll_line_container, false);
                                 tv_line_no = inflate.findViewById(R.id.tv_line_no);
                                 tv_wuzi_no = inflate.findViewById(R.id.tv_wuzi_no);
                                 tv_wuzi_desc = inflate.findViewById(R.id.tv_wuzi_desc);
