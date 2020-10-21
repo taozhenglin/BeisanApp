@@ -1,6 +1,5 @@
 package com.cn.beisanproject.modelbean;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class StockScanDetailResult {
@@ -10,7 +9,7 @@ public class StockScanDetailResult {
      * errcode : GLOBAL-S-0
      * errmsg : 请求成功
      * personid : null
-     * result : [{"DESCRIPTION":"防静电工作服（夏）","INSPECTEDQTY":"0.00","INVBLANCE":"4.0000","ITEMNUM":"282000010","PONUM":"33217","PONUMDESC":"","TOLOT":"YD33217-1-20200915","TOSTORELOC":"YD","TOSTORELOCDESC":"远东","UDTOLOT":"W100000000051","VENDOR":"GK11021","VENDORNAME":"上海宝钢商贸有限公司"}]
+     * result : [{"BINNUM":"TEMP","CURBAL":"0.0000","ITEMDESC":"灯泡","ITEMNUM":"435620185","LOCATION":"LJ","LOTNUM":"LJ33219-3-20200827","UDLOTNUM":"W10000000013"}]
      */
 
     private String errcode;
@@ -50,57 +49,47 @@ public class StockScanDetailResult {
         this.result = result;
     }
 
-    public static class ResultBean implements Serializable {
+    public static class ResultBean {
         /**
-         * DESCRIPTION : 防静电工作服（夏）
-         * INSPECTEDQTY : 0.00
-         * INVBLANCE : 4.0000
-         * ITEMNUM : 282000010
-         * PONUM : 33217
-         * PONUMDESC :
-         * TOLOT : YD33217-1-20200915
-         * TOSTORELOC : YD
-         * TOSTORELOCDESC : 远东
-         * UDTOLOT : W100000000051
-         * VENDOR : GK11021
-         * VENDORNAME : 上海宝钢商贸有限公司
+         * BINNUM : TEMP
+         * CURBAL : 0.0000
+         * ITEMDESC : 灯泡
+         * ITEMNUM : 435620185
+         * LOCATION : LJ
+         * LOTNUM : LJ33219-3-20200827
+         * UDLOTNUM : W10000000013
          */
 
-        private String DESCRIPTION;
-        private String INSPECTEDQTY;
-        private String INVBLANCE;
+        private String BINNUM;
+        private String CURBAL;
+        private String ITEMDESC;
         private String ITEMNUM;
-        private String PONUM;
-        private String PONUMDESC;
-        private String TOLOT;
-        private String TOSTORELOC;
-        private String TOSTORELOCDESC;
-        private String UDTOLOT;
-        private String VENDOR;
-        private String VENDORNAME;
+        private String LOCATION;
+        private String LOTNUM;
+        private String UDLOTNUM;
 
-        public String getDESCRIPTION() {
-            return DESCRIPTION;
+        public String getBINNUM() {
+            return BINNUM;
         }
 
-        public void setDESCRIPTION(String DESCRIPTION) {
-            this.DESCRIPTION = DESCRIPTION;
+        public void setBINNUM(String BINNUM) {
+            this.BINNUM = BINNUM;
         }
 
-        public String getINSPECTEDQTY() {
-            return INSPECTEDQTY;
+        public String getCURBAL() {
+            return CURBAL;
         }
 
-        public void setINSPECTEDQTY(String INSPECTEDQTY) {
-            this.INSPECTEDQTY = INSPECTEDQTY;
+        public void setCURBAL(String CURBAL) {
+            this.CURBAL = CURBAL;
         }
 
-        public String getINVBLANCE() {
-            return INVBLANCE;
+        public String getITEMDESC() {
+            return ITEMDESC;
         }
 
-        public void setINVBLANCE(String INVBLANCE) {
-            this.INVBLANCE = INVBLANCE;
+        public void setITEMDESC(String ITEMDESC) {
+            this.ITEMDESC = ITEMDESC;
         }
 
         public String getITEMNUM() {
@@ -111,68 +100,28 @@ public class StockScanDetailResult {
             this.ITEMNUM = ITEMNUM;
         }
 
-        public String getPONUM() {
-            return PONUM;
+        public String getLOCATION() {
+            return LOCATION;
         }
 
-        public void setPONUM(String PONUM) {
-            this.PONUM = PONUM;
+        public void setLOCATION(String LOCATION) {
+            this.LOCATION = LOCATION;
         }
 
-        public String getPONUMDESC() {
-            return PONUMDESC;
+        public String getLOTNUM() {
+            return LOTNUM;
         }
 
-        public void setPONUMDESC(String PONUMDESC) {
-            this.PONUMDESC = PONUMDESC;
+        public void setLOTNUM(String LOTNUM) {
+            this.LOTNUM = LOTNUM;
         }
 
-        public String getTOLOT() {
-            return TOLOT;
+        public String getUDLOTNUM() {
+            return UDLOTNUM;
         }
 
-        public void setTOLOT(String TOLOT) {
-            this.TOLOT = TOLOT;
-        }
-
-        public String getTOSTORELOC() {
-            return TOSTORELOC;
-        }
-
-        public void setTOSTORELOC(String TOSTORELOC) {
-            this.TOSTORELOC = TOSTORELOC;
-        }
-
-        public String getTOSTORELOCDESC() {
-            return TOSTORELOCDESC;
-        }
-
-        public void setTOSTORELOCDESC(String TOSTORELOCDESC) {
-            this.TOSTORELOCDESC = TOSTORELOCDESC;
-        }
-
-        public String getUDTOLOT() {
-            return UDTOLOT;
-        }
-
-        public void setUDTOLOT(String UDTOLOT) {
-            this.UDTOLOT = UDTOLOT;
-        }
-
-        public String getVENDOR() {
-            return VENDOR;
-        }
-
-        public void setVENDOR(String VENDOR) {
-            this.VENDOR = VENDOR;
-        }
-
-        public String getVENDORNAME() {
-            return VENDORNAME;
-        }
-
-        public void setVENDORNAME(String VENDORNAME) {
-            this.VENDORNAME = VENDORNAME;
+        public void setUDLOTNUM(String UDLOTNUM) {
+            this.UDLOTNUM = UDLOTNUM;
         }
     }
 }

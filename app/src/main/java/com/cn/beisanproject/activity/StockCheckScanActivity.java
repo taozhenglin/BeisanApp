@@ -536,16 +536,16 @@ public class StockCheckScanActivity extends AppCompatActivity implements QRCodeV
         TextView tv_vendor_name = remarkView.findViewById(R.id.tv_vendor_name);
         TextView tv_store_count = remarkView.findViewById(R.id.tv_store_count);
         TextView tv_store_location = remarkView.findViewById(R.id.tv_store_location);
-        tv_line_no.setText("物资编码：" + resultBean.getITEMNUM());
-        tv_product_location.setText("物资描述：" + resultBean.getDESCRIPTION());
-        tv_line_batch.setText("采购单号：" + resultBean.getPONUM());
-        tv_prodution_no.setText("仓库：" + resultBean.getTOSTORELOCDESC());
-        tv_prodution_desc.setText("批次号：" + resultBean.getTOLOT());
-        tv_stock_count.setText("识别码：" + resultBean.getUDTOLOT());
-        tv_vendor.setText("供应商：" + resultBean.getVENDOR());
-        tv_vendor_name.setText("供应商名称：" + resultBean.getVENDORNAME());
-        tv_store_count.setText("库存数量：" +resultBean.getINVBLANCE());
-        tv_store_location.setText("仓库：" +resultBean.getTOSTORELOC());
+        tv_line_no.setText("货位：" + resultBean.getBINNUM());
+        tv_line_batch.setText("物资编码：" + resultBean.getITEMNUM());
+        tv_product_location.setText("批次：" + resultBean.getLOTNUM());
+        tv_prodution_no.setText("物资描述：" + resultBean.getITEMDESC());
+        tv_prodution_desc.setText("库存数量：" + resultBean.getCURBAL());
+        tv_stock_count.setVisibility(View.GONE);
+        tv_vendor.setVisibility(View.GONE);
+        tv_vendor_name.setVisibility(View.GONE);
+        tv_store_count.setVisibility(View.GONE);
+        tv_store_location.setVisibility(View.GONE);
 
 
 
@@ -619,7 +619,7 @@ public class StockCheckScanActivity extends AppCompatActivity implements QRCodeV
         tv_jjyt.setText("经济用途:" + resultlistBean.getJJYT());
         tv_department.setText("使用部门:" + resultlistBean.getDEPARTMENT());
         tv_syqk.setText("使用情况:" + resultlistBean.getSYQK());
-        tv_buy_time.setText("购买日期:" + resultlistBean.getASSETTYPE());
+        tv_buy_time.setText("购买日期:" + resultlistBean.getDATEOFPURCHASE());
         tv_cfdd.setText("存放地点:" + resultlistBean.getCFDD());
 
         TextView tv_go = (TextView) remarkView.findViewById(R.id.tv_go);

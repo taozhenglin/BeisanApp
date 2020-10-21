@@ -99,7 +99,6 @@ public class AssertCheckActivity extends AppCompatActivity implements View.OnCli
                 }else {
                     ToastUtils.showShort("没有可提交的数据");
                 }
-
                 break;
 
         }

@@ -340,21 +340,23 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
                 LogUtils.d("onResponse==" + response);
                 //解析xml 如果审批同意 则底部审批按钮消失
                 if (!response.isEmpty()) {
-                    int start = response.indexOf("<return>");
-                    int end = response.indexOf("</return>");
-                    String substring = response.substring(start + 8, end);
-                    LogUtils.d("substring==" + substring);
-                    StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
-                    });
-                    if (startWorkProcessBean.getMsg().equals("流程启动成功！")) {
-                        tv_start.setText("工作流审批");
-                        statues = startWorkProcessBean.getNextStatus();
-                        tv_statues.setText(startWorkProcessBean.getNextStatus());
-                        getBaoJiaSupport();
-                    } else {
+                    if(response.contains("<return>")&&response.contains("</return>")) {
+                        int start = response.indexOf("<return>");
+                        int end = response.indexOf("</return>");
+                        String substring = response.substring(start + 8, end);
+                        LogUtils.d("substring==" + substring);
+                        StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
+                        });
+                        if (startWorkProcessBean.getMsg().equals("流程启动成功！")) {
+                            tv_start.setText("工作流审批");
+                            statues = startWorkProcessBean.getNextStatus();
+                            tv_statues.setText(startWorkProcessBean.getNextStatus());
+                            getBaoJiaSupport();
+                        } else {
 
+                        }
+                        ToastUtils.showShort(startWorkProcessBean.getMsg());
                     }
-                    ToastUtils.showShort(startWorkProcessBean.getMsg());
                 }
 
 

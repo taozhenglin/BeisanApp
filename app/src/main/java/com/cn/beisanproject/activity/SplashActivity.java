@@ -89,6 +89,17 @@ public class SplashActivity extends AppCompatActivity {
         //隐藏标题栏
         getSupportActionBar().hide();
         StatusBarUtils.setWhiteStatusBarColor(this, R.color.guide_blue);
+        if (StringUtils.isEmpty(SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment"))) {
+        } else {
+            if (SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment").equals("测试")) {
+            } else {
+                Constants.BASE_URL = "http://csct.nbport.com.cn:9080/maximo/mobile";
+                Constants.LOGIN = "/system/login";
+                Constants.COMMONURL = "http://csct.nbport.com.cn:9080/maximo/mobile/common/api";
+                Constants.COMMONSOAP = "http://csct.nbport.com.cn:9080/maximo/meaweb/services/WFSERVICE";
+                Constants.COMMONSOAP2 = "http://csct.nbport.com.cn:9080/maximo/meaweb/services/MOBILESERVICE";
+            }
+        }
         mContext = MyApplication.getInstance();
         if (timer != null) {
             timer.cancel();

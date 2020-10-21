@@ -42,13 +42,13 @@
                 android:text="明细行序号："
                 android:textSize="@dimen/sp12" />
 
-            <TextView
-                android:id="@+id/tv_product_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp3"
-                android:text="货位："
-                android:textSize="@dimen/sp12" />
+        <TextView
+            android:id="@+id/tv_product_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp3"
+            android:text="货位："
+            android:textSize="@dimen/sp12" />
 
         <TextView
             android:id="@+id/tv_line_batch"

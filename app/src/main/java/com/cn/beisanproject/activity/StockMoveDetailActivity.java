@@ -628,23 +628,24 @@ public class StockMoveDetailActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 ld.close();
                 LogUtils.d("onResponse==" + response);
-                int start = response.indexOf("<return>");
-                int end = response.indexOf("</return>");
-                String substring = response.substring(start + 8, end);
-                LogUtils.d("substring==" + substring);
-                StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
-                });
-                if (startWorkProcessBean.getMsg().equals("审批成功")) {
-                    statues = startWorkProcessBean.getNextStatus();
-                    tvStatue.setText(startWorkProcessBean.getNextStatus());
-                    startWorkProcessBean.setTag("库存转移");//领料单列表刷新
-                    EventBus.getDefault().post(startWorkProcessBean);
-                } else {
+                if (response.contains("<return>")&&response.contains("/<return>")) {
+                    int start = response.indexOf("<return>");
+                    int end = response.indexOf("</return>");
+                    String substring = response.substring(start + 8, end);
+                    LogUtils.d("substring==" + substring);
+                    StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
+                    });
+                    if (startWorkProcessBean.getMsg().equals("审批成功")) {
+                        statues = startWorkProcessBean.getNextStatus();
+                        tvStatue.setText(startWorkProcessBean.getNextStatus());
+                        startWorkProcessBean.setTag("库存转移");//领料单列表刷新
+                        EventBus.getDefault().post(startWorkProcessBean);
+                    } else {
+
+                    }
+                    ToastUtils.showShort(startWorkProcessBean.getMsg());
 
                 }
-                ToastUtils.showShort(startWorkProcessBean.getMsg());
-
-
             }
         });
 
@@ -703,21 +704,24 @@ public class StockMoveDetailActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 LogUtils.d("onResponse==" + response);
                 ld.close();
-                int start = response.indexOf("<return>");
-                int end = response.indexOf("</return>");
-                String substring = response.substring(start + 8, end);
-                LogUtils.d("substring==" + substring);
-                StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
-                });
-                if (startWorkProcessBean.getMsg().equals("流程启动成功！")) {
-                    tvApproval.setText("工作流审批");
-                    statues = startWorkProcessBean.getNextStatus();
-                    tvStatue.setText(startWorkProcessBean.getNextStatus());
-                    PostData postData=new PostData();
-                    postData.setTag("库存转移");//库存转移列表刷新
-                    EventBus.getDefault().post(postData);
+                if (response.contains("<return>")&&response.contains("</return>")){
+                    int start = response.indexOf("<return>");
+                    int end = response.indexOf("</return>");
+                    String substring = response.substring(start + 8, end);
+                    LogUtils.d("substring==" + substring);
+                    StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
+                    });
+                    if (startWorkProcessBean.getMsg().equals("流程启动成功！")) {
+                        tvApproval.setText("工作流审批");
+                        statues = startWorkProcessBean.getNextStatus();
+                        tvStatue.setText(startWorkProcessBean.getNextStatus());
+                        PostData postData=new PostData();
+                        postData.setTag("库存转移");//库存转移列表刷新
+                        EventBus.getDefault().post(postData);
+                    }
+                    ToastUtils.showShort(startWorkProcessBean.getMsg());
                 }
-                ToastUtils.showShort(startWorkProcessBean.getMsg());
+
             }
         });
     }

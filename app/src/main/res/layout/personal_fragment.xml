@@ -12,8 +12,7 @@
         android:layout_height="250dp"
         android:scaleType="fitXY"
         android:src="@mipmap/ic_launcher"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
 
 
     <LinearLayout style="@style/wrap_layout">
@@ -117,15 +116,51 @@
         <!-- 下圆角-->
         <LinearLayout
             android:id="@+id/ll_scan"
-            style="@style/bottom_layout">
+            style="@style/bottom_layout"
 
+            >
+            <ImageView
+                android:layout_width="@dimen/dp18"
+                android:layout_height="@dimen/dp18"
+                android:src="@drawable/scan_black"
+                />
             <TextView
                 style="@style/usertext"
-                android:text="扫一扫" />
+                android:text="扫一扫"
+                android:layout_marginLeft="@dimen/dp10"
 
+                />
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:src="@drawable/right_arrow"
+                />
 
 
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_setting"
+            style="@style/bottom_layout"
+            >
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:src="@drawable/seeting"
+                />
+            <TextView
+                android:layout_marginLeft="@dimen/dp10"
+                style="@style/usertext"
+                android:text="设置" />
+
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:src="@drawable/right_arrow"
+                />
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <Button

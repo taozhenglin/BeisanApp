@@ -96,7 +96,7 @@ public class ProjectContractDetailActivity extends AppCompatActivity implements 
     ProjectContractDetailBean projectContractDetailBean;
     private String CONTRACTID;
     private String CONTRACTNUM;
-    private String[] stringItems1 = new String[]{"工作流审批"};
+    private String[] stringItems1 = new String[]{"启动工作流"};
 
     private String[] stringItems2 = new String[]{"工作流审批"};
     private LoadingDialog ld;
