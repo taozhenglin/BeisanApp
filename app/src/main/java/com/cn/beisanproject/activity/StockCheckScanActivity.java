@@ -272,8 +272,7 @@ public class StockCheckScanActivity extends AppCompatActivity implements QRCodeV
                 ld.close();
                 StockScanDetailResult stockScanDetailResult;
                 if (!response.isEmpty()) {
-                    stockScanDetailResult = JSONObject.parseObject(response, new TypeReference<StockScanDetailResult>() {
-                    });
+                    stockScanDetailResult = JSONObject.parseObject(response, new TypeReference<StockScanDetailResult>() {});
                     if (stockScanDetailResult.getErrcode().equals("GLOBAL-S-0")) {
                         if (stockScanDetailResult.getResult().size()>0) {
                             mZXingView.stopCamera();

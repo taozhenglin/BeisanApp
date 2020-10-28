@@ -20,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -550,7 +549,7 @@ public class ProjectContractDetailActivity extends AppCompatActivity implements 
                     }
                     ToastUtils.showShort(startWorkProcessBean.getMsg());
                 }else {
-                    ToastUtils.showShort(R.string.getDatafailed);
+                    ToastUtils.showShort(R.string.UNKNOW_ERROR);
 
                 }
             }
@@ -627,6 +626,7 @@ public class ProjectContractDetailActivity extends AppCompatActivity implements 
                         }
                         ToastUtils.showShort(startWorkProcessBean.getMsg());
                     }else {
+                        ToastUtils.showShort(R.string.UNKNOW_ERROR);
 
                     }
                 }

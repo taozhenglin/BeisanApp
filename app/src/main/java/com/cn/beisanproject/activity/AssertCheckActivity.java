@@ -1,13 +1,19 @@
 package com.cn.beisanproject.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -91,6 +97,9 @@ public class AssertCheckActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_back:
+                if (jsonList.size()>0){
+                    showWarmPopupwindow();
+                }else
                 finish();
                 break;
             case R.id.btn_commit:
@@ -113,12 +122,13 @@ public class AssertCheckActivity extends AppCompatActivity implements View.OnCli
          *    <soap:Body>
          *        <max:mobileserviceUpdateMbo creationDateTime="" baseLanguage="zh" transLanguage="zh" messageID="" maximoVersion="">
          *          <max:json>
-         *          {"relationShip" : [{"FIXPDLINE" :""}],"FIXPDLINE" :
+         *          {"relationShip" : [{"FIXPDLINE" :""}],
+         *          "FIXPDLINE" :
          *          [
          *          {"FIXPDNUM":"1065","RFIDNUM":"1000000028","PDJGCFWZ":"宁波28","PDHSYBM":"信息部28","YPD":1,"TYPE":"update"};
          *           {"FIXPDNUM":"1065","RFIDNUM":"1000000027","PDJGCFWZ":"宁波27","PDHSYBM":"信息部27","YPD":1,"TYPE":"update"}
-         *
-         *          ]}
+         *          ]
+         *          }
          *          </max:json>
          *          <max:mboObjectName>FIXPD</max:mboObjectName>
          *          <max:mboKey>FIXPDNUM</max:mboKey>
@@ -182,10 +192,13 @@ public class AssertCheckActivity extends AppCompatActivity implements View.OnCli
                         data.setTag("assert check scuess");
                         //通知固定资产盘点明细行和固定资产盘点差异列表刷新数据
                         EventBus.getDefault().post(data);
+                        jsonList.clear();
                     } else {
                         ToastUtils.showShort(startWorkProcessBean.getErrorMsg());
                     }
-                }
+                }else
+                    ToastUtils.showShort(R.string.UNKNOW_ERROR);
+
             }
         });
 
@@ -213,7 +226,7 @@ public class AssertCheckActivity extends AppCompatActivity implements View.OnCli
             public void run() {
 //                textrfid.append(sb.toString());
                 Log.d("222222", "sb.toString()=" + sb.toString() + "tagData.size" + tagData.length + "list.size=" + list.size());
-                ToastUtils.showShort(sb.toString() + "list.size=" + list.size());
+//                ToastUtils.showShort(sb.toString() + "list.size=" + list.size());
 
             }
         });
@@ -295,12 +308,12 @@ public class AssertCheckActivity extends AppCompatActivity implements View.OnCli
                             jsonList.add(jsonObj);
 
                             int finalI = i;
-                            view.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    startActivity(new Intent(AssertCheckActivity.this, AssertListItemDetailActivity.class).putExtra("resultlistBean", mResultlistBean).putExtra("data", resultlist.get(finalI)).putExtra("from", "AssertCheckActivity"));
-                                }
-                            });
+//                            view.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View view) {
+//                                    startActivity(new Intent(AssertCheckActivity.this, AssertListItemDetailActivity.class).putExtra("resultlistBean", mResultlistBean).putExtra("data", resultlist.get(finalI)).putExtra("from", "AssertCheckActivity"));
+//                                }
+//                            });
                             ll_container.addView(view);
                         }
                     }
@@ -389,5 +402,41 @@ public class AssertCheckActivity extends AppCompatActivity implements View.OnCli
 
         });
 
+    }
+    @SuppressLint("WrongConstant")
+    private void showWarmPopupwindow() {
+        View rootView = LayoutInflater.from(this).inflate(R.layout.project_month_detail_activity, null);
+        View inflate = LayoutInflater.from(this).inflate(R.layout.check_exit_warm_dialog, null);
+        PopupWindow pop = new PopupWindow(inflate, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        setBackgroundAlpha(0.5f);//设置屏幕透明度
+        pop.setBackgroundDrawable(new BitmapDrawable());
+        pop.setFocusable(false);// 点击空白处时，隐藏掉pop窗口
+        pop.setSoftInputMode(PopupWindow.INPUT_METHOD_NEEDED);
+        pop.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        pop.showAtLocation(rootView, Gravity.CENTER, 0, 0);
+        pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                // popupWindow隐藏时恢复屏幕正常透明度
+//                setBackgroundAlpha(1.0f);
+            }
+        });
+        TextView title_tv = inflate.findViewById(R.id.title_tv);
+        TextView tv_go = inflate.findViewById(R.id.tv_go);
+        TextView tv_close = inflate.findViewById(R.id.tv_close);
+        title_tv.setText("您有" + list.size() + "条数据未上传 是否继续退出？");
+        tv_go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pop.dismiss();
+            }
+        });
+        tv_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pop.dismiss();
+                finish();
+            }
+        });
     }
 }

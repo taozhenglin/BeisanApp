@@ -13,7 +13,7 @@
     <string name="login_failed">"Login failed"</string>
     <string name="todo">TODO</string>
     <string name="button">Button</string>
-    <string name="getDatafailed">获取数据失败</string>
+    <string name="GETDATAFAILED">获取数据失败</string>
     <string name="upLoadfailed">上传失败</string>
     <string name="modifyfailed">修改失败</string>
 
@@ -21,4 +21,5 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="UNKNOW_ERROR">未知错误</string>
 </resources>

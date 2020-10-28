@@ -537,27 +537,29 @@ public class ProjectContractChangeActivity extends AppCompatActivity  {
             public void onResponse(String response) {
                 LogUtils.d("onResponse==" + response);
                 ld.close();
-                int start = response.indexOf("<return>");
-                int end = response.indexOf("</return>");
-                String substring = response.substring(start + 8, end);
-                LogUtils.d("substring==" + substring);
-                StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
-                });
-                if (startWorkProcessBean.getMsg().equals("审批成功")) {
+                if (response.contains("<return>")&&response.contains("</return>")){
+                    int start = response.indexOf("<return>");
+                    int end = response.indexOf("</return>");
+                    String substring = response.substring(start + 8, end);
+                    LogUtils.d("substring==" + substring);
+                    StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
+                    });
+                    if (startWorkProcessBean.getMsg().equals("审批成功")) {
 //                    if (ifAgree == 1&&startWorkProcessBean.getNextStatus().equals("已批准")) {
 //                        tvApproval.setVisibility(View.GONE);
 //                    }
-                    PostData postData=new PostData();
-                    postData.setTag("项目合同变更");
-                    EventBus.getDefault().post(postData);
-                    statues = startWorkProcessBean.getNextStatus();
-                    tvChangeStatue.setText(startWorkProcessBean.getNextStatus());
-                } else {
+                        PostData postData=new PostData();
+                        postData.setTag("项目合同变更");
+                        EventBus.getDefault().post(postData);
+                        statues = startWorkProcessBean.getNextStatus();
+                        tvChangeStatue.setText(startWorkProcessBean.getNextStatus());
+                    } else {
 
-                }
-                ToastUtils.showShort(startWorkProcessBean.getMsg());
+                    }
+                    ToastUtils.showShort(startWorkProcessBean.getMsg());
+                }else
+                    ToastUtils.showShort(R.string.UNKNOW_ERROR);
 
-                //解析xml 如果审批同意 则底部审批按钮消失
 
             }
         });

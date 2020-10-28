@@ -42,7 +42,7 @@ public abstract  class CallBackUtil<T>  {
                 if (!NetWorkUtil.isConnected(MyApplication.applicationContext)){
                     ToastUtils.showShort("无网络连接");
                 }else {
-                    ToastUtils.showShort(R.string.getDatafailed);
+                    ToastUtils.showShort(R.string.GETDATAFAILED);
 
                 }
                 onFailure(call,e);

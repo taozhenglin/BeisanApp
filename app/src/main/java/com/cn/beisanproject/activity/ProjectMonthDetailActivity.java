@@ -754,24 +754,28 @@ public class ProjectMonthDetailActivity extends AppCompatActivity {
                 LogUtils.d("onResponse==" + response);
                 ld.close();
                 if (!response.isEmpty()) {
-                    int start = response.indexOf("<return>");
-                    int end = response.indexOf("</return>");
-                    String substring = response.substring(start + 8, end);
-                    LogUtils.d("substring==" + substring);
-                    startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
-                    });
-                    if (startWorkProcessBean.getMsg().equals("流程启动成功！")) {
-                        status = startWorkProcessBean.getNextStatus();
-                        tvStatue.setText(startWorkProcessBean.getNextStatus());
-                        tvApproval.setText("工作流审批");
-                        PostData postData=new PostData();
-                        postData.setTag("项目立项/项目月度计划");
-                        EventBus.getDefault().post(postData);
-                    } else {
+                    if (response.contains("<return>")&&response.contains("</return>")){
+                        int start = response.indexOf("<return>");
+                        int end = response.indexOf("</return>");
+                        String substring = response.substring(start + 8, end);
+                        LogUtils.d("substring==" + substring);
+                        startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
+                        });
+                        if (startWorkProcessBean.getMsg().equals("流程启动成功！")) {
+                            status = startWorkProcessBean.getNextStatus();
+                            tvStatue.setText(startWorkProcessBean.getNextStatus());
+                            tvApproval.setText("工作流审批");
+                            PostData postData=new PostData();
+                            postData.setTag("项目立项/项目月度计划");
+                            EventBus.getDefault().post(postData);
+                        } else {
+
+                        }
+                        ToastUtils.showShort(startWorkProcessBean.getMsg());
+                    }else
+                        ToastUtils.showShort(R.string.UNKNOW_ERROR);
 
 
-                    }
-                    ToastUtils.showShort(startWorkProcessBean.getMsg());
                 }
 
 
@@ -947,7 +951,8 @@ public class ProjectMonthDetailActivity extends AppCompatActivity {
                     }
                     ToastUtils.showShort(startWorkProcessBean.getMsg());
 
-                }
+                }else
+                    ToastUtils.showShort(R.string.UNKNOW_ERROR);
 
 
             }

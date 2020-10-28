@@ -387,7 +387,7 @@ public class CountEqmentRequestDetailActivity extends AppCompatActivity {
                         }
                         ToastUtils.showShort(startWorkProcessBean.getMsg());
                     }else {
-                        ToastUtils.showShort(R.string.getDatafailed);
+                        ToastUtils.showShort(R.string.UNKNOW_ERROR);
                     }
 
                 }
@@ -542,22 +542,26 @@ public class CountEqmentRequestDetailActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 LogUtils.d("onResponse==" + response);
                 ld.close();
-                int start = response.indexOf("<return>");
-                int end = response.indexOf("</return>");
-                String substring = response.substring(start + 8, end);
-                LogUtils.d("substring==" + substring);
-                StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
-                });
-                if (startWorkProcessBean.getMsg().equals("审批成功")) {
-                    if (isAgree == 1 && startWorkProcessBean.getNextStatus().equals("已确认")) {
-                        tvApproval.setVisibility(View.GONE);
-                    }
-                    status = startWorkProcessBean.getNextStatus();
-                    tvRequestStatue.setText(startWorkProcessBean.getNextStatus());
-                } else {
+                if (response.contains("<return>")&&response.contains("</return>")){
+                    int start = response.indexOf("<return>");
+                    int end = response.indexOf("</return>");
+                    String substring = response.substring(start + 8, end);
+                    LogUtils.d("substring==" + substring);
+                    StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
+                    });
+                    if (startWorkProcessBean.getMsg().equals("审批成功")) {
+                        if (isAgree == 1 && startWorkProcessBean.getNextStatus().equals("已确认")) {
+                            tvApproval.setVisibility(View.GONE);
+                        }
+                        status = startWorkProcessBean.getNextStatus();
+                        tvRequestStatue.setText(startWorkProcessBean.getNextStatus());
+                    } else {
 
-                }
-                ToastUtils.showShort(startWorkProcessBean.getMsg());
+                    }
+                    ToastUtils.showShort(startWorkProcessBean.getMsg());
+                }else
+                    ToastUtils.showShort(R.string.UNKNOW_ERROR);
+
             }
         });
     }

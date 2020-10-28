@@ -84,11 +84,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onClick(View view) {
                 iv_agree.setBackgroundResource(R.drawable.selected);
                 iv_disagree.setBackgroundResource(R.drawable.unselected);
-                Constants.BASE_URL = "http://192.168.1.180:7009/maximo/mobile";
-                Constants.LOGIN = "/system/login";
-                Constants.COMMONURL = "http://192.168.1.180:7009/maximo/mobile/common/api";
-                Constants.COMMONSOAP = "http://192.168.1.180:7009/meaweb/services/WFSERVICE";
-                Constants.COMMONSOAP2 = "http://192.168.1.180:7009/meaweb/services/MOBILESERVICE";
+              Constants.BASE_URL="http://192.168.1.181:7009";
+                Constants. LOGIN="/system/login";
+                Constants. COMMONURL="http://192.168.1.181:7009/common/api";
+                Constants. COMMONSOAP="http://192.168.1.181:7009/WFSERVICE";
+                Constants. COMMONSOAP2="http://192.168.1.181:7009/MOBILESERVICE";
                 SharedPreferencesUtil.setString(MyApplication.applicationContext, "envirment", "测试");
             }
         });
@@ -257,21 +257,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 LogUtils.d("222222 onResponse" + response);
 
                 if (!response.isEmpty()) {
-                    LoginBean loginBean = JSONObject.parseObject(response, new TypeReference<LoginBean>() {
-                    });
-                    if (loginBean.getErrcode().equals("USER-S-101")) {
-                        SharedPreferencesUtil.setString(LoginActivity.this, "username", loginBean.getResult().getUserLoginDetails().getUserName());
-                        SharedPreferencesUtil.setString(LoginActivity.this, "pwd", pwd);
-                        SharedPreferencesUtil.setString(LoginActivity.this, "personId", loginBean.getResult().getUserLoginDetails().getPersonId());
-                        SharedPreferencesUtil.saveObject(LoginActivity.this, "userLoginDetails", loginBean.getResult().getUserLoginDetails());
-                        LogUtils.d("userLoginDetails=" + loginBean.getResult().getUserLoginDetails());
+                    try {
+                        LoginBean loginBean = JSONObject.parseObject(response, new TypeReference<LoginBean>() {});
+                        if (loginBean.getErrcode().equals("USER-S-101")) {
+                            SharedPreferencesUtil.setString(LoginActivity.this, "username", loginBean.getResult().getUserLoginDetails().getUserName());
+                            SharedPreferencesUtil.setString(LoginActivity.this, "pwd", pwd);
+                            SharedPreferencesUtil.setString(LoginActivity.this, "personId", loginBean.getResult().getUserLoginDetails().getPersonId());
+                            SharedPreferencesUtil.saveObject(LoginActivity.this, "userLoginDetails", loginBean.getResult().getUserLoginDetails());
+                            LogUtils.d("userLoginDetails=" + loginBean.getResult().getUserLoginDetails());
 
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        ToastUtils.showShort(loginBean.getErrmsg());
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            ToastUtils.showShort(loginBean.getErrmsg());
+                        }
+                    }catch (com.alibaba.fastjson.JSONException exception){
+                        ToastUtils.showShort(exception.toString());
+
                     }
+
                 }
 
             }

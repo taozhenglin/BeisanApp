@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,7 +24,6 @@ import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
-import com.cn.beisanproject.adapter.WaitDoAdapter;
 import com.cn.beisanproject.modelbean.LoginBean;
 import com.cn.beisanproject.modelbean.WaitDoListBean;
 import com.cn.beisanproject.net.CallBackUtil;
@@ -92,6 +90,11 @@ public class SplashActivity extends AppCompatActivity {
         if (StringUtils.isEmpty(SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment"))) {
         } else {
             if (SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment").equals("测试")) {
+                Constants.BASE_URL="http://192.168.1.181:7009";
+                Constants. LOGIN="/system/login";
+                Constants. COMMONURL="http://192.168.1.181:7009/common/api";
+                Constants. COMMONSOAP="http://192.168.1.181:7009/WFSERVICE";
+                Constants. COMMONSOAP2="http://192.168.1.181:7009/MOBILESERVICE";
             } else {
                 Constants.BASE_URL = "http://csct.nbport.com.cn:9080/maximo/mobile";
                 Constants.LOGIN = "/system/login";
@@ -237,7 +240,7 @@ public class SplashActivity extends AppCompatActivity {
                 WaitDoListBean waitDoListBean = null;
                 if (!response.isEmpty()) {
                     if (response.startsWith("Error")) {
-                        ToastUtils.showShort(R.string.getDatafailed);
+                        ToastUtils.showShort(R.string.GETDATAFAILED);
                     } else {
                         waitDoListBean = JSONObject.parseObject(response, new TypeReference<WaitDoListBean>() {});
                         if (waitDoListBean.getErrcode().equals("GLOBAL-S-0")) {

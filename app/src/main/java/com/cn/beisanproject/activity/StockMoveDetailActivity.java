@@ -720,7 +720,9 @@ public class StockMoveDetailActivity extends AppCompatActivity {
                         EventBus.getDefault().post(postData);
                     }
                     ToastUtils.showShort(startWorkProcessBean.getMsg());
-                }
+                }else
+                    ToastUtils.showShort(R.string.UNKNOW_ERROR);
+
 
             }
         });

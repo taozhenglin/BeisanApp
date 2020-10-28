@@ -31,9 +31,7 @@ import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
-import com.cn.beisanproject.adapter.SupplierAdapter;
 import com.cn.beisanproject.modelbean.PostData;
-import com.cn.beisanproject.modelbean.PurchaseMonthPlanListBean;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
 import com.cn.beisanproject.modelbean.SupplierListBean;
 import com.cn.beisanproject.modelbean.WaitDoListBean;
@@ -46,7 +44,6 @@ import com.guideelectric.loadingdialog.view.LoadingDialog;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -390,6 +387,7 @@ public class SupplierDetailActivity extends AppCompatActivity {
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
                 ld.close();
+
             }
 
             @Override
@@ -415,7 +413,7 @@ public class SupplierDetailActivity extends AppCompatActivity {
                         }
                         ToastUtils.showShort(startWorkProcessBean.getMsg());
                     }else {
-                        ToastUtils.showShort(R.string.getDatafailed);
+                        ToastUtils.showShort(R.string.UNKNOW_ERROR);
                     }
 
                 }
@@ -586,7 +584,9 @@ public class SupplierDetailActivity extends AppCompatActivity {
 
                     }
                     ToastUtils.showShort(startWorkProcessBean.getMsg());
-                }
+                }else
+                    ToastUtils.showShort(R.string.UNKNOW_ERROR);
+
 
             }
         });

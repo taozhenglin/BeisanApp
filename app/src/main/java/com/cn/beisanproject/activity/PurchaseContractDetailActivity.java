@@ -98,7 +98,6 @@ public class PurchaseContractDetailActivity extends AppCompatActivity implements
     private String ownerid;
     PurchseContractDetailBean purchseContractDetailBean;
     private String[] stringItems1 = new String[]{"启动工作流"};
-
     private String[] stringItems2 = new String[]{"工作流审批"};
     private LoadingDialog ld;
 
@@ -613,7 +612,7 @@ public class PurchaseContractDetailActivity extends AppCompatActivity implements
                         }
                         ToastUtils.showShort(startWorkProcessBean.getMsg());
                     } else {
-                        ToastUtils.showShort("启动失败");
+                        ToastUtils.showShort(R.string.UNKNOW_ERROR);
 
                     }
 

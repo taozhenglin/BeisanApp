@@ -137,7 +137,7 @@ public class WaitDoFragment extends Fragment {
                 ld.close();
                 if (!response.isEmpty()) {
                     if (response.startsWith("Error")) {
-                        ToastUtils.showShort(R.string.getDatafailed);
+                        ToastUtils.showShort(R.string.GETDATAFAILED);
                     } else {
                         waitDoListBean = JSONObject.parseObject(response, new TypeReference<WaitDoListBean>() {});
                     if (waitDoListBean.getErrcode().equals("GLOBAL-S-0")) {

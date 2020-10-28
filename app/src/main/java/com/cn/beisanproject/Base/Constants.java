@@ -7,13 +7,20 @@ public class Constants {
 
 
     public static boolean DeBug = true;
+//  180
+//        public static String BASE_URL="http://192.168.1.180:7009/maximo/mobile";
+//        public static String LOGIN="/system/login";
+//        public static  String COMMONURL="http://192.168.1.180:7009/maximo/mobile/common/api";
+//        public static String COMMONSOAP="http://192.168.1.180:7009/meaweb/services/WFSERVICE";
+//        public static String COMMONSOAP2="http://192.168.1.180:7009/meaweb/services/MOBILESERVICE";
+// 181
 
-        public static String BASE_URL="http://192.168.1.180:7009/maximo/mobile";
-        public static String LOGIN="/system/login";
-    //
-        public static  String COMMONURL="http://192.168.1.180:7009/maximo/mobile/common/api";
-        public static String COMMONSOAP="http://192.168.1.180:7009/meaweb/services/WFSERVICE";
-        public static String COMMONSOAP2="http://192.168.1.180:7009/meaweb/services/MOBILESERVICE";
+public static String BASE_URL="http://192.168.1.181:7009";
+    public static String LOGIN="/system/login";
+    public static  String COMMONURL="http://192.168.1.181:7009/common/api";
+    public static String COMMONSOAP="http://192.168.1.181:7009/WFSERVICE";
+    public static String COMMONSOAP2="http://192.168.1.181:7009/MOBILESERVICE";
+
 
 
 //        public static String BASE_URL="http://10.169.87.216:7001/mobile";

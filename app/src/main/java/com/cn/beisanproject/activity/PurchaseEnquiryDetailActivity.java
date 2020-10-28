@@ -2,6 +2,7 @@ package com.cn.beisanproject.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,6 +40,8 @@ import com.cn.beisanproject.modelbean.StartWorkProcessBean;
 import com.cn.beisanproject.modelbean.WaitDoListBean;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
+import com.flyco.dialog.listener.OnOperItemClickL;
+import com.flyco.dialog.widget.ActionSheetDialog;
 import com.guideelectric.loadingdialog.view.LoadingDialog;
 import com.yinglan.keyboard.HideUtil;
 
@@ -86,6 +90,8 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
     private PopupWindow pop;
     String statues;
     private String RFQID;
+    private String[] stringItems1 = new String[]{"启动工作流"};
+    private String[] stringItems2 = new String[]{"工作流审批"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -273,16 +279,56 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
                 finish();
                 break;
             case R.id.tv_start:
-                if (statues.equals("等待批准")){//可启动
-                    startWork();
-                }else {
-                    showRemarkPopupwindow();
+                if (statues.equals("等待批准")) {
+                    //启动工作流
+                    ActionSheetDialog dialog = new ActionSheetDialog(this, stringItems1, tv_start);
+                    dialog.isTitleShow(false)
+                            .titleTextSize_SP(12)
+                            .titleTextColor(Color.parseColor("#33000000"))
+                            .cancelText("取消")
+                            .cancelText(getResources().getColor(R.color.guide_blue))
+                            .itemTextColor(getResources().getColor(R.color.guide_blue))
+                            .layoutAnimation(null)
+                            .show();
+                    dialog.setOnOperItemClickL(new OnOperItemClickL() {
+                        @Override
+                        public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            switch (position) {
+                                case 0://
+                                    start();
+                                    dialog.dismiss();
+                                    break;
+                            }
+                        }
+                    });
+                } else {
+                    ActionSheetDialog dialog = new ActionSheetDialog(this, stringItems2, tv_start);
+                    dialog.isTitleShow(false)
+                            .titleTextSize_SP(12)
+                            .titleTextColor(Color.parseColor("#33000000"))
+                            .cancelText("取消")
+                            .cancelText(getResources().getColor(R.color.guide_blue))
+                            .itemTextColor(getResources().getColor(R.color.guide_blue))
+                            .layoutAnimation(null)
+                            .show();
+                    dialog.setOnOperItemClickL(new OnOperItemClickL() {
+                        @Override
+                        public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            switch (position) {
+                                case 0://
+                                    showRemarkPopupwindow();
+                                    dialog.dismiss();
+                                    break;
+                            }
+                        }
+                    });
                 }
-//                if (statues.equals("等待批准")||statues.equals("进行中")||statues.equals("已发送")){
+//                if (statues.equals("等待批准")){//可启动
 //                    startWork();
 //                }else {
-//                    ToastUtils.showShort("当前状态不可启动工作流");
+//                    showRemarkPopupwindow();
 //                }
+
                 break;
 //            case R.id.tv_approval:
 //                if (!statues.equals("完成")&&!statues.equals("关闭")&&!statues.equals("取消")){
@@ -295,7 +341,7 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
         }
     }
 
-    private void startWork() {
+    private void start() {
         /**
          * --启动流程：“等待批准”,"进行中","已发送" 状态下可启动流程
          * <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:max="http://www.ibm.com/maximo">
@@ -356,7 +402,9 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
 
                         }
                         ToastUtils.showShort(startWorkProcessBean.getMsg());
-                    }
+                    }else
+                        ToastUtils.showShort(R.string.UNKNOW_ERROR);
+
                 }
 
 

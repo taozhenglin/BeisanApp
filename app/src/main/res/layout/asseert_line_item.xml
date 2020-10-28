@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/dp5"
     android:background="@drawable/radis8_layout_shape"
-    android:padding="@dimen/dp5">
+    android:padding="@dimen/dp5"
+    >
+
+
 
     <LinearLayout
         android:id="@+id/ll_1"
@@ -216,13 +223,23 @@
 
     <ImageView
         android:id="@+id/iv_haschecked"
-        android:layout_width="@dimen/dp25"
-        android:layout_height="@dimen/dp25"
+        android:layout_width="@dimen/dp60"
+        android:layout_height="@dimen/dp60"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/dp10"
-        android:src="@drawable/checked"
-        android:visibility="gone" />
-
+        android:src="@drawable/haschecked2"
+        android:visibility="gone"
+        />
 
 </RelativeLayout>
+    <ImageView
+        android:id="@+id/iv_modify"
+        android:layout_width="@dimen/dp25"
+        android:layout_height="@dimen/dp25"
+        android:src="@drawable/modify"
+        android:layout_gravity="end|bottom"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone"
+        >
+    </ImageView>
+</FrameLayout>

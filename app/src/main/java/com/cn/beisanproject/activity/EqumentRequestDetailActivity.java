@@ -5,8 +5,6 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -417,7 +415,7 @@ public class EqumentRequestDetailActivity extends AppCompatActivity {
                         }
                         ToastUtils.showShort(startWorkProcessBean.getMsg());
                     }else {
-                        ToastUtils.showShort(R.string.getDatafailed);
+                        ToastUtils.showShort(R.string.UNKNOW_ERROR);
                     }
 
                 }

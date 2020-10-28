@@ -223,6 +223,9 @@ public class StockListItemDetailActivity extends AppCompatActivity {
                     } else {
                         ToastUtils.showShort(startWorkProcessBean.getErrorMsg());
                     }
+                }else {
+                    ToastUtils.showShort(R.string.UNKNOW_ERROR);
+
                 }
             }
         });

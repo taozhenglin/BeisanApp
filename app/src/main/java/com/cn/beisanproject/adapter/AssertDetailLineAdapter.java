@@ -65,6 +65,7 @@ public class AssertDetailLineAdapter extends RecyclerView.Adapter<AssertDetailLi
         holder.tvPdhsybm.setText("盘点后使用部门:"+mList.get(position).getPDHSYBM());
 
         if (!mTag.equals("diff")) {
+            holder.ivModify.setVisibility(View.VISIBLE);
             if (mList.get(position).getYPD().equals("Y")) {
                 holder.ivHaschecked.setVisibility(View.VISIBLE);
             } else {
@@ -135,6 +136,8 @@ public class AssertDetailLineAdapter extends RecyclerView.Adapter<AssertDetailLi
         TextView tvPdhcfdd;
         @BindView(R.id.tv_pdhsybm)
         TextView tvPdhsybm;
+        @BindView(R.id.iv_modify)
+        ImageView ivModify;
 
 
         public MyViewHolder(@NonNull View itemView) {

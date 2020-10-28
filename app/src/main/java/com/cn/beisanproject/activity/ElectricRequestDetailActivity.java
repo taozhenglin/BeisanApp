@@ -390,7 +390,7 @@ public class ElectricRequestDetailActivity extends AppCompatActivity {
                         }
                         ToastUtils.showShort(startWorkProcessBean.getMsg());
                     }else {
-                        ToastUtils.showShort(R.string.getDatafailed);
+                        ToastUtils.showShort(R.string.GETDATAFAILED);
                     }
 
                 }
