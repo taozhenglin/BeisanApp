@@ -14,24 +14,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.HighLightUtils;
-import com.cn.beisanproject.activity.AssertDetailActivity;
 import com.cn.beisanproject.activity.ProjectContractChangeActivity;
-import com.cn.beisanproject.activity.ProjectContractChangeListActivity;
 import com.cn.beisanproject.modelbean.ProjectContractChangeBean;
 
 import java.util.List;
-
 public class ProjectContractChangeAdapter extends RecyclerView.Adapter<ProjectContractChangeAdapter.MyViewHolder> {
     private  Context mContext;
     private  List<ProjectContractChangeBean.ResultBean.ResultlistBean> mList;
     private  String mHightlight;
-
     public ProjectContractChangeAdapter(Context context, List<ProjectContractChangeBean.ResultBean.ResultlistBean> resultlist, String hightlight) {
         mContext=context;
         mList=resultlist;
         mHightlight=hightlight;
     }
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -91,32 +86,27 @@ public class ProjectContractChangeAdapter extends RecyclerView.Adapter<ProjectCo
             }
         });
     }
-
     @Override
     public int getItemCount() {
         return mList.size();
     }
-
     public void setData(List<ProjectContractChangeBean.ResultBean.ResultlistBean> resultlist, String toString) {
         mList=resultlist;
         mHightlight=toString;
     }
-
     public void addAllList(List<ProjectContractChangeBean.ResultBean.ResultlistBean> resultlist) {
         mList.addAll(resultlist);
-
     }
-
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private final TextView tv_check_no;
         private final TextView tv_check_desc;
         private final TextView tv_statues;
-        ImageView iv_contract_statue;
+        private ImageView iv_contract_statue;
         private final TextView tv_check_by;
         private final TextView tv_check_starttime;
         private final TextView tv_check_endtime;
-        private final TextView tv_created_by;
         private final TextView tv_created_time;
+        private final TextView tv_created_by;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);

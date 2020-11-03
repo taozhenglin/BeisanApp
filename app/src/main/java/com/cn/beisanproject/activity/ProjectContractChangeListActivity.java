@@ -75,22 +75,6 @@ public class ProjectContractChangeListActivity extends AppCompatActivity impleme
     private void initListener() {
         ll_back.setOnClickListener(this);
         tv_search.setOnClickListener(this);
-        edt_search_contract.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
     }
 
     private void initView() {
@@ -115,8 +99,6 @@ public class ProjectContractChangeListActivity extends AppCompatActivity impleme
                 isRefresh = true;
                 currentPageNum = 1;
                 query();
-
-
             }
         });
         refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -125,12 +107,10 @@ public class ProjectContractChangeListActivity extends AppCompatActivity impleme
                 isRefresh = false;
                 currentPageNum++;
                 query();
-
             }
         });
 
     }
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -142,9 +122,7 @@ public class ProjectContractChangeListActivity extends AppCompatActivity impleme
                 query();
                 break;
         }
-
     }
-
     private void query() {
         /**
          * {
@@ -175,14 +153,12 @@ public class ProjectContractChangeListActivity extends AppCompatActivity impleme
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
         HashMap<String, String> map = new HashMap<>();
         map.put("data", String.valueOf(object));
-
         OkhttpUtil.okHttpGet(url, map, headermap, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure=" + e.toString());
                 finishRefresh();
             }
-
             @Override
             public void onResponse(String response) {
                 LogUtils.d("onResponse=" + response);
@@ -206,15 +182,10 @@ public class ProjectContractChangeListActivity extends AppCompatActivity impleme
                             projectContractChangeAdapter.addAllList(projectContractChangeBean.getResult().getResultlist());
                             projectContractChangeAdapter.notifyDataSetChanged();
                         }
-
-
                     }
 
                 }
-
             }
-
-
         });
     }
 
@@ -229,7 +200,6 @@ public class ProjectContractChangeListActivity extends AppCompatActivity impleme
             query();
         }
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
