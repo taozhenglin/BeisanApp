@@ -16,8 +16,8 @@ public class Constants {
 // 181
 
 public static String BASE_URL="http://192.168.1.181:7009";
-    public static String LOGIN="/system/login";
-    public static  String COMMONURL="http://192.168.1.181:7009/common/api";
+    public static String LOGIN="/login";
+    public static  String COMMONURL="http://192.168.1.181:7009/api";
     public static String COMMONSOAP="http://192.168.1.181:7009/WFSERVICE";
     public static String COMMONSOAP2="http://192.168.1.181:7009/MOBILESERVICE";
 

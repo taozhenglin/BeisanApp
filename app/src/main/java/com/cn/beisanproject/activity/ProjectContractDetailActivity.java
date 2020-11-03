@@ -627,7 +627,6 @@ public class ProjectContractDetailActivity extends AppCompatActivity implements 
                         ToastUtils.showShort(startWorkProcessBean.getMsg());
                     }else {
                         ToastUtils.showShort(R.string.UNKNOW_ERROR);
-
                     }
                 }
 

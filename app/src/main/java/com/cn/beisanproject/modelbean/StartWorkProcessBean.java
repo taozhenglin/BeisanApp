@@ -24,6 +24,16 @@ public class StartWorkProcessBean implements Serializable {
     String success;
     String UDPURCHBGID;
     String FIXPDNUM;
+    String INVUSEID;
+    public String getINVUSEID() {
+        return INVUSEID;
+    }
+
+    public void setINVUSEID(String INVUSEID) {
+        this.INVUSEID = INVUSEID;
+    }
+
+
 
     public String getErrorMsg() {
         return errorMsg;

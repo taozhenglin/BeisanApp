@@ -15,6 +15,7 @@
  */
 package com.guideelectric.daterangepicker.widget.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.Gravity;
@@ -201,6 +202,7 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
      *
      * @param view the text view to be configured
      */
+    @SuppressLint("ResourceAsColor")
     protected void configureTextView(TextView view) {
         if (mScrollerConfig == null)
             mScrollerConfig = new ScrollerConfig();

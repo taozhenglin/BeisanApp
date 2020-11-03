@@ -17,30 +17,35 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.blankj.utilcode.util.ToastUtils;
 import com.cn.beisanproject.Base.Constants;
 import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.StatusBarUtils;
-import com.cn.beisanproject.adapter.AsseertCheckAdapter;
-import com.cn.beisanproject.modelbean.AssertCheckListBean;
+import com.cn.beisanproject.adapter.AsseertCheckJsAdapter;
+import com.cn.beisanproject.modelbean.AssertCheckJsListBean;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
+import com.guideelectric.loadingdialog.view.LoadingDialog;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
-import com.yinglan.keyboard.HideUtil;
 
 import java.util.HashMap;
 
 import okhttp3.Call;
 
-public class AssertCheckListActivity extends AppCompatActivity implements View.OnClickListener {
+/**
+ * Created by tzl
+ * on 2020/11/2
+ */
+public class AssertCheckJsListActivity extends AppCompatActivity implements View.OnClickListener{
     private RecyclerView recyclerView;
     private SmartRefreshLayout refreshLayout;
     private RecyclerView.LayoutManager layoutManager;
     private int currentPageNum = 1;
-    private AsseertCheckAdapter mPurchaseAdapter;
+    private AsseertCheckJsAdapter asseertCheckJsAdapter;
     private LinearLayout ll_back;
     private TextView tv_common_title;
 
@@ -48,6 +53,7 @@ public class AssertCheckListActivity extends AppCompatActivity implements View.O
     private boolean isRefresh = true;//是否刷新数据
     private EditText edt_search_contract;
     private TextView tv_search;
+    private LoadingDialog ld;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,9 +65,7 @@ public class AssertCheckListActivity extends AppCompatActivity implements View.O
         initView();
         initEvent();
         initListener();
-
     }
-
     private void initListener() {
         ll_back.setOnClickListener(this);
         tv_search.setOnClickListener(this);
@@ -92,11 +96,13 @@ public class AssertCheckListActivity extends AppCompatActivity implements View.O
         ll_back = findViewById(R.id.ll_back);
         tv_search = findViewById(R.id.tv_search);
         tv_common_title = findViewById(R.id.tv_common_title);
-        tv_common_title.setText("固定资产盘点");
+        tv_common_title.setText("固定资产接收");
         edt_search_contract = findViewById(R.id.edt_search_contract);
+        edt_search_contract.setHint("接收单号/接收描述");
     }
 
     private void initEvent() {
+        ld=new LoadingDialog(this);
         query();
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -120,26 +126,26 @@ public class AssertCheckListActivity extends AppCompatActivity implements View.O
         });
 
     }
-
     /**
      *
      * @param
      */
     private void query() {
+        ld.show();
         LogUtils.d("query");
         LogUtils.d("currentPageNum" + currentPageNum);
         String url = Constants.COMMONURL;
         JSONObject object = new JSONObject();
-        object.put("appid", "FIXPD");
-        object.put("objectname", "FIXPD");
+        object.put("appid", "FIXEDASSETJS");
+        object.put("objectname", "FIXEDASSETJS");
         object.put("curpage", currentPageNum);
         object.put("showcount", 20);
         object.put("option", "read");
-        object.put("orderby", "FIXPDNUM DESC");
+        object.put("orderby", "FIXEDASSETJSNUM DESC");
         JSONObject sinorsearchobject = new JSONObject();//模糊查询要用到  均传用户输入内容
-        sinorsearchobject.put("FIXPDNUM", edt_search_contract.getText().toString());
-        sinorsearchobject.put("MEMO",  edt_search_contract.getText().toString());
-        sinorsearchobject.put("PDZT", edt_search_contract.getText().toString());
+        sinorsearchobject.put("FIXEDASSETJSNUM", edt_search_contract.getText().toString());
+        sinorsearchobject.put("DESCRIPTION",  edt_search_contract.getText().toString());
+//        sinorsearchobject.put("PDZT", edt_search_contract.getText().toString());
         object.put("sinorsearch", sinorsearchobject);
         object.put("sqlSearch", "1=1");
         HashMap<String, String> headermap = new HashMap<>();
@@ -150,37 +156,38 @@ public class AssertCheckListActivity extends AppCompatActivity implements View.O
         OkhttpUtil.okHttpGet(url, map, headermap, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
-                LogUtils.d("onFailure=" + e.toString());
+                LogUtils.d("222222onFailure=" + e.toString());
+                ld.close();
                 finishRefresh();
             }
 
             @Override
             public void onResponse(String response) {
-                LogUtils.d("onResponse=" + response);
-                AssertCheckListBean assertCheckListBean;
+                LogUtils.d("222222onResponse=" + response);
+                ld.close();
+                AssertCheckJsListBean assertCheckJsListBean;
                 finishRefresh();
                 if (!response.isEmpty()) {
-                     assertCheckListBean = JSONObject.parseObject(response, new TypeReference<AssertCheckListBean>() {
-                    });
+                    assertCheckJsListBean = JSONObject.parseObject(response, new TypeReference<AssertCheckJsListBean>() {});
 
-                    if (assertCheckListBean.getErrcode().equals("GLOBAL-S-0")) {
-                        int  totalPage=assertCheckListBean.getResult().getTotalpage();
-
+                    if (assertCheckJsListBean.getErrcode().equals("GLOBAL-S-0")) {
+                        int  totalPage= assertCheckJsListBean.getResult().getTotalpage();
                         if (currentPageNum == 1) {
-                            if (mPurchaseAdapter==null){
-                                mPurchaseAdapter = new AsseertCheckAdapter(AssertCheckListActivity.this, assertCheckListBean.getResult().getResultlist(), edt_search_contract.getText().toString());
-                                recyclerView.setAdapter(mPurchaseAdapter);
+                            if (asseertCheckJsAdapter==null){
+                                asseertCheckJsAdapter = new AsseertCheckJsAdapter(AssertCheckJsListActivity.this, assertCheckJsListBean.getResult().getResultlist(), edt_search_contract.getText().toString());
+                                recyclerView.setAdapter(asseertCheckJsAdapter);
                             }else {
-                                mPurchaseAdapter.setData(assertCheckListBean.getResult().getResultlist(),edt_search_contract.getText().toString());
-                                mPurchaseAdapter.notifyDataSetChanged();
+                                asseertCheckJsAdapter.setData(assertCheckJsListBean.getResult().getResultlist(),edt_search_contract.getText().toString());
+                                asseertCheckJsAdapter.notifyDataSetChanged();
                             }
 
                         } else {
                             if (currentPageNum<=totalPage){
-                                mPurchaseAdapter.addAllList(assertCheckListBean.getResult().getResultlist());
-                                mPurchaseAdapter.notifyDataSetChanged();
+                                asseertCheckJsAdapter.addAllList(assertCheckJsListBean.getResult().getResultlist());
+                                asseertCheckJsAdapter.notifyDataSetChanged();
+                            }else {
+                                ToastUtils.showShort("没有更多数据了");
                             }
-
                         }
 
 
@@ -195,14 +202,11 @@ public class AssertCheckListActivity extends AppCompatActivity implements View.O
 
 
     }
-
     private void finishRefresh() {
         if (isRefresh) refreshLayout.finishRefresh();
         else refreshLayout.finishLoadMore();
 
     }
-
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -211,7 +215,6 @@ public class AssertCheckListActivity extends AppCompatActivity implements View.O
                 break;
             case R.id.tv_search:
                 currentPageNum=1;
-
                 query();
 
                 break;

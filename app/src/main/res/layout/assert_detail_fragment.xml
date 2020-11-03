@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <include
+        android:id="@+id/top_bar"
+        layout="@layout/activity_common_title"
+        android:visibility="gone"
+        />
+<androidx.core.widget.NestedScrollView
+    android:id="@+id/top"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
     android:fillViewport="true"
     >
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,7 +35,18 @@
                 android:text="盘点单编号："
                 android:textSize="@dimen/sp12"
                 android:textStyle="bold"
-
+                />
+            <TextView
+                android:id="@+id/tv_statues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="盘点备注："
+                android:layout_marginTop="@dimen/dp3"
+                android:textSize="@dimen/sp12"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:visibility="gone"
+                android:textColor="@color/guide_blue"
                 />
 
             <TextView
@@ -83,6 +105,7 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp40"
             android:layout_below="@+id/tv_contract_endtime"
@@ -116,3 +139,15 @@
         </com.scwang.smart.refresh.layout.SmartRefreshLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
+    <TextView
+        android:id="@+id/tv_approval"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:background="@color/guide_blue"
+        android:gravity="center"
+        android:text="工作流审批"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp12"
+        android:visibility="gone"
+        />
+</LinearLayout>

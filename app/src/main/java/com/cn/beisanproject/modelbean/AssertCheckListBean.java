@@ -10,7 +10,7 @@ public class AssertCheckListBean implements Serializable {
      * errcode : GLOBAL-S-0
      * errmsg : 请求成功
      * personid : null
-     * result : {"curpage":1,"resultlist":[{"ENDDATE":"2020-05-22 12:16:00","FIXPDNUM":"1027","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-05-22 12:16:00","STARTDATE":"2020-05-22 12:16:00"},{"ENDDATE":"2020-05-24 12:16:00","FIXPDNUM":"1029","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-05-24 12:16:00","STARTDATE":"2020-05-24 12:16:00"},{"ENDDATE":"2020-06-01 12:16:00","FIXPDNUM":"1037","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-06-01 12:16:00","STARTDATE":"2020-06-01 12:16:00"},{"ENDDATE":"2020-06-02 12:16:00","FIXPDNUM":"1038","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-06-02 12:16:00","STARTDATE":"2020-06-02 12:16:00"},{"ENDDATE":"2020-06-04 15:26:07","FIXPDNUM":"1040","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-06-04 15:26:07","STARTDATE":"2020-06-04 15:26:07"},{"ENDDATE":"2020-06-07 12:16:00","FIXPDNUM":"1043","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-06-07 12:16:00","STARTDATE":"2020-06-07 12:16:00"},{"ENDDATE":"2020-06-09 12:16:00","FIXPDNUM":"1045","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-06-09 12:16:00","STARTDATE":"2020-06-09 12:16:00"},{"ENDDATE":"2020-06-18 12:16:00","FIXPDNUM":"1054","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-06-18 12:16:00","STARTDATE":"2020-06-18 12:16:00"},{"ENDDATE":"2020-06-24 12:16:00","FIXPDNUM":"1060","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-06-24 12:16:00","STARTDATE":"2020-06-24 12:16:00"},{"ENDDATE":"2020-07-02 12:16:00","FIXPDNUM":"1068","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-07-02 12:16:00","STARTDATE":"2020-07-02 12:16:00"},{"ENDDATE":"2020-07-03 12:16:00","FIXPDNUM":"1069","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-07-03 12:16:00","STARTDATE":"2020-07-03 12:16:00"},{"ENDDATE":"2020-07-04 12:16:00","FIXPDNUM":"1070","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-07-04 12:16:00","STARTDATE":"2020-07-04 12:16:00"},{"ENDDATE":"2020-07-06 12:16:00","FIXPDNUM":"1072","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-07-06 12:16:00","STARTDATE":"2020-07-06 12:16:00"},{"ENDDATE":"2020-05-07 12:16:00","FIXPDNUM":"1020","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-05-07 12:16:00","STARTDATE":"2020-05-07 12:16:00"},{"ENDDATE":"2020-05-23 12:16:00","FIXPDNUM":"1028","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-05-23 12:16:00","STARTDATE":"2020-05-23 12:16:00"}]}
+     * result : {"curpage":1,"resultlist":[{"ENDDATE":"2020-09-26 19:15:10","FIXPDNUM":"1395","MEMO":"","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"","PDZTDATE":"","STARTDATE":"2020-09-20 19:15:09"}],"showcount":20,"totalpage":1,"totalresult":1}
      */
 
     private String errcode;
@@ -50,13 +50,19 @@ public class AssertCheckListBean implements Serializable {
         this.result = result;
     }
 
-    public static class ResultBean implements Serializable{
+    public static class ResultBean {
         /**
          * curpage : 1
-         * resultlist : [{"ENDDATE":"2020-05-22 12:16:00","FIXPDNUM":"1027","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-05-22 12:16:00","STARTDATE":"2020-05-22 12:16:00"},{"ENDDATE":"2020-05-24 12:16:00","FIXPDNUM":"1029","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-05-24 12:16:00","STARTDATE":"2020-05-24 12:16:00"},{"ENDDATE":"2020-06-01 12:16:00","FIXPDNUM":"1037","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-06-01 12:16:00","STARTDATE":"2020-06-01 12:16:00"},{"ENDDATE":"2020-06-02 12:16:00","FIXPDNUM":"1038","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-06-02 12:16:00","STARTDATE":"2020-06-02 12:16:00"},{"ENDDATE":"2020-06-04 15:26:07","FIXPDNUM":"1040","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-06-04 15:26:07","STARTDATE":"2020-06-04 15:26:07"},{"ENDDATE":"2020-06-07 12:16:00","FIXPDNUM":"1043","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-06-07 12:16:00","STARTDATE":"2020-06-07 12:16:00"},{"ENDDATE":"2020-06-09 12:16:00","FIXPDNUM":"1045","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-06-09 12:16:00","STARTDATE":"2020-06-09 12:16:00"},{"ENDDATE":"2020-06-18 12:16:00","FIXPDNUM":"1054","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-06-18 12:16:00","STARTDATE":"2020-06-18 12:16:00"},{"ENDDATE":"2020-06-24 12:16:00","FIXPDNUM":"1060","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-06-24 12:16:00","STARTDATE":"2020-06-24 12:16:00"},{"ENDDATE":"2020-07-02 12:16:00","FIXPDNUM":"1068","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-07-02 12:16:00","STARTDATE":"2020-07-02 12:16:00"},{"ENDDATE":"2020-07-03 12:16:00","FIXPDNUM":"1069","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-07-03 12:16:00","STARTDATE":"2020-07-03 12:16:00"},{"ENDDATE":"2020-07-04 12:16:00","FIXPDNUM":"1070","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-07-04 12:16:00","STARTDATE":"2020-07-04 12:16:00"},{"ENDDATE":"2020-07-06 12:16:00","FIXPDNUM":"1072","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-07-06 12:16:00","STARTDATE":"2020-07-06 12:16:00"},{"ENDDATE":"2020-05-07 12:16:00","FIXPDNUM":"1020","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-05-07 12:16:00","STARTDATE":"2020-05-07 12:16:00"},{"ENDDATE":"2020-05-23 12:16:00","FIXPDNUM":"1028","MEMO":"此次盘点由系统自动进行,请仔细核对.","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"等待核准","PDZTDATE":"2020-05-23 12:16:00","STARTDATE":"2020-05-23 12:16:00"}]
+         * resultlist : [{"ENDDATE":"2020-09-26 19:15:10","FIXPDNUM":"1395","MEMO":"","PDUSER":"MAXADMIN","PDUSERDESC":"系统管理员","PDZT":"","PDZTDATE":"","STARTDATE":"2020-09-20 19:15:09"}]
+         * showcount : 20
+         * totalpage : 1
+         * totalresult : 1
          */
 
         private int curpage;
+        private int showcount;
+        private int totalpage;
+        private int totalresult;
         private List<ResultlistBean> resultlist;
 
         public int getCurpage() {
@@ -65,6 +71,30 @@ public class AssertCheckListBean implements Serializable {
 
         public void setCurpage(int curpage) {
             this.curpage = curpage;
+        }
+
+        public int getShowcount() {
+            return showcount;
+        }
+
+        public void setShowcount(int showcount) {
+            this.showcount = showcount;
+        }
+
+        public int getTotalpage() {
+            return totalpage;
+        }
+
+        public void setTotalpage(int totalpage) {
+            this.totalpage = totalpage;
+        }
+
+        public int getTotalresult() {
+            return totalresult;
+        }
+
+        public void setTotalresult(int totalresult) {
+            this.totalresult = totalresult;
         }
 
         public List<ResultlistBean> getResultlist() {
@@ -77,14 +107,14 @@ public class AssertCheckListBean implements Serializable {
 
         public static class ResultlistBean implements Serializable{
             /**
-             * ENDDATE : 2020-05-22 12:16:00
-             * FIXPDNUM : 1027
-             * MEMO : 此次盘点由系统自动进行,请仔细核对.
+             * ENDDATE : 2020-09-26 19:15:10
+             * FIXPDNUM : 1395
+             * MEMO :
              * PDUSER : MAXADMIN
              * PDUSERDESC : 系统管理员
-             * PDZT : 等待核准
-             * PDZTDATE : 2020-05-22 12:16:00
-             * STARTDATE : 2020-05-22 12:16:00
+             * PDZT :
+             * PDZTDATE :
+             * STARTDATE : 2020-09-20 19:15:09
              */
 
             private String ENDDATE;

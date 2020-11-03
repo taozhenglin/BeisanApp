@@ -410,8 +410,7 @@ public class PurchaseContractDetailFragment extends Fragment {
                     int end = response.indexOf("</return>");
                     String substring = response.substring(start + 8, end);
                     LogUtils.d("substring==" + substring);
-                    CommonAttachBean commonAttachBean = JSONObject.parseObject(substring, new TypeReference<CommonAttachBean>() {
-                    });
+                    CommonAttachBean commonAttachBean = JSONObject.parseObject(substring, new TypeReference<CommonAttachBean>() {});
                     if (!StringUtils.isEmpty(commonAttachBean.getUrlnew())) {
                         LogUtils.d("url==" + commonAttachBean.getUrlnew());
                         String url = commonAttachBean.getUrlnew();

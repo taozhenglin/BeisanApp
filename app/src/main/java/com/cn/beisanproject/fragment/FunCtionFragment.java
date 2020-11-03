@@ -13,7 +13,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.cn.beisanproject.R;
+import com.cn.beisanproject.activity.AssertCheckJsListActivity;
 import com.cn.beisanproject.activity.AssertCheckListActivity;
+import com.cn.beisanproject.activity.AssertCheckCzListActivity;
 import com.cn.beisanproject.activity.CountEqmentRequestListActivity;
 import com.cn.beisanproject.activity.ElectricRequestListActivity;
 import com.cn.beisanproject.activity.EqumentRequestListkActivity;
@@ -43,6 +45,9 @@ public class FunCtionFragment extends Fragment implements View.OnClickListener {
     private LinearLayout ll_stock_taking;
     private LinearLayout ll_material_requisition;
     private LinearLayout ll_asssert_check;
+    private LinearLayout ll_asssert_js;
+    private LinearLayout ll_asssert_cz;
+
     private LinearLayout ll_equment_1;
     private LinearLayout ll_equment_2;
     private LinearLayout ll_equment_3;
@@ -74,7 +79,11 @@ public class FunCtionFragment extends Fragment implements View.OnClickListener {
         ll_stock_taking = view.findViewById(R.id.ll_stock_taking);//库存盘点
         ll_material_requisition = view.findViewById(R.id.ll_material_requisition);//领料单
         ll_stock_move= view.findViewById(R.id.ll_stock_move);//库存转移
+
         ll_asssert_check = view.findViewById(R.id.ll_asssert_check);//固定资产盘点
+        ll_asssert_js = view.findViewById(R.id.ll_asssert_js);//固定资产接收
+        ll_asssert_cz = view.findViewById(R.id.ll_asssert_cz);//固定资产处置
+
         ll_equment_1 = view.findViewById(R.id.ll_equment_1);//设备1
         ll_equment_2 = view.findViewById(R.id.ll_equment_2);
         ll_equment_3 = view.findViewById(R.id.ll_equment_3);
@@ -104,6 +113,9 @@ public class FunCtionFragment extends Fragment implements View.OnClickListener {
         ll_stock_taking.setOnClickListener(this);
         ll_material_requisition.setOnClickListener(this);
         ll_asssert_check.setOnClickListener(this);
+        ll_asssert_js.setOnClickListener(this);
+        ll_asssert_cz.setOnClickListener(this);
+
         ll_equment_1.setOnClickListener(this);
         ll_equment_2.setOnClickListener(this);
         ll_equment_3.setOnClickListener(this);
@@ -142,6 +154,12 @@ public class FunCtionFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.ll_asssert_check://固定资产盘点
                 startActivity(new Intent(mContext, AssertCheckListActivity.class));
+                break;
+            case R.id.ll_asssert_js://固定资产接收
+                startActivity(new Intent(mContext, AssertCheckJsListActivity.class));
+                break;
+            case R.id.ll_asssert_cz://固定资产处置
+                startActivity(new Intent(mContext, AssertCheckCzListActivity.class));
                 break;
             case R.id.ll_equment_1://设备台账增减申请
                 startActivity(new Intent(mContext, EqumentRequestListkActivity.class));

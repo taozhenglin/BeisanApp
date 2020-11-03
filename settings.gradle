@@ -1,9 +1,8 @@
 include ':app'
-rootProject.name = "BeiSanProject"
-include ':app'
-include ':loadingdialog'
 include ':daterangepicker'
+include ':loadingdialog'
 include ':magicindicator'
+include ':qrcodecore'
 include ':RFIDAPI3Library'
 include ':zxing'
-include ':qrcodecore'
+rootProject.name = "BeiSan Project"

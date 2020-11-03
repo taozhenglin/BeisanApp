@@ -91,8 +91,8 @@ public class SplashActivity extends AppCompatActivity {
         } else {
             if (SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment").equals("测试")) {
                 Constants.BASE_URL="http://192.168.1.181:7009";
-                Constants. LOGIN="/system/login";
-                Constants. COMMONURL="http://192.168.1.181:7009/common/api";
+                Constants. LOGIN="/login";
+                Constants. COMMONURL="http://192.168.1.181:7009/api";
                 Constants. COMMONSOAP="http://192.168.1.181:7009/WFSERVICE";
                 Constants. COMMONSOAP2="http://192.168.1.181:7009/MOBILESERVICE";
             } else {

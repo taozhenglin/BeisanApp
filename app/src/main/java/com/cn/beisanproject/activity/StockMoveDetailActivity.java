@@ -536,31 +536,6 @@ public class StockMoveDetailActivity extends AppCompatActivity {
                 LogUtils.d("不同意==");
             }
         });
-        //用于检测输入的字数
-        input_et.addTextChangedListener(new TextWatcher() {
-            private CharSequence temp;
-            private int selectionStart;
-            private int selectionEnd;
-            private int num = 10;
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                temp = s;
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                int number = s.length();
-
-            }
-        });
-
-        //确定后，添加标签页
 
         finish_tv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -628,13 +603,12 @@ public class StockMoveDetailActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 ld.close();
                 LogUtils.d("onResponse==" + response);
-                if (response.contains("<return>")&&response.contains("/<return>")) {
+                if (response.contains("<return>")&&response.contains("</return>")) {
                     int start = response.indexOf("<return>");
                     int end = response.indexOf("</return>");
                     String substring = response.substring(start + 8, end);
                     LogUtils.d("substring==" + substring);
-                    StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
-                    });
+                    StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {});
                     if (startWorkProcessBean.getMsg().equals("审批成功")) {
                         statues = startWorkProcessBean.getNextStatus();
                         tvStatue.setText(startWorkProcessBean.getNextStatus());
@@ -645,7 +619,8 @@ public class StockMoveDetailActivity extends AppCompatActivity {
                     }
                     ToastUtils.showShort(startWorkProcessBean.getMsg());
 
-                }
+                }else
+                    ToastUtils.showShort(R.string.UNKNOW_ERROR);
             }
         });
 

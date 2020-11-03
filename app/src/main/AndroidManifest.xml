@@ -45,7 +45,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 外部存储读权限，调试工具加载本地补丁需要 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
         android:name=".Base.SophixStubApplication"
         android:allowBackup="true"
@@ -75,6 +75,7 @@
         <activity
             android:name=".activity.PurchseContractListActivity"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+
         <!--        固定资产盘点 列表-->
         <activity
             android:name=".activity.AssertCheckListActivity"
@@ -87,6 +88,21 @@
         <activity
             android:name=".activity.AssertListItemDetailActivity"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        固定资产接收 列表-->
+        <activity
+            android:name=".activity.AssertCheckJsListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        固定资产接收  详情-->
+        <activity android:name=".activity.AssertJsDetailActivity" />
+        <!--        固定资产处置 列表-->
+        <activity
+            android:name=".activity.AssertCheckCzListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        固定资产处置 详情-->
+        <activity
+            android:name=".activity.AssertCzDetailActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+
         <!--        采购合同详情-->
         <activity android:name=".activity.PurchaseContractDetailActivity" />
         <!--        项目合同列表-->
@@ -250,6 +266,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
         <meta-data
             android:name="com.taobao.android.hotfix.IDSECRET"
             android:value="31417232-1" />

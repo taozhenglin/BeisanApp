@@ -85,8 +85,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 iv_agree.setBackgroundResource(R.drawable.selected);
                 iv_disagree.setBackgroundResource(R.drawable.unselected);
               Constants.BASE_URL="http://192.168.1.181:7009";
-                Constants. LOGIN="/system/login";
-                Constants. COMMONURL="http://192.168.1.181:7009/common/api";
+                Constants. LOGIN="/login";
+                Constants. COMMONURL="http://192.168.1.181:7009/api";
                 Constants. COMMONSOAP="http://192.168.1.181:7009/WFSERVICE";
                 Constants. COMMONSOAP2="http://192.168.1.181:7009/MOBILESERVICE";
                 SharedPreferencesUtil.setString(MyApplication.applicationContext, "envirment", "测试");

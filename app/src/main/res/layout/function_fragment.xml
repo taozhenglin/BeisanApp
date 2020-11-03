@@ -231,7 +231,54 @@
                 android:textSize="@dimen/sp12"
                 />
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_asssert_js"
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
 
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp5"
+                android:src="@drawable/gudingzichan"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="固定资产接收"
+                android:layout_marginTop="@dimen/dp5"
+                android:gravity="center"
+                android:textSize="@dimen/sp12"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_asssert_cz"
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp5"
+                android:src="@drawable/gudingzichan"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="固定资产处置"
+                android:layout_marginTop="@dimen/dp5"
+                android:gravity="center"
+                android:textSize="@dimen/sp12"
+                />
+        </LinearLayout>
 
 
     </LinearLayout>
