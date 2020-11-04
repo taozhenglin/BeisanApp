@@ -21,11 +21,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:textColor="@color/guide_blue"
+        android:textColor="@color/white"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/dp5"
         android:textSize="@dimen/sp12"
         />
+    <ImageView
+        android:id="@+id/iv_contract_statue"
+        android:layout_width="@dimen/dp55"
+        android:layout_height="@dimen/dp55"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp5" />
     <TextView
         android:id="@+id/tv_desc"
         android:layout_width="wrap_content"

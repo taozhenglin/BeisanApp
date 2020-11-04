@@ -83,7 +83,7 @@
         android:layout_height="@dimen/dp40"
         android:layout_below="@+id/tv_contract_endtime"
         android:background="@color/guide_blue"
-        android:text="未盘点明细行"
+        android:text="盘点差异明细行"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/dp8"
         android:textColor="@color/white"

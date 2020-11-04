@@ -6,6 +6,7 @@ import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,7 +45,37 @@ public class ProjectContractAdapter extends RecyclerView.Adapter<ProjectContract
         holder.tv_contract_no.setText(highlightNo);
         SpannableString highlightdes = HighLightUtils.highlight(mContext, "合同描述：" + mResultlistBean.get(position).getDESCRIPTION(), mHightlight, "#00ff00", 0, 0);
         holder.tv_contract_desc.setText(highlightdes);
-        holder.tv_contract_statue.setText(mResultlistBean.get(position).getSTATUS());
+        if (mResultlistBean.get(position).getSTATUS().equals("已批准")) {
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.permitted2));
+            holder.tv_contract_statue.setVisibility(View.GONE);
+            holder.tv_contract_statue.setBackgroundDrawable(null);
+
+        }else  if (mResultlistBean.get(position).getSTATUS().equals("驳回")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.reject));
+            holder.tv_contract_statue.setVisibility(View.GONE);
+            holder.tv_contract_statue.setBackgroundDrawable(null);
+
+        }else  if (mResultlistBean.get(position).getSTATUS().equals("取消")||mResultlistBean.get(position).getSTATUS().equals("已取消")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.canceled));
+            holder.tv_contract_statue.setVisibility(View.GONE);
+            holder.tv_contract_statue.setBackgroundDrawable(null);
+        }
+        else  if (mResultlistBean.get(position).getSTATUS().equals("完成")||mResultlistBean.get(position).getSTATUS().equals("已完成")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.finished));
+            holder.tv_contract_statue.setVisibility(View.GONE);
+            holder.tv_contract_statue.setBackgroundDrawable(null);
+        }
+        else {
+            holder.iv_contract_statue.setVisibility(View.GONE);
+            holder.tv_contract_statue.setVisibility(View.VISIBLE);
+            holder.tv_contract_statue.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_shape_20));
+            holder.tv_contract_statue.setText(mResultlistBean.get(position).getSTATUS());
+
+        }
         holder.tv_contract_count.setText("成本总计：" + mResultlistBean.get(position).getTOTALCOST());
         holder.tv_contract_jia.setText("甲方：" + mResultlistBean.get(position).getHTJF());
         SpannableString highlighty = HighLightUtils.highlight(mContext, "乙方：" + mResultlistBean.get(position).getHTYF(), mHightlight, "#00ff00", 0, 0);
@@ -83,6 +114,7 @@ public class ProjectContractAdapter extends RecyclerView.Adapter<ProjectContract
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tv_contract_no;//合同编号
         TextView tv_contract_statue;//合同状态;
+        ImageView iv_contract_statue;
         TextView tv_contract_count;//合同金额
         TextView tv_contract_desc;//合同描述
         TextView tv_contract_jia;//合同甲方
@@ -98,6 +130,7 @@ public class ProjectContractAdapter extends RecyclerView.Adapter<ProjectContract
 
             tv_contract_no = itemView.findViewById(R.id.tv_contract_no);
             tv_contract_statue = itemView.findViewById(R.id.tv_contract_statue);
+            iv_contract_statue= itemView.findViewById(R.id.iv_contract_statue);
             tv_contract_count = itemView.findViewById(R.id.tv_contract_count);
             tv_contract_desc = itemView.findViewById(R.id.tv_contract_desc);
             tv_contract_jia = itemView.findViewById(R.id.tv_contract_jia);

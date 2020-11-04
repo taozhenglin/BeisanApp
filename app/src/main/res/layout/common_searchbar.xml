@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:background="@drawable/radis8_layout_shape"
+    android:background="@drawable/radis8_layout_shape3"
     >
 
 
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:text="搜索"
             android:paddingRight="@dimen/dp8"
-            android:textSize="@dimen/sp12"
+            android:textSize="@dimen/sp14"
             android:textColor="@color/guide_blue"
             />
 

@@ -86,7 +86,7 @@ public class SplashActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         //隐藏标题栏
         getSupportActionBar().hide();
-        StatusBarUtils.setWhiteStatusBarColor(this, R.color.guide_blue);
+        StatusBarUtils.setWhiteStatusBarColor(this, R.color.white);
         if (StringUtils.isEmpty(SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment"))) {
         } else {
             if (SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment").equals("测试")) {

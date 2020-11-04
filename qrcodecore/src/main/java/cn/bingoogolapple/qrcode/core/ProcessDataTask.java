@@ -1,5 +1,6 @@
 package cn.bingoogolapple.qrcode.core;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.hardware.Camera;
 import android.os.AsyncTask;
@@ -95,6 +96,7 @@ class ProcessDataTask extends AsyncTask<Void, Void, ScanResult> {
         }
     }
 
+    @SuppressLint("WrongThread")
     @Override
     protected ScanResult doInBackground(Void... params) {
         QRCodeView qrCodeView = mQRCodeViewRef.get();

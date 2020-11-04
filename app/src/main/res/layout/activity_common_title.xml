@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/titlebar_height"
     android:background="@color/guide_blue"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+
+    >
 
     <LinearLayout
         android:id="@+id/ll_back"
@@ -28,7 +30,7 @@
             android:layout_height="wrap_content"
             android:text="@string/back"
             android:textColor="@color/main_backgroundColor"
-            android:textSize="@dimen/sp14"
+            android:textSize="@dimen/sp16"
             android:layout_gravity="center_vertical"
 
             />
@@ -42,7 +44,7 @@
         android:text="标题"
         android:layout_centerVertical="true"
         android:textColor="@color/main_backgroundColor"
-        android:textSize="@dimen/sp14" />
+        android:textSize="@dimen/sp16" />
 
     <ImageView
         android:id="@+id/iv_fun"

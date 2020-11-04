@@ -201,6 +201,7 @@ public class ProjectMonthListActivity extends AppCompatActivity implements View.
                 finish();
                 break;
             case R.id.tv_search:
+                currentPageNum=1;
                 query();
                 break;
         }

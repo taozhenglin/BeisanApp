@@ -6,6 +6,7 @@ import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,6 +47,37 @@ public class FacilityRequestAdapter extends RecyclerView.Adapter<FacilityRequest
         SpannableString highlightNo = HighLightUtils.highlight(mContext, "申请单号:" + mList.get(position).getJD_SSTZID(), mHightLight, "#00ff00", 0, 0);
         holder.tvRequestNo.setText(highlightNo);
         holder.tvRequestStatue.setText(mList.get(position).getSTATUS());
+        if (mList.get(position).getSTATUS().equals("已批准")) {
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.permitted2));
+            holder.tvRequestStatue.setVisibility(View.GONE);
+            holder.tvRequestStatue.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getSTATUS().equals("驳回")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.reject));
+            holder.tvRequestStatue.setVisibility(View.GONE);
+            holder.tvRequestStatue.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getSTATUS().equals("取消")||mList.get(position).getSTATUS().equals("已取消")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.canceled));
+            holder.tvRequestStatue.setVisibility(View.GONE);
+            holder.tvRequestStatue.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getSTATUS().equals("完成")||mList.get(position).getSTATUS().equals("已完成")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.finished));
+            holder.tvRequestStatue.setVisibility(View.GONE);
+            holder.tvRequestStatue.setBackgroundDrawable(null);
+        }
+        else {
+            holder.iv_contract_statue.setVisibility(View.GONE);
+            holder.tvRequestStatue.setVisibility(View.VISIBLE);
+            holder.tvRequestStatue.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_shape_20));
+            holder.tvRequestStatue.setText(mList.get(position).getSTATUS());
+
+        }
         SpannableString highlightEqNo = HighLightUtils.highlight(mContext, "系统编号:" + mList.get(position).getEQUNUM(), mHightLight, "#00ff00", 0, 0);
         holder.tvSystemNo.setText(highlightEqNo);
         holder.tvFacilityName.setText("设施名称:" + mList.get(position).getNAME());
@@ -83,6 +115,8 @@ public class FacilityRequestAdapter extends RecyclerView.Adapter<FacilityRequest
         TextView tvRequestNo;
         @BindView(R.id.tv_request_statue)
         TextView tvRequestStatue;
+        @BindView(R.id.iv_contract_statue)
+        ImageView iv_contract_statue;
         @BindView(R.id.tv_system_no)
         TextView tvSystemNo;
         @BindView(R.id.tv_facility_name)

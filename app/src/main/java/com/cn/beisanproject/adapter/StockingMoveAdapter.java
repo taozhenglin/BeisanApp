@@ -2,10 +2,12 @@ package com.cn.beisanproject.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,12 +47,44 @@ public class StockingMoveAdapter extends RecyclerView.Adapter<StockingMoveAdapte
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         SpannableString highlightNo = HighLightUtils.highlight(mContext, "编号：" + mList.get(position).getINVUSENUM(), mHightLight, "#00ff00", 0, 0);
         holder.tvProjectRequest.setText(highlightNo);
-        SpannableString highlightSta = HighLightUtils.highlight(mContext,  mList.get(position).getSTATUS(), mHightLight, "#00ff00", 0, 0);
-        holder.tvStatue.setText(highlightSta);
+        if (mList.get(position).getSTATUS().equals("已批准")) {
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.permitted2));
+            holder.tvStatue.setVisibility(View.GONE);
+            holder.tvStatue.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getSTATUS().equals("驳回")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.reject));
+            holder.tvStatue.setVisibility(View.GONE);
+            holder.tvStatue.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getSTATUS().equals("取消")||mList.get(position).getSTATUS().equals("已取消")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.canceled));
+            holder.tvStatue.setVisibility(View.GONE);
+            holder.tvStatue.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getSTATUS().equals("完成")||mList.get(position).getSTATUS().equals("已完成")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.finished));
+            holder.tvStatue.setVisibility(View.GONE);
+            holder.tvStatue.setBackgroundDrawable(null);
+        }
+        else {
+            holder.iv_contract_statue.setVisibility(View.GONE);
+            holder.tvStatue.setVisibility(View.VISIBLE);
+            holder.tvStatue.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_shape_20));
+            SpannableString highlightSta = HighLightUtils.highlight(mContext,  mList.get(position).getSTATUS(), mHightLight, "#00ff00", 0, 0);
+            holder.tvStatue.setText(highlightSta);
+
+        }
+
+
         SpannableString highlightDesc = HighLightUtils.highlight(mContext, "描述：" + mList.get(position).getDESCRIPTION(), mHightLight, "#00ff00", 0, 0);
         holder.tvDesc.setText(highlightDesc);
-        holder.tvHuizongDate.setVisibility(View.GONE);
-        holder.tvSumAmount.setVisibility(View.GONE);
+        holder.tvHuizongDate.setText("申请人："+mList.get(position).getREPORTEDBY());
+        holder.tvSumAmount.setText("申请日期："+mList.get(position).getREPORTDATE());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,6 +121,8 @@ public class StockingMoveAdapter extends RecyclerView.Adapter<StockingMoveAdapte
         TextView tvHuizongDate;
         @BindView(R.id.tv_sum_amount)
         TextView tvSumAmount;
+        @BindView(R.id.iv_contract_statue)
+        ImageView iv_contract_statue;
 //        @BindView(R.id.tv_dept)
 //        TextView tvDept;
 //        @BindView(R.id.tv_requset_dep)

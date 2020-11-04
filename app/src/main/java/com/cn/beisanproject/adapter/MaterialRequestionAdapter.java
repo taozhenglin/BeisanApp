@@ -6,6 +6,7 @@ import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,7 +41,31 @@ public class MaterialRequestionAdapter extends RecyclerView.Adapter<MaterialRequ
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         SpannableString hightLightNo = HighLightUtils.highlight(mContext, "领料单编号：" + mList.get(position).getWONUM(), mHightlight, "#00ff00", 0, 0);
         holder.tv_material_no.setText(hightLightNo);
-        holder.tv_material_statue.setText("" + mList.get(position).getSTATUS());
+        if (mList.get(position).getSTATUS().equals("已批准")) {
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.permitted2));
+            holder.tv_material_statue.setVisibility(View.GONE);
+            holder.tv_material_statue.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getSTATUS().equals("驳回")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.reject));
+            holder.tv_material_statue.setVisibility(View.GONE);
+            holder.tv_material_statue.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getSTATUS().equals("取消")||mList.get(position).getSTATUS().equals("已取消")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.canceled));
+            holder.tv_material_statue.setVisibility(View.GONE);
+            holder.tv_material_statue.setBackgroundDrawable(null);
+
+        }else {
+            holder.iv_contract_statue.setVisibility(View.GONE);
+            holder.tv_material_statue.setVisibility(View.VISIBLE);
+            holder.tv_material_statue.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_shape_20));
+            holder.tv_material_statue.setText(mList.get(position).getSTATUS());
+
+        }
         SpannableString hightLightDesc = HighLightUtils.highlight(mContext, "领料单描述：" + mList.get(position).getDESCRIPTION(), mHightlight, "#00ff00", 0, 0);
         holder.tv_material_desc.setText(hightLightDesc);
         holder.tv_function_dep.setText("职能部门：" + mList.get(position).getA_TODEPT());
@@ -76,6 +101,7 @@ public class MaterialRequestionAdapter extends RecyclerView.Adapter<MaterialRequ
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tv_material_no;
         TextView tv_material_statue;
+        ImageView iv_contract_statue;
         TextView tv_material_desc;
         TextView tv_function_dep;
         TextView tv_requset_dep;
@@ -88,6 +114,7 @@ public class MaterialRequestionAdapter extends RecyclerView.Adapter<MaterialRequ
             super(itemView);
             tv_material_no = itemView.findViewById(R.id.tv_material_no);
             tv_material_statue = itemView.findViewById(R.id.tv_material_statue);
+            iv_contract_statue= itemView.findViewById(R.id.iv_contract_statue);
             tv_material_desc = itemView.findViewById(R.id.tv_material_desc);
             tv_function_dep = itemView.findViewById(R.id.tv_function_dep);
             tv_requset_dep = itemView.findViewById(R.id.tv_requset_dep);

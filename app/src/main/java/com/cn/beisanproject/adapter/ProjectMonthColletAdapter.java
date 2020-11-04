@@ -6,6 +6,7 @@ import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -56,7 +57,37 @@ public class ProjectMonthColletAdapter extends RecyclerView.Adapter<ProjectMonth
         SpannableString highlightNo = HighLightUtils.highlight(mContext, "项目汇总：" + mList.get(position).getPRNUM(), mHightlight, "#00ff00", 0, 0);
         holder.tv_check_no.setText(highlightNo);
         holder.tv_statues.setVisibility(View.VISIBLE);
-        holder.tv_statues.setText(mList.get(position).getSTATUS());
+        if (mList.get(position).getSTATUS().equals("已批准")) {
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.permitted2));
+            holder.tv_statues.setVisibility(View.GONE);
+            holder.tv_statues.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getSTATUS().equals("驳回")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.reject));
+            holder.tv_statues.setVisibility(View.GONE);
+            holder.tv_statues.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getSTATUS().equals("取消")||mList.get(position).getSTATUS().equals("已取消")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.canceled));
+            holder.tv_statues.setVisibility(View.GONE);
+            holder.tv_statues.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getSTATUS().equals("完成")||mList.get(position).getSTATUS().equals("已完成")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.finished));
+            holder.tv_statues.setVisibility(View.GONE);
+            holder.tv_statues.setBackgroundDrawable(null);
+        }
+        else {
+            holder.iv_contract_statue.setVisibility(View.GONE);
+            holder.tv_statues.setVisibility(View.VISIBLE);
+            holder.tv_statues.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_shape_20));
+            holder.tv_statues.setText(mList.get(position).getSTATUS());
+
+        }
         SpannableString highlightDesc = HighLightUtils.highlight(mContext, "描述：" + mList.get(position).getDESCRIPTION(), mHightlight, "#00ff00", 0, 0);
         holder.tv_check_desc.setText(highlightDesc);
         holder.tv_check_by.setText("项汇总年月：" + mList.get(position).getA_PRKEY());
@@ -93,6 +124,7 @@ public class ProjectMonthColletAdapter extends RecyclerView.Adapter<ProjectMonth
         private final TextView tv_check_no;
         private final TextView tv_check_desc;
         private final TextView tv_statues;
+        ImageView iv_contract_statue;
         private final TextView tv_check_by;
         private final TextView tv_check_starttime;
         private final TextView tv_check_endtime;
@@ -103,6 +135,7 @@ public class ProjectMonthColletAdapter extends RecyclerView.Adapter<ProjectMonth
             super(itemView);
             tv_check_no = itemView.findViewById(R.id.tv_check_no);
             tv_statues = itemView.findViewById(R.id.tv_statues);
+            iv_contract_statue=itemView.findViewById(R.id.iv_contract_statue);
             tv_check_desc = itemView.findViewById(R.id.tv_check_desc);
             tv_check_by = itemView.findViewById(R.id.tv_check_by);
             tv_check_starttime = itemView.findViewById(R.id.tv_check_starttime);

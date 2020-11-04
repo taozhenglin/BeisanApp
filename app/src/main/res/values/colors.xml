@@ -31,9 +31,9 @@
     <color name="color_white">#FFFFFF</color>
     <color name="color_black">#000000</color>
     <color name="color_yellow">#f59e07</color>
-    <color name="green">#33cc66</color>
+    <color name="green">#00ff00</color>
     <color name="gray_3">#666666</color>
-    <color name="gray_4" />
+    <color name="gray_4">#BEBEBE</color>
     <color name="main_buttom_backgroundColor">#C0FFFFFF</color>
 
 

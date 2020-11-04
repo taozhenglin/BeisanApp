@@ -14,26 +14,33 @@
         android:layout_height="wrap_content"
         android:text="项目申请："
         android:textStyle="bold"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         />
     <TextView
         android:id="@+id/tv_statue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:textColor="@color/guide_blue"
+        android:textColor="@color/white"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/dp5"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
+        />
+    <ImageView
+        android:id="@+id/iv_contract_statue"
+        android:layout_width="@dimen/dp55"
+        android:layout_height="@dimen/dp55"
+        android:layout_alignParentRight="true"
         />
     <TextView
         android:id="@+id/tv_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="描述："
+        android:text="描述：111111111111111111111111111111111111111111111"
         android:layout_below="@+id/tv_project_request"
         android:layout_marginTop="@dimen/dp3"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
+        android:layout_marginRight="@dimen/dp65"
         />
 
     <TextView
@@ -43,7 +50,7 @@
         android:text="汇总年月："
         android:layout_below="@+id/tv_desc"
         android:layout_marginTop="@dimen/dp3"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         />
     <TextView
         android:id="@+id/tv_sum_amount"
@@ -54,7 +61,7 @@
         android:layout_marginTop="@dimen/dp3"
         android:layout_toEndOf="@+id/tv_project_request"
         android:layout_marginLeft="@dimen/dp30"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         />
     <TextView
         android:id="@+id/tv_dept"
@@ -63,7 +70,7 @@
         android:text="主管部门："
         android:layout_below="@+id/tv_huizong_date"
         android:layout_marginTop="@dimen/dp3"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         />
     <TextView
         android:id="@+id/tv_requset_dep"
@@ -72,7 +79,7 @@
         android:text="申请部门："
         android:layout_below="@+id/tv_huizong_date"
         android:layout_marginTop="@dimen/dp3"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         android:layout_toEndOf="@+id/tv_project_request"
         android:layout_marginLeft="@dimen/dp30"
         />
@@ -83,7 +90,7 @@
         android:layout_height="wrap_content"
         android:text="创建人："
         android:layout_below="@+id/tv_requset_dep"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         />
     <TextView
         android:id="@+id/tv_created_time"
@@ -91,7 +98,7 @@
         android:layout_height="wrap_content"
         android:text="创建时间："
         android:layout_below="@+id/tv_created_by"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         />
 
 </RelativeLayout>

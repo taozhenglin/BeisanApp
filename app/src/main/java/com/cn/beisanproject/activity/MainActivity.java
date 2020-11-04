@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
         tv_common_title.setText(mTopBarTitle[0]);
-        mTopBar.setBackgroundColor(getResources().getColor(R.color.guide_blue));
+        mTopBar.setBackgroundColor(getResources().getColor(R.color.white));
         StatusBarUtils.setWhiteStatusBarColor(this, R.color.guide_blue);
         EventBus.getDefault().register(this);
 
@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
          * 3、BottomNavigationBar.MODE_SHIFTING 不固定大小
          * 换挡模式，未选中的Item不会显示文字，选中的会显示文字。在切换的时候会有一个像换挡的动画
          */
-        bottomNavigationBar.setMode(BottomNavigationBar.MODE_DEFAULT);
+        bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
         /**
          * 设置背景的样式
          * 1、BottomNavigationBar.BACKGROUND_STYLE_DEFAULT 默认
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
          * Item的颜色（ActiveColor），也就是setActiveColorResource这个设置的颜色
          * 点击的时候有水波纹效果
          */
-        bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_RIPPLE);
+        bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
 //        bottomNavigationBar.setBackgroundColor(getResources().getColor(R.color.main_buttom_backgroundColor));
 
         //设置导航条背景颜色

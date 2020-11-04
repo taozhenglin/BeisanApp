@@ -20,14 +20,19 @@
         android:id="@+id/tv_statues"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="盘点备注："
         android:layout_marginTop="@dimen/dp3"
         android:textSize="@dimen/sp12"
+        android:text=""
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dp"
-        android:visibility="gone"
-        android:textColor="@color/guide_blue"
+        android:textColor="@color/white"
         />
+    <ImageView
+        android:id="@+id/iv_contract_statue"
+        android:layout_width="@dimen/dp55"
+        android:layout_height="@dimen/dp55"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp5" />
 
     <TextView
         android:id="@+id/tv_check_desc"

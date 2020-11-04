@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="待办任务"
         android:textColor="@color/textColor"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         android:textStyle="bold" />
 
     <TextView
@@ -24,8 +24,9 @@
         android:layout_marginTop="@dimen/dp3"
         android:layout_marginRight="@dimen/dp3"
         android:text="待办任务"
-        android:textColor="@color/guide_blue"
-        android:textSize="@dimen/sp12"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp14"
+        android:background="@drawable/blue_shape_20"
 
         />
 
@@ -34,9 +35,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_title"
-        android:layout_marginTop="@dimen/dp3"
+        android:layout_marginTop="@dimen/dp5"
         android:text="待办任务"
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <ImageView
         android:layout_width="@dimen/dp20"
@@ -53,7 +54,7 @@
         android:layout_width="@dimen/dp15"
         android:layout_height="@dimen/dp15"
         android:layout_below="@+id/tv_desc"
-        android:layout_marginTop="@dimen/dp3"
+        android:layout_marginTop="@dimen/dp5"
         android:src="@drawable/clock" />
 
     <TextView
@@ -63,7 +64,7 @@
         android:layout_below="@+id/tv_desc"
         android:layout_marginTop="@dimen/dp3"
         android:text="待办任务"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         android:layout_marginLeft="@dimen/dp20"
 
         />

@@ -6,6 +6,7 @@ import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,7 +46,37 @@ public class ProjectMothAdapter extends RecyclerView.Adapter<ProjectMothAdapter.
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         SpannableString highlightNum = HighLightUtils.highlight(mContext, "项目申请：" + mList.get(position).getPRNUM(), mHightlight, "#00ff00", 0, 0);
         holder.tvProjectRequest.setText(highlightNum);
-        holder.tvStatue.setText(mList.get(position).getSTATUS());
+        if (mList.get(position).getSTATUS().equals("已批准")) {
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.permitted2));
+            holder.tvStatue.setVisibility(View.GONE);
+            holder.tvStatue.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getSTATUS().equals("驳回")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.reject));
+            holder.tvStatue.setVisibility(View.GONE);
+            holder.tvStatue.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getSTATUS().equals("取消")||mList.get(position).getSTATUS().equals("已取消")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.canceled));
+            holder.tvStatue.setVisibility(View.GONE);
+            holder.tvStatue.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getSTATUS().equals("完成")||mList.get(position).getSTATUS().equals("已完成")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.finished));
+            holder.tvStatue.setVisibility(View.GONE);
+            holder.tvStatue.setBackgroundDrawable(null);
+        }
+        else {
+            holder.iv_contract_statue.setVisibility(View.GONE);
+            holder.tvStatue.setVisibility(View.VISIBLE);
+            holder.tvStatue.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_shape_20));
+            holder.tvStatue.setText(mList.get(position).getSTATUS());
+
+        }
         SpannableString highlightDesc = HighLightUtils.highlight(mContext, "描述：" + mList.get(position).getDESCRIPTION(), mHightlight, "#00ff00", 0, 0);
         holder.tvDesc.setText(highlightDesc);
         holder.tvHuizongDate.setText("汇总年月"+mList.get(position).getA_PRKEY());
@@ -86,6 +117,8 @@ public class ProjectMothAdapter extends RecyclerView.Adapter<ProjectMothAdapter.
         TextView tvProjectRequest;
         @BindView(R.id.tv_statue)
         TextView tvStatue;
+        @BindView(R.id.iv_contract_statue)
+        ImageView iv_contract_statue;
         @BindView(R.id.tv_desc)
         TextView tvDesc;
         @BindView(R.id.tv_huizong_date)
