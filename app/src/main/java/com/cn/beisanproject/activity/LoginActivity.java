@@ -79,33 +79,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         iv_clear1.setOnClickListener(this);
         iv_clear2.setOnClickListener(this);
 
-        iv_agree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                iv_agree.setBackgroundResource(R.drawable.selected);
-                iv_disagree.setBackgroundResource(R.drawable.unselected);
-              Constants.BASE_URL="http://192.168.1.181:7009";
-                Constants. LOGIN="/login";
-                Constants. COMMONURL="http://192.168.1.181:7009/api";
-                Constants. COMMONSOAP="http://192.168.1.181:7009/WFSERVICE";
-                Constants. COMMONSOAP2="http://192.168.1.181:7009/MOBILESERVICE";
-                SharedPreferencesUtil.setString(MyApplication.applicationContext, "envirment", "测试");
-            }
-        });
-        iv_disagree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                iv_disagree.setBackgroundResource(R.drawable.selected);
-                iv_agree.setBackgroundResource(R.drawable.unselected);
-                Constants.BASE_URL = "http://csct.nbport.com.cn:9080/maximo/mobile";
-                Constants.LOGIN = "/system/login";
-                Constants.COMMONURL = "http://csct.nbport.com.cn:9080/maximo/mobile/common/api";
-                Constants.COMMONSOAP = "http://csct.nbport.com.cn:9080/maximo/meaweb/services/WFSERVICE";
-                Constants.COMMONSOAP2 = "http://csct.nbport.com.cn:9080/maximo/meaweb/services/MOBILESERVICE";
-                SharedPreferencesUtil.setString(MyApplication.applicationContext, "envirment", "开发");
-
-            }
-        });
+//        iv_agree.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                iv_agree.setBackgroundResource(R.drawable.selected);
+//                iv_disagree.setBackgroundResource(R.drawable.unselected);
+//              Constants.BASE_URL="http://10.169.87.216";
+//                Constants. LOGIN="/login";
+//                Constants. COMMONURL="http://10.169.87.216/api";
+//                Constants. COMMONSOAP="http://10.169.87.216:7001/meaweb/services/WFSERVICE";
+//                Constants. COMMONSOAP2="http://10.169.87.216:7001/meaweb/services/MOBILESERVICE";
+//                SharedPreferencesUtil.setString(MyApplication.applicationContext, "envirment", "测试");
+//            }
+//        });
+//        iv_disagree.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                iv_disagree.setBackgroundResource(R.drawable.selected);
+//                iv_agree.setBackgroundResource(R.drawable.unselected);
+//                Constants.BASE_URL = "http://csct.nbport.com.cn:9080";
+//                Constants.LOGIN = "/login";
+//                Constants.COMMONURL = "http://csct.nbport.com.cn:9080/api";
+//                Constants.COMMONSOAP = "http://csct.nbport.com.cn:9080/WFSERVICE";
+//                Constants.COMMONSOAP2 = "http://csct.nbport.com.cn:9080/MOBILESERVICE";
+//                SharedPreferencesUtil.setString(MyApplication.applicationContext, "envirment", "开发");
+//
+//            }
+//        });
     }
 
     private void initView() {
@@ -119,23 +119,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         iv_agree = (ImageView) findViewById(R.id.iv_agree);
         iv_disagree = (ImageView) findViewById(R.id.iv_disagree);
 
-        if (StringUtils.isEmpty(SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment"))) {
-            iv_agree.setBackgroundResource(R.drawable.selected);
-            iv_disagree.setBackgroundResource(R.drawable.unselected);
-        } else {
-            if (SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment").equals("测试")) {
-                iv_agree.setBackgroundResource(R.drawable.selected);
-                iv_disagree.setBackgroundResource(R.drawable.unselected);
-            } else {
-                iv_disagree.setBackgroundResource(R.drawable.selected);
-                iv_agree.setBackgroundResource(R.drawable.unselected);
-                Constants.BASE_URL = "http://csct.nbport.com.cn:9080/maximo/mobile";
-                Constants.LOGIN = "/system/login";
-                Constants.COMMONURL = "http://csct.nbport.com.cn:9080/maximo/mobile/common/api";
-                Constants.COMMONSOAP = "http://csct.nbport.com.cn:9080/maximo/meaweb/services/WFSERVICE";
-                Constants.COMMONSOAP2 = "http://csct.nbport.com.cn:9080/maximo/meaweb/services/MOBILESERVICE";
-            }
-        }
+//        if (StringUtils.isEmpty(SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment"))) {
+//            iv_agree.setBackgroundResource(R.drawable.selected);
+//            iv_disagree.setBackgroundResource(R.drawable.unselected);
+//        } else {
+//            if (SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment").equals("测试")) {
+//                iv_agree.setBackgroundResource(R.drawable.selected);
+//                iv_disagree.setBackgroundResource(R.drawable.unselected);
+//            } else {
+//                iv_disagree.setBackgroundResource(R.drawable.selected);
+//                iv_agree.setBackgroundResource(R.drawable.unselected);
+//                Constants.BASE_URL = "http://csct.nbport.com.cn:9080/maximo/mobile";
+//                Constants.LOGIN = "/system/login";
+//                Constants.COMMONURL = "http://csct.nbport.com.cn:9080/maximo/mobile/common/api";
+//                Constants.COMMONSOAP = "http://csct.nbport.com.cn:9080/maximo/meaweb/services/WFSERVICE";
+//                Constants.COMMONSOAP2 = "http://csct.nbport.com.cn:9080/maximo/meaweb/services/MOBILESERVICE";
+//            }
+//        }
 
         //键盘自动隐藏
         HideUtil.init(this);
@@ -166,7 +166,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 return;
             }
             try {
-                login(etUser.getText().toString().toUpperCase(), etPwd.getText().toString().toUpperCase());
+//                login(etUser.getText().toString().toUpperCase(), etPwd.getText().toString().toUpperCase());
+                login(etUser.getText().toString().toUpperCase(),etPwd.getText().toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -237,11 +238,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         map.put("password", pwd);
         map.put("imei", "android");
         String url = Constants.BASE_URL + Constants.LOGIN;
-        JSONObject object = new JSONObject();
-//        object.put("loginid", name);
-//        object.put("password", pwd);
-//        object.put("imei", "android");
-
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
         OkhttpUtil.okHttpPost(url, map, headermap, new CallBackUtil.CallBackString() {
@@ -249,9 +245,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("222222 onFailure " + e.toString());
                 ToastUtils.showShort("登陆失败");
-
             }
-
             @Override
             public void onResponse(String response) {
                 LogUtils.d("222222 onResponse" + response);
@@ -274,9 +268,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                     }catch (com.alibaba.fastjson.JSONException exception){
                         ToastUtils.showShort(exception.toString());
-
                     }
-
                 }
 
             }

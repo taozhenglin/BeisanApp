@@ -143,14 +143,14 @@ public class PurchseContractListActivity extends AppCompatActivity implements Vi
         OkhttpUtil.okHttpGet(url, map, headermap, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
-                LogUtils.d("onFailure=" + e.toString());
+                LogUtils.d("222222onFailure=" + e.toString());
                 finishRefresh();
                 ld.close();
             }
 
             @Override
             public void onResponse(String response) {
-                LogUtils.d("onResponse=" + response);
+                LogUtils.d("222222onResponse=" + response);
                 finishRefresh();
                 ld.close();
                 PurchseContractListBean contractListBean;

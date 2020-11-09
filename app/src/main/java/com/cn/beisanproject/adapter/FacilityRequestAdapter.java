@@ -46,7 +46,6 @@ public class FacilityRequestAdapter extends RecyclerView.Adapter<FacilityRequest
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         SpannableString highlightNo = HighLightUtils.highlight(mContext, "申请单号:" + mList.get(position).getJD_SSTZID(), mHightLight, "#00ff00", 0, 0);
         holder.tvRequestNo.setText(highlightNo);
-        holder.tvRequestStatue.setText(mList.get(position).getSTATUS());
         if (mList.get(position).getSTATUS().equals("已批准")) {
             holder.iv_contract_statue.setVisibility(View.VISIBLE);
             holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.permitted2));

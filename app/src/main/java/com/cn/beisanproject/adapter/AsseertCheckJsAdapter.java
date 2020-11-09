@@ -6,6 +6,7 @@ import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,6 +48,37 @@ public class AsseertCheckJsAdapter extends RecyclerView.Adapter<AsseertCheckJsAd
         holder.tv_check_no.setText(highlightNo);
         SpannableString highlightDesc = HighLightUtils.highlight(mContext, "接收描述: " + mList.get(position).getDESCRIPTION(), mHightlight, "#00ff00", 0, 0);
         holder.tv_check_desc.setText(highlightDesc);
+        if (mList.get(position).getStatus().equals("已批准")) {
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.permitted2));
+            holder.tv_statues.setVisibility(View.GONE);
+            holder.tv_statues.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getStatus().equals("驳回")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.reject));
+            holder.tv_statues.setVisibility(View.GONE);
+            holder.tv_statues.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getStatus().equals("取消")||mList.get(position).getStatus().equals("已取消")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.canceled));
+            holder.tv_statues.setVisibility(View.GONE);
+            holder.tv_statues.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getStatus().equals("完成")||mList.get(position).getStatus().equals("已完成")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.finished));
+            holder.tv_statues.setVisibility(View.GONE);
+            holder.tv_statues.setBackgroundDrawable(null);
+        }
+        else {
+            holder.iv_contract_statue.setVisibility(View.GONE);
+            holder.tv_statues.setVisibility(View.VISIBLE);
+            holder.tv_statues.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_shape_20));
+            holder.tv_statues.setText(mList.get(position).getStatus());
+
+        }
         holder.tv_check_by.setText("创建人: " + mList.get(position).getENTERBY());
         holder.tv_check_starttime.setText("创建时间: " + mList.get(position).getENTERDATE());
         holder.tv_check_endtime.setText("接收类型: " + mList.get(position).getTYPE());
@@ -81,6 +113,8 @@ public class AsseertCheckJsAdapter extends RecyclerView.Adapter<AsseertCheckJsAd
     public static class MyViewholder extends RecyclerView.ViewHolder {
         private final TextView tv_check_no;
         private final TextView tv_check_desc;
+        TextView tv_statues;
+        ImageView iv_contract_statue;
         private final TextView tv_check_by;
         private final TextView tv_check_starttime;
         private final TextView tv_check_endtime;
@@ -91,6 +125,8 @@ public class AsseertCheckJsAdapter extends RecyclerView.Adapter<AsseertCheckJsAd
             super(itemView);
             tv_check_no = itemView.findViewById(R.id.tv_check_no);
             tv_check_desc = itemView.findViewById(R.id.tv_check_desc);
+            tv_statues = itemView.findViewById(R.id.tv_statues);
+            iv_contract_statue= itemView.findViewById(R.id.iv_contract_statue);
             tv_check_by = itemView.findViewById(R.id.tv_check_by);
             tv_check_starttime = itemView.findViewById(R.id.tv_check_starttime);
             tv_check_endtime = itemView.findViewById(R.id.tv_check_endtime);

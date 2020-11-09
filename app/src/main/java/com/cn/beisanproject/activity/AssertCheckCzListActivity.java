@@ -126,7 +126,9 @@ public class AssertCheckCzListActivity extends AppCompatActivity implements View
         });
 
     }
-
+//--固定资产处置列表查询
+//    http://10.169.87.216:7001/mobile/common/api?data=
+//    {"appid":"FIXEASSETRET","objectname":"FIXEASSETRET","curpage":1,"showcount":20,"option":"read","orderby":"FIXEASSETRETNUM DESC"}
     private void query() {
         ld.show();
         LogUtils.d("query");

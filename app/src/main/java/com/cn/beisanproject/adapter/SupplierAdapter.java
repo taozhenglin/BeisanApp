@@ -6,6 +6,7 @@ import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,7 +53,37 @@ public class SupplierAdapter extends RecyclerView.Adapter<SupplierAdapter.MyView
         holder.tv_contract_no.setText(highlightNo);
         SpannableString highlightdes = HighLightUtils.highlight(mContext, "供应商编码：" + mResultlist.get(position).getVENDORSCODE(), mHightLight, "#00ff00", 0, 0);
         holder.tv_contract_desc.setText(highlightdes);
-        holder.tv_contract_statue.setText(mResultlist.get(position).getSTATUS());
+        if (mResultlist.get(position).getSTATUS().equals("已批准")) {
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.permitted2));
+            holder.tv_statues.setVisibility(View.GONE);
+            holder.tv_statues.setBackgroundDrawable(null);
+
+        }else  if (mResultlist.get(position).getSTATUS().equals("驳回")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.reject));
+            holder.tv_statues.setVisibility(View.GONE);
+            holder.tv_statues.setBackgroundDrawable(null);
+
+        }else  if (mResultlist.get(position).getSTATUS().equals("取消")||mResultlist.get(position).getSTATUS().equals("已取消")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.canceled));
+            holder.tv_statues.setVisibility(View.GONE);
+            holder.tv_statues.setBackgroundDrawable(null);
+
+        }else  if (mResultlist.get(position).getSTATUS().equals("完成")||mResultlist.get(position).getSTATUS().equals("已完成")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.finished));
+            holder.tv_statues.setVisibility(View.GONE);
+            holder.tv_statues.setBackgroundDrawable(null);
+        }
+        else {
+            holder.iv_contract_statue.setVisibility(View.GONE);
+            holder.tv_statues.setVisibility(View.VISIBLE);
+            holder.tv_statues.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_shape_20));
+            holder.tv_statues.setText(mResultlist.get(position).getSTATUS());
+
+        }
         SpannableString highlightName = HighLightUtils.highlight(mContext, "供应商名称：" + mResultlist.get(position).getNAME(), mHightLight, "#00ff00", 0, 0);
         holder.tv_contract_count.setText(highlightName);
         holder.tv_contract_jia.setVisibility(View.GONE);
@@ -93,7 +124,8 @@ public class SupplierAdapter extends RecyclerView.Adapter<SupplierAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tv_contract_no;//合同编号
-        TextView tv_contract_statue;//合同状态;
+        TextView tv_statues;//合同状态;
+        ImageView iv_contract_statue;
         TextView tv_contract_count;//合同金额
         TextView tv_contract_desc;//合同描述
         TextView tv_contract_jia;//合同甲方
@@ -108,7 +140,8 @@ public class SupplierAdapter extends RecyclerView.Adapter<SupplierAdapter.MyView
             LogUtils.d("MyViewHolder==");
 
             tv_contract_no=itemView.findViewById(R.id.tv_contract_no);
-            tv_contract_statue=itemView.findViewById(R.id.tv_contract_statue);
+            tv_statues=itemView.findViewById(R.id.tv_contract_statue);
+            iv_contract_statue=itemView.findViewById(R.id.iv_contract_statue);
             tv_contract_count=itemView.findViewById(R.id.tv_contract_count);
             tv_contract_desc=itemView.findViewById(R.id.tv_contract_desc);
             tv_contract_jia =itemView.findViewById(R.id.tv_contract_jia);

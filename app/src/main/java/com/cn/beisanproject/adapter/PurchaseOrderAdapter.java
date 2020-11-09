@@ -6,6 +6,7 @@ import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -50,7 +51,37 @@ public class PurchaseOrderAdapter extends RecyclerView.Adapter<PurchaseOrderAdap
         SpannableString highlightdes = HighLightUtils.highlight(mContext, "合同描述：" + mList.get(position).getDESCRIPTION(), mHightlight, "#00ff00", 0, 0);
         holder.tv_contract_desc.setText(highlightdes);
 
-        holder.tv_contract_statue.setText(mList.get(position).getSTATUS());
+        if (mList.get(position).getSTATUS().equals("已批准")) {
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.permitted2));
+            holder.tv_statues.setVisibility(View.GONE);
+            holder.tv_statues.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getSTATUS().equals("驳回")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.reject));
+            holder.tv_statues.setVisibility(View.GONE);
+            holder.tv_statues.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getSTATUS().equals("取消")||mList.get(position).getSTATUS().equals("已取消")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.canceled));
+            holder.tv_statues.setVisibility(View.GONE);
+            holder.tv_statues.setBackgroundDrawable(null);
+
+        }else  if (mList.get(position).getSTATUS().equals("完成")||mList.get(position).getSTATUS().equals("已完成")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.finished));
+            holder.tv_statues.setVisibility(View.GONE);
+            holder.tv_statues.setBackgroundDrawable(null);
+        }
+        else {
+            holder.iv_contract_statue.setVisibility(View.GONE);
+            holder.tv_statues.setVisibility(View.VISIBLE);
+            holder.tv_statues.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_shape_20));
+            holder.tv_statues.setText(mList.get(position).getSTATUS());
+
+        }
         holder.tv_contract_count.setText("合同金额："+mList.get(position).getTOTALCOST());
         holder.tv_contract_jia.setText("甲方："+mList.get(position).getHTJF());
         SpannableString highlightYi= HighLightUtils.highlight(mContext, "乙方：" + mList.get(position).getHTYF(), mHightlight, "#00ff00", 0, 0);
@@ -91,7 +122,8 @@ public class PurchaseOrderAdapter extends RecyclerView.Adapter<PurchaseOrderAdap
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tv_contract_no;//合同编号
-        TextView tv_contract_statue;//合同状态;
+        TextView tv_statues;//合同状态;
+        ImageView iv_contract_statue;
         TextView tv_contract_count;//合同金额
         TextView tv_contract_desc;//合同描述
         TextView tv_contract_jia;//合同甲方
@@ -106,7 +138,8 @@ public class PurchaseOrderAdapter extends RecyclerView.Adapter<PurchaseOrderAdap
             LogUtils.d("MyViewHolder==");
 
             tv_contract_no=itemView.findViewById(R.id.tv_contract_no);
-            tv_contract_statue=itemView.findViewById(R.id.tv_contract_statue);
+            tv_statues=itemView.findViewById(R.id.tv_contract_statue);
+            iv_contract_statue=itemView.findViewById(R.id.iv_contract_statue);
             tv_contract_count=itemView.findViewById(R.id.tv_contract_count);
             tv_contract_desc=itemView.findViewById(R.id.tv_contract_desc);
             tv_contract_jia =itemView.findViewById(R.id.tv_contract_jia);

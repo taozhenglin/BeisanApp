@@ -68,7 +68,7 @@ public class SplashActivity extends AppCompatActivity {
                 String pwd = SharedPreferencesUtil.getString(mContext, "pwd");
                 LogUtils.d("222222 username = " + username + "pwd=" + pwd);
                 if (!StringUtils.isEmpty(username)) {
-                    login(username.toUpperCase(), pwd.toUpperCase());
+                    login(username.toUpperCase(), pwd);
                 } else {
                     Intent intent = new Intent(mContext, LoginActivity.class);
                     startActivity(intent);
@@ -87,22 +87,22 @@ public class SplashActivity extends AppCompatActivity {
         //隐藏标题栏
         getSupportActionBar().hide();
         StatusBarUtils.setWhiteStatusBarColor(this, R.color.white);
-        if (StringUtils.isEmpty(SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment"))) {
-        } else {
-            if (SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment").equals("测试")) {
-                Constants.BASE_URL="http://192.168.1.181:7009";
-                Constants. LOGIN="/login";
-                Constants. COMMONURL="http://192.168.1.181:7009/api";
-                Constants. COMMONSOAP="http://192.168.1.181:7009/WFSERVICE";
-                Constants. COMMONSOAP2="http://192.168.1.181:7009/MOBILESERVICE";
-            } else {
-                Constants.BASE_URL = "http://csct.nbport.com.cn:9080/maximo/mobile";
-                Constants.LOGIN = "/system/login";
-                Constants.COMMONURL = "http://csct.nbport.com.cn:9080/maximo/mobile/common/api";
-                Constants.COMMONSOAP = "http://csct.nbport.com.cn:9080/maximo/meaweb/services/WFSERVICE";
-                Constants.COMMONSOAP2 = "http://csct.nbport.com.cn:9080/maximo/meaweb/services/MOBILESERVICE";
-            }
-        }
+//        if (StringUtils.isEmpty(SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment"))) {
+//        } else {
+//            if (SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment").equals("测试")) {
+//                Constants.BASE_URL="http://192.168.1.181:7009";
+//                Constants. LOGIN="/login";
+//                Constants. COMMONURL="http://192.168.1.181:7009/api";
+//                Constants. COMMONSOAP="http://192.168.1.181:7009/WFSERVICE";
+//                Constants. COMMONSOAP2="http://192.168.1.181:7009/MOBILESERVICE";
+//            } else {
+//                Constants.BASE_URL = "http://csct.nbport.com.cn:9080";
+//                Constants.LOGIN = "/login";
+//                Constants.COMMONURL = "http://csct.nbport.com.cn:9080/api";
+//                Constants.COMMONSOAP = "http://csct.nbport.com.cn:9080/WFSERVICE";
+//                Constants.COMMONSOAP2 = "http://csct.nbport.com.cn:9080/MOBILESERVICE";
+//            }
+//        }
         mContext = MyApplication.getInstance();
         if (timer != null) {
             timer.cancel();
@@ -119,7 +119,6 @@ public class SplashActivity extends AppCompatActivity {
                     message.arg1 = count;
                     handler.sendMessage(message);
                 }
-
             }
         }, 1500, 1000);
         queryData();
@@ -133,9 +132,9 @@ public class SplashActivity extends AppCompatActivity {
         }
         String username = SharedPreferencesUtil.getString(mContext, "username");
         String pwd = SharedPreferencesUtil.getString(mContext, "pwd");
-        LogUtils.d("222222 username = " + username + "pwd=" + pwd);
+        LogUtils.d("222222 username = " + username + "  pwd=" + pwd);
         if (!StringUtils.isEmpty(username)) {
-            login(username, pwd);
+            login(username.toUpperCase(), pwd);
         } else {
             Intent intent = new Intent(mContext, LoginActivity.class);
             startActivity(intent);
@@ -179,8 +178,7 @@ public class SplashActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 LogUtils.d("222222 onResponse" + response);
 
-                if (!response.isEmpty()) {
-                    LoginBean loginBean = JSONObject.parseObject(response, new TypeReference<LoginBean>() {
+                if (!response.isEmpty()) { LoginBean loginBean = JSONObject.parseObject(response, new TypeReference<LoginBean>() {
                     });
                     if (loginBean.getErrcode().equals("USER-S-101")) {
                         SharedPreferencesUtil.setString(mContext, "username", loginBean.getResult().getUserLoginDetails().getUserName());
@@ -210,7 +208,7 @@ public class SplashActivity extends AppCompatActivity {
          * and assignstatus='活动' and processname in('PO','RFQ','CONTPURCH','PRSUM','PR','GPDTZ','VENAPPLY','JLTZ','MATREQ','SBTZ','SSTZ','XMHT','UDXMHTBG','PRPROJ','XBJ','PROJSUM','XXHTZ','CONTRACTPO','INVUSEZY')"}
          */
         LogUtils.d("query");
-        String url = Constants.COMMONURL;
+        String url = "http://csct.nbport.com.cn:9080/api";
         JSONObject object = new JSONObject();
         object.put("appid", "WFASSIGNMENT");
         object.put("objectname", "WFASSIGNMENT");
@@ -220,7 +218,7 @@ public class SplashActivity extends AppCompatActivity {
         object.put("orderby", "startdate desc");
         String sqlSearch = " exists (select personid from maxuser where loginid=%s " +
                 "and wfassignment.assigncode=maxuser.personid)  " +
-                "and assignstatus='活动' and processname in('PO','RFQ','CONTPURCH','PRSUM','PR','GPDTZ','VENAPPLY','JLTZ','MATREQ','SBTZ','SSTZ','XMHT','UDXMHTBG','PRPROJ','XBJ','PROJSUM','XXHTZ','CONTRACTPO','INVUSEZY')";
+                "and assignstatus='活动' and processname in('PO','RFQ','CONTPURCH','PRSUM','PR','GPDTZ','VENAPPLY','JLTZ','MATREQ','SBTZ','SSTZ','XMHT','UDXMHTBG','PRPROJ','XBJ','PROJSUM','XXHTZ','CONTRACTPO','INVUSEZY','FIXEDASSETJS','FIXEASSETRET')";
         sqlSearch = String.format(sqlSearch, "'" + SharedPreferencesUtil.getString(mContext, "personId") + "'");
         object.put("sqlSearch", sqlSearch);
         HashMap<String, String> headermap = new HashMap<>();

@@ -495,7 +495,7 @@ public class PurchaseContractDetailFragment extends Fragment {
             public void onDownloadFailed() {
                 dialog.dismiss();
                 LogUtils.d("222222  onDownloadFailed");
-
+                ToastUtils.showShort("下载失败");
             }
         });
     }

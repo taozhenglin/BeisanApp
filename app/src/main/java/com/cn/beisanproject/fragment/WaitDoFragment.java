@@ -99,7 +99,7 @@ public class WaitDoFragment extends Fragment {
          * {"appid":"WFASSIGNMENT","objectname":"WFASSIGNMENT","curpage":1,"showcount":20,"option":"read","orderby":"startdate desc",
          * "sqlSearch":"  exists (select personid from maxuser where loginid='HUYUE'
          * and wfassignment.assigncode=maxuser.personid)
-         * and assignstatus='活动' and processname in('PO','RFQ','CONTPURCH','PRSUM','PR','GPDTZ','VENAPPLY','JLTZ','MATREQ','SBTZ','SSTZ','XMHT','UDXMHTBG','PRPROJ','XBJ','PROJSUM','XXHTZ','CONTRACTPO','INVUSEZY')"}
+         * and assignstatus='活动' and processname in('PO','RFQ','CONTPURCH','PRSUM','PR','GPDTZ','VENAPPLY','JLTZ','MATREQ','SBTZ','SSTZ','XMHT','UDXMHTBG','PRPROJ','XBJ','PROJSUM','XXHTZ','CONTRACTPO','INVUSEZY','FIXEDASSETJS','FIXEASSETRET')"}
          */
         LogUtils.d("query");
         LogUtils.d("currentPageNum" + currentPageNum);
@@ -113,7 +113,7 @@ public class WaitDoFragment extends Fragment {
         object.put("orderby", "startdate desc");
         String sqlSearch = " exists (select personid from maxuser where loginid=%s " +
                 "and wfassignment.assigncode=maxuser.personid)  " +
-                "and assignstatus='活动' and processname in('PO','RFQ','CONTPURCH','PRSUM','PR','GPDTZ','VENAPPLY','JLTZ','MATREQ','SBTZ','SSTZ','XMHT','UDXMHTBG','PRPROJ','XBJ','PROJSUM','XXHTZ','CONTRACTPO','INVUSEZY')";
+                "and assignstatus='活动' and processname in('PO','RFQ','CONTPURCH','PRSUM','PR','GPDTZ','VENAPPLY','JLTZ','MATREQ','SBTZ','SSTZ','XMHT','UDXMHTBG','PRPROJ','XBJ','PROJSUM','XXHTZ','CONTRACTPO','INVUSEZY','FIXEDASSETJS','FIXEASSETRET')";
         sqlSearch = String.format(sqlSearch, "'" + SharedPreferencesUtil.getString(mContext, "personId") + "'");
         object.put("sqlSearch", sqlSearch);
         HashMap<String, String> headermap = new HashMap<>();
@@ -139,35 +139,36 @@ public class WaitDoFragment extends Fragment {
                     if (response.startsWith("Error")) {
                         ToastUtils.showShort(R.string.GETDATAFAILED);
                     } else {
-                        waitDoListBean = JSONObject.parseObject(response, new TypeReference<WaitDoListBean>() {});
-                    if (waitDoListBean.getErrcode().equals("GLOBAL-S-0")) {
-                        totalepage = waitDoListBean.getResult().getTotalpage();
-                        int totalresult = waitDoListBean.getResult().getTotalresult();
-                        PostData postData=new PostData();
-                        postData.setCount(totalresult);
-                        postData.setTag("waitdocount");
-                        SharedPreferencesUtil.setInt(mContext,"waitdototalresult",totalresult);
-                        EventBus.getDefault().post(postData);
-                        if (currentPageNum == 1) {
-                            if (mWaitDoAdapter == null) {
-                                mWaitDoAdapter = new WaitDoAdapter(mContext, waitDoListBean.getResult().getResultlist());
-                                recyclerView.setAdapter(mWaitDoAdapter);
-                            } else {
-                                mWaitDoAdapter.setData(waitDoListBean.getResult().getResultlist());
-                                mWaitDoAdapter.notifyDataSetChanged();
-                            }
+                        waitDoListBean = JSONObject.parseObject(response, new TypeReference<WaitDoListBean>() {
+                        });
+                        if (waitDoListBean.getErrcode().equals("GLOBAL-S-0")) {
+                            totalepage = waitDoListBean.getResult().getTotalpage();
+                            int totalresult = waitDoListBean.getResult().getTotalresult();
+                            PostData postData = new PostData();
+                            postData.setCount(totalresult);
+                            postData.setTag("waitdocount");
+                            SharedPreferencesUtil.setInt(mContext, "waitdototalresult", totalresult);
+                            EventBus.getDefault().post(postData);
+                            if (currentPageNum == 1) {
+                                if (mWaitDoAdapter == null) {
+                                    mWaitDoAdapter = new WaitDoAdapter(mContext, waitDoListBean.getResult().getResultlist());
+                                    recyclerView.setAdapter(mWaitDoAdapter);
+                                } else {
+                                    mWaitDoAdapter.setData(waitDoListBean.getResult().getResultlist());
+                                    mWaitDoAdapter.notifyDataSetChanged();
+                                }
 
-                        } else {
-                            if (currentPageNum <= totalepage) {
-                                mWaitDoAdapter.addAllList(waitDoListBean.getResult().getResultlist());
-                                mWaitDoAdapter.notifyDataSetChanged();
                             } else {
-                                ToastUtils.showShort("没有更多数据了");
-                            }
+                                if (currentPageNum <= totalepage) {
+                                    mWaitDoAdapter.addAllList(waitDoListBean.getResult().getResultlist());
+                                    mWaitDoAdapter.notifyDataSetChanged();
+                                } else {
+                                    ToastUtils.showShort("没有更多数据了");
+                                }
 
+                            }
                         }
                     }
-                }
                 }
             }
         });
@@ -178,21 +179,23 @@ public class WaitDoFragment extends Fragment {
         if (isRefresh) refreshLayout.finishRefresh();
         else refreshLayout.finishLoadMore();
     }
+
     // 收到扫描盘点界面上传盘点ok后的通知 刷新列表
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getNotify(PostData postData) {
-        if (postData.getTag().equals("采购合同")||postData.getTag().equals("项目合同")||
-                postData.getTag().equals("领料单")|| postData.getTag().equals("库存转移")||
-                postData.getTag().equals("计量设备台账增减申请")|| postData.getTag().equals("设备台账增减申请")||
-                postData.getTag().equals("信息化台账增减申请")||postData.getTag().equals("设施台账增减申请")||
-                postData.getTag().equals("供配电设备台账增减申请") ||postData.getTag().equals("供应商申请")||
-                postData.getTag().equals("采购月度计划汇总")||postData.getTag().equals("采购月度计划")||
-                postData.getTag().equals("采购询价单")||postData.getTag().equals("采购订单")||
-                postData.getTag().equals("入库单")||postData.getTag().equals("项目合同变更")||
-                postData.getTag().equals("项目月度计划汇总") ||postData.getTag().equals("项目询价单")||
-                postData.getTag().equals("项目立项/项目月度计划"))
-                {
-           queryData();
+        if (postData.getTag().equals("采购合同") || postData.getTag().equals("项目合同") ||
+                postData.getTag().equals("领料单") || postData.getTag().equals("库存转移") ||
+                postData.getTag().equals("计量设备台账增减申请") || postData.getTag().equals("设备台账增减申请") ||
+                postData.getTag().equals("信息化台账增减申请") || postData.getTag().equals("设施台账增减申请") ||
+                postData.getTag().equals("供配电设备台账增减申请") || postData.getTag().equals("供应商申请") ||
+                postData.getTag().equals("采购月度计划汇总") || postData.getTag().equals("采购月度计划") ||
+                postData.getTag().equals("采购询价单") || postData.getTag().equals("采购订单") ||
+                postData.getTag().equals("入库单") || postData.getTag().equals("项目合同变更") ||
+                postData.getTag().equals("项目月度计划汇总") || postData.getTag().equals("项目询价单") ||
+                postData.getTag().equals("项目立项/项目月度计划") || postData.getTag().equals("固定资产接收")
+                || postData.getTag().equals("固定资产接收处置")
+        ) {
+            queryData();
         }
     }
 
