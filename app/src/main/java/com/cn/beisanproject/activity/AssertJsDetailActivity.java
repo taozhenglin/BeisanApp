@@ -96,6 +96,8 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
     private String[] stringItems2 = new String[]{"工作流审批"};
     private PopupWindow pop;
     private int isAgree=1;
+    private String type;
+    private String FIXEDASSETJSNUM;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -110,6 +112,8 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
         } else {
             resultlistBean = (AssertCheckJsListBean.ResultBean.ResultlistBean) getIntent().getExtras().get("ResultlistBean");
             status = resultlistBean.getSTATUS();
+            type=resultlistBean.getTYPE();
+            FIXEDASSETJSNUM=resultlistBean.getFIXEDASSETJSNUM();
 
 
         }
@@ -127,6 +131,7 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         refreshLayout = findViewById(R.id.refreshLayout);
         tv_common_title=findViewById(R.id.tv_common_title);
+        tv_common_title.setText("接收详情");
         tv_check_no = findViewById(R.id.tv_check_no);
         tv_check_desc = findViewById(R.id.tv_check_desc);
         tv_statues=findViewById(R.id.tv_statues);
@@ -147,7 +152,6 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
         if (needGet){
             getDetail();
         }else {
-            tv_common_title.setText("接收详情");
             tv_check_no.setText("接收单号: " +resultlistBean.getFIXEDASSETJSNUM());
             tv_check_desc.setText("接收描述: " +resultlistBean.getDESCRIPTION());
             tv_statues.setVisibility(View.VISIBLE);
@@ -208,7 +212,7 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
         object.put("option", "read");
         object.put("orderby", "FIXEDASSETJSNUM DESC");
 
-        object.put("sqlSearch", "FIXEDASSETJSNUM = "+"'"+resultlistBean.getFIXEDASSETJSNUM()+"'");
+        object.put("sqlSearch", "FIXEDASSETJSID = "+"'"+mWitdolistBean.getOWNERID()+"'");
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
         HashMap<String, String> map = new HashMap<>();
@@ -227,27 +231,32 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
                 if (!response.isEmpty()) {
                     AssertCheckJsListBean assertCheckJsListBean= JSONObject.parseObject(response, new TypeReference<AssertCheckJsListBean>() {});
                     if (assertCheckJsListBean.getErrcode().equals("GLOBAL-S-0")) {
-                        AssertCheckJsListBean.ResultBean.ResultlistBean resultlistBean = assertCheckJsListBean.getResult().getResultlist().get(0);
-                        status = AssertJsDetailActivity.this.resultlistBean.getSTATUS();
-                        if (status.equals("已取消") || status.equals("取消")||status.equals("已关闭") || status.equals("关闭")|| status.equals("已审批")) {
-                            tv_approval.setVisibility(View.GONE);
-                        }else {
-                            if (status.equals("等待批准")){
-                                tv_approval.setText("启动工作流");
+                        if (assertCheckJsListBean.getResult().getResultlist().size()>0){
+                            AssertCheckJsListBean.ResultBean.ResultlistBean resultlistBean = assertCheckJsListBean.getResult().getResultlist().get(0);
+                            status = resultlistBean.getSTATUS();
+                            type=resultlistBean.getTYPE();
+                            FIXEDASSETJSNUM=resultlistBean.getFIXEDASSETJSNUM();
+                            if (status.equals("已取消") || status.equals("取消")||status.equals("已关闭") || status.equals("关闭")|| status.equals("已审批")) {
+                                tv_approval.setVisibility(View.GONE);
                             }else {
-                                tv_approval.setText("工作流审批");
+                                if (status.equals("等待批准")){
+                                    tv_approval.setText("启动工作流");
+                                }else {
+                                    tv_approval.setText("工作流审批");
+                                }
                             }
+                            tv_common_title.setText("接收详情");
+                            tv_check_no.setText("接收单号: " +resultlistBean.getFIXEDASSETJSNUM());
+                            tv_check_desc.setText("接收描述: " +resultlistBean.getDESCRIPTION());
+                            tv_statues.setVisibility(View.VISIBLE);
+                            tv_statues.setText(resultlistBean.getSTATUS());
+                            tv_check_by.setText("创建人: " + resultlistBean.getENTERBYDESC());
+                            tv_check_starttime.setText("创建时间: " + resultlistBean.getENTERDATE());
+                            tv_check_endtime.setText("接收类型: " + resultlistBean.getTYPE());
+                            tv_created_by.setText("项目主管部门: " + resultlistBean.getDEPT());
+                            tv_owner_companny.setText(""+resultlistBean.getUDCOMPANYDESC());
                         }
-                        tv_common_title.setText("接收详情");
-                        tv_check_no.setText("接收单号: " +resultlistBean.getFIXEDASSETJSNUM());
-                        tv_check_desc.setText("接收描述: " +resultlistBean.getDESCRIPTION());
-                        tv_statues.setVisibility(View.VISIBLE);
-                        tv_statues.setText(resultlistBean.getSTATUS());
-                        tv_check_by.setText("创建人: " + resultlistBean.getENTERBYDESC());
-                        tv_check_starttime.setText("创建时间: " + resultlistBean.getENTERDATE());
-                        tv_check_endtime.setText("接收类型: " + resultlistBean.getTYPE());
-                        tv_created_by.setText("项目主管部门: " + resultlistBean.getDEPT());
-                        tv_owner_companny.setText(""+resultlistBean.getUDCOMPANYDESC());
+
 
                         getAssertLineDetail();
                     }
@@ -284,7 +293,7 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
 //        sinorsearchobject.put("FIXASSETNUM", "");
 //        sinorsearchobject.put("YPD", "");
 //        object.put("sinorsearch", sinorsearchobject);
-        object.put("sqlSearch", "FIXEDASSETJSNUM=" + resultlistBean.getFIXEDASSETJSNUM());
+        object.put("sqlSearch", "FIXEDASSETJSNUM=" + FIXEDASSETJSNUM);
         //请求头
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
@@ -312,7 +321,7 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
                             int  totalPage=assertJsDetailLineBean.getResult().getTotalpage();
                             if (currentPageNum == 1) {
                                 if (assertDetailLineAdapter==null){
-                                    assertDetailLineAdapter = new AssertJsDetailLineAdapter(AssertJsDetailActivity.this, resultlist);
+                                    assertDetailLineAdapter = new AssertJsDetailLineAdapter(AssertJsDetailActivity.this, resultlist,type);
                                     recyclerView.setAdapter(assertDetailLineAdapter);
                                 }else {
                                     assertDetailLineAdapter.setData(resultlist);

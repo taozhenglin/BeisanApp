@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="盘点单编号："
-            android:textSize="@dimen/sp12"
+            android:textSize="@dimen/sp14"
 
 
             />
@@ -29,7 +29,7 @@
             android:layout_below="@+id/tv_pandian_no"
             android:layout_marginTop="@dimen/dp3"
             android:text="盘点描述："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_pandian_date"
@@ -38,7 +38,7 @@
             android:layout_below="@+id/tv_pandian_desc"
             android:layout_marginTop="@dimen/dp3"
             android:text="盘点日期："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_location"
@@ -49,7 +49,7 @@
             android:layout_marginTop="@dimen/dp3"
             android:layout_toEndOf="@id/tv_pandian_no"
             android:text="仓库："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_created_by"
@@ -58,7 +58,7 @@
             android:layout_below="@+id/tv_pandian_date"
             android:layout_marginTop="@dimen/dp3"
             android:text="创建人："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_created_time"
@@ -67,7 +67,7 @@
             android:layout_below="@+id/tv_created_by"
             android:layout_marginTop="@dimen/dp3"
             android:text="创建时间："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_big_type"
@@ -76,7 +76,7 @@
             android:layout_below="@+id/tv_created_time"
             android:layout_marginTop="@dimen/dp3"
             android:text="大类："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_middle_type"
@@ -87,7 +87,7 @@
             android:layout_marginTop="@dimen/dp3"
             android:layout_toEndOf="@+id/tv_pandian_no"
             android:text="中类："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_small_type"
@@ -96,7 +96,7 @@
             android:layout_below="@+id/tv_big_type"
             android:layout_marginTop="@dimen/dp3"
             android:text="小类："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
 
     </RelativeLayout>
@@ -111,7 +111,7 @@
         android:paddingLeft="@dimen/dp8"
         android:text="盘点明细行"
         android:textColor="@color/white"
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"

@@ -24,7 +24,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="明细行序号："
-            android:textSize="@dimen/sp14" />
+            android:textSize="@dimen/sp14"
+            android:maxLines="1"
+            />
 
         <TextView
             android:id="@+id/tv_product_location"
@@ -34,6 +36,7 @@
             android:layout_marginRight="@dimen/dp5"
             android:layout_weight="1"
             android:text="货位："
+            android:maxLines="1"
             android:textSize="@dimen/sp14" />
     </LinearLayout>
 
@@ -63,6 +66,7 @@
         android:layout_below="@+id/tv_line_desc"
         android:layout_marginTop="@dimen/dp3"
         android:text="物资描述："
+        android:maxLines="1"
         android:textSize="@dimen/sp14" />
 
     <TextView
@@ -121,6 +125,33 @@
         android:textSize="@dimen/sp14" />
     <TextView
         android:id="@+id/tv_zg_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="转固原值："
+        android:textSize="@dimen/sp14"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/tv_add1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="转固原值："
+        android:textSize="@dimen/sp14"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/tv_add2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="转固原值："
+        android:textSize="@dimen/sp14"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/tv_add3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp3"

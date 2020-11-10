@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="盘点单编号："
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         android:textStyle="bold"
         />
     <TextView
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp3"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         android:text=""
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dp"
@@ -41,7 +41,7 @@
         android:text="盘点备注："
         android:layout_below="@+id/tv_check_no"
         android:layout_marginTop="@dimen/dp3"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         />
 
     <TextView
@@ -51,7 +51,7 @@
         android:text="盘点人："
         android:layout_below="@+id/tv_check_desc"
         android:layout_marginTop="@dimen/dp3"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         />
     <TextView
         android:id="@+id/tv_check_starttime"
@@ -60,7 +60,7 @@
         android:text="盘点开始时间："
         android:layout_below="@+id/tv_check_by"
         android:layout_marginTop="@dimen/dp3"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         />
     <TextView
         android:id="@+id/tv_check_endtime"
@@ -69,7 +69,7 @@
         android:text="盘点结束时间："
         android:layout_below="@+id/tv_check_starttime"
         android:layout_marginTop="@dimen/dp3"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         />
     <TextView
         android:id="@+id/tv_created_by"
@@ -78,7 +78,7 @@
         android:text="创建人："
         android:layout_below="@+id/tv_check_endtime"
         android:layout_marginTop="@dimen/dp3"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         />
     <TextView
         android:id="@+id/tv_created_time"
@@ -87,7 +87,7 @@
         android:text="创建时间："
         android:layout_below="@+id/tv_created_by"
         android:layout_marginTop="@dimen/dp3"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         />
 
     <ImageView

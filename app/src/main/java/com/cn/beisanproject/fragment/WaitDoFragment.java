@@ -119,7 +119,7 @@ public class WaitDoFragment extends Fragment {
         object.put("orderby", "startdate desc");
         String sqlSearch = " exists (select personid from maxuser where loginid=%s " +
                 "and wfassignment.assigncode=maxuser.personid)  " +
-                "and assignstatus='活动' and processname in('PO','RFQ','CONTPURCH','PRSUM','PR','GPDTZ','VENAPPLY','JLTZ','MATREQ','SBTZ','SSTZ','XMHT','UDXMHTBG','PRPROJ','XBJ','PROJSUM','XXHTZ','CONTRACTPO','INVUSEZY','FIXEDASSETJS','FIXEASSETRET')";
+                "and assignstatus='活动' and processname in('PO','RFQ','CONTPURCH','PRSUM','PR','GPDTZ','VENAPPLY','JLTZ','MATREQ','SBTZ','SSTZ','XMHT','UDXMHTBG','PRPROJ','XBJ','PROJSUM','XXHTZ','CONTRACTPO','INVUSEZY','UDFIXYSRG','UDFIXBF','UDFIXZZ')";
         sqlSearch = String.format(sqlSearch, "'" + SharedPreferencesUtil.getString(mContext, "personId") + "'");
         object.put("sqlSearch", sqlSearch);
         HashMap<String, String> headermap = new HashMap<>();

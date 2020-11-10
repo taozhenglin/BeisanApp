@@ -39,7 +39,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="项目申请："
-                        android:textSize="@dimen/sp12"
+                        android:textSize="@dimen/sp14"
                         android:textStyle="bold" />
 
                     <TextView
@@ -49,7 +49,7 @@
                         android:layout_marginRight="@dimen/dp5"
                         android:text=""
                         android:textColor="@color/guide_blue"
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
                 </LinearLayout>
 
                 <TextView
@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp3"
                     android:text="描述："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -72,7 +72,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="立项类型："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
 
                     <TextView
                         android:id="@+id/tv_categroy"
@@ -80,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="立项类别："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
                 </LinearLayout>
 
                 <TextView
@@ -90,7 +90,7 @@
                     android:layout_below="@+id/tv_categroy"
                     android:layout_marginTop="@dimen/dp3"
                     android:text="预算编号："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <TextView
                     android:id="@+id/tv_yusuan_ndesc"
@@ -99,7 +99,7 @@
                     android:layout_below="@+id/tv_yusuan_no"
                     android:layout_marginTop="@dimen/dp3"
                     android:text="预算描述："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -113,7 +113,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="汇总年月："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
 
                     <TextView
                         android:id="@+id/tv_sum_amount"
@@ -123,7 +123,7 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:text="总金额："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -138,7 +138,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="主管部门："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
 
                     <TextView
                         android:id="@+id/tv_requset_dep"
@@ -146,7 +146,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="申请部门："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -161,7 +161,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="申请班组："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
 
                     <TextView
                         android:id="@+id/tv_requset_type"
@@ -169,7 +169,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="申请类型："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -184,7 +184,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="所属公司："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
 
                     <TextView
                         android:id="@+id/tv_plan_type"
@@ -192,7 +192,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="计划类型："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
                 </LinearLayout>
 
                 <TextView
@@ -201,7 +201,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_owner_companny"
                     android:text="是否已验收："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <TextView
                     android:id="@+id/tv_note"
@@ -209,7 +209,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_has_checked"
                     android:text="备注："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <TextView
                     android:id="@+id/tv_plan_start"
@@ -217,7 +217,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_note"
                     android:text="计划开始时间："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <TextView
                     android:id="@+id/tv_plan_end"
@@ -225,7 +225,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_plan_start"
                     android:text="计划结束时间："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <TextView
                     android:id="@+id/tv_created_by"
@@ -233,7 +233,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_plan_end"
                     android:text="创建人："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <TextView
                     android:id="@+id/tv_created_time"
@@ -241,7 +241,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_created_by"
                     android:text="创建时间："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
             </LinearLayout>
 
@@ -253,7 +253,7 @@
                 android:paddingLeft="@dimen/dp8"
                 android:text="计划行"
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
             <LinearLayout
                 android:id="@+id/ll_plan_line"
@@ -269,7 +269,7 @@
                 android:paddingLeft="@dimen/dp8"
                 android:text="相关附件"
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
             <LinearLayout
                 android:id="@+id/ll_attach"
@@ -290,5 +290,5 @@
         android:gravity="center"
         android:text="工作流审批"
         android:textColor="@color/white"
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 </RelativeLayout>

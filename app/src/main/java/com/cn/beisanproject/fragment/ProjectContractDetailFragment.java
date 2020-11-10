@@ -132,11 +132,11 @@ public class ProjectContractDetailFragment extends Fragment {
             tv_contract_no.setText("合同序列号：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getCONTRACTNUM());
             tv_no.setText("合同编号：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getCONTNUM());
             tv_contract_statue.setText(mProjectContractDetailBean.getResult().getResultlist().get(0).getSTATUS());
-//            if (mProjectContractDetailBean.getResult().getResultlist().get(0).getSTATUS().equals("总经理审批")){
-//                ll_assginman.setEnabled(true);
-//            }else {
-//                ll_assginman.setEnabled(false);
-//            }
+            if (mProjectContractDetailBean.getResult().getResultlist().get(0).getSTATUS().equals("总经理审批")){
+                ll_assginman.setEnabled(true);
+            }else {
+                ll_assginman.setEnabled(false);
+            }
             tv_assginman.setText("授权代表:"+mProjectContractDetailBean.getResult().getResultlist().get(0).getQIANMING());
             tv_contract_desc.setText("合同描述：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getDESCRIPTION());
             tv_xunjia_no.setText("询价单号：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getA_RFQNUM());
@@ -167,11 +167,11 @@ public class ProjectContractDetailFragment extends Fragment {
             tv_no.setText("合同编号：" + mResultlistBean.getCONTNUM());
 
             tv_contract_statue.setText(mResultlistBean.getSTATUS());
-//            if (mResultlistBean.getSTATUS().equals("总经理审批")){
-//                ll_assginman.setEnabled(true);
-//            }else {
-//                ll_assginman.setEnabled(false);
-//            }
+            if (mResultlistBean.getSTATUS().equals("总经理审批")){
+                ll_assginman.setEnabled(true);
+            }else {
+                ll_assginman.setEnabled(false);
+            }
             tv_assginman.setText("授权代表:"+mResultlistBean.getQIANMING());
             tv_contract_desc.setText("合同描述：" + mResultlistBean.getDESCRIPTION());
             tv_xunjia_no.setText("询价单号：" + mResultlistBean.getA_RFQNUM());

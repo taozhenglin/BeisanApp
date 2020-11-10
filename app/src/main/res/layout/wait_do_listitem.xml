@@ -47,6 +47,7 @@
         android:layout_marginTop="@dimen/dp3"
         android:layout_marginRight="@dimen/dp3"
         android:src="@drawable/right_arrow"
+        android:visibility="gone"
 
         />
 

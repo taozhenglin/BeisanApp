@@ -1,6 +1,5 @@
 package com.cn.beisanproject.modelbean;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,11 +8,12 @@ import java.util.List;
  */
 public class AssertJsDetailLineBean {
 
+
     /**
      * errcode : GLOBAL-S-0
      * errmsg : 请求成功
      * personid : null
-     * result : {"curpage":1,"resultlist":[{"ADMINISTRATOR":"","ADMINISTRATORDESC":"","AMOUNT":"","ASSETNUM":"1012","ASSETTYPE":"设备","ASSETTYPEDESC":"","BGCOST":"0.00","CFDD":"BSJS.0005","CFWZ":"","CWBM":"0101-000001","CWBMDESC":"","CWBMTYPE":"","DATEOFPURCHASE":"2020-09-29 20:00:00","DATEPLACEDINSERVICE":"","DEPARTMENT":"1.205.000.101","DEPRECIATIONPERIOD":"3.00","DESCRIPTION":"001","EMPLOYEENUMBER":"","EMPLOYEENUMBERDESC":"","FACTORYDATE":"","FIXASSETDATE":"","GXUNITS":"","JJYT":"非生产经营用","LYFS":"00101","LYFSDESC":"购入","MANAGEMENT":"1.205.000.04","PRODUCTMODEL":"","REMARKS":"","SYQK":"使用中","UDCOMPANY":"BS","UDCOMPANYDESC":"北三","UNITS":"度","VENDOR":"GK17204","VENDORNAME":"宁波市港捷酒店设备有限公司","ZCCOST":"0.00","ZZADMINISTRATOR":"","ZZAMOUNT":"","ZZCOST":"","ZZDATEOFPURCHASE":"","ZZDATEPLACEDINSERVICE":"","ZZDEPARTMENT":"","ZZDEPRECIATIONPERIOD":"","ZZEMPLOYEENUMBER":"","ZZFACTORYDATE":"","ZZFIXASSETDATE":"","ZZJJYT":"","ZZLYFS":"","ZZMANAGEMENT":"","ZZS":"","ZZSYQK":"","ZZUDCOMPANY":"","ZZUNITS":"","ZZVENDOR":"","ZZZZS":""},{"ADMINISTRATOR":"","ADMINISTRATORDESC":"","AMOUNT":"","ASSETNUM":"1012","ASSETTYPE":"设备","ASSETTYPEDESC":"","BGCOST":"0.00","CFDD":"BSJS.0005","CFWZ":"","CWBM":"0101-000002","CWBMDESC":"","CWBMTYPE":"","DATEOFPURCHASE":"2020-09-29 20:00:00","DATEPLACEDINSERVICE":"","DEPARTMENT":"1.205.000.101","DEPRECIATIONPERIOD":"3.00","DESCRIPTION":"001","EMPLOYEENUMBER":"","EMPLOYEENUMBERDESC":"","FACTORYDATE":"","FIXASSETDATE":"","GXUNITS":"","JJYT":"非生产经营用","LYFS":"00101","LYFSDESC":"购入","MANAGEMENT":"1.205.000.04","PRODUCTMODEL":"","REMARKS":"","SYQK":"使用中","UDCOMPANY":"BS","UDCOMPANYDESC":"北三","UNITS":"度","VENDOR":"GK17204","VENDORNAME":"宁波市港捷酒店设备有限公司","ZCCOST":"0.00","ZZADMINISTRATOR":"","ZZAMOUNT":"","ZZCOST":"","ZZDATEOFPURCHASE":"","ZZDATEPLACEDINSERVICE":"","ZZDEPARTMENT":"","ZZDEPRECIATIONPERIOD":"","ZZEMPLOYEENUMBER":"","ZZFACTORYDATE":"","ZZFIXASSETDATE":"","ZZJJYT":"","ZZLYFS":"","ZZMANAGEMENT":"","ZZS":"","ZZSYQK":"","ZZUDCOMPANY":"","ZZUNITS":"","ZZVENDOR":"","ZZZZS":""}],"showcount":20,"totalpage":1,"totalresult":2}
+     * result : {"curpage":1,"resultlist":[{"ADMINISTRATORDESC":"","AMOUNT":"1.00","ASSETNUM":"","ASSETTYPE":"","ASSETTYPEDESC":"","BGCOST":"0.00","CFDD":"本公司","CFWZ":"","CWBM":"","CWBMDESC":"","CWBMTYPE":"","DATEOFPURCHASE":"2020-11-10 08:51:50","DATEPLACEDINSERVICE":"","DEPARTMENT":"1.205.001-001","DEPRECIATIONPERIOD":"","DESCRIPTION":"垃圾桶运输四轮电动车","EMPLOYEENUMBERDESC":"","FACTORYDATE":"","FIXASSETDATE":"","GXUNITS":"","JJYT":"非生产经营用","LYFSDESC":"购入","MANAGEMENT":"1.205.001-005","PRODUCTMODEL":"JX1000Y12","REMARKS":"","SYQK":"正常使用","UDCOMPANYDESC":"远东","UDTYPE1DEC":"其他设备","UNITS":"辆","VENDORNAME":"南京洁鑫新能源科技有限公司","ZCCOST":"81,858.41","ZZADMINISTRATOR":"","ZZAMOUNT":"","ZZCOST":"","ZZDATEOFPURCHASE":"","ZZDATEPLACEDINSERVICE":"","ZZDEPARTMENT":"","ZZDEPRECIATIONPERIOD":"","ZZEMPLOYEENUMBER":"","ZZFACTORYDATE":"","ZZFIXASSETDATE":"","ZZJJYT":"","ZZLYFS":"","ZZMANAGEMENT":"","ZZPRODUCTMODEL":"","ZZS":"","ZZSYQK":"","ZZUDCOMPANY":"","ZZUDTYPE1DEC":"","ZZUNITS":"","ZZVENDOR":"","ZZZZS":""}],"showcount":20,"totalpage":1,"totalresult":1}
      */
 
     private String errcode;
@@ -53,13 +53,13 @@ public class AssertJsDetailLineBean {
         this.result = result;
     }
 
-    public static class ResultBean implements Serializable {
+    public static class ResultBean {
         /**
          * curpage : 1
-         * resultlist : [{"ADMINISTRATOR":"","ADMINISTRATORDESC":"","AMOUNT":"","ASSETNUM":"1012","ASSETTYPE":"设备","ASSETTYPEDESC":"","BGCOST":"0.00","CFDD":"BSJS.0005","CFWZ":"","CWBM":"0101-000001","CWBMDESC":"","CWBMTYPE":"","DATEOFPURCHASE":"2020-09-29 20:00:00","DATEPLACEDINSERVICE":"","DEPARTMENT":"1.205.000.101","DEPRECIATIONPERIOD":"3.00","DESCRIPTION":"001","EMPLOYEENUMBER":"","EMPLOYEENUMBERDESC":"","FACTORYDATE":"","FIXASSETDATE":"","GXUNITS":"","JJYT":"非生产经营用","LYFS":"00101","LYFSDESC":"购入","MANAGEMENT":"1.205.000.04","PRODUCTMODEL":"","REMARKS":"","SYQK":"使用中","UDCOMPANY":"BS","UDCOMPANYDESC":"北三","UNITS":"度","VENDOR":"GK17204","VENDORNAME":"宁波市港捷酒店设备有限公司","ZCCOST":"0.00","ZZADMINISTRATOR":"","ZZAMOUNT":"","ZZCOST":"","ZZDATEOFPURCHASE":"","ZZDATEPLACEDINSERVICE":"","ZZDEPARTMENT":"","ZZDEPRECIATIONPERIOD":"","ZZEMPLOYEENUMBER":"","ZZFACTORYDATE":"","ZZFIXASSETDATE":"","ZZJJYT":"","ZZLYFS":"","ZZMANAGEMENT":"","ZZS":"","ZZSYQK":"","ZZUDCOMPANY":"","ZZUNITS":"","ZZVENDOR":"","ZZZZS":""},{"ADMINISTRATOR":"","ADMINISTRATORDESC":"","AMOUNT":"","ASSETNUM":"1012","ASSETTYPE":"设备","ASSETTYPEDESC":"","BGCOST":"0.00","CFDD":"BSJS.0005","CFWZ":"","CWBM":"0101-000002","CWBMDESC":"","CWBMTYPE":"","DATEOFPURCHASE":"2020-09-29 20:00:00","DATEPLACEDINSERVICE":"","DEPARTMENT":"1.205.000.101","DEPRECIATIONPERIOD":"3.00","DESCRIPTION":"001","EMPLOYEENUMBER":"","EMPLOYEENUMBERDESC":"","FACTORYDATE":"","FIXASSETDATE":"","GXUNITS":"","JJYT":"非生产经营用","LYFS":"00101","LYFSDESC":"购入","MANAGEMENT":"1.205.000.04","PRODUCTMODEL":"","REMARKS":"","SYQK":"使用中","UDCOMPANY":"BS","UDCOMPANYDESC":"北三","UNITS":"度","VENDOR":"GK17204","VENDORNAME":"宁波市港捷酒店设备有限公司","ZCCOST":"0.00","ZZADMINISTRATOR":"","ZZAMOUNT":"","ZZCOST":"","ZZDATEOFPURCHASE":"","ZZDATEPLACEDINSERVICE":"","ZZDEPARTMENT":"","ZZDEPRECIATIONPERIOD":"","ZZEMPLOYEENUMBER":"","ZZFACTORYDATE":"","ZZFIXASSETDATE":"","ZZJJYT":"","ZZLYFS":"","ZZMANAGEMENT":"","ZZS":"","ZZSYQK":"","ZZUDCOMPANY":"","ZZUNITS":"","ZZVENDOR":"","ZZZZS":""}]
+         * resultlist : [{"ADMINISTRATORDESC":"","AMOUNT":"1.00","ASSETNUM":"","ASSETTYPE":"","ASSETTYPEDESC":"","BGCOST":"0.00","CFDD":"本公司","CFWZ":"","CWBM":"","CWBMDESC":"","CWBMTYPE":"","DATEOFPURCHASE":"2020-11-10 08:51:50","DATEPLACEDINSERVICE":"","DEPARTMENT":"1.205.001-001","DEPRECIATIONPERIOD":"","DESCRIPTION":"垃圾桶运输四轮电动车","EMPLOYEENUMBERDESC":"","FACTORYDATE":"","FIXASSETDATE":"","GXUNITS":"","JJYT":"非生产经营用","LYFSDESC":"购入","MANAGEMENT":"1.205.001-005","PRODUCTMODEL":"JX1000Y12","REMARKS":"","SYQK":"正常使用","UDCOMPANYDESC":"远东","UDTYPE1DEC":"其他设备","UNITS":"辆","VENDORNAME":"南京洁鑫新能源科技有限公司","ZCCOST":"81,858.41","ZZADMINISTRATOR":"","ZZAMOUNT":"","ZZCOST":"","ZZDATEOFPURCHASE":"","ZZDATEPLACEDINSERVICE":"","ZZDEPARTMENT":"","ZZDEPRECIATIONPERIOD":"","ZZEMPLOYEENUMBER":"","ZZFACTORYDATE":"","ZZFIXASSETDATE":"","ZZJJYT":"","ZZLYFS":"","ZZMANAGEMENT":"","ZZPRODUCTMODEL":"","ZZS":"","ZZSYQK":"","ZZUDCOMPANY":"","ZZUDTYPE1DEC":"","ZZUNITS":"","ZZVENDOR":"","ZZZZS":""}]
          * showcount : 20
          * totalpage : 1
-         * totalresult : 2
+         * totalresult : 1
          */
 
         private int curpage;
@@ -110,41 +110,37 @@ public class AssertJsDetailLineBean {
 
         public static class ResultlistBean {
             /**
-             * ADMINISTRATOR :
              * ADMINISTRATORDESC :
-             * AMOUNT :
-             * ASSETNUM : 1012
-             * ASSETTYPE : 设备
+             * AMOUNT : 1.00
+             * ASSETNUM :
+             * ASSETTYPE :
              * ASSETTYPEDESC :
              * BGCOST : 0.00
-             * CFDD : BSJS.0005
+             * CFDD : 本公司
              * CFWZ :
-             * CWBM : 0101-000001
+             * CWBM :
              * CWBMDESC :
              * CWBMTYPE :
-             * DATEOFPURCHASE : 2020-09-29 20:00:00
+             * DATEOFPURCHASE : 2020-11-10 08:51:50
              * DATEPLACEDINSERVICE :
-             * DEPARTMENT : 1.205.000.101
-             * DEPRECIATIONPERIOD : 3.00
-             * DESCRIPTION : 001
-             * EMPLOYEENUMBER :
+             * DEPARTMENT : 1.205.001-001
+             * DEPRECIATIONPERIOD :
+             * DESCRIPTION : 垃圾桶运输四轮电动车
              * EMPLOYEENUMBERDESC :
              * FACTORYDATE :
              * FIXASSETDATE :
              * GXUNITS :
              * JJYT : 非生产经营用
-             * LYFS : 00101
              * LYFSDESC : 购入
-             * MANAGEMENT : 1.205.000.04
-             * PRODUCTMODEL :
+             * MANAGEMENT : 1.205.001-005
+             * PRODUCTMODEL : JX1000Y12
              * REMARKS :
-             * SYQK : 使用中
-             * UDCOMPANY : BS
-             * UDCOMPANYDESC : 北三
-             * UNITS : 度
-             * VENDOR : GK17204
-             * VENDORNAME : 宁波市港捷酒店设备有限公司
-             * ZCCOST : 0.00
+             * SYQK : 正常使用
+             * UDCOMPANYDESC : 远东
+             * UDTYPE1DEC : 其他设备
+             * UNITS : 辆
+             * VENDORNAME : 南京洁鑫新能源科技有限公司
+             * ZCCOST : 81,858.41
              * ZZADMINISTRATOR :
              * ZZAMOUNT :
              * ZZCOST :
@@ -158,15 +154,16 @@ public class AssertJsDetailLineBean {
              * ZZJJYT :
              * ZZLYFS :
              * ZZMANAGEMENT :
+             * ZZPRODUCTMODEL :
              * ZZS :
              * ZZSYQK :
              * ZZUDCOMPANY :
+             * ZZUDTYPE1DEC :
              * ZZUNITS :
              * ZZVENDOR :
              * ZZZZS :
              */
 
-            private String ADMINISTRATOR;
             private String ADMINISTRATORDESC;
             private String AMOUNT;
             private String ASSETNUM;
@@ -183,22 +180,19 @@ public class AssertJsDetailLineBean {
             private String DEPARTMENT;
             private String DEPRECIATIONPERIOD;
             private String DESCRIPTION;
-            private String EMPLOYEENUMBER;
             private String EMPLOYEENUMBERDESC;
             private String FACTORYDATE;
             private String FIXASSETDATE;
             private String GXUNITS;
             private String JJYT;
-            private String LYFS;
             private String LYFSDESC;
             private String MANAGEMENT;
             private String PRODUCTMODEL;
             private String REMARKS;
             private String SYQK;
-            private String UDCOMPANY;
             private String UDCOMPANYDESC;
+            private String UDTYPE1DEC;
             private String UNITS;
-            private String VENDOR;
             private String VENDORNAME;
             private String ZCCOST;
             private String ZZADMINISTRATOR;
@@ -214,31 +208,24 @@ public class AssertJsDetailLineBean {
             private String ZZJJYT;
             private String ZZLYFS;
             private String ZZMANAGEMENT;
+            private String ZZPRODUCTMODEL;
             private String ZZS;
             private String ZZSYQK;
             private String ZZUDCOMPANY;
+            private String ZZUDTYPE1DEC;
             private String ZZUNITS;
             private String ZZVENDOR;
             private String ZZZZS;
 
-            public String getUDTYPE1DEC() {
-                return UDTYPE1DEC;
+            public String getZZCWBM() {
+                return ZZCWBM;
             }
 
-            public void setUDTYPE1DEC(String UDTYPE1DEC) {
-                this.UDTYPE1DEC = UDTYPE1DEC;
+            public void setZZCWBM(String ZZCWBM) {
+                this.ZZCWBM = ZZCWBM;
             }
 
-            String UDTYPE1DEC;
-
-            public String getADMINISTRATOR() {
-                return ADMINISTRATOR;
-            }
-
-            public void setADMINISTRATOR(String ADMINISTRATOR) {
-                this.ADMINISTRATOR = ADMINISTRATOR;
-            }
-
+            String ZZCWBM;
             public String getADMINISTRATORDESC() {
                 return ADMINISTRATORDESC;
             }
@@ -367,14 +354,6 @@ public class AssertJsDetailLineBean {
                 this.DESCRIPTION = DESCRIPTION;
             }
 
-            public String getEMPLOYEENUMBER() {
-                return EMPLOYEENUMBER;
-            }
-
-            public void setEMPLOYEENUMBER(String EMPLOYEENUMBER) {
-                this.EMPLOYEENUMBER = EMPLOYEENUMBER;
-            }
-
             public String getEMPLOYEENUMBERDESC() {
                 return EMPLOYEENUMBERDESC;
             }
@@ -413,14 +392,6 @@ public class AssertJsDetailLineBean {
 
             public void setJJYT(String JJYT) {
                 this.JJYT = JJYT;
-            }
-
-            public String getLYFS() {
-                return LYFS;
-            }
-
-            public void setLYFS(String LYFS) {
-                this.LYFS = LYFS;
             }
 
             public String getLYFSDESC() {
@@ -463,14 +434,6 @@ public class AssertJsDetailLineBean {
                 this.SYQK = SYQK;
             }
 
-            public String getUDCOMPANY() {
-                return UDCOMPANY;
-            }
-
-            public void setUDCOMPANY(String UDCOMPANY) {
-                this.UDCOMPANY = UDCOMPANY;
-            }
-
             public String getUDCOMPANYDESC() {
                 return UDCOMPANYDESC;
             }
@@ -479,20 +442,20 @@ public class AssertJsDetailLineBean {
                 this.UDCOMPANYDESC = UDCOMPANYDESC;
             }
 
+            public String getUDTYPE1DEC() {
+                return UDTYPE1DEC;
+            }
+
+            public void setUDTYPE1DEC(String UDTYPE1DEC) {
+                this.UDTYPE1DEC = UDTYPE1DEC;
+            }
+
             public String getUNITS() {
                 return UNITS;
             }
 
             public void setUNITS(String UNITS) {
                 this.UNITS = UNITS;
-            }
-
-            public String getVENDOR() {
-                return VENDOR;
-            }
-
-            public void setVENDOR(String VENDOR) {
-                this.VENDOR = VENDOR;
             }
 
             public String getVENDORNAME() {
@@ -615,6 +578,14 @@ public class AssertJsDetailLineBean {
                 this.ZZMANAGEMENT = ZZMANAGEMENT;
             }
 
+            public String getZZPRODUCTMODEL() {
+                return ZZPRODUCTMODEL;
+            }
+
+            public void setZZPRODUCTMODEL(String ZZPRODUCTMODEL) {
+                this.ZZPRODUCTMODEL = ZZPRODUCTMODEL;
+            }
+
             public String getZZS() {
                 return ZZS;
             }
@@ -637,6 +608,14 @@ public class AssertJsDetailLineBean {
 
             public void setZZUDCOMPANY(String ZZUDCOMPANY) {
                 this.ZZUDCOMPANY = ZZUDCOMPANY;
+            }
+
+            public String getZZUDTYPE1DEC() {
+                return ZZUDTYPE1DEC;
+            }
+
+            public void setZZUDTYPE1DEC(String ZZUDTYPE1DEC) {
+                this.ZZUDTYPE1DEC = ZZUDTYPE1DEC;
             }
 
             public String getZZUNITS() {

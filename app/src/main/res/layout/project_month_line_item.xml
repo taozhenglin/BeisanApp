@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="计划行："
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
 
         />
 
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp3"
         android:text="行描述："
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         android:layout_below="@+id/tv_line_no"
         />
 
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_line_desc"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         android:layout_marginTop="@dimen/dp3"
         android:text="子集预算编号：" />
 
@@ -43,7 +43,7 @@
         android:layout_below="@+id/tv_yusuan_no"
         android:layout_marginTop="@dimen/dp3"
         android:text="询价单："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <TextView
         android:id="@+id/tv_yusuan_desc"
@@ -52,7 +52,7 @@
         android:layout_below="@+id/tv_xunjiadan"
         android:layout_marginTop="@dimen/dp3"
         android:text="子集预算描述："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <TextView
         android:id="@+id/tv_count"
@@ -61,7 +61,7 @@
         android:layout_below="@+id/tv_yusuan_desc"
         android:layout_marginTop="@dimen/dp3"
         android:text="数量："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
     <TextView
         android:id="@+id/tv_unit"
         android:layout_width="wrap_content"
@@ -71,7 +71,7 @@
         android:text="订购单位："
         android:layout_toEndOf="@+id/tv_unit_cost"
         android:layout_marginLeft="@dimen/dp30"
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
     <TextView
         android:id="@+id/tv_unit_cost"
         android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
         android:layout_below="@+id/tv_unit"
         android:layout_marginTop="@dimen/dp3"
         android:text="单位成本："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <TextView
         android:id="@+id/tv_line_cost"
@@ -90,7 +90,7 @@
         android:text="行成本："
         android:layout_toEndOf="@+id/tv_unit_cost"
         android:layout_marginLeft="@dimen/dp30"
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
 
 </RelativeLayout>

@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="物资编码："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_use_statue"
@@ -29,7 +29,7 @@
             android:layout_marginRight="@dimen/dp5"
             android:layout_weight="1"
             android:text="使用情况类型："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
     </LinearLayout>
 
     <LinearLayout
@@ -45,7 +45,7 @@
             android:layout_below="@+id/tv_line_no"
             android:layout_weight="1"
             android:text="行类型："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_count"
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="数量："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
     </LinearLayout>
     <TextView
         android:id="@+id/tv_desc"
@@ -62,7 +62,7 @@
         android:layout_below="@+id/tv_line_desc"
         android:layout_marginTop="@dimen/dp3"
         android:text="物资描述："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
     <TextView
         android:id="@+id/tv_ori_store"
         android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
         android:layout_below="@+id/tv_line_desc"
         android:layout_marginTop="@dimen/dp3"
         android:text="原货柜："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <TextView
         android:id="@+id/tv_ori_num"
@@ -79,7 +79,7 @@
         android:layout_below="@+id/tv_model"
         android:layout_marginTop="@dimen/dp3"
         android:text="原批次："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
 
     <TextView
@@ -87,21 +87,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="目标库房："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <TextView
         android:id="@+id/tv_target_draw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="目标货柜："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <TextView
         android:id="@+id/tv_target_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="目标批次："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
 
     <LinearLayout
@@ -117,7 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="单位成本："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_line_cost"
@@ -125,7 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="行成本："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
     </LinearLayout>
 
 

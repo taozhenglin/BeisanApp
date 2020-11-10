@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cn.beisanproject.R;
+import com.cn.beisanproject.activity.AssertCzDetailActivity;
+import com.cn.beisanproject.activity.AssertJsDetailActivity;
 import com.cn.beisanproject.activity.CountEqmentRequestDetailActivity;
 import com.cn.beisanproject.activity.ElectricRequestDetailActivity;
 import com.cn.beisanproject.activity.EqumentRequestDetailActivity;
@@ -112,6 +114,15 @@ public class WaitDoAdapter extends RecyclerView.Adapter<WaitDoAdapter.MyViewHold
                 break;
             case "INVUSEZY":
                 holder.tv_title.setText("库存转移");
+                break;
+            case "UDFIXYSRG":
+                holder.tv_title.setText("固定资产接收");
+                break;
+            case "UDFIXZZ":
+                holder.tv_title.setText("固定资产接收");
+                break;
+            case "UDFIXBF":
+                holder.tv_title.setText("固定资产处置");
                 break;
 
         }
@@ -234,6 +245,24 @@ public class WaitDoAdapter extends RecyclerView.Adapter<WaitDoAdapter.MyViewHold
                         break;
                     case "INVUSEZY"://库存转移
                         intent=new Intent(mContext, StockMoveDetailActivity.class);
+                        intent.putExtra("ResultlistBean",mResultList.get(position));
+                        intent.putExtra("from","waitdolist");//从代办事项列表进入详情的还需要接口请求数据 列表数据不够用
+                        mContext.startActivity(intent);
+                        break;
+                    case "UDFIXYSRG"://固定资产接收之转固
+                        intent=new Intent(mContext, AssertJsDetailActivity.class);
+                        intent.putExtra("ResultlistBean",mResultList.get(position));
+                        intent.putExtra("from","waitdolist");//从代办事项列表进入详情的还需要接口请求数据 列表数据不够用
+                        mContext.startActivity(intent);
+                        break;
+                    case "UDFIXZZ"://固定资产接收之增值
+                        intent=new Intent(mContext, AssertJsDetailActivity.class);
+                        intent.putExtra("ResultlistBean",mResultList.get(position));
+                        intent.putExtra("from","waitdolist");//从代办事项列表进入详情的还需要接口请求数据 列表数据不够用
+                        mContext.startActivity(intent);
+                        break;
+                    case "UDFIXBF"://固定资产处置
+                        intent=new Intent(mContext, AssertCzDetailActivity.class);
                         intent.putExtra("ResultlistBean",mResultList.get(position));
                         intent.putExtra("from","waitdolist");//从代办事项列表进入详情的还需要接口请求数据 列表数据不够用
                         mContext.startActivity(intent);

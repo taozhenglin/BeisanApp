@@ -95,6 +95,7 @@ public class AssertCzDetailActivity extends AppCompatActivity implements View.On
     private String[] stringItems2 = new String[]{"工作流审批"};
     private PopupWindow pop;
     private int isAgree=1;
+    private String FIXEASSETRETNUM;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -109,7 +110,7 @@ public class AssertCzDetailActivity extends AppCompatActivity implements View.On
         } else {
             resultlistBean = (AssertCheckCzListBean.ResultBean.ResultlistBean) getIntent().getExtras().get("ResultlistBean");
             status = resultlistBean.getSTATUS();
-
+            FIXEASSETRETNUM=resultlistBean.getFIXEASSETRETNUM();
 
         }
         initView();
@@ -206,7 +207,7 @@ public class AssertCzDetailActivity extends AppCompatActivity implements View.On
         object.put("option", "read");
         object.put("orderby", "FIXEASSETRETNUM DESC");
 
-        object.put("sqlSearch", "FIXEASSETRETNUM = "+"'"+resultlistBean.getFIXEASSETRETNUM()+"'");
+        object.put("sqlSearch", "FIXEASSETRETID = "+"'"+mWitdolistBean.getOWNERID()+"'");
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
         HashMap<String, String> map = new HashMap<>();
@@ -227,6 +228,8 @@ public class AssertCzDetailActivity extends AppCompatActivity implements View.On
                     if (assertCheckCzListBean.getErrcode().equals("GLOBAL-S-0")) {
                         AssertCheckCzListBean.ResultBean.ResultlistBean resultlistBean = assertCheckCzListBean.getResult().getResultlist().get(0);
                         status = resultlistBean.getSTATUS();
+                        FIXEASSETRETNUM=resultlistBean.getFIXEASSETRETNUM();
+
                         if (status.equals("已取消") || status.equals("取消")||status.equals("已关闭") || status.equals("关闭")|| status.equals("已审批")) {
                             tv_approval.setVisibility(View.GONE);
                         }else {
@@ -276,8 +279,8 @@ public class AssertCzDetailActivity extends AppCompatActivity implements View.On
         object.put("showcount", 20);
         object.put("option", "read");
         object.put("orderby", "");
-        LogUtils.d("222222" + resultlistBean.getFIXEASSETRETNUM());
-        object.put("sqlSearch", "ASSETRETNUM=" + resultlistBean.getFIXEASSETRETNUM());
+        LogUtils.d("222222" + FIXEASSETRETNUM);
+        object.put("sqlSearch", "ASSETRETNUM=" + FIXEASSETRETNUM);
         //请求头
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
