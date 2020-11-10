@@ -29,8 +29,8 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="合同编号："
-                    android:textSize="@dimen/sp12" />
+                    android:text="合同序列号："
+                    android:textSize="@dimen/sp14" />
 
                 <TextView
                     android:id="@+id/tv_contract_statue"
@@ -40,9 +40,16 @@
                     android:layout_marginRight="@dimen/dp5"
                     android:text="已批准"
                     android:textColor="@color/guide_blue"
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
             </LinearLayout>
+            <TextView
+                android:id="@+id/tv_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="合同编号："
+                android:layout_marginTop="@dimen/dp3"
 
+                android:textSize="@dimen/sp14" />
             <TextView
                 android:id="@+id/tv_contract_desc"
                 android:layout_width="wrap_content"
@@ -50,7 +57,7 @@
                 android:layout_below="@+id/tv_contract_no"
                 android:layout_marginTop="@dimen/dp3"
                 android:text="合同描述："
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
             <LinearLayout
                 android:id="@+id/ll_assginman"
                 android:layout_width="match_parent"
@@ -63,7 +70,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="授权代表:"
-                    android:textSize="@dimen/sp12"
+                    android:textSize="@dimen/sp14"
                     />
                 <ImageView
                     android:layout_width="wrap_content"
@@ -81,7 +88,7 @@
                 android:layout_below="@+id/tv_contract_desc"
                 android:layout_marginTop="@dimen/dp3"
                 android:text="询价单编号："
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
             <TextView
                 android:id="@+id/tv_xunjia_desc"
@@ -90,7 +97,7 @@
                 android:layout_below="@+id/tv_xunjia_no"
                 android:layout_marginTop="@dimen/dp3"
                 android:text="询价单描述："
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
             <TextView
                 android:id="@+id/tv_yusuan_no"
@@ -98,8 +105,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_xunjia_desc"
                 android:layout_marginTop="@dimen/dp3"
+                android:layout_marginRight="@dimen/dp5"
+                android:maxLines="1"
                 android:text="预算编号："
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
             <TextView
                 android:id="@+id/tv_yusuan_desc"
@@ -108,9 +117,10 @@
                 android:layout_below="@+id/tv_yusuan_no"
                 android:layout_marginTop="@dimen/dp3"
                 android:ellipsize="end"
-                android:maxLength="10"
+                android:layout_marginRight="5dp"
+                android:maxLines="1"
                 android:text="预算描述："
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -125,7 +135,7 @@
                     android:layout_marginTop="@dimen/dp3"
                     android:layout_weight="1"
                     android:text="申请部门："
-                    android:textSize="@dimen/sp12"
+                    android:textSize="@dimen/sp14"
 
                     />
 
@@ -136,7 +146,7 @@
                     android:layout_marginTop="@dimen/dp3"
                     android:layout_weight="1"
                     android:text="主管部门："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
             </LinearLayout>
 
             <LinearLayout
@@ -152,7 +162,7 @@
                     android:layout_marginTop="@dimen/dp3"
                     android:layout_weight="1"
                     android:text="甲方："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <TextView
                     android:id="@+id/tv_company"
@@ -161,7 +171,9 @@
                     android:layout_marginTop="@dimen/dp3"
                     android:layout_weight="1"
                     android:text="公司："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14"
+                    android:visibility="gone"
+                    />
             </LinearLayout>
 
             <TextView
@@ -171,7 +183,7 @@
                 android:layout_below="@+id/tv_contract_jia"
                 android:layout_marginTop="@dimen/dp3"
                 android:text="乙方："
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -186,7 +198,7 @@
                     android:layout_marginTop="@dimen/dp3"
                     android:layout_weight="1"
                     android:text="合同分类："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <TextView
                     android:id="@+id/tv_contract_catogry"
@@ -195,7 +207,7 @@
                     android:layout_marginTop="@dimen/dp3"
                     android:layout_weight="1"
                     android:text="合同类型："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
             </LinearLayout>
 
             <LinearLayout
@@ -211,7 +223,7 @@
                     android:layout_marginTop="@dimen/dp3"
                     android:layout_weight="1"
                     android:text="合同编制人："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <TextView
                     android:id="@+id/tv_contract_tax"
@@ -220,7 +232,7 @@
                     android:layout_marginTop="@dimen/dp3"
                     android:layout_weight="1"
                     android:text="合同税率："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
             </LinearLayout>
 
             <LinearLayout
@@ -236,7 +248,7 @@
                     android:layout_marginTop="@dimen/dp3"
                     android:layout_weight="1"
                     android:text="合同金额："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <TextView
                     android:id="@+id/tv_total_cost"
@@ -245,7 +257,7 @@
                     android:layout_marginTop="@dimen/dp3"
                     android:layout_weight="1"
                     android:text="合同总金额："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
             </LinearLayout>
 
             <TextView
@@ -255,7 +267,7 @@
                 android:layout_below="@+id/tv_contract_cost"
                 android:layout_marginTop="@dimen/dp3"
                 android:text="合同签订日期："
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
             <TextView
                 android:id="@+id/tv_dead_line"
@@ -264,7 +276,7 @@
                 android:layout_below="@+id/tv_contract_signtime"
                 android:layout_marginTop="@dimen/dp3"
                 android:text="质保金到期日："
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
             <TextView
                 android:id="@+id/tv_contract_starttime"
@@ -273,7 +285,7 @@
                 android:layout_below="@+id/tv_dead_line"
                 android:layout_marginTop="@dimen/dp3"
                 android:text="合同开始日期："
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
             <TextView
                 android:id="@+id/tv_contract_endtime"
@@ -282,7 +294,7 @@
                 android:layout_below="@+id/tv_contract_starttime"
                 android:layout_marginTop="@dimen/dp3"
                 android:text="合同结束日期："
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
 
         </LinearLayout>
@@ -296,7 +308,7 @@
             android:paddingLeft="@dimen/dp8"
             android:text="合同相关附件"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <LinearLayout
             android:id="@+id/ll_contract_attachment"

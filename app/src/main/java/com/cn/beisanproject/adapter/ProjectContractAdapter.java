@@ -41,7 +41,7 @@ public class ProjectContractAdapter extends RecyclerView.Adapter<ProjectContract
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         LogUtils.d("onBindViewHolder==");
-        SpannableString highlightNo = HighLightUtils.highlight(mContext, "合同编号：" + mResultlistBean.get(position).getCONTRACTNUM(), mHightlight, "#00ff00", 0, 0);
+        SpannableString highlightNo = HighLightUtils.highlight(mContext, "合同序列号：" + mResultlistBean.get(position).getCONTRACTNUM(), mHightlight, "#00ff00", 0, 0);
         holder.tv_contract_no.setText(highlightNo);
         SpannableString highlightdes = HighLightUtils.highlight(mContext, "合同描述：" + mResultlistBean.get(position).getDESCRIPTION(), mHightlight, "#00ff00", 0, 0);
         holder.tv_contract_desc.setText(highlightdes);

@@ -135,7 +135,17 @@ public class AssertCheckJsListBean {
             private String PRDESC;
             private String PRNUM;
             private String TYPE;
-            private String status;
+            private String STATUS;
+
+            public String getUDCOMPANYDESC() {
+                return UDCOMPANYDESC;
+            }
+
+            public void setUDCOMPANYDESC(String UDCOMPANYDESC) {
+                this.UDCOMPANYDESC = UDCOMPANYDESC;
+            }
+
+            String UDCOMPANYDESC;
 
             public String getA_BUDGETDESC() {
                 return A_BUDGETDESC;
@@ -225,12 +235,12 @@ public class AssertCheckJsListBean {
                 this.TYPE = TYPE;
             }
 
-            public String getStatus() {
-                return status;
+            public String getSTATUS() {
+                return STATUS;
             }
 
-            public void setStatus(String status) {
-                this.status = status;
+            public void setSTATUS(String STATUS) {
+                this.STATUS = STATUS;
             }
         }
     }

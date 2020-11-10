@@ -275,7 +275,9 @@
                 android:id="@+id/ll_attach"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical"
+               android:layout_margin="@dimen/dp3"
+                />
         </LinearLayout>
     </ScrollView>
 

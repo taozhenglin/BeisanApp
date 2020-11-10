@@ -37,14 +37,16 @@ public class AssertJsDetailLineAdapter extends RecyclerView.Adapter<AssertJsDeta
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
         holder.tv_line_no.setText("资产编码:" + mList.get(i).getCWBM());
-        holder.tv_product_location.setText("类别：" + mList.get(i).getCWBMTYPE());
-        holder.tv_line_batch.setText("设备描述：" + mList.get(i).getDESCRIPTION());
+        holder.tv_product_location.setText("资产类别：" + mList.get(i).getUDTYPE1DEC());
+        holder.tv_line_batch.setText("资产描述：" + mList.get(i).getDESCRIPTION());
         holder.tv_prodution_no.setText("规格型号：" + mList.get(i).getPRODUCTMODEL());
         holder.tv_prodution_desc.setText("数量：" + mList.get(i).getAMOUNT());
         holder.tv_stock_count.setText("来源单位：" + mList.get(i).getVENDORNAME());
-        holder.tv_actually_count.setText("来源方式：" + mList.get(i).getLYFS());
-        holder.tv_diff_count.setVisibility(View.GONE);
-        holder.tv_store.setVisibility(View.GONE);
+        holder.tv_actually_count.setText("来源方式：" + mList.get(i).getLYFSDESC());
+        holder.tv_diff_count.setText("转固原值："+mList.get(i).getZCCOST());
+        holder.tv_store.setText("增值前原值："+mList.get(i).getZZCOST());
+        holder.tv_zg_cost.setVisibility(View.VISIBLE);
+        holder.tv_zg_cost.setText("增值后原值："+mList.get(i).getBGCOST());
     }
 
     @Override
@@ -69,6 +71,7 @@ public class AssertJsDetailLineAdapter extends RecyclerView.Adapter<AssertJsDeta
         TextView tv_actually_count;
         TextView tv_diff_count;
         TextView tv_store;
+        TextView tv_zg_cost;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_line_no = itemView.findViewById(R.id.tv_line_no);
@@ -80,6 +83,7 @@ public class AssertJsDetailLineAdapter extends RecyclerView.Adapter<AssertJsDeta
             tv_actually_count = itemView.findViewById(R.id.tv_actually_count);
             tv_diff_count = itemView.findViewById(R.id.tv_diff_count);
             tv_store= itemView.findViewById(R.id.tv_store);
+            tv_zg_cost= itemView.findViewById(R.id.tv_zg_cost);
         }
     }
 }

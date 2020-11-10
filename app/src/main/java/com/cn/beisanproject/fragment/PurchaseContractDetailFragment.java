@@ -55,6 +55,8 @@ import com.flyco.dialog.widget.ActionSheetDialog;
 import com.google.gson.JsonObject;
 import com.guideelectric.loadingdialog.view.LoadingDialog;
 
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ClipPagerTitleView;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -97,6 +99,7 @@ public class PurchaseContractDetailFragment extends Fragment {
     String orgid;
     String company;
     private LoadingDialog ld;
+    private TextView tv_no;
 
 
     public PurchaseContractDetailFragment(Context context, PurchseContractListBean.ResultBean.ResultlistBean resultlistBean, boolean needGet, PurchseContractDetailBean purchseContractDetailBean) {
@@ -114,6 +117,7 @@ public class PurchaseContractDetailFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.contract_detail_fragment, container, false);
         tv_contract_no = view.findViewById(R.id.tv_contract_no);
+        tv_no= view.findViewById(R.id.tv_no);
         tv_contract_statue = view.findViewById(R.id.tv_contract_statue);
         tv_contract_desc = view.findViewById(R.id.tv_contract_desc);
         tv_xunjia_no = view.findViewById(R.id.tv_xunjia_no);
@@ -189,13 +193,13 @@ public class PurchaseContractDetailFragment extends Fragment {
             contractnum = mPurchseContractDetailBean.getResult().getResultlist().get(0).getCONTRACTNUM();
             orgid = mPurchseContractDetailBean.getResult().getResultlist().get(0).getORGID();
             company = mPurchseContractDetailBean.getResult().getResultlist().get(0).getVENDOR();
-            tv_contract_no.setText("合同编号：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getCONTRACTNUM());
+            tv_contract_no.setText("合同序列号：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getCONTRACTNUM());
             tv_contract_statue.setText(mPurchseContractDetailBean.getResult().getResultlist().get(0).getSTATUS());
-            if (mPurchseContractDetailBean.getResult().getResultlist().get(0).getSTATUS().equals("总经理审批")) {
-                ll_assginman.setEnabled(true);
-            } else {
-                ll_assginman.setEnabled(false);
-            }
+//            if (mPurchseContractDetailBean.getResult().getResultlist().get(0).getSTATUS().equals("总经理审批")) {
+//                ll_assginman.setEnabled(true);
+//            } else {
+//                ll_assginman.setEnabled(false);
+//            }
             tv_assginman.setText("授权代表:" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getQIANMING());
 
             tv_contract_desc.setText("合同描述：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getDESCRIPTION());
@@ -219,13 +223,14 @@ public class PurchaseContractDetailFragment extends Fragment {
             contractnum = mResultlistBean.getCONTRACTNUM();
             orgid = mResultlistBean.getORGID();
             company = mResultlistBean.getVENDOR();
-            tv_contract_no.setText("合同编号：" + mResultlistBean.getCONTRACTNUM());
+            tv_contract_no.setText("合同序列号：" + mResultlistBean.getCONTRACTNUM());
+
             tv_contract_statue.setText(mResultlistBean.getSTATUS());
-            if (mResultlistBean.getSTATUS().equals("总经理审批")) {
-                ll_assginman.setEnabled(true);
-            } else {
-                ll_assginman.setEnabled(false);
-            }
+//            if (mResultlistBean.getSTATUS().equals("总经理审批")) {
+//                ll_assginman.setEnabled(true);
+//            } else {
+//                ll_assginman.setEnabled(false);
+//            }
             tv_assginman.setText("授权代表:" + mResultlistBean.getQIANMING());
             tv_contract_desc.setText("合同描述：" + mResultlistBean.getDESCRIPTION());
             tv_xunjia_no.setText("询价单号：" + mResultlistBean.getA_RFQNUM());
@@ -305,7 +310,7 @@ public class PurchaseContractDetailFragment extends Fragment {
                                 TextView tv_attach_no = inflate.findViewById(R.id.tv_attach_no);
                                 TextView tv_attach_desc = inflate.findViewById(R.id.tv_attach_desc);
                                 TextView tv_upload_time = inflate.findViewById(R.id.tv_upload_time);
-                                tv_attach_no.setText("附件编号：" + resultlist.get(i).getDOCINFOID());
+                                tv_attach_no.setText("附件编号：" + resultlist.get(i).getDOCLINKSID());
                                 tv_attach_desc.setText(HighLightUtils.highlight(mContext, "附件描述：" + resultlist.get(i).getDOCDESC(), resultlist.get(i).getDOCDESC(), "#1B88EE", 0, 0));
                                 tv_upload_time.setText("上传日期：" + resultlist.get(i).getCREATEDATE());
                                 int finalI = i;

@@ -221,6 +221,16 @@ public class AssertJsDetailLineBean {
             private String ZZVENDOR;
             private String ZZZZS;
 
+            public String getUDTYPE1DEC() {
+                return UDTYPE1DEC;
+            }
+
+            public void setUDTYPE1DEC(String UDTYPE1DEC) {
+                this.UDTYPE1DEC = UDTYPE1DEC;
+            }
+
+            String UDTYPE1DEC;
+
             public String getADMINISTRATOR() {
                 return ADMINISTRATOR;
             }

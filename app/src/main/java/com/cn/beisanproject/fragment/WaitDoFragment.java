@@ -70,6 +70,12 @@ public class WaitDoFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        queryData();
+    }
+
     void initEvent() {
         ld = new LoadingDialog(mContext);
         queryData();
@@ -139,8 +145,7 @@ public class WaitDoFragment extends Fragment {
                     if (response.startsWith("Error")) {
                         ToastUtils.showShort(R.string.GETDATAFAILED);
                     } else {
-                        waitDoListBean = JSONObject.parseObject(response, new TypeReference<WaitDoListBean>() {
-                        });
+                        waitDoListBean = JSONObject.parseObject(response, new TypeReference<WaitDoListBean>() {});
                         if (waitDoListBean.getErrcode().equals("GLOBAL-S-0")) {
                             totalepage = waitDoListBean.getResult().getTotalpage();
                             int totalresult = waitDoListBean.getResult().getTotalresult();
@@ -210,6 +215,5 @@ public class WaitDoFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
-
     }
 }

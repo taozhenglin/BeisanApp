@@ -45,8 +45,8 @@ public class AssertCzDetailLineAdapter extends RecyclerView.Adapter<AssertCzDeta
         holder.tv_prodution_desc.setText("购买日期：" + mList.get(i).getDATEOFPURCHASE());
         holder.tv_stock_count.setText("使用部门：" + mList.get(i).getDEPARTMENT());
         holder.tv_actually_count.setText("所属公司：" + mList.get(i).getUDCOMPANY());
-        holder.tv_diff_count.setVisibility(View.GONE);
-        holder.tv_store.setVisibility(View.GONE);
+        holder.tv_diff_count.setText("原值："+mList.get(i).getCOST());
+        holder.tv_store.setText("处置方式："+mList.get(i).getSCRAPYPE());
     }
 
 

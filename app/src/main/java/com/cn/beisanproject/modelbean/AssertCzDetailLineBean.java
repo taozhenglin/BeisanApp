@@ -134,6 +134,16 @@ public class AssertCzDetailLineBean {
             private String SCRAPYPE;
             private String UDCOMPANY;
 
+            public String getZZCOST() {
+                return ZZCOST;
+            }
+
+            public void setZZCOST(String ZZCOST) {
+                this.ZZCOST = ZZCOST;
+            }
+
+            private String ZZCOST;
+
             public String getCOST() {
                 return COST;
             }

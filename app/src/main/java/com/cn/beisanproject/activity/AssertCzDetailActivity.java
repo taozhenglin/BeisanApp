@@ -74,6 +74,7 @@ public class AssertCzDetailActivity extends AppCompatActivity implements View.On
     private TextView tv_check_endtime;
     private TextView tv_created_by;
     private TextView tv_created_time;
+    TextView tv_owner_companny;
     private LinearLayout ll_assert_container;
     private RecyclerView recyclerView;
     private SmartRefreshLayout refreshLayout;
@@ -127,6 +128,7 @@ public class AssertCzDetailActivity extends AppCompatActivity implements View.On
         tv_check_endtime = findViewById(R.id.tv_check_endtime);
         tv_created_by = findViewById(R.id.tv_created_by);
         tv_created_time = findViewById(R.id.tv_created_time);
+        tv_owner_companny= findViewById(R.id.tv_owner_companny);
         tv_statues = findViewById(R.id.tv_statues);
         tv_title = findViewById(R.id.tv_title);
         recyclerView = findViewById(R.id.recyclerView);
@@ -148,10 +150,11 @@ public class AssertCzDetailActivity extends AppCompatActivity implements View.On
             tv_statues.setVisibility(View.VISIBLE);
             tv_statues.setText(resultlistBean.getSTATUS());
             tv_check_desc.setText("描述: " + resultlistBean.getDESCRIPTION());
-            tv_check_by.setText("创建人: " + resultlistBean.getENTERBY());
+            tv_check_by.setText("创建人: " + resultlistBean.getENTERBYDESC());
             tv_check_starttime.setText("申请日期: " + resultlistBean.getENTERDATE());
             tv_check_endtime.setText("申请事由: " + resultlistBean.getREASON());
             tv_created_by.setText("管理部门: " + resultlistBean.getMANAGEMENT());
+            tv_owner_companny.setText("所属公司:"+resultlistBean.getUDCOMPANY());
             tv_created_time.setVisibility(View.GONE);
             if (status.equals("已取消") || status.equals("取消") || status.equals("已关闭") || status.equals("关闭") || status.equals("已审批")) {
                 tv_approval.setVisibility(View.GONE);
@@ -241,6 +244,8 @@ public class AssertCzDetailActivity extends AppCompatActivity implements View.On
                         tv_check_starttime.setText("申请日期: " + resultlistBean.getENTERDATE());
                         tv_check_endtime.setText("申请事由: " + resultlistBean.getREASON());
                         tv_created_by.setText("管理部门: " + resultlistBean.getMANAGEMENT());
+                        tv_owner_companny.setText("所属公司："+resultlistBean.getUDCOMPANY());
+
                         tv_created_time.setVisibility(View.GONE);
 
                         getAssertLineDetail();

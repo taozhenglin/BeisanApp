@@ -52,6 +52,7 @@ public class AssertDetailAllFragment extends Fragment {
     private TextView tv_check_endtime;
     private TextView tv_created_by;
     private TextView tv_created_time;
+    TextView tv_owner_companny;
     private LinearLayout ll_assert_container;
     private RecyclerView recyclerView;
     private SmartRefreshLayout refreshLayout;
@@ -88,7 +89,7 @@ public class AssertDetailAllFragment extends Fragment {
         tv_check_endtime = view.findViewById(R.id.tv_check_endtime);
         tv_created_by = view.findViewById(R.id.tv_created_by);
         tv_created_time = view.findViewById(R.id.tv_created_time);
-
+        tv_owner_companny= view.findViewById(R.id.tv_owner_companny);
         recyclerView = view.findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(layoutManager);
@@ -106,8 +107,9 @@ public class AssertDetailAllFragment extends Fragment {
         tv_check_by.setText("盘点人: " + mResultlistBean.getPDUSERDESC());
         tv_check_starttime.setText("盘点开始时间: " + mResultlistBean.getSTARTDATE());
         tv_check_endtime.setText("盘点结束时间: " + mResultlistBean.getENDDATE());
-        tv_created_by.setText("创建人: " + mResultlistBean.getPDUSER());
-        tv_created_time.setText("创建时间: " + mResultlistBean.getPDZTDATE());
+        tv_created_by.setVisibility(View.GONE);
+        tv_created_time.setVisibility(View.GONE);
+        tv_owner_companny.setText("所属公司: " + mResultlistBean.getUDCOMPANY());
         getAssertLineDetail();
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -162,14 +164,14 @@ public class AssertDetailAllFragment extends Fragment {
         OkhttpUtil.okHttpGet(url, map, headermap, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
-                LogUtils.d("onFailure=" + e.toString());
+                LogUtils.d("222222onFailure=" + e.toString());
                 finishRefresh();
                 ld.close();
             }
 
             @Override
             public void onResponse(String response) {
-                LogUtils.d("onResponse=" + response);
+                LogUtils.d("222222onResponse=" + response);
                 finishRefresh();
                 ld.close();
                 if (!response.isEmpty()) {
@@ -216,8 +218,8 @@ public class AssertDetailAllFragment extends Fragment {
     public void getNotification(PostData data){
         LogUtils.d("222222 getNotification");
         if (data.getTag().equals("assert check scuess")){
+            currentPageNum=1;
            getAssertLineDetail();
-
         }
     }
 

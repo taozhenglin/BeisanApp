@@ -51,6 +51,7 @@ public class PurchaseOrderAdapter extends RecyclerView.Adapter<PurchaseOrderAdap
         SpannableString highlightdes = HighLightUtils.highlight(mContext, "合同描述：" + mList.get(position).getDESCRIPTION(), mHightlight, "#00ff00", 0, 0);
         holder.tv_contract_desc.setText(highlightdes);
 
+
         if (mList.get(position).getSTATUS().equals("已批准")) {
             holder.iv_contract_statue.setVisibility(View.VISIBLE);
             holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.permitted2));

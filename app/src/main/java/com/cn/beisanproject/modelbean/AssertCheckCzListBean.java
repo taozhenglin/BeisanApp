@@ -132,6 +132,16 @@ public class AssertCheckCzListBean {
             private String STATUS;
             private String STATUSDATE;
 
+            public String getUDCOMPANY() {
+                return UDCOMPANY;
+            }
+
+            public void setUDCOMPANY(String UDCOMPANY) {
+                this.UDCOMPANY = UDCOMPANY;
+            }
+
+            String UDCOMPANY;
+
             public String getDESCRIPTION() {
                 return DESCRIPTION;
             }

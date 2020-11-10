@@ -78,6 +78,7 @@ public class ProjectContractDetailFragment extends Fragment {
     private final boolean mNeedGet;
     private final ProjectContractDetailBean mProjectContractDetailBean;
     TextView tv_contract_no;
+    TextView tv_no;
     TextView tv_contract_statue;
     TextView tv_contract_desc;
     TextView tv_xunjia_no;
@@ -128,13 +129,14 @@ public class ProjectContractDetailFragment extends Fragment {
             company = mProjectContractDetailBean.getResult().getResultlist().get(0).getVENDOR();
 
 
-            tv_contract_no.setText("合同编号：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getCONTRACTNUM());
+            tv_contract_no.setText("合同序列号：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getCONTRACTNUM());
+            tv_no.setText("合同编号：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getCONTNUM());
             tv_contract_statue.setText(mProjectContractDetailBean.getResult().getResultlist().get(0).getSTATUS());
-            if (mProjectContractDetailBean.getResult().getResultlist().get(0).getSTATUS().equals("总经理审批")){
-                ll_assginman.setEnabled(true);
-            }else {
-                ll_assginman.setEnabled(false);
-            }
+//            if (mProjectContractDetailBean.getResult().getResultlist().get(0).getSTATUS().equals("总经理审批")){
+//                ll_assginman.setEnabled(true);
+//            }else {
+//                ll_assginman.setEnabled(false);
+//            }
             tv_assginman.setText("授权代表:"+mProjectContractDetailBean.getResult().getResultlist().get(0).getQIANMING());
             tv_contract_desc.setText("合同描述：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getDESCRIPTION());
             tv_xunjia_no.setText("询价单号：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getA_RFQNUM());
@@ -150,7 +152,7 @@ public class ProjectContractDetailFragment extends Fragment {
             tv_request_department.setText("申请部门：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getA_DEPT());
             tv_contract_created.setText("合同编制人：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getHTJF());
             tv_contract_tax.setText("合同税率：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getZBJ());
-            tv_contract_cost.setText("合同金额：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getTOTALBASECOST());
+            tv_contract_cost.setText("合同金额(不含税)：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getTOTALBASECOST());
             tv_total_cost.setText("合同总金额：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getTOTALCOST());
             tv_dead_line.setText("质保金到期日:");
             tv_contract_signtime.setText("合同签订日期：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getJ_CONTRACTDATE());
@@ -161,13 +163,15 @@ public class ProjectContractDetailFragment extends Fragment {
             contractnum = mResultlistBean.getCONTRACTNUM() + "";
             orgid = mResultlistBean.getORGID() + "";
             company = mResultlistBean.getVENDOR();
-            tv_contract_no.setText("合同编号：" + mResultlistBean.getCONTRACTNUM());
+            tv_contract_no.setText("合同序列号：" + mResultlistBean.getCONTRACTNUM());
+            tv_no.setText("合同编号：" + mResultlistBean.getCONTNUM());
+
             tv_contract_statue.setText(mResultlistBean.getSTATUS());
-            if (mResultlistBean.getSTATUS().equals("总经理审批")){
-                ll_assginman.setEnabled(true);
-            }else {
-                ll_assginman.setEnabled(false);
-            }
+//            if (mResultlistBean.getSTATUS().equals("总经理审批")){
+//                ll_assginman.setEnabled(true);
+//            }else {
+//                ll_assginman.setEnabled(false);
+//            }
             tv_assginman.setText("授权代表:"+mResultlistBean.getQIANMING());
             tv_contract_desc.setText("合同描述：" + mResultlistBean.getDESCRIPTION());
             tv_xunjia_no.setText("询价单号：" + mResultlistBean.getA_RFQNUM());
@@ -183,7 +187,7 @@ public class ProjectContractDetailFragment extends Fragment {
             tv_request_department.setText("申请部门：" + mResultlistBean.getA_DEPT());
             tv_contract_created.setText("合同编制人：" + mResultlistBean.getHTJF());
             tv_contract_tax.setText("合同税率：" + mResultlistBean.getZBJ());
-            tv_contract_cost.setText("合同金额：" + mResultlistBean.getTOTALBASECOST());
+            tv_contract_cost.setText("合同金额(不含税)：" + mResultlistBean.getTOTALBASECOST());
             tv_total_cost.setText("合同总金额：" + mResultlistBean.getTOTALCOST());
             tv_dead_line.setText("质保金到期日:");
             tv_contract_signtime.setText("合同签订日期：" + mResultlistBean.getJ_CONTRACTDATE());
@@ -281,6 +285,8 @@ public class ProjectContractDetailFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.project_contract_detail_fragment, container, false);
         tv_contract_no = view.findViewById(R.id.tv_contract_no);
+        tv_no = view.findViewById(R.id.tv_no);
+
         tv_contract_statue = view.findViewById(R.id.tv_contract_statue);
         tv_contract_desc = view.findViewById(R.id.tv_contract_desc);
         tv_xunjia_no = view.findViewById(R.id.tv_xunjia_no);
@@ -368,7 +374,7 @@ public class ProjectContractDetailFragment extends Fragment {
                                 TextView tv_attach_no = inflate.findViewById(R.id.tv_attach_no);
                                 TextView tv_attach_desc = inflate.findViewById(R.id.tv_attach_desc);
                                 TextView tv_upload_time = inflate.findViewById(R.id.tv_upload_time);
-                                tv_attach_no.setText("附件编号："+resultlist.get(i).getDOCINFOID());
+                                tv_attach_no.setText("附件编号："+resultlist.get(i).getDOCLINKSID());
                                 tv_attach_desc.setText(HighLightUtils.highlight(mContext, "附件描述：" + resultlist.get(i).getDOCDESC(), resultlist.get(i).getDOCDESC(), "#1B88EE", 0, 0));
                                 tv_upload_time.setText("上传日期：" + resultlist.get(i).getCREATEDATE());
                                 int finalI = i;
@@ -606,8 +612,8 @@ public class ProjectContractDetailFragment extends Fragment {
                 "   <soap:Body>\n" +
                 "      <max:mobileserviceUpdateMbo creationDateTime=\"\" baseLanguage=\"zh\" transLanguage=\"zh\" messageID=\"\" maximoVersion=\"\">\n" +
                 "         <max:json>%s</max:json>\n" +
-                "         <max:mboObjectName> PURCHVIEW </max:mboObjectName>\n" +
-                "         <max:mboKey> contractnum </max:mboKey>\n" +
+                "         <max:mboObjectName>PURCHVIEW</max:mboObjectName>\n" +
+                "         <max:mboKey>CONTRACTNUM</max:mboKey>\n" +
                 "         <max:mboKeyValue>%s</max:mboKeyValue>\n" +
                 "      </max:mobileserviceUpdateMbo>\n" +
                 "   </soap:Body>\n" +
@@ -628,6 +634,7 @@ public class ProjectContractDetailFragment extends Fragment {
         A_BUDGETNUM.add(obj2);
         object.put("A_BUDGETNUM",A_BUDGETNUM);
         request = String.format(request, String.valueOf(object),contractnum);
+        LogUtils.d("222222contractnum="+contractnum);
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=utf-8");
         headermap.put("SOAPAction", "urn:action");

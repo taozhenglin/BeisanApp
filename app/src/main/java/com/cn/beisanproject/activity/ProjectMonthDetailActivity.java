@@ -287,7 +287,7 @@ public class ProjectMonthDetailActivity extends AppCompatActivity {
                                 TextView tv_attach_no = inflate.findViewById(R.id.tv_attach_no);
                                 TextView tv_attach_desc = inflate.findViewById(R.id.tv_attach_desc);
                                 TextView tv_upload_time = inflate.findViewById(R.id.tv_upload_time);
-                                tv_attach_no.setText("附件编号:" + resultlist.get(i).getDOCINFOID());
+                                tv_attach_no.setText("附件编号:" + resultlist.get(i).getDOCLINKSID());
                                 tv_attach_desc.setText(HighLightUtils.highlight(ProjectMonthDetailActivity.this, "附件描述:" + resultlist.get(i).getDOCDESC(), resultlist.get(i).getDOCDESC(), "#1B88EE", 0, 0));
                                 tv_upload_time.setText("上传日期:" + resultlist.get(i).getCREATEDATE());
                                 int finalI = i;

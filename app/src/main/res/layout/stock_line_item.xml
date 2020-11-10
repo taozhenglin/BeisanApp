@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="明细行序号："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_product_location"
@@ -34,7 +34,7 @@
             android:layout_marginRight="@dimen/dp5"
             android:layout_weight="1"
             android:text="货位："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
     </LinearLayout>
 
 
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="行类型："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
 
     <TextView
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp3"
         android:text="物资编码："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
     <TextView
         android:id="@+id/tv_prodution_desc"
         android:layout_width="wrap_content"
@@ -63,7 +63,7 @@
         android:layout_below="@+id/tv_line_desc"
         android:layout_marginTop="@dimen/dp3"
         android:text="物资描述："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <TextView
         android:id="@+id/tv_stock_count"
@@ -72,7 +72,7 @@
         android:layout_below="@+id/tv_model"
         android:layout_marginTop="@dimen/dp3"
         android:text="库存数量："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
 
     <TextView
@@ -80,14 +80,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="实盘数量："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <TextView
         android:id="@+id/tv_diff_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="差异数量："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -102,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="单位成本："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_line_cost"
@@ -110,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="行成本："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
     </LinearLayout>
     <TextView
         android:id="@+id/tv_store"
@@ -118,7 +118,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp3"
         android:text="仓库："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
+    <TextView
+        android:id="@+id/tv_zg_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp3"
+        android:text="转固原值："
+        android:textSize="@dimen/sp14"
+        android:visibility="gone"
+        />
 
 </LinearLayout>
     <ImageView

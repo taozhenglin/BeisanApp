@@ -251,6 +251,7 @@ public class AssertListItemDetailActivity extends AppCompatActivity {
                         data.setTag("assert check scuess");
                         //通知固定资产盘点明细行和固定资产盘点差异列表刷新数据
                         EventBus.getDefault().post(data);
+                        ToastUtils.showShort("修改成功");
                         finish();
                     } else {
                         ToastUtils.showShort(startWorkProcessBean.getErrorMsg());

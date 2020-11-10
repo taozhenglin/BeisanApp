@@ -79,7 +79,7 @@ public class AsseertCheckCzAdapter extends RecyclerView.Adapter<AsseertCheckCzAd
         }
         SpannableString highlightDesc = HighLightUtils.highlight(mContext, "描述: " + mList.get(position).getDESCRIPTION(), mHightlight, "#00ff00", 0, 0);
         holder.tv_check_desc.setText(highlightDesc);
-        holder.tv_check_by.setText("创建人: " + mList.get(position).getENTERBY());
+        holder.tv_check_by.setText("创建人: " + mList.get(position).getENTERBYDESC());
         holder.tv_check_starttime.setText("申请日期: " + mList.get(position).getENTERDATE());
         holder.tv_check_endtime.setText("申请事由: " + mList.get(position).getREASON());
         holder.tv_created_by.setText("管理部门: " + mList.get(position).getMANAGEMENT());

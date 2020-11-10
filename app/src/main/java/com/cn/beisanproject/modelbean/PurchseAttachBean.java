@@ -117,6 +117,16 @@ public class PurchseAttachBean implements Serializable {
             private String DOCINFOID;
             private String DOCUMENT;
 
+            public String getDOCLINKSID() {
+                return DOCLINKSID;
+            }
+
+            public void setDOCLINKSID(String DOCLINKSID) {
+                this.DOCLINKSID = DOCLINKSID;
+            }
+
+            String DOCLINKSID;
+
             public String getCREATEDATE() {
                 return CREATEDATE;
             }

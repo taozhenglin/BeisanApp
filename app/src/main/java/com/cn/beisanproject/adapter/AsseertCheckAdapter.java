@@ -46,8 +46,8 @@ public class AsseertCheckAdapter extends RecyclerView.Adapter<AsseertCheckAdapte
         holder.tv_check_by.setText("盘点人: " + mList.get(position).getPDUSERDESC());
         holder.tv_check_starttime.setText("盘点开始时间: " + mList.get(position).getSTARTDATE());
         holder.tv_check_endtime.setText("盘点结束时间: " + mList.get(position).getENDDATE());
-        holder.tv_created_by.setText("创建人: " + mList.get(position).getPDUSER());
-        holder.tv_created_time.setText("创建时间: " + mList.get(position).getPDZTDATE());
+        holder.tv_created_by.setVisibility(View.GONE);
+        holder.tv_created_time.setVisibility(View.GONE);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

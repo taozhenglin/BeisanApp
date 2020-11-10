@@ -48,25 +48,25 @@ public class AsseertCheckJsAdapter extends RecyclerView.Adapter<AsseertCheckJsAd
         holder.tv_check_no.setText(highlightNo);
         SpannableString highlightDesc = HighLightUtils.highlight(mContext, "接收描述: " + mList.get(position).getDESCRIPTION(), mHightlight, "#00ff00", 0, 0);
         holder.tv_check_desc.setText(highlightDesc);
-        if (mList.get(position).getStatus().equals("已批准")) {
+        if (mList.get(position).getSTATUS().equals("已批准")) {
             holder.iv_contract_statue.setVisibility(View.VISIBLE);
             holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.permitted2));
             holder.tv_statues.setVisibility(View.GONE);
             holder.tv_statues.setBackgroundDrawable(null);
 
-        }else  if (mList.get(position).getStatus().equals("驳回")){
+        }else  if (mList.get(position).getSTATUS().equals("驳回")){
             holder.iv_contract_statue.setVisibility(View.VISIBLE);
             holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.reject));
             holder.tv_statues.setVisibility(View.GONE);
             holder.tv_statues.setBackgroundDrawable(null);
 
-        }else  if (mList.get(position).getStatus().equals("取消")||mList.get(position).getStatus().equals("已取消")){
+        }else  if (mList.get(position).getSTATUS().equals("取消")||mList.get(position).getSTATUS().equals("已取消")){
             holder.iv_contract_statue.setVisibility(View.VISIBLE);
             holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.canceled));
             holder.tv_statues.setVisibility(View.GONE);
             holder.tv_statues.setBackgroundDrawable(null);
 
-        }else  if (mList.get(position).getStatus().equals("完成")||mList.get(position).getStatus().equals("已完成")){
+        }else  if (mList.get(position).getSTATUS().equals("完成")||mList.get(position).getSTATUS().equals("已完成")){
             holder.iv_contract_statue.setVisibility(View.VISIBLE);
             holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.finished));
             holder.tv_statues.setVisibility(View.GONE);
@@ -76,10 +76,10 @@ public class AsseertCheckJsAdapter extends RecyclerView.Adapter<AsseertCheckJsAd
             holder.iv_contract_statue.setVisibility(View.GONE);
             holder.tv_statues.setVisibility(View.VISIBLE);
             holder.tv_statues.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_shape_20));
-            holder.tv_statues.setText(mList.get(position).getStatus());
+            holder.tv_statues.setText(mList.get(position).getSTATUS());
 
         }
-        holder.tv_check_by.setText("创建人: " + mList.get(position).getENTERBY());
+        holder.tv_check_by.setText("创建人: " + mList.get(position).getENTERBYDESC());
         holder.tv_check_starttime.setText("创建时间: " + mList.get(position).getENTERDATE());
         holder.tv_check_endtime.setText("接收类型: " + mList.get(position).getTYPE());
         holder.tv_created_by.setText("项目主管部门: " + mList.get(position).getDEPT());

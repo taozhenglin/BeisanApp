@@ -126,6 +126,16 @@ public class AssertCheckListBean implements Serializable {
             private String PDZTDATE;
             private String STARTDATE;
 
+            public String getUDCOMPANY() {
+                return UDCOMPANY;
+            }
+
+            public void setUDCOMPANY(String UDCOMPANY) {
+                this.UDCOMPANY = UDCOMPANY;
+            }
+
+            String UDCOMPANY;
+
             public String getENDDATE() {
                 return ENDDATE;
             }

@@ -73,6 +73,7 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
     private TextView tv_check_endtime;
     private TextView tv_created_by;
     private TextView tv_created_time;
+    TextView tv_owner_companny;
     private LinearLayout ll_assert_container;
     private RecyclerView recyclerView;
     private SmartRefreshLayout refreshLayout;
@@ -108,7 +109,7 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
             mWitdolistBean = (WaitDoListBean.ResultBean.ResultlistBean) getIntent().getExtras().get("ResultlistBean");
         } else {
             resultlistBean = (AssertCheckJsListBean.ResultBean.ResultlistBean) getIntent().getExtras().get("ResultlistBean");
-            status = resultlistBean.getStatus();
+            status = resultlistBean.getSTATUS();
 
 
         }
@@ -134,6 +135,7 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
         tv_check_endtime = findViewById(R.id.tv_check_endtime);
         tv_created_by = findViewById(R.id.tv_created_by);
         tv_created_time = findViewById(R.id.tv_created_time);
+        tv_owner_companny = findViewById(R.id.tv_owner_companny);
         tv_title= findViewById(R.id.tv_title);
         tv_title.setText("接收明细行");
         tv_created_time.setVisibility(View.GONE);
@@ -149,11 +151,12 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
             tv_check_no.setText("接收单号: " +resultlistBean.getFIXEDASSETJSNUM());
             tv_check_desc.setText("接收描述: " +resultlistBean.getDESCRIPTION());
             tv_statues.setVisibility(View.VISIBLE);
-            tv_statues.setText(resultlistBean.getStatus());
-            tv_check_by.setText("创建人: " + resultlistBean.getENTERBY());
+            tv_statues.setText(resultlistBean.getSTATUS());
+            tv_check_by.setText("创建人: " + resultlistBean.getENTERBYDESC());
             tv_check_starttime.setText("创建时间: " + resultlistBean.getENTERDATE());
             tv_check_endtime.setText("接收类型: " + resultlistBean.getTYPE());
             tv_created_by.setText("项目主管部门: " + resultlistBean.getDEPT());
+            tv_owner_companny.setText("所属公司："+resultlistBean.getUDCOMPANYDESC());
             if (status.equals("已取消") || status.equals("取消")||status.equals("已关闭") || status.equals("关闭")|| status.equals("已审批")) {
                 tv_approval.setVisibility(View.GONE);
             }else {
@@ -225,7 +228,7 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
                     AssertCheckJsListBean assertCheckJsListBean= JSONObject.parseObject(response, new TypeReference<AssertCheckJsListBean>() {});
                     if (assertCheckJsListBean.getErrcode().equals("GLOBAL-S-0")) {
                         AssertCheckJsListBean.ResultBean.ResultlistBean resultlistBean = assertCheckJsListBean.getResult().getResultlist().get(0);
-                        status = AssertJsDetailActivity.this.resultlistBean.getStatus();
+                        status = AssertJsDetailActivity.this.resultlistBean.getSTATUS();
                         if (status.equals("已取消") || status.equals("取消")||status.equals("已关闭") || status.equals("关闭")|| status.equals("已审批")) {
                             tv_approval.setVisibility(View.GONE);
                         }else {
@@ -239,12 +242,14 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
                         tv_check_no.setText("接收单号: " +resultlistBean.getFIXEDASSETJSNUM());
                         tv_check_desc.setText("接收描述: " +resultlistBean.getDESCRIPTION());
                         tv_statues.setVisibility(View.VISIBLE);
-                        tv_statues.setText(resultlistBean.getStatus());
-                        tv_check_by.setText("创建人: " + resultlistBean.getENTERBY());
+                        tv_statues.setText(resultlistBean.getSTATUS());
+                        tv_check_by.setText("创建人: " + resultlistBean.getENTERBYDESC());
                         tv_check_starttime.setText("创建时间: " + resultlistBean.getENTERDATE());
                         tv_check_endtime.setText("接收类型: " + resultlistBean.getTYPE());
                         tv_created_by.setText("项目主管部门: " + resultlistBean.getDEPT());
-                       getAssertLineDetail();
+                        tv_owner_companny.setText(""+resultlistBean.getUDCOMPANYDESC());
+
+                        getAssertLineDetail();
                     }
 
                 }
