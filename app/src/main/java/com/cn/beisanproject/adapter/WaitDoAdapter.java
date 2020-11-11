@@ -24,6 +24,7 @@ import com.cn.beisanproject.activity.ProjectContractDetailActivity;
 import com.cn.beisanproject.activity.ProjectEnquiryDetailActivity;
 import com.cn.beisanproject.activity.ProjectMonthColletDetailActivity;
 import com.cn.beisanproject.activity.ProjectMonthDetailActivity;
+import com.cn.beisanproject.activity.ProjectYsDetailActivity;
 import com.cn.beisanproject.activity.PurchaseContractDetailActivity;
 import com.cn.beisanproject.activity.PurchaseEnquiryDetailActivity;
 import com.cn.beisanproject.activity.PurchaseListDetailActivity;
@@ -123,6 +124,9 @@ public class WaitDoAdapter extends RecyclerView.Adapter<WaitDoAdapter.MyViewHold
                 break;
             case "UDFIXBF":
                 holder.tv_title.setText("固定资产处置");
+                break;
+            case "UDPRYS":
+                holder.tv_title.setText("项目验收");
                 break;
 
         }
@@ -263,6 +267,12 @@ public class WaitDoAdapter extends RecyclerView.Adapter<WaitDoAdapter.MyViewHold
                         break;
                     case "UDFIXBF"://固定资产处置
                         intent=new Intent(mContext, AssertCzDetailActivity.class);
+                        intent.putExtra("ResultlistBean",mResultList.get(position));
+                        intent.putExtra("from","waitdolist");//从代办事项列表进入详情的还需要接口请求数据 列表数据不够用
+                        mContext.startActivity(intent);
+                        break;
+                    case "UDPRYS"://项目验收
+                        intent=new Intent(mContext, ProjectYsDetailActivity.class);
                         intent.putExtra("ResultlistBean",mResultList.get(position));
                         intent.putExtra("from","waitdolist");//从代办事项列表进入详情的还需要接口请求数据 列表数据不够用
                         mContext.startActivity(intent);

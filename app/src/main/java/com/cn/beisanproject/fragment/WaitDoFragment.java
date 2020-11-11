@@ -119,7 +119,7 @@ public class WaitDoFragment extends Fragment {
         object.put("orderby", "startdate desc");
         String sqlSearch = " exists (select personid from maxuser where loginid=%s " +
                 "and wfassignment.assigncode=maxuser.personid)  " +
-                "and assignstatus='活动' and processname in('PO','RFQ','CONTPURCH','PRSUM','PR','GPDTZ','VENAPPLY','JLTZ','MATREQ','SBTZ','SSTZ','XMHT','UDXMHTBG','PRPROJ','XBJ','PROJSUM','XXHTZ','CONTRACTPO','INVUSEZY','UDFIXYSRG','UDFIXBF','UDFIXZZ')";
+                "and assignstatus='活动' and processname in('PO','RFQ','CONTPURCH','PRSUM','PR','GPDTZ','VENAPPLY','JLTZ','MATREQ','SBTZ','SSTZ','XMHT','UDXMHTBG','PRPROJ','XBJ','PROJSUM','XXHTZ','CONTRACTPO','INVUSEZY','UDFIXYSRG','UDFIXBF','UDFIXZZ','UDPRYS')";
         sqlSearch = String.format(sqlSearch, "'" + SharedPreferencesUtil.getString(mContext, "personId") + "'");
         object.put("sqlSearch", sqlSearch);
         HashMap<String, String> headermap = new HashMap<>();
@@ -197,8 +197,8 @@ public class WaitDoFragment extends Fragment {
                 postData.getTag().equals("采购询价单") || postData.getTag().equals("采购订单") ||
                 postData.getTag().equals("入库单") || postData.getTag().equals("项目合同变更") ||
                 postData.getTag().equals("项目月度计划汇总") || postData.getTag().equals("项目询价单") ||
-                postData.getTag().equals("项目立项/项目月度计划") || postData.getTag().equals("固定资产接收")
-                || postData.getTag().equals("固定资产接收处置")
+                postData.getTag().equals("项目立项/项目月度计划") || postData.getTag().equals("固定资产接收")||
+                postData.getTag().equals("固定资产处置")||postData.getTag().equals("项目验收")
         ) {
             queryData();
         }

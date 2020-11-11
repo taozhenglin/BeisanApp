@@ -24,6 +24,7 @@ import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.adapter.AsseertCheckJsAdapter;
 import com.cn.beisanproject.modelbean.AssertCheckJsListBean;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
 import com.guideelectric.loadingdialog.view.LoadingDialog;
@@ -31,6 +32,10 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 
@@ -65,6 +70,7 @@ public class AssertCheckJsListActivity extends AppCompatActivity implements View
         initView();
         initEvent();
         initListener();
+        EventBus.getDefault().register(this);
     }
     private void initListener() {
         ll_back.setOnClickListener(this);
@@ -189,8 +195,6 @@ public class AssertCheckJsListActivity extends AppCompatActivity implements View
                                 ToastUtils.showShort("没有更多数据了");
                             }
                         }
-
-
                     }
 
                 }
@@ -216,8 +220,19 @@ public class AssertCheckJsListActivity extends AppCompatActivity implements View
             case R.id.tv_search:
                 currentPageNum=1;
                 query();
-
                 break;
         }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    // 刷新列表
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getNotify(PostData postData) {
+        if (postData.getTag().equals("固定资产接收"))
+            query();
     }
 }

@@ -595,7 +595,44 @@
 
 
     </LinearLayout>
-    <View
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:weightSum="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp5"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ll_project_5"
+                android:layout_width="0dp"
+                android:layout_weight="0.25"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:src="@drawable/ys"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="项目验收"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:gravity="center"
+                    android:textSize="@dimen/sp14"
+                    />
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+        <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp1"
         android:background="@color/powderblue"

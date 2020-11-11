@@ -297,7 +297,7 @@ public class PurchaseOrderDetailFragment extends Fragment {
                         ll_contract_attachment.removeAllViews();
                         if (resultlist.size() > 0) {
                             for (int i = 0; i < resultlist.size(); i++) {
-                                View inflate = LayoutInflater.from(mContext).inflate(R.layout.contract_detail_attach, null, false);
+                                View inflate = LayoutInflater.from(mContext).inflate(R.layout.contract_detail_attach, ll_contract_attachment, false);
                                 TextView tv_attach_no = inflate.findViewById(R.id.tv_attach_no);
                                 TextView tv_attach_desc = inflate.findViewById(R.id.tv_attach_desc);
                                 TextView tv_upload_time = inflate.findViewById(R.id.tv_upload_time);

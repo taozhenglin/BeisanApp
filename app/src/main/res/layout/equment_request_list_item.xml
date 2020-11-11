@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/dp5"
+    android:padding="@dimen/dp5"
     android:background="@drawable/radis8_layout_shape"
-    android:orientation="vertical"
-    android:padding="@dimen/dp5">
+
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:orientation="vertical"
+        >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -120,4 +128,12 @@
         android:layout_marginTop="@dimen/dp3"
         />
 
-</LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_contract_statue"
+        android:layout_width="@dimen/dp55"
+        android:layout_height="@dimen/dp55"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp5"
+        />
+</RelativeLayout>

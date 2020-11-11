@@ -26,6 +26,7 @@ import com.cn.beisanproject.activity.ProjectContractListActivity;
 import com.cn.beisanproject.activity.ProjectContractChangeListActivity;
 import com.cn.beisanproject.activity.ProjectEnquiryListActivity;
 import com.cn.beisanproject.activity.ProjectMonthColletListActivity;
+import com.cn.beisanproject.activity.ProjectYsListActivity;
 import com.cn.beisanproject.activity.PurchaseEnquiryListActivity;
 import com.cn.beisanproject.activity.ProjectMonthListActivity;
 import com.cn.beisanproject.activity.PurchaseListActivity;
@@ -64,6 +65,7 @@ public class FunCtionFragment extends Fragment implements View.OnClickListener {
     private LinearLayout ll_supplier_management;
     private LinearLayout ll_purchase5;
     private LinearLayout ll_stock_move;
+    private LinearLayout ll_project_5;
 
 
     public FunCtionFragment(Context context) {
@@ -94,6 +96,7 @@ public class FunCtionFragment extends Fragment implements View.OnClickListener {
         ll_project_2 = view.findViewById(R.id.ll_project_2);
         ll_project_3 = view.findViewById(R.id.ll_project_3);
         ll_project_4 = view.findViewById(R.id.ll_project_4);
+        ll_project_5 = view.findViewById(R.id.ll_project_5);
 
         ll_purchase1 = view.findViewById(R.id.ll_purchase1);//采购
         ll_purchase2 = view.findViewById(R.id.ll_purchase2);
@@ -125,6 +128,8 @@ public class FunCtionFragment extends Fragment implements View.OnClickListener {
         ll_project_2.setOnClickListener(this);
         ll_project_3.setOnClickListener(this);
         ll_project_4.setOnClickListener(this);
+        ll_project_5.setOnClickListener(this);
+
         ll_purchase1.setOnClickListener(this);
         ll_purchase2.setOnClickListener(this);
         ll_purchase3.setOnClickListener(this);
@@ -188,8 +193,11 @@ public class FunCtionFragment extends Fragment implements View.OnClickListener {
             case R.id.ll_project_4://项目合同变更
                 startActivity(new Intent(mContext, ProjectContractChangeListActivity.class));
                 break;
+            case R.id.ll_project_5://项目验收
+                startActivity(new Intent(mContext, ProjectYsListActivity.class));
+                break;
             case R.id.ll_purchase1://采购月度计划
-                startActivity(new Intent(mContext, PurchaseMonthPlanListActivity.class));
+                startActivity(new Intent(mContext, ProjectYsListActivity.class));
                 break;
             case R.id.ll_purchase2://采购计划月度汇总
                 startActivity(new Intent(mContext, PurchasePlanMonthCollectListActivity.class));

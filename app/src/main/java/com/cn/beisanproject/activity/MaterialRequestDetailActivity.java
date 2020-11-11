@@ -129,12 +129,9 @@ public class MaterialRequestDetailActivity extends AppCompatActivity implements 
                 }
             }
         }
-
         initEvent();
         EventBus.getDefault().register(this);
-
     }
-
     private void initView() {
         ll_back = findViewById(R.id.ll_back);
         tv_common_title = findViewById(R.id.tv_common_title);
@@ -156,7 +153,6 @@ public class MaterialRequestDetailActivity extends AppCompatActivity implements 
         tv_write_time = findViewById(R.id.tv_write_time);
         tv_material_team = findViewById(R.id.tv_material_team);
         tv_material_phone = findViewById(R.id.tv_material_phone);
-
         ll_1 = findViewById(R.id.ll_1);
         ll_2 = findViewById(R.id.ll_2);
         ll_3 = findViewById(R.id.ll_3);
@@ -168,8 +164,6 @@ public class MaterialRequestDetailActivity extends AppCompatActivity implements 
 //        tv_new_line = findViewById(R.id.tv_new_line);
         //启动工作流
         tv_start = findViewById(R.id.tv_start);
-
-
     }
 
     private void initEvent() {
@@ -350,7 +344,6 @@ public class MaterialRequestDetailActivity extends AppCompatActivity implements 
                 LogUtils.d("onFailure==" + e.toString());
                 ld.close();
             }
-
             @Override
             public void onResponse(String response) {
                 LogUtils.d("onResponse==" + response);

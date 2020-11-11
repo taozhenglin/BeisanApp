@@ -4,6 +4,6 @@
     <solid android:color="@color/guide_blue" />
     <padding android:left="@dimen/dp6"/>
     <padding android:right="@dimen/dp6"/>
-    <padding android:top="@dimen/dp3"/>
-    <padding android:bottom="@dimen/dp3"/>
+    <padding android:top="@dimen/dp1"/>
+    <padding android:bottom="@dimen/dp1"/>
 </shape>

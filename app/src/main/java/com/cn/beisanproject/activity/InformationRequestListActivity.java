@@ -37,6 +37,9 @@ import java.util.HashMap;
 
 import okhttp3.Call;
 
+/**
+ * 信息化台账增减申请列表
+ */
 public class InformationRequestListActivity extends AppCompatActivity implements View.OnClickListener {
     private RecyclerView recyclerView;
     private SmartRefreshLayout refreshLayout;
@@ -67,22 +70,7 @@ public class InformationRequestListActivity extends AppCompatActivity implements
     private void initListener() {
         tv_back.setOnClickListener(this);
         tv_search.setOnClickListener(this);
-        edt_search_contract.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
     }
 
     private void initView() {

@@ -184,6 +184,13 @@
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <!--        项目合同变更详情-->
         <activity android:name=".activity.ProjectContractChangeActivity" />
+        <!--        项目验收 列表-->
+        <activity
+            android:name=".activity.ProjectYsListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!--        项目验收 列表-->
+        <activity
+            android:name=".activity.ProjectYsDetailActivity" />
 
         <!--采购月度计划列表-->
         <activity

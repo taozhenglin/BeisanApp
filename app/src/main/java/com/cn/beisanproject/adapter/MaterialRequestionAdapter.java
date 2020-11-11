@@ -59,7 +59,14 @@ public class MaterialRequestionAdapter extends RecyclerView.Adapter<MaterialRequ
             holder.tv_material_statue.setVisibility(View.GONE);
             holder.tv_material_statue.setBackgroundDrawable(null);
 
-        }else {
+        }
+        else  if (mList.get(position).getSTATUS().equals("完成")||mList.get(position).getSTATUS().equals("已完成")){
+            holder.iv_contract_statue.setVisibility(View.VISIBLE);
+            holder.iv_contract_statue.setImageDrawable(mContext.getResources().getDrawable(R.drawable.finished));
+            holder.tv_material_statue.setVisibility(View.GONE);
+            holder.tv_material_statue.setBackgroundDrawable(null);
+        }
+        else {
             holder.iv_contract_statue.setVisibility(View.GONE);
             holder.tv_material_statue.setVisibility(View.VISIBLE);
             holder.tv_material_statue.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_shape_20));
