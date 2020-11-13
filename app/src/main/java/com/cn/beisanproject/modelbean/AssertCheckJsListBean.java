@@ -137,6 +137,17 @@ public class AssertCheckJsListBean {
             private String TYPE;
             private String STATUS;
 
+            public String getFIXEDASSETJSID() {
+                return FIXEDASSETJSID;
+            }
+
+            public void setFIXEDASSETJSID(String FIXEDASSETJSID) {
+                this.FIXEDASSETJSID = FIXEDASSETJSID;
+            }
+
+            String FIXEDASSETJSID;
+
+
             public String getUDCOMPANYDESC() {
                 return UDCOMPANYDESC;
             }

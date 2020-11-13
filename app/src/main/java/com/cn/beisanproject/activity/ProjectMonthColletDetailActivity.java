@@ -495,6 +495,13 @@ public class ProjectMonthColletDetailActivity extends AppCompatActivity implemen
     }
 
     private void goApproval(int ifAgree, String opinion) {
+        if (StringUtils.isEmpty(opinion)){
+            if (isAgree==1){
+                opinion="同意";
+            }else {
+                opinion="驳回";
+            }
+        }
         /**
          * --审批（推送）状态不等于【“草稿”，“已批准”，“已取消”】，调用审批接口
          * <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:max="http://www.ibm.com/maximo">

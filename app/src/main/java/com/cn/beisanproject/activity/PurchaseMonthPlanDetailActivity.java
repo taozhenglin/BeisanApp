@@ -604,6 +604,13 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
          * 	</soapenv:Body>
          * </soapenv:Envelope>
          */
+        if (StringUtils.isEmpty(opinion)){
+            if (ifAgree==1){
+                opinion="同意";
+            }else {
+                opinion="驳回";
+            }
+        }
         String request = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
                 "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:max=\"http://www.ibm.com/maximo\">" +
                 "<soapenv:Header/>" +

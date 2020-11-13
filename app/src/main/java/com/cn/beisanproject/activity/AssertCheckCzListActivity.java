@@ -162,7 +162,6 @@ public class AssertCheckCzListActivity extends AppCompatActivity implements View
                                 asseertCheckCzAdapter.setData(assertCheckczListBean.getResult().getResultlist(),edt_search_contract.getText().toString());
                                 asseertCheckCzAdapter.notifyDataSetChanged();
                             }
-
                         } else {
                             if (currentPageNum<=totalPage){
                                 asseertCheckCzAdapter.addAllList(assertCheckczListBean.getResult().getResultlist());

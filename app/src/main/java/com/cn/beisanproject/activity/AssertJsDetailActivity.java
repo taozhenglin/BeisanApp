@@ -100,6 +100,7 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
     private int isAgree=1;
     private String type;
     private String FIXEDASSETJSNUM;
+    private String FIXEDASSETJSID;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -116,6 +117,7 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
             status = resultlistBean.getSTATUS();
             type=resultlistBean.getTYPE();
             FIXEDASSETJSNUM=resultlistBean.getFIXEDASSETJSNUM();
+            FIXEDASSETJSID=resultlistBean.getFIXEDASSETJSID();
 
 
         }
@@ -238,6 +240,8 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
                             status = resultlistBean.getSTATUS();
                             type=resultlistBean.getTYPE();
                             FIXEDASSETJSNUM=resultlistBean.getFIXEDASSETJSNUM();
+                            FIXEDASSETJSID=resultlistBean.getFIXEDASSETJSID();
+
                             if (status.equals("已取消") || status.equals("取消")||status.equals("已关闭") || status.equals("关闭")|| status.equals("已审批")) {
                                 tv_approval.setVisibility(View.GONE);
                             }else {
@@ -488,10 +492,10 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
          *    <soap:Header/>
          *    <soap:Body>
          *       <max:wfservicestartWF creationDateTime="" baseLanguage="zh" transLanguage="zh" messageID="" maximoVersion="">
-         *          <max:processname>JLTZ</max:processname>
-         *          <max:mbo>JD_MEASUREMENT</max:mbo>
+         *          <max:processname>UDFIXZZZG</max:processname>
+         *          <max:mbo>FIXEDASSETJS</max:mbo>
          *          <max:keyValue>101</max:keyValue>
-         *          <max:key>JD_MEASUREMENTID</max:key>
+         *          <max:key>FIXEDASSETJSID</max:key>
          *          <max:loginid>MAXADMIN</max:loginid>
          *       </max:wfservicestartWF>
          *    </soap:Body>
@@ -504,12 +508,12 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
                 "         <max:processname>UDFIXZZZG</max:processname>\n" +
                 "         <max:mbo>FIXEDASSETJS</max:mbo>\n" +
                 "         <max:keyValue>%s</max:keyValue>\n" +
-                "         <max:key>FIXEDASSETJSNUM</max:key>\n" +
+                "         <max:key>FIXEDASSETJSID</max:key>\n" +
                 "         <max:loginid>%s</max:loginid>\n" +
                 "      </max:wfservicestartWF>\n" +
                 "   </soap:Body>\n" +
                 "</soap:Envelope>";
-        request = String.format(request, resultlistBean.getFIXEDASSETJSNUM(), SharedPreferencesUtil.getString(this, "personId"));
+        request = String.format(request, FIXEDASSETJSID, SharedPreferencesUtil.getString(this, "personId"));
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=utf-8");
         headermap.put("SOAPAction", "urn:action");
@@ -554,6 +558,13 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
     }
     private void goApproval(int ifAgree, String opinion) {
         ld.show();
+        if (StringUtils.isEmpty(opinion)){
+            if (isAgree==1){
+                opinion="同意";
+            }else {
+                opinion="驳回";
+            }
+        }
         /**
          * <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:max="http://www.ibm.com/maximo">
          * 	<soapenv:Header />
@@ -574,28 +585,26 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
                 "\t<soapenv:Header />\n" +
                 "\t<soapenv:Body>\n" +
                 "\t\t<max:wfservicewfGoOn creationDateTime=\"\" baseLanguage=\"zh\" transLanguage=\"zh\" messageID=\"\" maximoVersion=\"\">\n" +
-                "\t\t\t<max:processname>UDFIXZZZG</max:processname>\n" +
+                "\t\t\t<max:processname>UDFIXYSRG</max:processname>\n" +
                 "\t\t\t<max:mboName>FIXEDASSETJS</max:mboName>\n" +
                 "\t\t\t<max:keyValue>%s</max:keyValue>\n" +
-                "\t\t\t<max:key>FIXEDASSETJSNUM</max:key>\n" +
+                "\t\t\t<max:key>FIXEDASSETJSID</max:key>\n" +
                 "\t\t\t<max:ifAgree>%s</max:ifAgree>\n" +
                 "\t\t\t<max:opinion>%s</max:opinion>\n" +
                 "\t\t\t<max:loginid>%s</max:loginid>\n" +
                 "\t\t</max:wfservicewfGoOn>\n" +
                 "\t</soapenv:Body>\n" +
                 "</soapenv:Envelope>";
-        request = String.format(request, resultlistBean.getFIXEDASSETJSNUM(), ifAgree, opinion, SharedPreferencesUtil.getString(this, "personId"));
+        request = String.format(request, FIXEDASSETJSID, ifAgree, opinion, SharedPreferencesUtil.getString(this, "personId"));
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=utf-8");
         headermap.put("SOAPAction", "urn:action");
-
         OkhttpUtil.okHttpPostJson(Constants.COMMONSOAP, request, headermap, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
                 ld.close();
             }
-
             @Override
             public void onResponse(String response) {
                 LogUtils.d("onResponse==" + response);
@@ -605,8 +614,7 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
                     int end = response.indexOf("</return>");
                     String substring = response.substring(start + 8, end);
                     LogUtils.d("substring==" + substring);
-                    StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
-                    });
+                    StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {});
                     if (startWorkProcessBean.getMsg().equals("审批成功")) {
 //                        if (isAgree == 1 && startWorkProcessBean.getNextStatus().equals("已确认")) {
 //                            tv_approval.setVisibility(View.GONE);

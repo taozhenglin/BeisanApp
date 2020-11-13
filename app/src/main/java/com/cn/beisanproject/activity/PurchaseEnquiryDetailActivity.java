@@ -509,6 +509,13 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
                 "</soapenv:Body>" +
                 "</soapenv:Envelope>";
         // ifAgree ：1 同意  2 不同意   opinion：输入内容
+        if (StringUtils.isEmpty(opinion)){
+            if (isAgree==1){
+                opinion="同意";
+            }else {
+                opinion="驳回";
+            }
+        }
         request = String.format(request, RFQID, ifAgree, opinion, SharedPreferencesUtil.getString(this, "personId"));
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=utf-8");

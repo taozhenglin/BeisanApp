@@ -96,6 +96,7 @@ public class AssertCzDetailActivity extends AppCompatActivity implements View.On
     private PopupWindow pop;
     private int isAgree=1;
     private String FIXEASSETRETNUM;
+    String FIXEASSETRETID;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -111,7 +112,7 @@ public class AssertCzDetailActivity extends AppCompatActivity implements View.On
             resultlistBean = (AssertCheckCzListBean.ResultBean.ResultlistBean) getIntent().getExtras().get("ResultlistBean");
             status = resultlistBean.getSTATUS();
             FIXEASSETRETNUM=resultlistBean.getFIXEASSETRETNUM();
-
+            FIXEASSETRETID=resultlistBean.getFIXEASSETRETID();
         }
         initView();
     }
@@ -229,6 +230,7 @@ public class AssertCzDetailActivity extends AppCompatActivity implements View.On
                         AssertCheckCzListBean.ResultBean.ResultlistBean resultlistBean = assertCheckCzListBean.getResult().getResultlist().get(0);
                         status = resultlistBean.getSTATUS();
                         FIXEASSETRETNUM=resultlistBean.getFIXEASSETRETNUM();
+                        FIXEASSETRETID=resultlistBean.getFIXEASSETRETID();
 
                         if (status.equals("已取消") || status.equals("取消")||status.equals("已关闭") || status.equals("关闭")|| status.equals("已审批")) {
                             tv_approval.setVisibility(View.GONE);
@@ -419,12 +421,12 @@ public class AssertCzDetailActivity extends AppCompatActivity implements View.On
                 "         <max:processname>UDFIXBF</max:processname>\n" +
                 "         <max:mbo>FIXEASSETRET</max:mbo>\n" +
                 "         <max:keyValue>%s</max:keyValue>\n" +
-                "         <max:key>FIXEASSETRETNUM</max:key>\n" +
+                "         <max:key>FIXEASSETRETID</max:key>\n" +
                 "         <max:loginid>%s</max:loginid>\n" +
                 "      </max:wfservicestartWF>\n" +
                 "   </soap:Body>\n" +
                 "</soap:Envelope>";
-        request = String.format(request, resultlistBean.getFIXEASSETRETNUM(), SharedPreferencesUtil.getString(this, "personId"));
+        request = String.format(request, FIXEASSETRETID, SharedPreferencesUtil.getString(this, "personId"));
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=utf-8");
         headermap.put("SOAPAction", "urn:action");
@@ -540,6 +542,13 @@ public class AssertCzDetailActivity extends AppCompatActivity implements View.On
 
     private void goApproval(int ifAgree, String opinion) {
         ld.show();
+        if (StringUtils.isEmpty(opinion)){
+            if (isAgree==1){
+                opinion="同意";
+            }else {
+                opinion="驳回";
+            }
+        }
         /**
          * <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:max="http://www.ibm.com/maximo">
          * 	<soapenv:Header />
@@ -548,7 +557,7 @@ public class AssertCzDetailActivity extends AppCompatActivity implements View.On
          * 			<max:processname>UDFIXBF</max:processname>
          * 			<max:mboName>FIXEASSETRET</max:mboName>
          * 			<max:keyValue>102</max:keyValue>
-         * 			<max:key>FIXEASSETRETNUM</max:key>
+         * 			<max:key>FIXEASSETRETID</max:key>
          * 			<max:ifAgree>1</max:ifAgree>
          * 			<max:opinion>666666</max:opinion>
          * 			<max:loginid>MAXADMIN</max:loginid>
@@ -563,14 +572,14 @@ public class AssertCzDetailActivity extends AppCompatActivity implements View.On
                 "\t\t\t<max:processname>UDFIXBF</max:processname>\n" +
                 "\t\t\t<max:mboName>FIXEASSETRET</max:mboName>\n" +
                 "\t\t\t<max:keyValue>%s</max:keyValue>\n" +
-                "\t\t\t<max:key>FIXEASSETRETNUM</max:key>\n" +
+                "\t\t\t<max:key>FIXEASSETRETID</max:key>\n" +
                 "\t\t\t<max:ifAgree>%s</max:ifAgree>\n" +
                 "\t\t\t<max:opinion>%s</max:opinion>\n" +
                 "\t\t\t<max:loginid>%s</max:loginid>\n" +
                 "\t\t</max:wfservicewfGoOn>\n" +
                 "\t</soapenv:Body>\n" +
                 "</soapenv:Envelope>";
-        request = String.format(request, resultlistBean.getFIXEASSETRETNUM(), ifAgree, opinion, SharedPreferencesUtil.getString(this, "personId"));
+        request = String.format(request, FIXEASSETRETID, ifAgree, opinion, SharedPreferencesUtil.getString(this, "personId"));
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=utf-8");
         headermap.put("SOAPAction", "urn:action");
@@ -591,8 +600,7 @@ public class AssertCzDetailActivity extends AppCompatActivity implements View.On
                     int end = response.indexOf("</return>");
                     String substring = response.substring(start + 8, end);
                     LogUtils.d("substring==" + substring);
-                    StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
-                    });
+                    StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {});
                     if (startWorkProcessBean.getMsg().equals("审批成功")) {
                         status = startWorkProcessBean.getNextStatus();
                         tv_statues.setText(startWorkProcessBean.getNextStatus());

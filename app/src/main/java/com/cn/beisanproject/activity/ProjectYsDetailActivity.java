@@ -4,7 +4,6 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.MediaRouteButton;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,9 +12,6 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Environment;
-import android.text.Editable;
-import android.text.SpannableString;
-import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,9 +56,6 @@ import com.cn.beisanproject.net.OkhttpUtil;
 import com.flyco.dialog.listener.OnOperItemClickL;
 import com.flyco.dialog.widget.ActionSheetDialog;
 import com.guideelectric.loadingdialog.view.LoadingDialog;
-
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ClipPagerTitleView;
-
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
@@ -251,7 +244,6 @@ public class ProjectYsDetailActivity extends AppCompatActivity implements View.O
                 LogUtils.d("222222onFailure==" + e.toString());
                 ld.close();
             }
-
             @Override
             public void onResponse(String response) {
                 LogUtils.d("222222onResponse==" + response);
@@ -275,7 +267,6 @@ public class ProjectYsDetailActivity extends AppCompatActivity implements View.O
                                 inflate.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-
                                         if (!StringUtils.isEmpty(SharedPreferencesUtil.getString(ProjectYsDetailActivity.this, resultlist.get(finalI).getDOCUMENT()))) {
                                             String savePath = SharedPreferencesUtil.getString(ProjectYsDetailActivity.this, resultlist.get(finalI).getDOCUMENT());
                                             LogUtils.d("222222 sp savePath=" + savePath);
@@ -285,7 +276,6 @@ public class ProjectYsDetailActivity extends AppCompatActivity implements View.O
                                                 OpenFileUtils.openFile(ProjectYsDetailActivity.this, file);
                                             } catch (Exception e) {
                                                 LogUtils.d("222222 无打开方式" + e.toString());
-
                                                 e.printStackTrace();
                                             }
                                         } else {
@@ -299,8 +289,6 @@ public class ProjectYsDetailActivity extends AppCompatActivity implements View.O
                                 ll_attach.addView(inflate);
                             }
                         }
-
-
                     }
 
                 }
@@ -653,7 +641,6 @@ public class ProjectYsDetailActivity extends AppCompatActivity implements View.O
                 LogUtils.d("onFailure==" + e.toString());
                 ld.close();
             }
-
             @Override
             public void onResponse(String response) {
                 LogUtils.d("onResponse==" + response);
@@ -759,6 +746,13 @@ public class ProjectYsDetailActivity extends AppCompatActivity implements View.O
 
     private void goApproval(int ifAgree, String opinion) {
         ld.show();
+        if (StringUtils.isEmpty(opinion)){
+            if (ifAgree==1){
+                opinion="同意";
+            }else {
+                opinion="驳回";
+            }
+        }
 /**
  * <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:max="http://www.ibm.com/maximo">
  * 	<soapenv:Header />

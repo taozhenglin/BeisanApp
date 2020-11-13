@@ -616,6 +616,13 @@ public class MaterialRequestDetailActivity extends AppCompatActivity implements 
 
     private void goAproval(int selected,String opinion) {
         ld.show();
+        if (StringUtils.isEmpty(opinion)){
+            if (isAgree==1){
+                opinion="同意";
+            }else {
+                opinion="驳回";
+            }
+        }
         /**
          * <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:max="http://www.ibm.com/maximo">
          *    <soap:Header/>

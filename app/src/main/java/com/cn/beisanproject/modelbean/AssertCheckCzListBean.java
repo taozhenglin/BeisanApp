@@ -132,6 +132,15 @@ public class AssertCheckCzListBean {
             private String STATUS;
             private String STATUSDATE;
 
+            public String getFIXEASSETRETID() {
+                return FIXEASSETRETID;
+            }
+
+            public void setFIXEASSETRETID(String FIXEASSETRETID) {
+                this.FIXEASSETRETID = FIXEASSETRETID;
+            }
+
+            String FIXEASSETRETID;
             public String getUDCOMPANY() {
                 return UDCOMPANY;
             }
@@ -213,6 +222,8 @@ public class AssertCheckCzListBean {
             public void setSTATUSDATE(String STATUSDATE) {
                 this.STATUSDATE = STATUSDATE;
             }
+
+
         }
     }
 }

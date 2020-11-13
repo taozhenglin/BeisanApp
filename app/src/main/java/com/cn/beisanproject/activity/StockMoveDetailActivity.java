@@ -555,6 +555,13 @@ public class StockMoveDetailActivity extends AppCompatActivity {
     }
 
     private void goAproval(int selected, String opinion) {
+        if (StringUtils.isEmpty(opinion)){
+            if (selected==1){
+                opinion="同意";
+            }else {
+                opinion="驳回";
+            }
+        }
         ld.show();
         /**
          * <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:max="http://www.ibm.com/maximo">

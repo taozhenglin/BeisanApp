@@ -883,6 +883,14 @@ public class ProjectMonthDetailActivity extends AppCompatActivity {
     }
 
     private void goApproval(int ifAgree, String opinion) {
+        if (StringUtils.isEmpty(opinion)){
+            if (ifAgree==1){
+                opinion="同意";
+            }else {
+                opinion="驳回";
+            }
+        }
+
         ld.show();
 /**
  * <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:max="http://www.ibm.com/maximo">
