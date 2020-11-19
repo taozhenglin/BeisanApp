@@ -35,7 +35,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="项目汇总："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
 
                     <TextView
                         android:id="@+id/tv_statues"
@@ -44,7 +44,7 @@
                         android:layout_alignParentRight="true"
                         android:text=""
                         android:textColor="@color/guide_blue"
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
                 </LinearLayout>
 
                 <TextView
@@ -54,7 +54,7 @@
                     android:layout_below="@+id/tv_project_collect"
                     android:layout_marginTop="@dimen/dp3"
                     android:text="描述："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -68,14 +68,14 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"                        android:layout_height="wrap_content"
                         android:text="询价类型："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
 
                     <TextView
                         android:id="@+id/tv_duty_dep"
                         android:layout_width="0dp"
                         android:layout_weight="1"                        android:layout_height="wrap_content"
                         android:text="职能部门："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -91,14 +91,14 @@
                         android:layout_weight="1"                        android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_duty_dep"
                         android:text="采购员："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
 
                     <TextView
                         android:id="@+id/tv_request_dep"
                         android:layout_width="0dp"
                         android:layout_weight="1"                        android:layout_height="wrap_content"
                         android:text="申请部门："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -114,7 +114,7 @@
                         android:layout_weight="1"                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp3"
                         android:text="申请班组："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
 
                     <TextView
                         android:id="@+id/tv_contract"
@@ -123,7 +123,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp3"
                         android:text="合同："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
                 </LinearLayout>
 
                 <TextView
@@ -132,7 +132,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp3"
                     android:text="报价合计金额(含税)："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <TextView
                     android:id="@+id/tv_auth_amount1"
@@ -140,7 +140,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp3"
                     android:text="授权合计金额(含税)："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <TextView
                     android:id="@+id/tv_auth_amount2"
@@ -148,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp3"
                     android:text="授权合计金额（不含税）："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <TextView
                     android:id="@+id/tv_note"
@@ -156,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp3"
                     android:text="备注："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
 
             </LinearLayout>
@@ -169,7 +169,7 @@
                 android:gravity="center_vertical"
                 android:text="报价供应商"
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
             <LinearLayout
                 android:id="@+id/ll_top"
@@ -186,7 +186,7 @@
                 android:gravity="center_vertical"
                 android:text="供应商报价"
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
             <LinearLayout
                 android:id="@+id/ll_button"

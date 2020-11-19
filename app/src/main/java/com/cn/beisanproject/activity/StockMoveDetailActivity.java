@@ -93,7 +93,7 @@ public class StockMoveDetailActivity extends AppCompatActivity {
     ScrollView sc;
     @BindView(R.id.tv_approval)
     TextView tvApproval;
-    @BindView(R.id.tv_title)
+    @BindView(R.id.tvtitle)
     TextView tvTitle;
     private WaitDoListBean.ResultBean.ResultlistBean waitdolistbean;
     private StockMoveListBean.ResultBean.ResultlistBean mResultlistBean;

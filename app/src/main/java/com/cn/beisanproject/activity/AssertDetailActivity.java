@@ -251,7 +251,6 @@ public class AssertDetailActivity extends AppCompatActivity implements View.OnCl
                 finish();
                 break;
             case R.id.iv_fun:
-
                 startActivity(new Intent(this,AssertCheckActivity.class).putExtra("resultlistBean",resultlistBean));
                 break;
         }

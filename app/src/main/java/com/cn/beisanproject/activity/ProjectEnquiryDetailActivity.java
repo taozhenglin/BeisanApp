@@ -2,7 +2,9 @@ package com.cn.beisanproject.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -77,10 +79,12 @@ public class ProjectEnquiryDetailActivity extends AppCompatActivity implements V
     String siteid;
     String RFQID;
     private TextView tv_start;
-//    private TextView tv_approval;
+    //    private TextView tv_approval;
     private int isAgree = 1;
     private PopupWindow pop;
     private String statues;
+    private TextView tv_title;
+    private ImageView iv_fun;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -103,12 +107,12 @@ public class ProjectEnquiryDetailActivity extends AppCompatActivity implements V
             siteid = mResultlistBean.getSITEID();
             RFQID = mResultlistBean.getRFQID() + "";
             statues = mResultlistBean.getSTATUS();
-            if (statues.equals("已关闭")||statues.equals("取消")||statues.equals("关闭")||statues.equals("已取消")){
+            if (statues.equals("已关闭") || statues.equals("取消") || statues.equals("关闭") || statues.equals("已取消")) {
                 tv_start.setVisibility(View.GONE);
-            }else {
-                if (statues.equals("进行中")){//可启动
+            } else {
+                if (statues.equals("进行中")) {//可启动
                     tv_start.setText("启动工作流");
-                }else {
+                } else {
                     tv_start.setText("工作流审批");
                 }
             }
@@ -126,7 +130,8 @@ public class ProjectEnquiryDetailActivity extends AppCompatActivity implements V
 //        tv_approval.setOnClickListener(this);
         tv_start.setOnClickListener(this);
         ll_back.setOnClickListener(this);
-
+        tv_title.setOnClickListener(this);
+        iv_fun.setOnClickListener(this);
 
     }
 
@@ -134,7 +139,10 @@ public class ProjectEnquiryDetailActivity extends AppCompatActivity implements V
         ll_back = findViewById(R.id.ll_back);
         tv_common_title = findViewById(R.id.tv_common_title);
         tv_common_title.setText("项目询价单");
-
+        tv_title = findViewById(R.id.tv_title);
+        tv_title.setText("附件");
+        iv_fun = findViewById(R.id.iv_fun);
+        iv_fun.setBackgroundResource(R.drawable.icon_white_go_28);
         tv_project_collect = findViewById(R.id.tv_project_collect);
         tv_statues = findViewById(R.id.tv_statues);
         tv_desc = findViewById(R.id.tv_desc);
@@ -163,12 +171,12 @@ public class ProjectEnquiryDetailActivity extends AppCompatActivity implements V
             tv_project_collect.setText("项目汇总：" + mResultlistBean.getRFQNUM());
             tv_statues.setText(mResultlistBean.getSTATUS());
             tv_desc.setText("描述：" + mResultlistBean.getDESCRIPTION());
-            tv_enquiry_type.setText("询价类型：" + mResultlistBean.getRFQTYPEDESC());
+            tv_enquiry_type.setText("询价类型：" + mResultlistBean.getRFQTYPE());
             tv_duty_dep.setText("职能部门:" + mResultlistBean.getA_PURCATALOG());
             tv_enquiry_by.setText("采购员:" + mResultlistBean.getENTERBYDESC());
             tv_request_dep.setText("申请部门:" + mResultlistBean.getA_DEPT());
             tv_request_team.setText("申请班组:" + mResultlistBean.getRFQ3DESC());
-            tv_contract.setText("合同" + mResultlistBean.getR_MASTERDESC());
+            tv_contract.setText("合同:" + mResultlistBean.getR_MASTERDESC());
             tv_baojia_amount.setText("报价合计金额（含税）:" + mResultlistBean.getHJJE());
             tv_auth_amount1.setText("授权合计金额（含税）:" + mResultlistBean.getCYHJJE());
             tv_auth_amount2.setText("授权合计金额（不含税）:" + mResultlistBean.getJHCOST());
@@ -228,24 +236,24 @@ public class ProjectEnquiryDetailActivity extends AppCompatActivity implements V
                         siteid = resultlistBean.getSITEID();
                         RFQID = resultlistBean.getRFQID() + "";
                         statues = resultlistBean.getSTATUS();
-                        if (statues.equals("已关闭")||statues.equals("取消")||statues.equals("关闭")||statues.equals("已取消")){
+                        if (statues.equals("已关闭") || statues.equals("取消") || statues.equals("关闭") || statues.equals("已取消")) {
                             tv_start.setVisibility(View.GONE);
-                        }else {
-                            if (statues.equals("进行中")){//可启动
+                        } else {
+                            if (statues.equals("进行中")) {//可启动
                                 tv_start.setText("启动工作流");
-                            }else {
+                            } else {
                                 tv_start.setText("工作流审批");
                             }
                         }
                         tv_project_collect.setText("项目汇总：" + resultlistBean.getRFQNUM());
                         tv_statues.setText(resultlistBean.getSTATUS());
                         tv_desc.setText("描述：" + resultlistBean.getDESCRIPTION());
-                        tv_enquiry_type.setText("询价类型：" + resultlistBean.getRFQTYPEDESC());
+                        tv_enquiry_type.setText("询价类型：" + resultlistBean.getRFQTYPE());
                         tv_duty_dep.setText("职能部门:" + resultlistBean.getA_PURCATALOG());
                         tv_enquiry_by.setText("采购员:" + resultlistBean.getENTERBYDESC());
                         tv_request_dep.setText("申请部门:" + resultlistBean.getA_DEPT());
                         tv_request_team.setText("申请班组:" + resultlistBean.getRFQ3DESC());
-                        tv_contract.setText("合同" + resultlistBean.getR_MASTERDESC());
+                        tv_contract.setText("合同:" + resultlistBean.getR_MASTERDESC());
                         tv_baojia_amount.setText("报价合计金额（含税）:" + resultlistBean.getHJJE());
                         tv_auth_amount1.setText("授权合计金额（含税）:" + resultlistBean.getCYHJJE());
                         tv_auth_amount2.setText("授权合计金额（不含税）:" + resultlistBean.getJHCOST());
@@ -322,7 +330,7 @@ public class ProjectEnquiryDetailActivity extends AppCompatActivity implements V
                                 tv_contacts.setText("联系人：" + resultlist.get(i).getCONTACT());
                                 tv_phone.setText("联系电话：" + resultlist.get(i).getPHONE());
                                 tv_enquiry_sum.setText("报价金额：" + resultlist.get(i).getA_REPORTCOST());
-                                tv_enquiry_tax.setText("授权金额:" + resultlist.get(i).getA_AWARDCOST());
+                                tv_enquiry_tax.setText("授权金额:" + resultlist.get(i).getCYVENDORTOTALCOST());
                                 tv_sum_tax.setVisibility(View.GONE);
                                 tv_no_tax.setVisibility(View.GONE);
                                 int finalI = i;
@@ -436,16 +444,17 @@ public class ProjectEnquiryDetailActivity extends AppCompatActivity implements V
                 break;
 
             case R.id.tv_start://启动工作流
-                if (statues.equals("进行中")){//可启动
+                if (statues.equals("进行中")) {//可启动
                     startWork();
-                }else {
+                } else {
                     showRemarkPopupwindow();
                 }
 //                startWork();
                 break;
-//            case R.id.tv_approval://工作流审批
-//                showRemarkPopupwindow();
-//                break;
+            case R.id.tv_title:
+            case R.id.iv_fun:
+                startActivity(new Intent(this, AttachListActivity.class).putExtra("RFQID",RFQID));
+                break;
         }
     }
 
@@ -504,7 +513,7 @@ public class ProjectEnquiryDetailActivity extends AppCompatActivity implements V
                         tv_start.setText("工作流审批");
                         statues = startWorkProcessBean.getNextStatus();
                         tv_statues.setText(startWorkProcessBean.getNextStatus());
-                        PostData postData=new PostData();
+                        PostData postData = new PostData();
                         postData.setTag("项目询价单");
                         EventBus.getDefault().post(postData);
                         getBaoJiaSupport();
@@ -593,11 +602,11 @@ public class ProjectEnquiryDetailActivity extends AppCompatActivity implements V
 
     private void goApproval(int ifAgree, String opinion) {
         ld.show();
-        if (StringUtils.isEmpty(opinion)){
-            if (isAgree==1){
-                opinion="同意";
-            }else {
-                opinion="驳回";
+        if (StringUtils.isEmpty(opinion)) {
+            if (isAgree == 1) {
+                opinion = "同意";
+            } else {
+                opinion = "驳回";
             }
         }
 /**
@@ -656,7 +665,7 @@ public class ProjectEnquiryDetailActivity extends AppCompatActivity implements V
                 if (startWorkProcessBean.getMsg().equals("审批成功")) {
                     statues = startWorkProcessBean.getNextStatus();
                     tv_statues.setText(startWorkProcessBean.getNextStatus());
-                    PostData postData=new PostData();
+                    PostData postData = new PostData();
                     postData.setTag("项目询价单");
                     EventBus.getDefault().post(postData);
                     getBaoJiaSupport();

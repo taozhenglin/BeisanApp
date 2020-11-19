@@ -197,7 +197,7 @@ public class FunCtionFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(mContext, ProjectYsListActivity.class));
                 break;
             case R.id.ll_purchase1://采购月度计划
-                startActivity(new Intent(mContext, ProjectYsListActivity.class));
+                startActivity(new Intent(mContext, PurchaseMonthPlanListActivity.class));
                 break;
             case R.id.ll_purchase2://采购计划月度汇总
                 startActivity(new Intent(mContext, PurchasePlanMonthCollectListActivity.class));

@@ -220,7 +220,7 @@ public class StockScanZerbaActivity extends AppCompatActivity implements View.On
             data = intent.getStringExtra(DATA_STRING_TAG);
             output_text = data + "\n";
 //            TextView tv = (TextView) findViewById(R.id.textView);
-            if (data.startsWith("G1")) {//库存盘点
+            if (data.startsWith("B1")) {//库存盘点
                 getStockDetail(data);
 
             }
@@ -415,7 +415,7 @@ public class StockScanZerbaActivity extends AppCompatActivity implements View.On
         pop.setFocusable(false);// 点击空白处时，隐藏掉pop窗口
         pop.setSoftInputMode(PopupWindow.INPUT_METHOD_NEEDED);
         pop.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        pop.showAtLocation(rootView, Gravity.CENTER, -30, 0);
+        pop.showAtLocation(rootView, Gravity.CENTER, 0, 0);
         pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {

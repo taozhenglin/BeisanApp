@@ -46,7 +46,7 @@ public class StockingTakeAdapter extends RecyclerView.Adapter<StockingTakeAdapte
 
         holder.tv_check_by.setVisibility(View.GONE);
         holder.tv_check_starttime.setText("盘点日期: " + mList.get(position).getPDDATE());
-        holder.tv_check_endtime.setText("仓库: " + mList.get(position).getLOCATION());
+        holder.tv_check_endtime.setText("仓库: " + mList.get(position).getLOCATIONDESC());
         holder.tv_created_by.setText("创建人: " + mList.get(position).getCREATENAME());
         holder.tv_created_time.setText("创建时间: " + mList.get(position).getCREATEDATE());
 //        if (mList.get(position).getHaschecked().equals("yes")){

@@ -126,7 +126,6 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
         if (!StringUtils.isEmpty(getIntent().getStringExtra("from")) && getIntent().getStringExtra("from").equals("waitdolist")) {//来自代办事项列表
             needGet = true;
             waitdolistbean = (WaitDoListBean.ResultBean.ResultlistBean) getIntent().getExtras().get("ResultlistBean");
-            PRID = waitdolistbean.getOWNERID() + "";
             LogUtils.d("OWNERID=" + PRID);
         } else {
             mResultlistBean = (PurchaseMonthPlanListBean.ResultBean.ResultlistBean) getIntent().getExtras().get("ResultlistBean");//来自首页列表
@@ -158,7 +157,7 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
             getDetail();
         } else {
             tvPurchaseRequest.setText("采购申请：" + mResultlistBean.getPRNUM());
-            tvStatue.setText(mResultlistBean.getSTATUSDESC());
+            tvStatue.setText(mResultlistBean.getSTATUS());
             tvDesc.setText("描述：" + mResultlistBean.getDESCRIPTION());
             tvHuizongStatues.setText("汇总状态：" + mResultlistBean.getR_PRSTATUS());
             tvType.setText("计划类型：" + mResultlistBean.getA_PRTYPE());
@@ -209,7 +208,7 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
         object.put("option", "read");
         object.put("orderby", "PRNUM desc");
         JSONObject conditionObject = new JSONObject();
-        conditionObject.put("PRID", PRID);
+        conditionObject.put("PRID", waitdolistbean.getOWNERID()+"");
         object.put("condition", conditionObject);
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
@@ -234,7 +233,9 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
                     if (purchaseMonthPlanDetailBean.getErrcode().equals("GLOBAL-S-0")) {
                         PurchaseMonthPlanDetailBean.ResultBean.ResultlistBean resultlistBean = purchaseMonthPlanDetailBean.getResult().getResultlist().get(0);
                         PRNUM = resultlistBean.getPRNUM();
+                        PRID = resultlistBean.getPRID() + "";
                         siteid = resultlistBean.getSITEID();
+                        statues=resultlistBean.getSTATUS();
                         if (statues.equals("关闭") || statues.equals("已取消")||statues.equals("已关闭") || statues.equals("取消")|| statues.equals("已批准")) {
                             tvApproval.setVisibility(View.GONE);
                         } else {
@@ -245,7 +246,7 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
                             }
                         }
                         tvPurchaseRequest.setText("采购申请：" + resultlistBean.getPRNUM());
-                        tvStatue.setText(resultlistBean.getSTATUSDESC());
+                        tvStatue.setText(resultlistBean.getSTATUS());
                         tvDesc.setText("描述：" + resultlistBean.getDESCRIPTION());
                         tvHuizongStatues.setText("汇总状态：" + resultlistBean.getR_PRSTATUS());
                         tvType.setText("计划类型：" + resultlistBean.getA_PRTYPE());

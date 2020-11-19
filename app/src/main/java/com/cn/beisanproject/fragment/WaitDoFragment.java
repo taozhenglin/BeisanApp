@@ -35,8 +35,14 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.text.Collator;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 
+import me.leolin.shortcutbadger.ShortcutBadger;
 import okhttp3.Call;
 
 public class WaitDoFragment extends Fragment {
@@ -61,8 +67,6 @@ public class WaitDoFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerView);
         refreshLayout = view.findViewById(R.id.refreshLayout);
-
-        initEvent();
 //        mainListAdapter.setShowLine(false);
         layoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(layoutManager);
@@ -71,13 +75,18 @@ public class WaitDoFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initEvent();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
-        queryData();
     }
 
     void initEvent() {
-        ld = new LoadingDialog(mContext);
+
         queryData();
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -99,6 +108,7 @@ public class WaitDoFragment extends Fragment {
     }
 
     private void queryData() {
+        ld = new LoadingDialog(mContext);
         ld.show();
         /**
          * ---代办任务记录
@@ -149,23 +159,29 @@ public class WaitDoFragment extends Fragment {
                         if (waitDoListBean.getErrcode().equals("GLOBAL-S-0")) {
                             totalepage = waitDoListBean.getResult().getTotalpage();
                             int totalresult = waitDoListBean.getResult().getTotalresult();
+                            List<WaitDoListBean.ResultBean.ResultlistBean> resultlist = waitDoListBean.getResult().getResultlist();
                             PostData postData = new PostData();
                             postData.setCount(totalresult);
                             postData.setTag("waitdocount");
                             SharedPreferencesUtil.setInt(mContext, "waitdototalresult", totalresult);
+//                            if (totalresult > 0) {
+//                                ShortcutBadger.applyCount(mContext, totalresult); //for 1.1.4+
+//                            }else{
+//                                ShortcutBadger.removeCount(mContext);
+//                            }
                             EventBus.getDefault().post(postData);
                             if (currentPageNum == 1) {
                                 if (mWaitDoAdapter == null) {
-                                    mWaitDoAdapter = new WaitDoAdapter(mContext, waitDoListBean.getResult().getResultlist());
+                                    mWaitDoAdapter = new WaitDoAdapter(mContext, resultlist);
                                     recyclerView.setAdapter(mWaitDoAdapter);
                                 } else {
-                                    mWaitDoAdapter.setData(waitDoListBean.getResult().getResultlist());
+                                    mWaitDoAdapter.setData(resultlist);
                                     mWaitDoAdapter.notifyDataSetChanged();
                                 }
 
                             } else {
                                 if (currentPageNum <= totalepage) {
-                                    mWaitDoAdapter.addAllList(waitDoListBean.getResult().getResultlist());
+                                    mWaitDoAdapter.addAllList(resultlist);
                                     mWaitDoAdapter.notifyDataSetChanged();
                                 } else {
                                     ToastUtils.showShort("没有更多数据了");

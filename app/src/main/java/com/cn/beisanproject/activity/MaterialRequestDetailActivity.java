@@ -96,7 +96,7 @@ public class MaterialRequestDetailActivity extends AppCompatActivity implements 
     private LinearLayout ll_back;
     private String SITEID;
     private String WORKORDERID;
-    private int isAgree;
+    private int isAgree=1;
 
 
     @Override

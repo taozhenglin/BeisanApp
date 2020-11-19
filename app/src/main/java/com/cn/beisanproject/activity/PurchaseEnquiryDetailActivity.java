@@ -2,6 +2,7 @@ package com.cn.beisanproject.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -73,9 +74,10 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
 
     LinearLayout ll_top;
     LinearLayout ll_button;
-    private TextView tv_back;
+    private LinearLayout ll_back;
     private TextView tv_common_title;
-
+    private TextView tv_title;
+    private ImageView iv_fun;
 
     WaitDoListBean.ResultBean.ResultlistBean waitdolistbean;
     PurchaseEnquiryListBean.ResultBean.ResultlistBean mResultlistBean;
@@ -85,8 +87,7 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
     String siteid;
     String vendor;
     private TextView tv_start;
-//    private TextView tv_approval;
-    private int isAgree;
+    private int isAgree=1;
     private PopupWindow pop;
     String statues;
     private String RFQID;
@@ -117,8 +118,6 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
                     tv_start.setText("工作流审批");
                 }
             }
-
-
             RFQID=mResultlistBean.getRFQID()+"";
 
         }
@@ -134,10 +133,13 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
     }
 
     private void initView() {
-        tv_back = findViewById(R.id.tv_back);
+        ll_back = findViewById(R.id.ll_back);
         tv_common_title = findViewById(R.id.tv_common_title);
         tv_common_title.setText("采购询价单");
-
+        tv_title = findViewById(R.id.tv_title);
+        tv_title.setText("附件");
+        iv_fun = findViewById(R.id.iv_fun);
+        iv_fun.setImageDrawable(getResources().getDrawable(R.drawable.icon_white_go_28));
         tv_project_collect = findViewById(R.id.tv_project_collect);
         tv_statues = findViewById(R.id.tv_statues);
         tv_desc = findViewById(R.id.tv_desc);
@@ -166,12 +168,12 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
             tv_project_collect.setText("项目汇总："+mResultlistBean.getRFQNUM());
             tv_statues.setText(mResultlistBean.getSTATUS());
             tv_desc.setText("描述："+mResultlistBean.getDESCRIPTION());
-            tv_enquiry_type.setText("询价类型："+mResultlistBean.getRFQTYPEDESC());
+            tv_enquiry_type.setText("询价类型："+mResultlistBean.getRFQTYPE());
             tv_duty_dep.setText("职能部门:"+mResultlistBean.getA_PURCATALOG());
             tv_enquiry_by.setText("采购员:"+mResultlistBean.getENTERBYDESC());
             tv_request_dep.setText("申请部门:"+mResultlistBean.getA_DEPT());
             tv_request_team.setText("申请班组:"+mResultlistBean.getRFQ3DESC());
-            tv_contract.setText("合同"+mResultlistBean.getR_MASTERDESC());
+            tv_contract.setText("合同："+mResultlistBean.getR_MASTERDESC());
             tv_baojia_amount.setText("报价合计金额（含税）:"+mResultlistBean.getHJJE());
             tv_auth_amount1.setText("授权合计金额（含税）:"+mResultlistBean.getCYHJJE());
             tv_auth_amount2.setText("授权合计金额（不含税）:"+mResultlistBean.getJHCOST());
@@ -235,7 +237,7 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
                         if (statues.equals("已关闭")||statues.equals("取消")||statues.equals("关闭")||statues.equals("已取消")){
                             tv_start.setVisibility(View.GONE);
                         }else {
-                            if (statues.equals("进行中")){//可启动
+                            if (statues.equals("等待批准")){//可启动
                                 tv_start.setText("启动工作流");
                             }else {
                                 tv_start.setText("工作流审批");
@@ -246,12 +248,12 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
                         tv_project_collect.setText("项目汇总："+resultlist.get(0).getRFQNUM());
                         tv_statues.setText(resultlist.get(0).getSTATUS());
                         tv_desc.setText("描述："+resultlist.get(0).getDESCRIPTION());
-                        tv_enquiry_type.setText("询价类型："+resultlist.get(0).getRFQTYPEDESC());
+                        tv_enquiry_type.setText("询价类型："+resultlist.get(0).getRFQTYPE());
                         tv_duty_dep.setText("职能部门:"+resultlist.get(0).getA_PURCATALOG());
                         tv_enquiry_by.setText("采购员:"+resultlist.get(0).getENTERBYDESC());
                         tv_request_dep.setText("申请部门:"+resultlist.get(0).getA_DEPT());
                         tv_request_team.setText("申请班组:"+resultlist.get(0).getRFQ3DESC());
-                        tv_contract.setText("合同"+resultlist.get(0).getR_MASTERDESC());
+                        tv_contract.setText("合同:"+resultlist.get(0).getR_MASTERDESC());
                         tv_baojia_amount.setText("报价合计金额（含税）:"+resultlist.get(0).getHJJE());
                         tv_auth_amount1.setText("授权合计金额（含税）:"+resultlist.get(0).getCYHJJE());
                         tv_auth_amount2.setText("授权合计金额（不含税）:"+resultlist.get(0).getJHCOST());
@@ -266,16 +268,17 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
         });
     }
     private void initListener() {
-        tv_back.setOnClickListener(this);
+        ll_back.setOnClickListener(this);
 //        tv_approval.setOnClickListener(this);
         tv_start.setOnClickListener(this);
-
+        tv_title.setOnClickListener(this);
+        iv_fun.setOnClickListener(this);
     }
     @Override
     public void onClick(View view) {
 
         switch (view.getId()){
-            case R.id.tv_back:
+            case R.id.ll_back:
                 finish();
                 break;
             case R.id.tv_start:
@@ -323,21 +326,11 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
                         }
                     });
                 }
-//                if (statues.equals("等待批准")){//可启动
-//                    startWork();
-//                }else {
-//                    showRemarkPopupwindow();
-//                }
-
                 break;
-//            case R.id.tv_approval:
-//                if (!statues.equals("完成")&&!statues.equals("关闭")&&!statues.equals("取消")){
-//                    showRemarkPopupwindow();
-//                }else {
-//                    ToastUtils.showShort("当前状态不可进行工作流审批工作流");
-//
-//                }
-//                break;
+            case R.id.tv_title:
+            case R.id.iv_fun:
+                startActivity(new Intent(this, AttachListActivity.class).putExtra("RFQID",RFQID));
+                break;
         }
     }
 

@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="供应商："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <TextView
         android:id="@+id/tv_desc"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_supporter"
         android:text="项目描述："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <TextView
         android:id="@+id/tv_model"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_desc"
         android:text="规格型号："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="联系人："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_phone"
@@ -51,7 +51,7 @@
             android:layout_weight="1"
             android:text="联系电话："
 
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
     </LinearLayout>
 
    <LinearLayout
@@ -65,7 +65,7 @@
            android:layout_weight="1"
            android:layout_height="wrap_content"
            android:text="报价金额："
-           android:textSize="@dimen/sp12" />
+           android:textSize="@dimen/sp14" />
 
        <TextView
            android:id="@+id/tv_enquiry_tax"
@@ -73,7 +73,7 @@
            android:layout_weight="1"
            android:layout_height="wrap_content"
            android:text="税额："
-           android:textSize="@dimen/sp12" />
+           android:textSize="@dimen/sp14" />
    </LinearLayout>
 
     <TextView
@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp3"
         android:text="授权金额(含税)："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <TextView
         android:id="@+id/tv_no_tax"
@@ -90,6 +90,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp3"
         android:text="授权金额(不含税)："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
 </LinearLayout>

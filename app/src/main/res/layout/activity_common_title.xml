@@ -45,14 +45,25 @@
         android:layout_centerVertical="true"
         android:textColor="@color/main_backgroundColor"
         android:textSize="@dimen/sp16" />
-
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@color/main_backgroundColor"
+        android:textSize="@dimen/sp16"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/iv_fun"
+        />
     <ImageView
         android:id="@+id/iv_fun"
         android:layout_width="@dimen/dp20"
         android:layout_height="@dimen/dp20"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/dp15" />
+        android:layout_marginRight="@dimen/dp15"
+        android:layout_marginLeft="@dimen/dp3"
+        />
 
 
 </RelativeLayout>

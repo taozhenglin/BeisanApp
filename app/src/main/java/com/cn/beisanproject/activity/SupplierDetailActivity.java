@@ -123,7 +123,7 @@ public class SupplierDetailActivity extends AppCompatActivity {
     private String[] stringItems1 = new String[]{"启动工作流"};
     private String[] stringItems2 = new String[]{"工作流审批"};
     private PopupWindow pop;
-    private int isAgree;
+    private int isAgree =1;
     private String VENDORSAPPLYID;
 
     @Override

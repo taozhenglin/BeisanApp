@@ -101,7 +101,7 @@
                 android:text="当前版本：" />
 
             <TextView
-                android:id="@+id/txtCurVersion"
+                android:id="@+id/tv_Version"
                 style="@style/usertextvalue"
                 android:text="标准 " />
 

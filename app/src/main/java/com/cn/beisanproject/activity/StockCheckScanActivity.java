@@ -129,7 +129,8 @@ public class StockCheckScanActivity extends AppCompatActivity implements QRCodeV
         LogUtils.d("222222", "result:" + result);
         //来自个人中心只是展示
         if (!StringUtils.isEmpty(from) && from.equals("PersonalCenterFragment")) {
-            if (result.startsWith("W1")) {//库存盘点展示
+            if (result.startsWith("B1")) {//库存盘点展示
+                LogUtils.d("222222 result.startsWith  B1");
 
                 getStockDetail(result);
 
@@ -145,7 +146,7 @@ public class StockCheckScanActivity extends AppCompatActivity implements QRCodeV
         //来自库存盘点
         else {
 
-            if (result.startsWith("W1")) {
+            if (result.startsWith("B1")) {
                 tv_pici_no.setText("批次号：" + result);
                 for (int i = 0; i < resultlist.size(); i++) {
                     //BSJS30453-1-20190619
@@ -245,7 +246,7 @@ public class StockCheckScanActivity extends AppCompatActivity implements QRCodeV
          * http://192.168.1.180:7009/maximo/mobile/common/api?data=
          * {"appid":"INVBALANCES","objectname":"INVBALANCES","option":"read","sqlSearch":" UDTOLOT=:扫到的码 "}
          */
-        LogUtils.d("query==");
+        LogUtils.d("222222query==");
         String url = Constants.COMMONURL;
         JSONObject object = new JSONObject();
         object.put("appid", "INVBALANCES");
@@ -511,7 +512,7 @@ public class StockCheckScanActivity extends AppCompatActivity implements QRCodeV
         pop.setFocusable(false);// 点击空白处时，隐藏掉pop窗口
         pop.setSoftInputMode(PopupWindow.INPUT_METHOD_NEEDED);
         pop.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        pop.showAtLocation(rootView, Gravity.CENTER, -30, 0);
+        pop.showAtLocation(rootView, Gravity.CENTER, 0, 0);
         pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
@@ -583,7 +584,7 @@ public class StockCheckScanActivity extends AppCompatActivity implements QRCodeV
         pop.setFocusable(false);// 点击空白处时，隐藏掉pop窗口
         pop.setSoftInputMode(PopupWindow.INPUT_METHOD_NEEDED);
         pop.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        pop.showAtLocation(rootView, Gravity.CENTER, -30, 0);
+        pop.showAtLocation(rootView, Gravity.CENTER, 0, 0);
         pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {

@@ -40,7 +40,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="采购申请："
-                        android:textSize="@dimen/sp12"
+                        android:textSize="@dimen/sp14"
                         android:textStyle="bold" />
 
                     <TextView
@@ -51,7 +51,7 @@
                         android:layout_marginRight="@dimen/dp5"
                         android:text=""
                         android:textColor="@color/guide_blue"
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
                 </LinearLayout>
 
                 <TextView
@@ -61,7 +61,7 @@
                     android:layout_below="@+id/tv_purchase_request"
                     android:layout_marginTop="@dimen/dp3"
                     android:text="描述："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -76,7 +76,7 @@
                         android:layout_weight="1"
 
                         android:text="汇总状态："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
 
                     <TextView
                         android:id="@+id/tv_type"
@@ -84,7 +84,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="计划类型："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
                 </LinearLayout>
 
 
@@ -101,7 +101,7 @@
                         android:layout_weight="1"
 
                         android:text="汇总年月："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
 
                     <TextView
                         android:id="@+id/tv_sum_cost"
@@ -110,7 +110,7 @@
                         android:layout_weight="1"
 
                         android:text="总成本："
-                        android:textSize="@dimen/sp12"
+                        android:textSize="@dimen/sp14"
 
                         />
                 </LinearLayout>
@@ -129,7 +129,7 @@
                         android:layout_weight="1"
 
                         android:text="主管部门："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
 
                     <TextView
                         android:id="@+id/tv_requset_dep"
@@ -138,7 +138,7 @@
                         android:layout_weight="1"
 
                         android:text="申请部门："
-                        android:textSize="@dimen/sp12" />
+                        android:textSize="@dimen/sp14" />
                 </LinearLayout>
                <LinearLayout
                    android:layout_width="match_parent"
@@ -152,7 +152,7 @@
                        android:layout_marginTop="@dimen/dp3"
                        android:layout_weight="1"
                        android:text="申请人："
-                       android:textSize="@dimen/sp12" />
+                       android:textSize="@dimen/sp14" />
                    <TextView
                        android:id="@+id/tv_requset_team"
                        android:layout_width="0dp"
@@ -160,7 +160,7 @@
                        android:layout_below="@+id/tv_requset_dep"
                        android:layout_weight="1"
                        android:text="申请班组："
-                       android:textSize="@dimen/sp12" />
+                       android:textSize="@dimen/sp14" />
                </LinearLayout>
 
 
@@ -172,7 +172,7 @@
                     android:layout_below="@+id/tv_requset_by"
                     android:layout_marginTop="@dimen/dp3"
                     android:text="要求到货时间："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <TextView
                     android:id="@+id/tv_request_time"
@@ -181,13 +181,13 @@
                     android:layout_below="@+id/tv_get_time"
                     android:layout_marginTop="@dimen/dp3"
                     android:text="申请时间："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
 
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_title"
+                android:id="@+id/tvtitle"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp40"
                 android:background="@color/guide_blue"
@@ -195,7 +195,7 @@
                 android:paddingLeft="@dimen/dp8"
                 android:text="物资申请行"
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
             <LinearLayout
                 android:id="@+id/ll_request_line"
@@ -216,5 +216,5 @@
         android:gravity="center"
         android:text="工作流审批"
         android:textColor="@color/white"
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 </RelativeLayout>

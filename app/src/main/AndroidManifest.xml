@@ -263,6 +263,7 @@
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity android:name=".activity.SupplierDetailActivity" />
         <activity android:name=".activity.StockScanZerbaActivity" />
+        <activity android:name=".activity.AttachListActivity"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

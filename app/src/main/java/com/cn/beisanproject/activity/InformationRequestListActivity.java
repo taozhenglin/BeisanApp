@@ -5,6 +5,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.blankj.utilcode.util.ToastUtils;
 import com.cn.beisanproject.Base.Constants;
 import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
@@ -53,6 +55,8 @@ public class InformationRequestListActivity extends AppCompatActivity implements
     private boolean isRefresh = true;//是否刷新数据
     private EditText edt_search_contract;
     private TextView tv_search;
+    private LinearLayout ll_back;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +72,7 @@ public class InformationRequestListActivity extends AppCompatActivity implements
 
     }
     private void initListener() {
-        tv_back.setOnClickListener(this);
+        ll_back.setOnClickListener(this);
         tv_search.setOnClickListener(this);
 
     }
@@ -79,7 +83,7 @@ public class InformationRequestListActivity extends AppCompatActivity implements
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         refreshLayout = findViewById(R.id.refreshLayout);
-        tv_back = findViewById(R.id.tv_back);
+        ll_back = findViewById(R.id.ll_back);
         tv_search = findViewById(R.id.tv_search);
         tv_common_title = findViewById(R.id.tv_common_title);
         tv_common_title.setText("信息化台账增减申请");
@@ -159,8 +163,7 @@ public class InformationRequestListActivity extends AppCompatActivity implements
                 InformationRequestListBean informationRequestListBean;
                 finishRefresh();
                 if (!response.isEmpty()) {
-                    informationRequestListBean = JSONObject.parseObject(response, new TypeReference<InformationRequestListBean>() {
-                    });
+                    informationRequestListBean = JSONObject.parseObject(response, new TypeReference<InformationRequestListBean>() {});
 
                     if (informationRequestListBean.getErrcode().equals("GLOBAL-S-0")) {
                         int  totalPage=informationRequestListBean.getResult().getTotalpage();
@@ -177,6 +180,8 @@ public class InformationRequestListActivity extends AppCompatActivity implements
                             if (currentPageNum<=totalPage){
                                 informationRequestAdapter.addAllList(informationRequestListBean.getResult().getResultlist());
                                 informationRequestAdapter.notifyDataSetChanged();
+                            }else {
+                                ToastUtils.showShort("没有更多数据了");
                             }
 
                         }
@@ -194,7 +199,7 @@ public class InformationRequestListActivity extends AppCompatActivity implements
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_back:
+            case R.id.ll_back:
                 finish();
                 break;
             case R.id.tv_search:

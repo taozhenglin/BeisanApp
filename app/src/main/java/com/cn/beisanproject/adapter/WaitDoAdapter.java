@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cn.beisanproject.R;
+import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.activity.AssertCzDetailActivity;
 import com.cn.beisanproject.activity.AssertJsDetailActivity;
 import com.cn.beisanproject.activity.CountEqmentRequestDetailActivity;
@@ -35,7 +36,11 @@ import com.cn.beisanproject.activity.StockMoveDetailActivity;
 import com.cn.beisanproject.activity.SupplierDetailActivity;
 import com.cn.beisanproject.modelbean.WaitDoListBean;
 
+import java.text.Collator;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 
 public class WaitDoAdapter extends RecyclerView.Adapter<WaitDoAdapter.MyViewHolder> {
     private Context mContext;
@@ -44,6 +49,17 @@ public class WaitDoAdapter extends RecyclerView.Adapter<WaitDoAdapter.MyViewHold
     public WaitDoAdapter(Context context, List<WaitDoListBean.ResultBean.ResultlistBean> resultlist) {
         this.mContext = context;
         this.mResultList = resultlist;
+//        Collections.sort(mResultList, new Comparator<WaitDoListBean.ResultBean.ResultlistBean>() {
+//            @Override
+//            public int compare(WaitDoListBean.ResultBean.ResultlistBean resultlistBean1, WaitDoListBean.ResultBean.ResultlistBean resultlistBean2) {
+//                String s1=resultlistBean1.getPROCESSNAME();
+//                LogUtils.d("s1 = ="+s1);
+//                String s2=resultlistBean2.getPROCESSNAME();
+//                LogUtils.d("s2 = ="+s2);
+//                return Collator.getInstance(Locale.CHINESE).compare(s1,s2);
+//            }
+//        });
+
     }
 
     @NonNull
@@ -293,10 +309,30 @@ public class WaitDoAdapter extends RecyclerView.Adapter<WaitDoAdapter.MyViewHold
 
     public void addAllList(List<WaitDoListBean.ResultBean.ResultlistBean> resultlist) {
         mResultList.addAll(resultlist);
+//        Collections.sort(mResultList, new Comparator<WaitDoListBean.ResultBean.ResultlistBean>() {
+//            @Override
+//            public int compare(WaitDoListBean.ResultBean.ResultlistBean resultlistBean1, WaitDoListBean.ResultBean.ResultlistBean resultlistBean2) {
+//                String s1=resultlistBean1.getPROCESSNAME().substring(0,1);
+//                LogUtils.d("s1 = ="+s1);
+//                String s2=resultlistBean2.getPROCESSNAME().substring(0,1);
+//                LogUtils.d("s2 = ="+s2);
+//                return Collator.getInstance(Locale.CHINESE).compare(s1,s2);
+//            }
+//        });
     }
 
     public void setData(List<WaitDoListBean.ResultBean.ResultlistBean> resultlist) {
         mResultList = resultlist;
+//        Collections.sort(mResultList, new Comparator<WaitDoListBean.ResultBean.ResultlistBean>() {
+//            @Override
+//            public int compare(WaitDoListBean.ResultBean.ResultlistBean resultlistBean1, WaitDoListBean.ResultBean.ResultlistBean resultlistBean2) {
+//                String s1=resultlistBean1.getPROCESSNAME().substring(0,1);
+//                LogUtils.d("s1 = ="+s1);
+//                String s2=resultlistBean2.getPROCESSNAME().substring(0,1);
+//                LogUtils.d("s2 = ="+s2);
+//                return Collator.getInstance(Locale.CHINESE).compare(s1,s2);
+//            }
+//        });
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

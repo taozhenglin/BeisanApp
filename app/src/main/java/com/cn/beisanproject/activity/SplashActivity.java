@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
+import com.cn.beisanproject.adapter.AttachListAdapter;
 import com.cn.beisanproject.modelbean.LoginBean;
 import com.cn.beisanproject.modelbean.WaitDoListBean;
 import com.cn.beisanproject.net.CallBackUtil;
@@ -38,14 +40,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity implements View.OnClickListener {
     private Context mContext;
 
-    @BindView(R.id.iv_image)
     ImageView ivImage;
-    @BindView(R.id.tv_time)
     TextView tvTime;
-    @BindView(R.id.ll_guide)
     LinearLayout llGuide;
     private Timer timer;
     int count = 3;
@@ -83,7 +82,10 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity);
-        ButterKnife.bind(this);
+        ivImage = findViewById(R.id.iv_image);
+        tvTime = findViewById(R.id.tv_time);
+        llGuide = findViewById(R.id.ll_guide);
+        llGuide.setOnClickListener(this::onClick);
         //隐藏标题栏
         getSupportActionBar().hide();
         StatusBarUtils.setWhiteStatusBarColor(this, R.color.white);
@@ -124,24 +126,6 @@ public class SplashActivity extends AppCompatActivity {
         queryData();
     }
 
-    @OnClick(R.id.ll_guide)
-    public void onViewClicked() {
-        if (timer != null) {
-            timer.cancel();
-            timer = null;
-        }
-        String username = SharedPreferencesUtil.getString(mContext, "username");
-        String pwd = SharedPreferencesUtil.getString(mContext, "pwd");
-        LogUtils.d("222222 username = " + username + "  pwd=" + pwd);
-        if (!StringUtils.isEmpty(username)) {
-            login(username.toUpperCase(), pwd);
-        } else {
-            Intent intent = new Intent(mContext, LoginActivity.class);
-            startActivity(intent);
-            finish();
-        }
-
-    }
 
     @Override
     protected void onDestroy() {
@@ -178,7 +162,8 @@ public class SplashActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 LogUtils.d("222222 onResponse" + response);
 
-                if (!response.isEmpty()) { LoginBean loginBean = JSONObject.parseObject(response, new TypeReference<LoginBean>() {
+                if (!response.isEmpty()) {
+                    LoginBean loginBean = JSONObject.parseObject(response, new TypeReference<LoginBean>() {
                     });
                     if (loginBean.getErrcode().equals("USER-S-101")) {
                         SharedPreferencesUtil.setString(mContext, "username", loginBean.getResult().getUserLoginDetails().getUserName());
@@ -199,6 +184,7 @@ public class SplashActivity extends AppCompatActivity {
         });
 
     }
+
     private void queryData() {
         /**
          * ---代办任务记录
@@ -218,7 +204,7 @@ public class SplashActivity extends AppCompatActivity {
         object.put("orderby", "startdate desc");
         String sqlSearch = " exists (select personid from maxuser where loginid=%s " +
                 "and wfassignment.assigncode=maxuser.personid)  " +
-                "and assignstatus='活动' and processname in('PO','RFQ','CONTPURCH','PRSUM','PR','GPDTZ','VENAPPLY','JLTZ','MATREQ','SBTZ','SSTZ','XMHT','UDXMHTBG','PRPROJ','XBJ','PROJSUM','XXHTZ','CONTRACTPO','INVUSEZY','FIXEDASSETJS','FIXEASSETRET')";
+                "and assignstatus='活动' and processname in('PO','RFQ','CONTPURCH','PRSUM','PR','GPDTZ','VENAPPLY','JLTZ','MATREQ','SBTZ','SSTZ','XMHT','UDXMHTBG','PRPROJ','XBJ','PROJSUM','XXHTZ','CONTRACTPO','INVUSEZY','UDFIXYSRG','UDFIXBF','UDFIXZZ','UDPRYS')";
         sqlSearch = String.format(sqlSearch, "'" + SharedPreferencesUtil.getString(mContext, "personId") + "'");
         object.put("sqlSearch", sqlSearch);
         HashMap<String, String> headermap = new HashMap<>();
@@ -240,11 +226,12 @@ public class SplashActivity extends AppCompatActivity {
                     if (response.startsWith("Error")) {
                         ToastUtils.showShort(R.string.GETDATAFAILED);
                     } else {
-                        waitDoListBean = JSONObject.parseObject(response, new TypeReference<WaitDoListBean>() {});
+                        waitDoListBean = JSONObject.parseObject(response, new TypeReference<WaitDoListBean>() {
+                        });
                         if (waitDoListBean.getErrcode().equals("GLOBAL-S-0")) {
-                           int  totalresult = waitDoListBean.getResult().getTotalresult();
-                            LogUtils.d("totalresult=="+totalresult);
-                            SharedPreferencesUtil.setInt(SplashActivity.this,"waitdototalresult",totalresult);
+                            int totalresult = waitDoListBean.getResult().getTotalresult();
+                            LogUtils.d("totalresult==" + totalresult);
+                            SharedPreferencesUtil.setInt(SplashActivity.this, "waitdototalresult", totalresult);
                         }
                     }
                 }
@@ -253,4 +240,21 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onClick(View view) {
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+        String username = SharedPreferencesUtil.getString(mContext, "username");
+        String pwd = SharedPreferencesUtil.getString(mContext, "pwd");
+        LogUtils.d("222222 username = " + username + "  pwd=" + pwd);
+        if (!StringUtils.isEmpty(username)) {
+            login(username.toUpperCase(), pwd);
+        } else {
+            Intent intent = new Intent(mContext, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
 }

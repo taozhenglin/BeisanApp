@@ -4,20 +4,27 @@ import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.view.View;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.NotificationCompat;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.activity.LoginActivity;
@@ -26,7 +33,6 @@ import com.cn.beisanproject.modelbean.LoginBean;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
 
-import org.json.JSONException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -48,9 +54,10 @@ public class MyApplication extends Application {
     public static String TAG = "MyApplication";
     public static Context applicationContext;
     private static MyApplication instance;
-    //    public Sciencer sciencer; //科普员，在科普员详情信息页，不新加接口，用判断是否是科普员的接口返回的科普员信息
+    private static final String NOTIFICATION_CHANNEL = "com.cn.beisanproject";
+    String   model;
+    String   carrier;
     public static String home = "1";
-//    private IWXAPI api;
 
     private static String MQ_APP_KEY = "d70b21192f0f1e0843a9b5c2a7d2ed3a"; //美洽客服SDK AppKey
 //    private static String MQ_APP_KEY = "6e6c5e2e4d872660dbaa1fe1fc5ecd21"; //美洽客服SDK AppKey，测试账号的key
@@ -67,6 +74,7 @@ public class MyApplication extends Application {
     private static String ALI_HOT_RSA = "MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCWGO2SYvXoen/bvUDVa5/mkQiM407DL8eWCxTyVrJ8xn6xKx7lYPPhiu15kMh6thu1z8aoKvRThq++/W28hNE3F8PgA6vq2dRLH01fkEB5T22rpdf456f9bClerl7JWg8D6xEdJMgO2870qLXziJzzZMXpnBoiXlyZUANCi/wkj1RIY8l72P1JgQhdEnlSeou5+M2AdfY0/mxrSIQEUbeC/PtjWjmBBHM3MO9WEc2eilUQAI9oZIrCoU88LgkAvn3TnlNbrx6GPxBr1itLUhOThtutne+pscVhJi1gxCbZRJxzZL2/8zyV6w86iC8n0bIAiWeLmZ5IM3UOlqda9MFpAgMBAAECggEAE8BUAt9i3KTCDnho/6yZ7g1HwsJmquiuqt/qcblW43R7V3UFK8oGTbeqaETVHNC59MLSsW51mEgw+EEBH72ailVmQSQ6izz+4qPL2rdwxIXfOKcqNGbHhGGnT/5CGtzu/OUB64Pbj5j9MtTAnLtta9nm8UbJaZxhMwuEYk1pcKX4CIkDAWES68PIMHPeKQrcIfQbE8OsLekrDjDPolEu8kbWaDk6CJMV3ihmndj11ffodKk/A+x7yrRzuARh4jEXl1NW9RZLAjihqeSmwkao5pr2UIUpltzuyvegUXes+/QOJpfE57V7ol7Q1OfQNIpwLmgeKxBJgY/aTYKHoEitwQKBgQDSiywFD4+OiPDepFa8Q90ldbq9RyBXLz+iwKM8q3e3S/lgek4QoH5pDzjECDGHPhLYjwjEhlHr6lbnZhHJ3d6E91UXMa7eWDbmFawHEkS2PlOIr4uhOmpfayZvE1TyOBM4b0zCV9uCNoz1oPf/Z924wJaujhp3s4SdQSIDvlepjwKBgQC2gN4iJ8W+Kc3KIVcW6kAnqtNJdbDQXuC33/aPcnmMOTeXnRDXm0QRPlf30uAqYuiSdBf67/rhmZbrgNpovKvpaX9uQk4j56F1x322xyPUoJp7Bc4WghVcOjOnPBlI8ed5EqQ6HbEJ7n5NQmPdN1NMlD5Xh8EImpReSu/5fq65hwKBgEuaF+N1U/o9qCh6YH7X65gg7z46RR2pZLNfcv49IA7cpB6FrHSB/QJiqeKSgp5qpr/GlMJk7RPGoRAUcbzIA7hBS/e5Km7CxGvYSl57q9q5BKvnRT9Ox5Wd1z45dd5ITnaMWMbMX5EhX3pwI709obtOxIzHkC99cdg55Cnt9nJ3AoGAA019t5yEpZZYFQpZax6+Hnmm7TNmCb9NzcYNzjbCIFmAugurnFtA9hbsvJ1iVSIJF21mabIiFicTZhuk2DRh4A16suIcS+YLM/hyO/aKnXRylztZqWqdPFgJS0N5KarHB5fgxPR4mbdpLbi/2ecAaOhd4HOieKdje/lbMmaqfs0CgYAwtnEi7uNYguoPfLrqr1QC7zBpgd/GPZn598MJA24+wTsaVXLrbG1zQJdrq9hCv+Iqbgzs4pGI6QWIZ0Br1UbvfIggQpa0PcnCasyIftPc9BykZ1ib7l/h6DdgPS8xnGXVyUR3Lj9wfLaogATKpAhpGX3IFXwzvqb5AEyQDHa4Tw==";
 
     private Handler handler;
+    private NotificationManager mNotificationManager;
 
     {
         //微信
@@ -159,13 +167,56 @@ public class MyApplication extends Application {
         // 默认设置为日间模式
         AppCompatDelegate.setDefaultNightMode(
                 AppCompatDelegate.MODE_NIGHT_NO);
+//        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//        int totalresult = SharedPreferencesUtil.getInt(this, "waitdototalresult");
+//        LogUtils.d("totalresult== "+totalresult );
+//
+//        model= android.os.Build.MODEL;//手机型号
+//        carrier= Build.MANUFACTURER;//手机厂商
+//        LogUtils.d("model== "+model + "       carrier="+carrier);
+//        Notification.Builder builder = new Notification.Builder(getApplicationContext())
+//                .setContentTitle("待办事项")
+//                .setContentText("")
+//                .setSmallIcon(R.mipmap.luncher_48);
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            LogUtils.d("==Build.VERSION.SDK_INT >= Build.VERSION_CODES.O");
+//
+//            setupNotificationChannel();
+//            builder.setChannelId(NOTIFICATION_CHANNEL);
+//        }
+
+//        Notification notification = builder.build();
+//        if (totalresult > 0) {
+//            if (carrier.equals("Xiaomi")){
+//                LogUtils.d("model== Xiaomi" );
+//                ShortcutBadger.applyNotification(this, notification, totalresult);
+//            }else {
+//                ShortcutBadger.applyCount(this, totalresult); //for 1.1.4+
+//            }
+//        }else{
+//            ShortcutBadger.removeCount(this);
+//        }
+//        Notification.Builder builder = new Notification.Builder(getApplicationContext())
+//                .setContentTitle("")
+//                .setContentText("")
+//                .setSmallIcon(R.drawable.ic_launcher);
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            setupNotificationChannel();
+//
+//            builder.setChannelId(NOTIFICATION_CHANNEL);
+//        }
+//        Notification notification = builder.build();
+//        ShortcutBadger.applyNotification(getApplicationContext(), notification, badgeCount);
+//        ShortcutBadger.with(getApplicationContext()).count(badgeCount); //for 1.1.3
 //        String username = SharedPreferencesUtil.getString(this, "username");
 //        String pwd = SharedPreferencesUtil.getString(this, "pwd");
 //        LogUtils.d("222222 username = " + username + "\npwd=" + pwd);
 ////        if (!StringUtils.isEmpty(username)) {
 ////            login(username, pwd);
 ////        } else {
-////            Intent intent = new Intent(this, LoginActivity.class);
+////            Intent intent = new Intent(this, LoginActivity.class);Wai
 ////            startActivity(intent);
 ////        }
 
@@ -249,6 +300,45 @@ public class MyApplication extends Application {
 //        }
     }
 
+//    @TargetApi(Build.VERSION_CODES.O)
+//    private void setupNotificationChannel() {
+//        NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL, "com.cn.beisanproject",
+//                NotificationManager.IMPORTANCE_DEFAULT);
+//
+//        mNotificationManager.createNotificationChannel(channel);
+//    }
+
+    //    public void testNotify(View v) {
+//        NotificationCompat.Builder builder;
+//        //8.0
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            builder = new NotificationCompat.Builder(this, getChannelId());
+//        } else {
+//            builder = new NotificationCompat.Builder(this, null);
+//            //8.0以下版本桌面红点显示
+//            // TODO: 2018/8/2
+//        }
+//
+//        builder.setSmallIcon(R.mipmap.luncher_48)
+//                .setDefaults(Notification.DEFAULT_ALL)
+//                .setTicker("title")
+//                .setAutoCancel(true)
+//                .setContentTitle("contentTitle")
+//                .setContentText("contentText");
+//        mNotificationManager.notify(123, builder.build());
+//    }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+//    public String getChannelId() {
+//        final String channelId = "123";
+//        final String channelName = "com.cn.beisanproject";
+//
+//        NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+//        channel.enableLights(true);//显示桌面红点
+//        channel.setLightColor(Color.RED);
+//        channel.setShowBadge(true);
+//        mNotificationManager.createNotificationChannel(channel);
+//        return channel.getId();
+//    }
     public void login(String name, final String pwd) {
         LogUtils.d("response222222 login");
         HashMap<String, String> map = new HashMap<>();

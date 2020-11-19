@@ -30,15 +30,13 @@ import com.cn.beisanproject.modelbean.ResultBean;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
-@SuppressLint("ValidFragment")
 public class PersonalCenterFragment extends Fragment implements View.OnClickListener {
     private Context mContext;
     private ResultBean.UserLoginDetailsBean userLoginDetails;
     private TextView tv_name;
     private TextView tv_num;
     private TextView tv_current_env;
-    private TextView tv_current_version;
-    private  TextView txtCurVersion;
+    private  TextView tv_Version;
     private Button btnLogOut;
     LinearLayout ll_scan;
     String   model;
@@ -69,23 +67,15 @@ public class PersonalCenterFragment extends Fragment implements View.OnClickList
         tv_name = view.findViewById(R.id.tv_name);
         tv_num = view.findViewById(R.id.tv_num);
         tv_current_env = view.findViewById(R.id.tv_current_env);
-        txtCurVersion = view.findViewById(R.id.txtCurVersion);
+        tv_Version = view.findViewById(R.id.tv_Version);
         ll_scan= view.findViewById(R.id.ll_scan);
         btnLogOut = view.findViewById(R.id.btnLogOut);
         tv_name.setText(userLoginDetails.getDisplayName());
         tv_num.setText(userLoginDetails.getUserName());
-        if (!StringUtils.isEmpty(SharedPreferencesUtil.getString(mContext,"envirment"))){
-            if (SharedPreferencesUtil.getString(mContext,"envirment").equals("测试")){
-                tv_current_env.setText("测试环境");
-            }else
-                tv_current_env.setText("开发环境");
-
-        }else {
-            tv_current_env.setText("测试环境");
-
-        }
-
-        txtCurVersion.setText(AppUtils.getAppVersionName());
+        tv_current_env.setText("开发环境");
+        String appVersionName = AppUtils.getAppVersionName();
+        LogUtils.d("222222 appVersionName="+appVersionName);
+        tv_Version.setText(appVersionName);
         btnLogOut.setOnClickListener(this);
         ll_scan.setOnClickListener(this);
     }
