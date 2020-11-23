@@ -37,7 +37,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="项目申请："
-                        android:textSize="@dimen/sp14"
+                      android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2"
                         android:textStyle="bold" />
 
                     <TextView
@@ -46,7 +47,8 @@
                         android:layout_height="wrap_content"
                         android:text="项目申请："
                         android:textColor="@color/guide_blue"
-                        android:textSize="@dimen/sp14"
+                      android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -56,14 +58,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="项目申请："
-                    android:textSize="@dimen/sp14" />
+                  android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2" />
 
                 <TextView
                     android:id="@+id/tv_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="项目申请："
-                    android:textSize="@dimen/sp14" />
+                  android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2"
+                    android:maxLines="1"
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -76,7 +82,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="项目申请："
-                        android:textSize="@dimen/sp14" />
+                      android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2" />
 
                     <TextView
                         android:id="@+id/tv_5"
@@ -84,7 +91,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="项目申请："
-                        android:textSize="@dimen/sp14" />
+                      android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2" />
                 </LinearLayout>
 
                 <TextView
@@ -92,28 +100,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="项目申请："
-                    android:textSize="@dimen/sp14" />
+                  android:textSize="@dimen/sp14"
+                    android:maxLines="1"
+                        android:layout_marginTop="@dimen/dp2" />
 
                 <TextView
                     android:id="@+id/tv_7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="项目申请："
-                    android:textSize="@dimen/sp14" />
+                  android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2" />
 
                 <TextView
                     android:id="@+id/tv_8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="项目申请："
-                    android:textSize="@dimen/sp14" />
+                  android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2" />
 
                 <TextView
                     android:id="@+id/tv_9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="项目申请："
-                    android:textSize="@dimen/sp14" />
+                    android:text="立项描述："
+                  android:textSize="@dimen/sp14"
+                    android:maxLines="1"
+                        android:layout_marginTop="@dimen/dp2" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -124,16 +138,42 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="项目申请："
-                        android:textSize="@dimen/sp14" />
+                        android:text="本次结算金额："
+                      android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2" />
 
                     <TextView
                         android:id="@+id/tv_11"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="项目申请："
-                        android:textSize="@dimen/sp14" />
+                        android:text="开工日期："
+                      android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_contact_total"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="合同总金额："
+                      android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2" />
+
+                    <TextView
+                        android:id="@+id/tv_finish_date"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="完工日期："
+                      android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2" />
 
                 </LinearLayout>
 
@@ -148,7 +188,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="项目申请："
-                        android:textSize="@dimen/sp14" />
+                      android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2" />
 
                     <TextView
                         android:id="@+id/tv_13"
@@ -156,7 +197,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="项目申请："
-                        android:textSize="@dimen/sp14" />
+                      android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2" />
                 </LinearLayout>
 
 
@@ -170,7 +212,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="项目申请："
-                        android:textSize="@dimen/sp14" />
+                      android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2" />
 
                     <TextView
                         android:id="@+id/tv_15"
@@ -178,36 +221,60 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="项目申请："
-                        android:textSize="@dimen/sp14" />
+                      android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tv_16"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="项目申请："
-                    android:textSize="@dimen/sp14" />
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tv_16"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="实施部门："
+                      android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2" />
+                    <TextView
+                        android:id="@+id/tv_otherdep"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="其他部门："
+                      android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2" />
+
+                </LinearLayout>
+
+
 
                 <TextView
                     android:id="@+id/tv_17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="项目申请："
-                    android:textSize="@dimen/sp14" />
+                  android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2"
+                    android:lineSpacingExtra="@dimen/dp1"
+                    />
 
                 <TextView
                     android:id="@+id/tv_18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="项目申请："
-                    android:textSize="@dimen/sp14" />
+                  android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2" />
 
                 <TextView
                     android:id="@+id/tv_19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="项目申请："
-                    android:textSize="@dimen/sp14" />
+                  android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2" />
 
             </LinearLayout>
 
@@ -225,7 +292,8 @@
                     android:paddingLeft="@dimen/dp5"
                     android:text="附件明细行"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/sp14" />
+                  android:textSize="@dimen/sp14"
+                    />
 
                 <LinearLayout
                     android:id="@+id/ll_attach"
@@ -246,5 +314,6 @@
         android:gravity="center"
         android:text="工作流审批"
         android:textColor="@color/white"
-        android:textSize="@dimen/sp14" />
+      android:textSize="@dimen/sp14"
+                        android:layout_marginTop="@dimen/dp2" />
 </RelativeLayout>

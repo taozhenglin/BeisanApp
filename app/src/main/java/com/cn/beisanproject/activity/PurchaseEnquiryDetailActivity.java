@@ -447,7 +447,7 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
                 iv_disagree.setBackgroundResource(R.drawable.selected);
                 iv_agree.setBackgroundResource(R.drawable.unselected);
                 isAgree = 0;
-                input_et.setHint("不同意");
+                input_et.setHint("驳回");
                 LogUtils.d("不同意==");
             }
         });
@@ -706,7 +706,7 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
                                 tv_enquiry_sum.setText("单价："+resultlist.get(i).getUNITCOST());
                                 tv_enquiry_tax.setText("总价："+resultlist.get(i).getLINECOST());
                                 tv_sum_tax.setText("税率："+resultlist.get(i).getA_FL());
-                                tv_no_tax.setText("是否已授权 "+resultlist.get(i).getISAWARDED());
+                                tv_no_tax.setText("是否已授权："+resultlist.get(i).getISAWARDED());
 
                                 ll_button.addView(inflate);
                             }

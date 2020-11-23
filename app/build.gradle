@@ -37,7 +37,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions{
+    compileOptions {
 
         sourceCompatibility JavaVersion.VERSION_1_8
 
@@ -104,8 +104,10 @@ dependencies {
     compile 'com.aliyun.ams:alicloud-android-hotfix:3.2.14'
     //noinspection GradleCompatible
     compile 'com.android.support:appcompat-v7:25.1.0'
+    //消息小红点
     implementation "me.leolin:ShortcutBadger:1.1.22@aar"
-
+//蒲公英sdk
+    implementation 'com.github.Pgyer:analyticssdk:4.0.7'
 
 
 }

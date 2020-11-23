@@ -109,6 +109,9 @@ public class ProjectYsDetailActivity extends AppCompatActivity implements View.O
     private TextView tv17;
     private TextView tv18;
     private TextView tv19;
+    private TextView tv_finish_date;
+    private TextView tv_contact_total;
+    TextView tv_otherdep;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -163,7 +166,9 @@ public class ProjectYsDetailActivity extends AppCompatActivity implements View.O
         tv17= findViewById(R.id.tv_17);
         tv18= findViewById(R.id.tv_18);
         tv19= findViewById(R.id.tv_19);
-
+        tv_contact_total= findViewById(R.id.tv_contact_total);
+        tv_finish_date= findViewById(R.id.tv_finish_date);
+        tv_otherdep= findViewById(R.id.tv_otherdep);
         ll_attach= findViewById(R.id.ll_attach);
         tvApproval= findViewById(R.id.tv_approval);
         tvApproval.setOnClickListener(this);
@@ -180,15 +185,18 @@ public class ProjectYsDetailActivity extends AppCompatActivity implements View.O
             tv5.setText("合同编号：" + mResultlistBean.getCONTNUM());
             tv6.setText("合同描述：" + mResultlistBean.getCONTRACTDESC());
             tv7.setText("立项编号：" + mResultlistBean.getPROJECTNUM());
-            tv8.setText("立项金额：" + mResultlistBean.getPROCOST());
+            tv8.setVisibility(View.GONE);
             tv9.setText("立项描述：" + mResultlistBean.getPRODESC());
-            tv10.setText("结算金额：" + mResultlistBean.getCONTCOST());
+            tv10.setText("本次结算金额：" + mResultlistBean.getCONTCOST());
+            tv_contact_total.setText("合同总金额："+mResultlistBean.getTOTALCOST());
+            tv_finish_date.setText("完工日期："+mResultlistBean.getUDWGTIME());
             tv11.setText("开工日期：" + mResultlistBean.getUDKGTIME());
-            tv12.setText("所属公司：" + mResultlistBean.getCOMPANY());
+            tv12.setText("专业组：" + mResultlistBean.getCREWID());
             tv13.setText("使用部门：" + mResultlistBean.getXMSYDEPT());
-            tv14.setText("主管部门：" + mResultlistBean.getZGBM());
+            tv14.setText("主管部门：" + mResultlistBean.getXMZGDEPT());
             tv15.setText("申报部门：" + mResultlistBean.getSBBM());
-            tv16.setText("经办部门：" + mResultlistBean.getJBBM());
+            tv16.setText("实施部门：" + mResultlistBean.getXMSSDEPT());
+            tv_otherdep.setText("其他部门：" + mResultlistBean.getXMJBDEPT());
             tv17.setText("验收主要内容：" + mResultlistBean.getREMARK1());
             tv18.setText("遗留问题：" + mResultlistBean.getREMARK2());
             tv19.setText("备注：" + mResultlistBean.getREMARK3());
@@ -504,15 +512,18 @@ public class ProjectYsDetailActivity extends AppCompatActivity implements View.O
                             tv5.setText("合同编号：" + resultlistBean.getCONTNUM());
                             tv6.setText("合同描述：" + resultlistBean.getCONTRACTDESC());
                             tv7.setText("立项编号：" + resultlistBean.getPROJECTNUM());
-                            tv8.setText("立项金额：" + resultlistBean.getPROCOST());
+                            tv8.setVisibility(View.GONE);
                             tv9.setText("立项描述：" + resultlistBean.getPRODESC());
-                            tv10.setText("结算金额：" + resultlistBean.getCONTCOST());
+                            tv10.setText("本次结算金额：" + resultlistBean.getCONTCOST());
+                            tv_contact_total.setText("合同总金额："+resultlistBean.getTOTALCOST());
+                            tv_finish_date.setText("完工日期："+resultlistBean.getUDWGTIME());
                             tv11.setText("开工日期：" + resultlistBean.getUDKGTIME());
-                            tv12.setText("所属公司：" + resultlistBean.getCOMPANY());
+                            tv12.setText("专业组：" + resultlistBean.getCREWID());
                             tv13.setText("使用部门：" + resultlistBean.getXMSYDEPT());
-                            tv14.setText("主管部门：" + resultlistBean.getZGBM());
+                            tv14.setText("主管部门：" + resultlistBean.getXMZGDEPT());
                             tv15.setText("申报部门：" + resultlistBean.getSBBM());
-                            tv16.setText("经办部门：" + resultlistBean.getJBBM());
+                            tv16.setText("实施部门：" + resultlistBean.getXMSSDEPT());
+                            tv_otherdep.setText("其他部门：" + resultlistBean.getXMJBDEPT());
                             tv17.setText("验收主要内容：" + resultlistBean.getREMARK1());
                             tv18.setText("遗留问题：" + resultlistBean.getREMARK2());
                             tv19.setText("备注：" + resultlistBean.getREMARK3());
@@ -525,6 +536,8 @@ public class ProjectYsDetailActivity extends AppCompatActivity implements View.O
                                     tvApproval.setText("工作流审批");
                                 }
                             }
+
+                        }else {
 
                         }
                         getAttachMent();
@@ -717,7 +730,7 @@ public class ProjectYsDetailActivity extends AppCompatActivity implements View.O
                 iv_disagree.setBackgroundResource(R.drawable.selected);
                 iv_agree.setBackgroundResource(R.drawable.unselected);
                 isAgree = 0;
-                input_et.setHint("不同意");
+                input_et.setHint("驳回");
                 LogUtils.d("不同意==");
             }
         });

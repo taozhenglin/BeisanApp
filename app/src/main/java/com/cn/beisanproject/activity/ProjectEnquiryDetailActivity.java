@@ -179,7 +179,7 @@ public class ProjectEnquiryDetailActivity extends AppCompatActivity implements V
             tv_contract.setText("合同:" + mResultlistBean.getR_MASTERDESC());
             tv_baojia_amount.setText("报价合计金额（含税）:" + mResultlistBean.getHJJE());
             tv_auth_amount1.setText("授权合计金额（含税）:" + mResultlistBean.getCYHJJE());
-            tv_auth_amount2.setText("授权合计金额（不含税）:" + mResultlistBean.getJHCOST());
+            tv_auth_amount2.setVisibility(View.GONE);
             tv_note.setText("备注:" + mResultlistBean.getA_MEMO());
             getBaoJiaSupport();
         }
@@ -256,7 +256,7 @@ public class ProjectEnquiryDetailActivity extends AppCompatActivity implements V
                         tv_contract.setText("合同:" + resultlistBean.getR_MASTERDESC());
                         tv_baojia_amount.setText("报价合计金额（含税）:" + resultlistBean.getHJJE());
                         tv_auth_amount1.setText("授权合计金额（含税）:" + resultlistBean.getCYHJJE());
-                        tv_auth_amount2.setText("授权合计金额（不含税）:" + resultlistBean.getJHCOST());
+                        tv_auth_amount2.setVisibility(View.GONE);
                         tv_note.setText("备注:" + resultlistBean.getA_MEMO());
                         getBaoJiaSupport();
                     }
@@ -415,15 +415,15 @@ public class ProjectEnquiryDetailActivity extends AppCompatActivity implements V
                                 TextView tv_sum_tax = inflate.findViewById(R.id.tv_sum_tax);
                                 TextView tv_no_tax = inflate.findViewById(R.id.tv_no_tax);
 
-                                tv_supporter.setText("项目编号：" + resultlist.get(i).getITEMNUM());
-                                tv_desc.setText("项目描述：" + resultlist.get(i).getITEMDESC());
-                                tv_model.setText("规格型号：" + resultlist.get(i).getA_MODEL());
+                                tv_supporter.setVisibility(View.GONE);
+                                tv_desc.setText("项目描述：" + resultlist.get(i).getDESCRIPTION());
+                                tv_model.setVisibility(View.GONE);
                                 tv_contacts.setText("数量：" + resultlist.get(i).getORDERQTY());
-                                tv_phone.setText("单位：" + resultlist.get(i).getORDERUNIT());
+                                tv_phone.setVisibility(View.GONE);
                                 tv_enquiry_sum.setText("单价：" + resultlist.get(i).getUNITCOST());
                                 tv_enquiry_tax.setText("总价：" + resultlist.get(i).getLINECOST());
                                 tv_sum_tax.setText("税率：" + resultlist.get(i).getA_FL());
-                                tv_no_tax.setText("是否已授权 " + resultlist.get(i).getISAWARDED());
+                                tv_no_tax.setText("是否已授权: " + resultlist.get(i).getISAWARDED());
 
                                 ll_button.addView(inflate);
                             }
@@ -572,7 +572,7 @@ public class ProjectEnquiryDetailActivity extends AppCompatActivity implements V
                 iv_disagree.setBackgroundResource(R.drawable.selected);
                 iv_agree.setBackgroundResource(R.drawable.unselected);
                 isAgree = 0;
-                input_et.setHint("不同意");
+                input_et.setHint("驳回");
                 LogUtils.d("不同意==");
             }
         });

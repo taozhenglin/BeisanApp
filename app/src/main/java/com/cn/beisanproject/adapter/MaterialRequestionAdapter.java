@@ -79,7 +79,7 @@ public class MaterialRequestionAdapter extends RecyclerView.Adapter<MaterialRequ
         holder.tv_requset_dep.setText("申请部门:" + mList.get(position).getA_DEPT());
         holder.tv_material_team.setText("班组:" + mList.get(position).getBZ());
         holder.tv_material_sum.setText("总金额:" + mList.get(position).getESTMATCOST());
-        holder.tv_write_by.setText("填报人:" + mList.get(position).getREPORTEDBY());
+        holder.tv_write_by.setText("填报人:" + mList.get(position).getREPORTEDBYDESC());
         holder.tv_write_time.setText("填报时间:" + mList.get(position).getREPORTDATE());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

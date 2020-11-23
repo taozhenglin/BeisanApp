@@ -112,7 +112,6 @@ public class FunCtionFragment extends Fragment implements View.OnClickListener {
 
     private void initListener() {
         ll_purchase_contract.setOnClickListener(this);
-        ll_project_contract.setOnClickListener(this);
         ll_stock_taking.setOnClickListener(this);
         ll_material_requisition.setOnClickListener(this);
         ll_asssert_check.setOnClickListener(this);

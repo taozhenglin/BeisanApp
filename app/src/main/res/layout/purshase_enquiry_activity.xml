@@ -112,7 +112,6 @@
                         android:id="@+id/tv_request_team"
                         android:layout_width="0dp"
                         android:layout_weight="1"                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp3"
                         android:text="申请班组："
                         android:textSize="@dimen/sp14" />
 
@@ -121,7 +120,6 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp3"
                         android:text="合同："
                         android:textSize="@dimen/sp14" />
                 </LinearLayout>

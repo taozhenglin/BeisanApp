@@ -145,7 +145,7 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
         tv_created_by = findViewById(R.id.tv_created_by);
         tv_created_time = findViewById(R.id.tv_created_time);
         tv_owner_companny = findViewById(R.id.tv_owner_companny);
-        tv_title= findViewById(R.id.tv_title);
+        tv_title= findViewById(R.id.tvtitle);
         tv_title.setText("接收明细行");
         tv_created_time.setVisibility(View.GONE);
         tv_approval=findViewById(R.id.tv_approval);
@@ -457,7 +457,7 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
                 iv_disagree.setBackgroundResource(R.drawable.selected);
                 iv_agree.setBackgroundResource(R.drawable.unselected);
                 isAgree = 0;
-                input_et.setHint("不同意");
+                input_et.setHint("驳回");
                 LogUtils.d("不同意==");
             }
         });

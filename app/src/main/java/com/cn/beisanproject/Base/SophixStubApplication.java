@@ -5,6 +5,8 @@ import android.util.Log;
 
 import androidx.annotation.Keep;
 
+import com.cn.beisanproject.Utils.LogUtils;
+import com.pgyer.pgyersdk.PgyerSDKManager;
 import com.taobao.sophix.PatchStatus;
 import com.taobao.sophix.SophixApplication;
 import com.taobao.sophix.SophixEntry;
@@ -59,5 +61,21 @@ public class SophixStubApplication extends SophixApplication {
     public void onCreate() {
         super.onCreate();
         SophixManager.getInstance().queryAndLoadNewPatch();
+        initPGY(this);
+    }
+    private void initPGY(SophixStubApplication sophixStubApplication) {
+        String apiKey = "6fde8fad44da000ff7a1338ef5088d05";
+        String frontJSToken = "c13f720272a2f5391728234a7a4049a4";
+        try {
+            new PgyerSDKManager.InitSdk()
+                    .setContext(sophixStubApplication)
+                    .setApiKey(apiKey)
+                    .setFrontJSToken(frontJSToken)
+                    .build();
+        } catch (Exception e) {
+            PgyerSDKManager.reportException(e);
+
+        }
+
     }
 }

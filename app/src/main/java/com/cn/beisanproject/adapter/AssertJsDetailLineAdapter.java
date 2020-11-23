@@ -43,7 +43,7 @@ public class AssertJsDetailLineAdapter extends RecyclerView.Adapter<AssertJsDeta
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
         if (mType.equals("转固")) {
-            holder.tv_line_no.setText("资产编码:" + mList.get(i).getCWBM());
+            holder.tv_line_no.setText("资产编码:" + mList.get(i).getCWBM());//状态为已批准才有值
             holder.tv_product_location.setText("资产类别：" + mList.get(i).getUDTYPE1DEC());
             holder.tv_line_batch.setText("资产描述：" + mList.get(i).getDESCRIPTION());
             holder.tv_prodution_no.setText("规格型号：" + mList.get(i).getPRODUCTMODEL());

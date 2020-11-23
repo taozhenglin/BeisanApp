@@ -85,7 +85,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         ivImage = findViewById(R.id.iv_image);
         tvTime = findViewById(R.id.tv_time);
         llGuide = findViewById(R.id.ll_guide);
-        llGuide.setOnClickListener(this::onClick);
+        llGuide.setOnClickListener(this);
         //隐藏标题栏
         getSupportActionBar().hide();
         StatusBarUtils.setWhiteStatusBarColor(this, R.color.white);

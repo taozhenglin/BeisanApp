@@ -113,7 +113,7 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tvtitle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp40"
             android:layout_below="@+id/tv_contract_endtime"

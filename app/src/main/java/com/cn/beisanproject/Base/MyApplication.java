@@ -32,6 +32,8 @@ import com.cn.beisanproject.activity.MainActivity;
 import com.cn.beisanproject.modelbean.LoginBean;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
+import com.pgyer.pgyersdk.PgyerSDKManager;
+import com.pgyer.pgyersdk.crash.PgyCrashManager;
 
 
 import java.io.BufferedReader;
@@ -55,8 +57,8 @@ public class MyApplication extends Application {
     public static Context applicationContext;
     private static MyApplication instance;
     private static final String NOTIFICATION_CHANNEL = "com.cn.beisanproject";
-    String   model;
-    String   carrier;
+    String model;
+    String carrier;
     public static String home = "1";
 
     private static String MQ_APP_KEY = "d70b21192f0f1e0843a9b5c2a7d2ed3a"; //美洽客服SDK AppKey
@@ -167,6 +169,7 @@ public class MyApplication extends Application {
         // 默认设置为日间模式
         AppCompatDelegate.setDefaultNightMode(
                 AppCompatDelegate.MODE_NIGHT_NO);
+        //初始化蒲公英sdk
 //        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 //        int totalresult = SharedPreferencesUtil.getInt(this, "waitdototalresult");
 //        LogUtils.d("totalresult== "+totalresult );
@@ -299,6 +302,8 @@ public class MyApplication extends Application {
 //            LeakCanary.install(this);
 //        }
     }
+
+
 
 //    @TargetApi(Build.VERSION_CODES.O)
 //    private void setupNotificationChannel() {

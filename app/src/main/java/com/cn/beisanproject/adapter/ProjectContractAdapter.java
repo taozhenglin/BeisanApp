@@ -82,7 +82,7 @@ public class ProjectContractAdapter extends RecyclerView.Adapter<ProjectContract
         holder.tv_contract_yi.setText(highlighty);
         holder.tv_contract_starttime.setText("开始时间：" + mResultlistBean.get(position).getSTARTDATE());
         holder.tv_contract_endtime.setText("结束时间：" + mResultlistBean.get(position).getENDDATE());
-        holder.tv_contract_by.setText("合同编制人：" + mResultlistBean.get(position).getENTERBY());
+        holder.tv_contract_by.setText("合同编制人：" + mResultlistBean.get(position).getENTERBYDESC());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -486,7 +486,7 @@ public class MaterialRequestDetailActivity extends AppCompatActivity implements 
                 iv_disagree.setBackgroundResource(R.drawable.selected);
                 iv_agree.setBackgroundResource(R.drawable.unselected);
                 isAgree = 0;
-                input_et.setHint("不同意");
+                input_et.setHint("驳回");
                 LogUtils.d("不同意==");
             }
         });
