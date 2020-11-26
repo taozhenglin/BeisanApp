@@ -8,6 +8,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -165,7 +166,8 @@ public class PurchaseOrderDetailActivity extends AppCompatActivity implements Vi
         object.put("showcount", 1);
         object.put("option", "read");
         object.put("orderby", "STARTDATE DESC");
-        object.put("sqlSearch", " LB='采购合同' and CONTRACTNUM= "+"'"+ownerid+"'");
+        LogUtils.d("222222  "+ownerid);
+        object.put("sqlSearch", " LB='采购合同' and CONTRACTID= "+"'"+ownerid+"'");
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
         HashMap<String, String> map = new HashMap<>();

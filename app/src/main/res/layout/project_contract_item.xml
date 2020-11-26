@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="合同编号："
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp14"
         android:textStyle="bold" />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_marginRight="@dimen/dp5"
         android:text=""
         android:textColor="@color/white"
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <ImageView
         android:id="@+id/iv_contract_statue"
@@ -38,7 +38,7 @@
         android:layout_below="@+id/tv_contract_no"
         android:layout_marginTop="@dimen/dp3"
         android:text="合同描述："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <TextView
         android:id="@+id/tv_contract_count"
@@ -47,7 +47,7 @@
         android:layout_below="@+id/tv_contract_desc"
         android:layout_marginTop="@dimen/dp3"
         android:text="成本总计："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <TextView
         android:id="@+id/tv_contract_jia"
@@ -56,7 +56,7 @@
         android:layout_below="@+id/tv_contract_count"
         android:layout_marginTop="@dimen/dp3"
         android:text="甲方："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <TextView
         android:id="@+id/tv_contract_yi"
@@ -65,7 +65,7 @@
         android:layout_below="@+id/tv_contract_jia"
         android:layout_marginTop="@dimen/dp3"
         android:text="乙方："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 
     <LinearLayout
         android:id="@+id/ll"
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="开始时间："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_contract_endtime"
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="开始时间："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
     </LinearLayout>
 
     <TextView
@@ -100,5 +100,5 @@
         android:layout_below="@+id/ll"
         android:layout_marginTop="@dimen/dp3"
         android:text="合同编制人："
-        android:textSize="@dimen/sp12" />
+        android:textSize="@dimen/sp14" />
 </RelativeLayout>

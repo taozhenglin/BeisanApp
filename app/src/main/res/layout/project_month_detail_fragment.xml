@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="计划汇总："
-            android:textSize="@dimen/sp12"
+            android:textSize="@dimen/sp14"
 
             />
 
@@ -30,7 +30,7 @@
             android:layout_marginRight="@dimen/dp5"
             android:text=""
             android:textColor="@color/guide_blue"
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_contract_desc"
@@ -39,7 +39,7 @@
             android:layout_below="@+id/tv_contract_no"
             android:layout_marginTop="@dimen/dp3"
             android:text="描述："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_collet_date"
@@ -48,7 +48,7 @@
             android:layout_below="@+id/tv_contract_desc"
             android:layout_marginTop="@dimen/dp3"
             android:text="汇总年月："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_collet_time"
@@ -57,7 +57,7 @@
             android:layout_below="@+id/tv_collet_date"
             android:layout_marginTop="@dimen/dp3"
             android:text="汇总时间："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_collet_type"
@@ -66,7 +66,7 @@
             android:layout_below="@+id/tv_collet_time"
             android:layout_marginTop="@dimen/dp3"
             android:text="汇总类型："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
             android:id="@+id/tv_collet_by"
@@ -77,7 +77,7 @@
             android:layout_marginTop="@dimen/dp3"
             android:layout_toRightOf="@+id/tv_collet_time"
             android:text="汇总人："
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
 
 
@@ -91,7 +91,7 @@
             android:gravity="center_vertical"
             android:text="已汇总计划列表"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <LinearLayout
             android:id="@+id/ll_top"
@@ -107,7 +107,7 @@
             android:gravity="center_vertical"
             android:text="本月末需汇总计划列表"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <LinearLayout
             android:id="@+id/ll_button"

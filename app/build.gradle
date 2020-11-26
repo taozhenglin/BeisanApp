@@ -37,6 +37,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
 
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -47,9 +48,11 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.core:core:1.3.0'
+    implementation files('libs\\taobao-sdk-java-auto_1479188381469-20201125.jar')
+    implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
+    implementation files('libs\\taobao-sdk-java-auto_1479188381469-20201125-source.jar')
     compileOnly 'org.jetbrains:annotations-java5:15.0'
 //    implementation 'org.jetbrains:annotations-java5:15.0'
 

@@ -136,7 +136,6 @@ public class SupplierDetailActivity extends AppCompatActivity {
         if (!StringUtils.isEmpty(getIntent().getStringExtra("from")) && getIntent().getStringExtra("from").equals("waitdolist")) {//来自代办事项列表
             needGet = true;
             waitdolistbean = (WaitDoListBean.ResultBean.ResultlistBean) getIntent().getExtras().get("ResultlistBean");
-            VENDORSAPPLYID = waitdolistbean.getOWNERID() + "";
             LogUtils.d("VENDORSAPPLYID==" + VENDORSAPPLYID);
         } else {
             mResultlistBean = (SupplierListBean.ResultBean.ResultlistBean) getIntent().getExtras().get("ResultlistBean");//来自首页列表
@@ -218,7 +217,7 @@ public class SupplierDetailActivity extends AppCompatActivity {
         object.put("option", "read");
         object.put("orderby", "VENDORS DESC");
         JSONObject condition = new JSONObject();
-        condition.put("VENDORSAPPLYID", VENDORSAPPLYID);
+        condition.put("VENDORSAPPLYID", waitdolistbean.getOWNERID());
         object.put("condition", condition);
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
@@ -549,7 +548,7 @@ public class SupplierDetailActivity extends AppCompatActivity {
                 "<soapenv:Body>" +
                 "<max:wfservicewfGoOn creationDateTime=\"\" baseLanguage=\"zh\" transLanguage=\"zh\" messageID=\"\" maximoVersion=\"\" >" +
                 "<max:processname>VENAPPLY</max:processname>" +
-                "<max:mboName>VENAPPLY</max:mboName>" +
+                "<max:mboName>VENDORSAPPLY</max:mboName>" +
                 "<max:keyValue>%s</max:keyValue>" +
                 "<max:key>VENDORSAPPLYID</max:key>" +
                 "<max:ifAgree>%s</max:ifAgree>" +
