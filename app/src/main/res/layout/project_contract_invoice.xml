@@ -30,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="合同编号："
-                    android:textSize="@dimen/sp12"
+                    android:textSize="@dimen/sp14"
 
                     />
 
@@ -41,7 +41,7 @@
                     android:layout_marginRight="@dimen/dp5"
                     android:text=""
                     android:textColor="@color/guide_blue"
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
             </LinearLayout>
 
             <TextView
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp3"
                 android:text="合同描述："
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -64,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="申请部门："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <TextView
                     android:id="@+id/tv_department"
@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="主管部门："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
             </LinearLayout>
 
             <LinearLayout
@@ -88,7 +88,7 @@
                     android:layout_marginTop="@dimen/dp3"
                     android:layout_weight="1"
                     android:text="甲方："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
 
                 <TextView
                     android:id="@+id/tv_company"
@@ -96,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="公司："
-                    android:textSize="@dimen/sp12" />
+                    android:textSize="@dimen/sp14" />
             </LinearLayout>
 
             <TextView
@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp3"
                 android:text="乙方："
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
             <TextView
                 android:id="@+id/tv_contract_type"
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp3"
                 android:text="合同分类："
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
             <TextView
                 android:id="@+id/tv_contract_catogry"
@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp3"
                 android:text="合同类型："
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
             <TextView
                 android:id="@+id/tv_contract_cost"
@@ -129,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp3"
                 android:text="合同金额："
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
             <TextView
                 android:id="@+id/tv_total_cost"
@@ -137,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp3"
                 android:text="合同总金额："
-                android:textSize="@dimen/sp12" />
+                android:textSize="@dimen/sp14" />
 
 
         </LinearLayout>
@@ -151,7 +151,7 @@
             android:paddingLeft="@dimen/dp8"
             android:text="相关发票"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp14" />
 
         <LinearLayout
             android:id="@+id/ll_contract_attachment"

@@ -89,23 +89,23 @@ public class ProjectMonthColletDetailFragment extends Fragment {
         if (mNeedGet) {
             PRNUM = mProjectMonthCollectBean.getPRNUM();
             A_PRKEY= mProjectMonthCollectBean.getA_PRKEY();
-            tv_contract_no.setText("项目汇总:" + mProjectMonthCollectBean.getPRNUM());
+            tv_contract_no.setText("项目汇总：" + mProjectMonthCollectBean.getPRNUM());
             tv_contract_statue.setText(mProjectMonthCollectBean.getSTATUS());
-            tv_contract_desc.setText("描述:" + mProjectMonthCollectBean.getDESCRIPTION());
-            tv_collet_date.setText("汇总年月:" + mProjectMonthCollectBean.getA_PRKEY());
-            tv_collet_time.setText("汇总时间:" + mProjectMonthCollectBean.getISSUEDATE());
-            tv_collet_type.setText("汇总类型:" + mProjectMonthCollectBean.getA_PRSUMTYPE());
-            tv_collet_by.setText("汇总人:" + mProjectMonthCollectBean.getR_DEPTDESC());
+            tv_contract_desc.setText("描述：" + mProjectMonthCollectBean.getDESCRIPTION());
+            tv_collet_date.setText("汇总年月：" + mProjectMonthCollectBean.getA_PRKEY());
+            tv_collet_time.setText("汇总时间：" + mProjectMonthCollectBean.getISSUEDATE());
+            tv_collet_type.setText("汇总类型：" + mProjectMonthCollectBean.getA_PRSUMTYPE());
+            tv_collet_by.setText("汇总人：" + mProjectMonthCollectBean.getR_DEPTDESC());
         } else {
             PRNUM = mResultlistBean.getPRNUM();
             A_PRKEY= mResultlistBean.getA_PRKEY();
-            tv_contract_no.setText("项目汇总:" + mResultlistBean.getPRNUM());
+            tv_contract_no.setText("项目汇总：" + mResultlistBean.getPRNUM());
             tv_contract_statue.setText(mResultlistBean.getSTATUS());
-            tv_contract_desc.setText("描述:" + mResultlistBean.getDESCRIPTION());
-            tv_collet_date.setText("汇总年月:" + mResultlistBean.getA_PRKEY());
-            tv_collet_time.setText("汇总时间:" + mResultlistBean.getISSUEDATE());
-            tv_collet_type.setText("汇总类型:" + mResultlistBean.getA_PRSUMTYPE());
-            tv_collet_by.setText("汇总人:" + mResultlistBean.getR_DEPTDESC());
+            tv_contract_desc.setText("描述：" + mResultlistBean.getDESCRIPTION());
+            tv_collet_date.setText("汇总年月：" + mResultlistBean.getA_PRKEY());
+            tv_collet_time.setText("汇总时间：" + mResultlistBean.getISSUEDATE());
+            tv_collet_type.setText("汇总类型：" + mResultlistBean.getA_PRSUMTYPE());
+            tv_collet_by.setText("汇总人：" + mResultlistBean.getR_DEPTDESC());
         }
         getCollectedList();
         getNeedCollectList();
@@ -121,13 +121,13 @@ public class ProjectMonthColletDetailFragment extends Fragment {
 
         /**
          * {
-         *   "objectname" : "PR",
-         *   "option" : "read",
-         *   "orderby" : "",
-         *   "curpage" : 1,
-         *   "showcount" : 20,
-         *   "sqlSearch" : "A_PRKEY='201905' and a_prtype = 'PROJ'  and a_prsumtype is null and status='已批准' and a_tosum=0",
-         *   "appid" : "PR"
+         *   "objectname" ： "PR",
+         *   "option" ： "read",
+         *   "orderby" ： "",
+         *   "curpage" ： 1,
+         *   "showcount" ： 20,
+         *   "sqlSearch" ： "A_PRKEY='201905' and a_prtype = 'PROJ'  and a_prsumtype is null and status='已批准' and a_tosum=0",
+         *   "appid" ： "PR"
          * }
          */
         LogUtils.d("getNeedCollectList");
@@ -179,7 +179,7 @@ public class ProjectMonthColletDetailFragment extends Fragment {
                                 tv_desc.setText("计划描述：" + resultlist.get(i).getDESCRIPTION());
                                 tv_statues.setText("状态：" + resultlist.get(i).getSTATUS());
                                 tv_total_cost.setText("总成本：" + resultlist.get(i).getTOTALCOST());
-                                tv_request_by.setText("申请人：" + resultlist.get(i).getR_DEPTDESC());
+                                tv_request_by.setText("申请人：" + resultlist.get(i).getREQUESTEDBY());
                                 tv_request_dep.setText("申请部门：" + resultlist.get(i).getA_PURCATALOG());
                                 tv_request_team.setText("申请班组：" + resultlist.get(i).getA_CREWID());
                                 tv_request_type.setText("申请类型：" + resultlist.get(i).getA_PURTYPE());
@@ -202,13 +202,13 @@ public class ProjectMonthColletDetailFragment extends Fragment {
 
     private void getCollectedList() {
         /**
-         * {"appid":"PR",
-         * "objectname":"PR",
-         * "curpage":1,
-         * "showcount":20,"
-         * option":"read",
-         * "orderby":"",
-         * "sqlSearch":" a_sumnum=:prnum "}
+         * {"appid"："PR",
+         * "objectname"："PR",
+         * "curpage"：1,
+         * "showcount"：20,"
+         * option"："read",
+         * "orderby"："",
+         * "sqlSearch"：" a_sumnum=：prnum "}
          *
          */
         LogUtils.d("getContractDetail");
@@ -257,7 +257,7 @@ public class ProjectMonthColletDetailFragment extends Fragment {
                                 tv_desc.setText("计划描述：" + resultlist.get(i).getDESCRIPTION());
                                 tv_statues.setText("状态：" + resultlist.get(i).getSTATUS());
                                 tv_total_cost.setText("总成本：" + resultlist.get(i).getTOTALCOST());
-                                tv_request_by.setText("申请人：" + resultlist.get(i).getR_DEPTDESC());
+                                tv_request_by.setText("申请人：" + resultlist.get(i).getREQUESTEDBY());
                                 tv_request_dep.setText("申请部门：" + resultlist.get(i).getA_PURCATALOG());
                                 tv_request_team.setText("申请班组：" + resultlist.get(i).getA_CREWID());
                                 tv_is_collected.setText("汇总否：" + resultlist.get(i).getA_TOSUM());

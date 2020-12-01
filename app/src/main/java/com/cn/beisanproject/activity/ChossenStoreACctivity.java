@@ -63,6 +63,8 @@ public class ChossenStoreACctivity extends AppCompatActivity implements View.OnC
         initView();
         initEvent();
         initListener();
+        int dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.sp14);
+
     }
 
     private void initListener() {

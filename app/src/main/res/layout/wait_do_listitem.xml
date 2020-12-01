@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="@dimen/dp30"
+        android:layout_height="@dimen/dp30"
+        android:checked="false"
+        android:layout_gravity="center_vertical"
+        >
+
+    </CheckBox>
+<RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/dp5"
     android:background="@drawable/radis8_layout_shape"
-    android:padding="@dimen/dp3"
-    >
-
+    android:padding="@dimen/dp5">
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
@@ -69,6 +81,6 @@
         android:layout_marginLeft="@dimen/dp20"
 
         />
-
-
 </RelativeLayout>
+
+</LinearLayout>

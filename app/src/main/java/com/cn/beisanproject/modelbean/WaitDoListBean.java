@@ -139,6 +139,16 @@ public class WaitDoListBean implements Serializable {
             private String WFASSIGNMENTID;
             private String WFID;
 
+            public Boolean getChecked() {
+                return isChecked;
+            }
+
+            public void setChecked(Boolean checked) {
+                isChecked = checked;
+            }
+
+            private Boolean isChecked;
+
             public String getAPP() {
                 return APP;
             }

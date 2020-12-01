@@ -91,22 +91,22 @@ public class PurchaseMonthColletLineFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         if (mNeedGet) {
             prnum = mData.getPRNUM();
-            tv_contract_no.setText("项目汇总:" + mData.getPRNUM());
+            tv_contract_no.setText("项目汇总：" + mData.getPRNUM());
             tv_contract_statue.setText(mData.getSTATUS());
-            tv_contract_desc.setText("描述:" + mData.getDESCRIPTION());
-            tv_collet_date.setText("汇总年月:" + mData.getA_PRKEY());
-            tv_collet_time.setText("汇总时间:" + mData.getISSUEDATE());
-            tv_collet_type.setText("汇总类型:" + mData.getA_PRSUMTYPE());
-            tv_collet_by.setText("汇总人:" + mData.getR_DEPTDESC());
+            tv_contract_desc.setText("描述：" + mData.getDESCRIPTION());
+            tv_collet_date.setText("汇总年月：" + mData.getA_PRKEY());
+            tv_collet_time.setText("汇总时间：" + mData.getISSUEDATE());
+            tv_collet_type.setText("汇总类型：" + mData.getA_PRSUMTYPE());
+            tv_collet_by.setText("汇总人：" + mData.getR_DEPTDESC());
         } else {
             prnum = mResultlistBean.getPRNUM();
             tv_contract_no.setText("项目汇总:" + mResultlistBean.getPRNUM());
             tv_contract_statue.setText(mResultlistBean.getSTATUS());
-            tv_contract_desc.setText("描述:" + mResultlistBean.getDESCRIPTION());
-            tv_collet_date.setText("汇总年月:" + mResultlistBean.getA_PRKEY());
-            tv_collet_time.setText("汇总时间:" + mResultlistBean.getISSUEDATE());
-            tv_collet_type.setText("汇总类型:" + mResultlistBean.getA_PRSUMTYPE());
-            tv_collet_by.setText("汇总人:" + mResultlistBean.getR_DEPTDESC());
+            tv_contract_desc.setText("描述：" + mResultlistBean.getDESCRIPTION());
+            tv_collet_date.setText("汇总年月：" + mResultlistBean.getA_PRKEY());
+            tv_collet_time.setText("汇总时间：" + mResultlistBean.getISSUEDATE());
+            tv_collet_type.setText("汇总类型：" + mResultlistBean.getA_PRSUMTYPE());
+            tv_collet_by.setText("汇总人：" + mResultlistBean.getR_DEPTDESC());
         }
 
         getLine();

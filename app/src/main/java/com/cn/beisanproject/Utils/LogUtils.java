@@ -18,23 +18,36 @@ public class LogUtils {
     private static boolean LOGI = true;
     private static boolean LOGW = true;
     private static boolean LOGE = true;
+    private static int LOG_MAXLENGTH = 10000;
 
     public static void v(String tag, String mess) {
-        if (LOGV &&isLogAll) {
-            Log.v(tag, mess); }
+        if (LOGV && isLogAll) {
+            Log.v(tag, mess);
+        }
     }
+
     public static void d(String tag, String mess) {
         if (LOGD && isLogAll) {
-            Log.d(tag, mess); }
+            Log.d(tag, mess);
+        }
     }
+
     public static void i(String tag, String mess) {
-        if (LOGI && isLogAll) { Log.i(tag, mess); }
+        if (LOGI && isLogAll) {
+            Log.i(tag, mess);
+        }
     }
+
     public static void w(String tag, String mess) {
-        if (LOGW && isLogAll) { Log.w(tag, mess); }
+        if (LOGW && isLogAll) {
+            Log.w(tag, mess);
+        }
     }
+
     public static void e(String tag, String mess) {
-        if (LOGE && isLogAll) { Log.e(tag, mess); }
+        if (LOGE && isLogAll) {
+            Log.e(tag, mess);
+        }
     }
 
 
@@ -58,22 +71,37 @@ public class LogUtils {
     /**
      * 在调试程序时，我们会经常打印一些信息，
      * 包括方法名/行号之类的，下面一个方法就可以省去这些麻烦
+     *
      * @param mess
      */
     public static void v(String mess) {
-        if (LOGV && isLogAll) { Log.v(getTag(), buildMessage(mess)); }
+        if (LOGV && isLogAll) {
+            Log.v(getTag(), buildMessage(mess));
+        }
     }
+
     public static void d(String mess) {
-        if (LOGD && isLogAll) { Log.d(getTag(), buildMessage(mess)); }
+        if (LOGD && isLogAll) {
+            Log.d(getTag(), buildMessage(mess));
+        }
     }
+
     public static void i(String mess) {
-        if (LOGI && isLogAll) { Log.i(getTag(), buildMessage(mess)); }
+        if (LOGI && isLogAll) {
+            Log.i(getTag(), buildMessage(mess));
+        }
     }
+
     public static void w(String mess) {
-        if (LOGW &&isLogAll) { Log.w(getTag(), buildMessage(mess)); }
+        if (LOGW && isLogAll) {
+            Log.w(getTag(), buildMessage(mess));
+        }
     }
+
     public static void e(String mess) {
-        if (LOGE && isLogAll) { Log.e(getTag(), buildMessage(mess)); }
+        if (LOGE && isLogAll) {
+            Log.e(getTag(), buildMessage(mess));
+        }
     }
 
 
@@ -109,4 +137,23 @@ public class LogUtils {
                 .getId(), caller, msg);
     }
 
+    public static void longD(String tagName, String msg) {
+        if (true) {
+            int strLength = msg.length();
+            int start = 0;
+            int end = LOG_MAXLENGTH;
+            for (int i = 0; i < msg.length(); i++) {
+                if (strLength > end) {
+                    Log.d(tagName + i, msg.substring(start, end));
+                    start = end;
+                    end = end + LOG_MAXLENGTH;
+                } else {
+                    Log.d(tagName + i, msg.substring(start, strLength));
+                    break;
+                }
+            }
+        }
+
+
+    }
 }

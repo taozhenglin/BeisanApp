@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +23,7 @@ import com.cn.beisanproject.Base.Constants;
 import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
+import com.cn.beisanproject.activity.MainActivity;
 import com.cn.beisanproject.adapter.WaitDoAdapter;
 import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.WaitDoListBean;
@@ -36,6 +40,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.Collator;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -45,7 +50,7 @@ import java.util.Locale;
 import me.leolin.shortcutbadger.ShortcutBadger;
 import okhttp3.Call;
 
-public class WaitDoFragment extends Fragment {
+public class WaitDoFragment extends Fragment implements View.OnClickListener {
     private final Context mContext;
     private LoadingDialog ld;
     private RecyclerView recyclerView;
@@ -55,6 +60,12 @@ public class WaitDoFragment extends Fragment {
     private boolean isRefresh;
     private WaitDoAdapter mWaitDoAdapter;
     private int totalepage;
+    private LinearLayout ll_top;
+    private TextView tv_select_all;
+    private TextView tv_unselect_all;
+    private TextView tv_commit_all;
+    List<WaitDoListBean.ResultBean.ResultlistBean> resultlist;
+    private TextView tv_select_menu;
 
     public WaitDoFragment(Context context) {
         this.mContext = context;
@@ -71,6 +82,11 @@ public class WaitDoFragment extends Fragment {
         layoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        ll_top = view.findViewById(R.id.ll_top);
+        tv_select_menu = view.findViewById(R.id.tv_select_menu);
+        tv_select_all = view.findViewById(R.id.tv_select_all);
+        tv_unselect_all = view.findViewById(R.id.tv_unselect_all);
+        tv_commit_all = view.findViewById(R.id.tv_commit_all);
         return view;
     }
 
@@ -86,7 +102,10 @@ public class WaitDoFragment extends Fragment {
     }
 
     void initEvent() {
-
+        tv_select_menu.setOnClickListener(this);
+        tv_select_all.setOnClickListener(this);
+        tv_unselect_all.setOnClickListener(this);
+        tv_commit_all.setOnClickListener(this);
         queryData();
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -94,6 +113,10 @@ public class WaitDoFragment extends Fragment {
                 //刷新数据
                 isRefresh = true;
                 currentPageNum = 1;
+                if (mWaitDoAdapter != null) {
+                    mWaitDoAdapter.mFlag = false;
+                    tv_select_menu.setText("编辑");
+                }
                 queryData();
             }
         });
@@ -155,39 +178,48 @@ public class WaitDoFragment extends Fragment {
                     if (response.startsWith("Error")) {
                         ToastUtils.showShort(R.string.GETDATAFAILED);
                     } else {
-                        waitDoListBean = JSONObject.parseObject(response, new TypeReference<WaitDoListBean>() {});
+                        waitDoListBean = JSONObject.parseObject(response, new TypeReference<WaitDoListBean>() {
+                        });
                         if (waitDoListBean.getErrcode().equals("GLOBAL-S-0")) {
                             totalepage = waitDoListBean.getResult().getTotalpage();
                             int totalresult = waitDoListBean.getResult().getTotalresult();
-                            List<WaitDoListBean.ResultBean.ResultlistBean> resultlist = waitDoListBean.getResult().getResultlist();
-                            PostData postData = new PostData();
-                            postData.setCount(totalresult);
-                            postData.setTag("waitdocount");
-                            SharedPreferencesUtil.setInt(mContext, "waitdototalresult", totalresult);
+                            resultlist = waitDoListBean.getResult().getResultlist();
+                            if (resultlist.size() > 0) {
+                                for (int i = 0; i < resultlist.size(); i++) {
+                                    resultlist.get(i).setChecked(false);
+                                }
+                                PostData postData = new PostData();
+                                postData.setCount(totalresult);
+                                postData.setTag("waitdocount");
+                                SharedPreferencesUtil.setInt(mContext, "waitdototalresult", totalresult);
 //                            if (totalresult > 0) {
 //                                ShortcutBadger.applyCount(mContext, totalresult); //for 1.1.4+
 //                            }else{
 //                                ShortcutBadger.removeCount(mContext);
 //                            }
-                            EventBus.getDefault().post(postData);
-                            if (currentPageNum == 1) {
-                                if (mWaitDoAdapter == null) {
-                                    mWaitDoAdapter = new WaitDoAdapter(mContext, resultlist);
-                                    recyclerView.setAdapter(mWaitDoAdapter);
-                                } else {
-                                    mWaitDoAdapter.setData(resultlist);
-                                    mWaitDoAdapter.notifyDataSetChanged();
-                                }
+                                EventBus.getDefault().post(postData);
+                                if (currentPageNum == 1) {
+                                    if (mWaitDoAdapter == null) {
+                                        mWaitDoAdapter = new WaitDoAdapter(mContext, resultlist);
+                                        recyclerView.setAdapter(mWaitDoAdapter);
+                                    } else {
+                                        mWaitDoAdapter.setData(resultlist);
+                                        mWaitDoAdapter.notifyDataSetChanged();
+                                    }
 
+                                } else {
+                                    if (currentPageNum <= totalepage) {
+                                        mWaitDoAdapter.addAllList(resultlist);
+                                        mWaitDoAdapter.notifyDataSetChanged();
+                                    } else {
+                                        ToastUtils.showShort("没有更多数据了");
+                                    }
+
+                                }
                             } else {
-                                if (currentPageNum <= totalepage) {
-                                    mWaitDoAdapter.addAllList(resultlist);
-                                    mWaitDoAdapter.notifyDataSetChanged();
-                                } else {
-                                    ToastUtils.showShort("没有更多数据了");
-                                }
-
+                                ll_top.setVisibility(View.GONE);
                             }
+
                         }
                     }
                 }
@@ -213,8 +245,8 @@ public class WaitDoFragment extends Fragment {
                 postData.getTag().equals("采购询价单") || postData.getTag().equals("采购订单") ||
                 postData.getTag().equals("入库单") || postData.getTag().equals("项目合同变更") ||
                 postData.getTag().equals("项目月度计划汇总") || postData.getTag().equals("项目询价单") ||
-                postData.getTag().equals("项目立项/项目月度计划") || postData.getTag().equals("固定资产接收")||
-                postData.getTag().equals("固定资产处置")||postData.getTag().equals("项目验收")
+                postData.getTag().equals("项目立项/项目月度计划") || postData.getTag().equals("固定资产接收") ||
+                postData.getTag().equals("固定资产处置") || postData.getTag().equals("项目验收")
         ) {
             queryData();
         }
@@ -231,5 +263,49 @@ public class WaitDoFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_select_menu:
+                mWaitDoAdapter.mFlag = !mWaitDoAdapter.mFlag;
+
+                if (mWaitDoAdapter.mFlag) {
+                    tv_select_menu.setText("取消");
+                } else {
+                    tv_select_menu.setText("编辑");
+                }
+                mWaitDoAdapter.notifyDataSetChanged();
+                break;
+            case R.id.tv_select_all:
+                if (mWaitDoAdapter.mFlag) {
+                    for (int i = 0; i < mWaitDoAdapter.getData().size(); i++) {
+                        mWaitDoAdapter.getData().get(i).setChecked(true);
+                    }
+                }
+                mWaitDoAdapter.notifyDataSetChanged();
+                break;
+            case R.id.tv_unselect_all:
+                if (mWaitDoAdapter.mFlag) {
+                    for (int i = 0; i < mWaitDoAdapter.getData().size(); i++) {
+                        mWaitDoAdapter.getData().get(i).setChecked(false);
+                    }
+                }
+                mWaitDoAdapter.notifyDataSetChanged();
+                break;
+            case R.id.tv_commit_all:
+                List<String> ids = new ArrayList<>();
+                if (mWaitDoAdapter.mFlag) {
+                    for (int i = 0; i < mWaitDoAdapter.getData().size(); i++) {
+                        if (mWaitDoAdapter.getData().get(i).getChecked()) {
+                            ids.add(mWaitDoAdapter.getData().get(i).getOWNERID() + "");
+                        }
+                    }
+                    LogUtils.d("222222    "+ids.size());
+
+                }
+                break;
+        }
     }
 }

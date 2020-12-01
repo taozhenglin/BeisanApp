@@ -116,7 +116,6 @@ public class StockMoveDetailActivity extends AppCompatActivity {
         if (!StringUtils.isEmpty(getIntent().getStringExtra("from")) && getIntent().getStringExtra("from").equals("waitdolist")) {//来自代办事项列表
             needGet = true;
             waitdolistbean = (WaitDoListBean.ResultBean.ResultlistBean) getIntent().getExtras().get("ResultlistBean");
-            INVUSENUM = waitdolistbean.getOWNERID() + "";
             LogUtils.d("INVUSENUM=" + INVUSENUM);
         } else {
             mResultlistBean = (StockMoveListBean.ResultBean.ResultlistBean) getIntent().getExtras().get("ResultlistBean");//来自首页列表
@@ -152,7 +151,6 @@ public class StockMoveDetailActivity extends AppCompatActivity {
         if (needGet) {
             getDetail();
         } else {
-            getDetail();
             tvPurchaseRequest.setText("编号：" + mResultlistBean.getINVUSENUM());
             tvStatue.setText(mResultlistBean.getSTATUS());
             tvDesc.setText("职能部门：" + mResultlistBean.getA_TODEPT());
@@ -187,7 +185,7 @@ public class StockMoveDetailActivity extends AppCompatActivity {
         object.put("showcount", 20);
         object.put("option", "read");
         object.put("orderby", "INVUSENUM desc");
-        object.put("sqlSearch", "INVUSENUM = " + "'" + INVUSENUM + "'");
+        object.put("sqlSearch", "INVUSENUM = " + "'" + waitdolistbean.getOWNERID() + "'");
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
         HashMap<String, String> map = new HashMap<>();
@@ -210,6 +208,7 @@ public class StockMoveDetailActivity extends AppCompatActivity {
                         StockMoveDetailBean.ResultBean.ResultlistBean resultlistBean = stockMoveDetailBean.getResult().getResultlist().get(0);
                         INVUSENUM = resultlistBean.getINVUSENUM();
                         siteid = resultlistBean.getSITEID();
+                        statues=resultlistBean.getSTATUS();
                         if (statues.equals("关闭") || statues.equals("已取消") || statues.equals("已关闭") || statues.equals("取消")) {
                             tvApproval.setVisibility(View.GONE);
                         } else {
@@ -219,15 +218,15 @@ public class StockMoveDetailActivity extends AppCompatActivity {
                                 tvApproval.setText("工作流审批");
                             }
                         }
-                        tvPurchaseRequest.setText("编号：" + mResultlistBean.getINVUSENUM());
-                        tvStatue.setText(mResultlistBean.getSTATUS());
-                        tvDesc.setText("职能部门：" + mResultlistBean.getA_TODEPT());
-                        tvHuizongStatues.setText("使用方向：" + mResultlistBean.getA_USEFOR());
-                        tvType.setText("申请人：" + mResultlistBean.getREPORTEDBY());
-                        tvHuizongDate.setText("申请部门：" + mResultlistBean.getA_DEPT());
-                        tvSumCost.setText("申请日期：" + mResultlistBean.getREPORTDATE());
-                        tvDept.setText("申请班组：" + mResultlistBean.getCREWID());
-                        tvRequsetDep.setText("原库房 ：" + mResultlistBean.getFROMSTORELOC());
+                        tvPurchaseRequest.setText("编号：" + resultlistBean.getINVUSENUM());
+                        tvStatue.setText(resultlistBean.getSTATUS());
+                        tvDesc.setText("职能部门：" + resultlistBean.getA_TODEPT());
+                        tvHuizongStatues.setText("使用方向：" + resultlistBean.getA_USEFOR());
+                        tvType.setText("申请人：" + resultlistBean.getREPORTEDBY());
+                        tvHuizongDate.setText("申请部门：" + resultlistBean.getA_DEPT());
+                        tvSumCost.setText("申请日期：" + resultlistBean.getREPORTDATE());
+                        tvDept.setText("申请班组：" + resultlistBean.getCREWID());
+                        tvRequsetDep.setText("原库房 ：" + resultlistBean.getFROMSTORELOC());
                         tvRequsetBy.setVisibility(View.GONE);
                         tvRequsetTeam.setVisibility(View.GONE);
                         tvGetTime.setVisibility(View.GONE);

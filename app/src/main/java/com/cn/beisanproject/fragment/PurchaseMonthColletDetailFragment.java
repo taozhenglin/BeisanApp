@@ -170,7 +170,7 @@ public class PurchaseMonthColletDetailFragment extends Fragment {
                                 tv_desc.setText("计划描述："+resultlist.get(i).getDESCRIPTION());
                                 tv_statues.setText("状态："+resultlist.get(i).getSTATUS());
                                 tv_total_cost.setText("总成本："+resultlist.get(i).getTOTALCOST());
-                                tv_request_by.setText("申请人："+resultlist.get(i).getR_DEPTDESC());
+                                tv_request_by.setText("申请人："+resultlist.get(i).getREQUESTEDBY());
                                 tv_request_dep.setText("申请部门："+resultlist.get(i).getA_PURCATALOG());
                                 tv_request_team.setText("申请班组："+resultlist.get(i).getA_CREWID());
                                 tv_is_collected.setText("汇总否："+resultlist.get(i).getA_TOSUM());
@@ -250,7 +250,7 @@ public class PurchaseMonthColletDetailFragment extends Fragment {
                                 tv_desc.setText("计划描述："+resultlist.get(i).getDESCRIPTION());
                                 tv_statues.setText("状态："+resultlist.get(i).getSTATUS());
                                 tv_total_cost.setText("总成本："+resultlist.get(i).getTOTALCOST());
-                                tv_request_by.setText("申请人："+resultlist.get(i).getR_DEPTDESC());
+                                tv_request_by.setText("申请人："+resultlist.get(i).getREQUESTEDBY());
                                 tv_request_dep.setText("申请部门："+resultlist.get(i).getA_PURCATALOG());
                                 tv_request_team.setText("申请班组："+resultlist.get(i).getA_CREWID());
                                 tv_request_type.setText("申请类型："+resultlist.get(i).getA_PURTYPE());

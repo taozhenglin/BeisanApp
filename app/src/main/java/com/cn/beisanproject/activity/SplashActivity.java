@@ -220,7 +220,8 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onResponse(String response) {
-                LogUtils.d("onResponse==" + response);
+                LogUtils.longD("onResponse==" ,response);
+
                 WaitDoListBean waitDoListBean = null;
                 if (!response.isEmpty()) {
                     if (response.startsWith("Error")) {

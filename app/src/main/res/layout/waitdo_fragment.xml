@@ -5,8 +5,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
     >
+    <LinearLayout
+        android:id="@+id/ll_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:orientation="horizontal"
+
+        >
+        <TextView
+            android:id="@+id/tv_select_menu"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/sp14"
+            android:textColor="@color/textColor"
+            android:text="操作"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/tv_select_all"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/sp14"
+            android:textColor="@color/textColor"
+            android:text="全选"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/tv_unselect_all"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/sp14"
+            android:textColor="@color/textColor"
+            android:text="全不选"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/tv_commit_all"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/sp14"
+            android:textColor="@color/textColor"
+            android:text="批量审批"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"

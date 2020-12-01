@@ -89,22 +89,22 @@ public class ProjectMonthColletLineFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         if (mNeedGet) {
             PRNUM = mProjectMonthCollectBean.getPRNUM();
-            tv_contract_no.setText("项目汇总:" + mProjectMonthCollectBean.getPRNUM());
+            tv_contract_no.setText("项目汇总：" + mProjectMonthCollectBean.getPRNUM());
             tv_contract_statue.setText(mProjectMonthCollectBean.getSTATUS());
-            tv_contract_desc.setText("描述:" + mProjectMonthCollectBean.getDESCRIPTION());
-            tv_collet_date.setText("汇总年月:" + mProjectMonthCollectBean.getA_PRKEY());
-            tv_collet_time.setText("汇总时间:" + mProjectMonthCollectBean.getISSUEDATE());
-            tv_collet_type.setText("汇总类型:" + mProjectMonthCollectBean.getA_PRSUMTYPE());
-            tv_collet_by.setText("汇总人:" + mProjectMonthCollectBean.getR_DEPTDESC());
+            tv_contract_desc.setText("描述：" + mProjectMonthCollectBean.getDESCRIPTION());
+            tv_collet_date.setText("汇总年月：" + mProjectMonthCollectBean.getA_PRKEY());
+            tv_collet_time.setText("汇总时间：" + mProjectMonthCollectBean.getISSUEDATE());
+            tv_collet_type.setText("汇总类型：" + mProjectMonthCollectBean.getA_PRSUMTYPE());
+            tv_collet_by.setText("汇总人：" + mProjectMonthCollectBean.getR_DEPTDESC());
         } else {
             PRNUM = mResultlistBean.getPRNUM();
-            tv_contract_no.setText("项目汇总:" + mResultlistBean.getPRNUM());
+            tv_contract_no.setText("项目汇总：" + mResultlistBean.getPRNUM());
             tv_contract_statue.setText(mResultlistBean.getSTATUS());
-            tv_contract_desc.setText("描述:" + mResultlistBean.getDESCRIPTION());
-            tv_collet_date.setText("汇总年月:" + mResultlistBean.getA_PRKEY());
-            tv_collet_time.setText("汇总时间:" + mResultlistBean.getISSUEDATE());
-            tv_collet_type.setText("汇总类型:" + mResultlistBean.getA_PRSUMTYPE());
-            tv_collet_by.setText("汇总人:" + mResultlistBean.getR_DEPTDESC());
+            tv_contract_desc.setText("描述：" + mResultlistBean.getDESCRIPTION());
+            tv_collet_date.setText("汇总年月：" + mResultlistBean.getA_PRKEY());
+            tv_collet_time.setText("汇总时间：" + mResultlistBean.getISSUEDATE());
+            tv_collet_type.setText("汇总类型：" + mResultlistBean.getA_PRSUMTYPE());
+            tv_collet_by.setText("汇总人：" + mResultlistBean.getR_DEPTDESC());
         }
         getLine();
     }
@@ -120,13 +120,13 @@ public class ProjectMonthColletLineFragment extends Fragment {
         ld.show();
         /**
          * {
-         *   "objectname" : "PRLINE",
-         *   "option" : "read",
-         *   "orderby" : "PRLINENUM ASC",
-         *   "curpage" : 1,
-         *   "showcount" : 20,
-         *   "sqlSearch" : "prnum in (select prnum from pr where a_sumnum='1389')",
-         *   "appid" : "PRLINE"
+         *   "objectname" ： "PRLINE",
+         *   "option" ： "read",
+         *   "orderby" ： "PRLINENUM ASC",
+         *   "curpage" ： 1,
+         *   "showcount" ： 20,
+         *   "sqlSearch" ： "prnum in (select prnum from pr where a_sumnum='1389')",
+         *   "appid" ： "PRLINE"
          * }
          */
         LogUtils.d("getContractDetail");

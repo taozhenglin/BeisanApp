@@ -5,7 +5,6 @@ import android.util.Log;
 
 import androidx.annotation.Keep;
 
-import com.cn.beisanproject.Utils.LogUtils;
 import com.pgyer.pgyersdk.PgyerSDKManager;
 import com.taobao.sophix.PatchStatus;
 import com.taobao.sophix.SophixApplication;
