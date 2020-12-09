@@ -74,22 +74,6 @@ public class PurchaseEnquiryListActivity extends AppCompatActivity implements Vi
     private void initListener() {
         tv_back.setOnClickListener(this);
         tv_search.setOnClickListener(this);
-        edt_search_contract.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
     }
 
     private void initView() {

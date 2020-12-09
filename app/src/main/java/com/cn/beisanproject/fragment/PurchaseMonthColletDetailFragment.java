@@ -130,7 +130,7 @@ public class PurchaseMonthColletDetailFragment extends Fragment {
         object.put("appid", "PR");
         object.put("objectname", "PR");
         object.put("curpage", 1);
-        object.put("showcount", 20);
+        object.put("showcount", 999);
         object.put("option", "read");
         object.put("orderby", "a_dept,a_crewid");
         object.put("sqlSearch", " a_sumnum="+"'"+PRNUM+"'");
@@ -207,7 +207,7 @@ public class PurchaseMonthColletDetailFragment extends Fragment {
         object.put("appid", "PR");
         object.put("objectname", "PR");
         object.put("curpage", 1);
-        object.put("showcount", 20);
+        object.put("showcount", 999);
         object.put("option", "read");
         object.put("orderby", "a_dept,a_crewid");
         String sqlSearch="A_PRKEY=%s and a_prtype = %s  and a_prsumtype is null and status='部门领导已批准' and a_tosum=0";

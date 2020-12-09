@@ -5,8 +5,6 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +18,12 @@ import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
@@ -32,6 +34,8 @@ import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
+import com.cn.beisanproject.adapter.PurchaseEnquiryAdapter;
+import com.cn.beisanproject.adapter.PurchaseMonthPlanLineAdapter;
 import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.ProjectMonthLineBean;
 import com.cn.beisanproject.modelbean.PurchaseMonthPlanDetailBean;
@@ -44,6 +48,10 @@ import com.cn.beisanproject.net.OkhttpUtil;
 import com.flyco.dialog.listener.OnOperItemClickL;
 import com.flyco.dialog.widget.ActionSheetDialog;
 import com.guideelectric.loadingdialog.view.LoadingDialog;
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
+import com.scwang.smart.refresh.layout.api.RefreshLayout;
+import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.yinglan.keyboard.HideUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -56,6 +64,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
 
+//采购月度计划
 public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
     @BindView(R.id.tv_back)
     TextView tvBack;
@@ -93,11 +102,17 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
     TextView tvRequestTime;
     @BindView(R.id.ll_request_line)
     LinearLayout llRequestLine;
-    @BindView(R.id.sc)
-    ScrollView sc;
     @BindView(R.id.tv_approval)
     TextView tvApproval;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
     private boolean needGet;
+    private RecyclerView.LayoutManager layoutManager;
+    private int currentPageNum = 1;
 
     WaitDoListBean.ResultBean.ResultlistBean waitdolistbean;
     PurchaseMonthPlanListBean.ResultBean.ResultlistBean mResultlistBean;
@@ -115,7 +130,10 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
     private String[] stringItems2 = new String[]{"工作流审批"};
     private int isAgree = 1;
     private String statues;
-
+    private int totalpage;
+    private int totalresult;
+    PurchaseMonthPlanLineAdapter purchaseMonthPlanLineAdapter;
+    private boolean isRefresh;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -133,7 +151,7 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
             siteid = mResultlistBean.getSITEID();
             statues = mResultlistBean.getSTATUS();
             PRID = mResultlistBean.getPRID() + "";
-            if (statues.equals("关闭") || statues.equals("已取消")||statues.equals("已关闭") || statues.equals("取消")|| statues.equals("已批准")) {
+            if (statues.equals("关闭") || statues.equals("已取消") || statues.equals("已关闭") || statues.equals("取消") || statues.equals("已批准")) {
                 tvApproval.setVisibility(View.GONE);
             } else {
                 if (statues.equals("等待批准")) {
@@ -143,11 +161,15 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
                 }
             }
         }
-        //键盘自动隐藏
-        HideUtil.init(this);
+
         //隐藏标题栏
         getSupportActionBar().hide();
         StatusBarUtils.setWhiteStatusBarColor(this, R.color.guide_blue);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setNestedScrollingEnabled(false);
         ld = new LoadingDialog(this);
         initEvent();
     }
@@ -176,6 +198,26 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
 
     private void initView() {
         tvCommonTitle.setText("采购月度计划");
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                //刷新数据
+                isRefresh = true;
+                currentPageNum = 1;
+                getRequestLine();
+
+
+            }
+        });
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                isRefresh = false;
+                currentPageNum++;
+                getRequestLine();
+
+            }
+        });
     }
 
     @Override
@@ -208,7 +250,7 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
         object.put("option", "read");
         object.put("orderby", "PRNUM desc");
         JSONObject conditionObject = new JSONObject();
-        conditionObject.put("PRID", waitdolistbean.getOWNERID()+"");
+        conditionObject.put("PRID", waitdolistbean.getOWNERID() + "");
         object.put("condition", conditionObject);
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
@@ -235,8 +277,8 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
                         PRNUM = resultlistBean.getPRNUM();
                         PRID = resultlistBean.getPRID() + "";
                         siteid = resultlistBean.getSITEID();
-                        statues=resultlistBean.getSTATUS();
-                        if (statues.equals("关闭") || statues.equals("已取消")||statues.equals("已关闭") || statues.equals("取消")|| statues.equals("已批准")) {
+                        statues = resultlistBean.getSTATUS();
+                        if (statues.equals("关闭") || statues.equals("已取消") || statues.equals("已关闭") || statues.equals("取消") || statues.equals("已批准")) {
                             tvApproval.setVisibility(View.GONE);
                         } else {
                             if (statues.equals("等待批准")) {
@@ -285,7 +327,7 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
         JSONObject object = new JSONObject();
         object.put("appid", "PRLINE");
         object.put("objectname", "PRLINE");
-        object.put("curpage", 1);
+        object.put("curpage", currentPageNum);
         object.put("showcount", 20);
         object.put("option", "read");
         object.put("orderby", "PRLINENUM ASC");
@@ -299,43 +341,41 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
                 ld.close();
+                finishRefresh();
             }
 
             @Override
             public void onResponse(String response) {
                 LogUtils.d("onResponse==" + response);
                 ld.close();
+                finishRefresh();
                 ProjectMonthLineBean projectMonthLineBean;
                 if (!response.isEmpty()) {
-                    PurchaseMonthPlanLineBean purchaseMonthPlanLineBean = JSONObject.parseObject(response, new TypeReference<PurchaseMonthPlanLineBean>() {
-                    });
+                    PurchaseMonthPlanLineBean purchaseMonthPlanLineBean = JSONObject.parseObject(response, new TypeReference<PurchaseMonthPlanLineBean>() {});
 
                     if (purchaseMonthPlanLineBean.getErrcode().equals("GLOBAL-S-0")) {
                         List<PurchaseMonthPlanLineBean.ResultBean.ResultlistBean> resultlist = purchaseMonthPlanLineBean.getResult().getResultlist();
-                        llRequestLine.removeAllViews();
-                        for (int i = 0; i < resultlist.size(); i++) {
-                            View inflate = LayoutInflater.from(PurchaseMonthPlanDetailActivity.this).inflate(R.layout.purchase_month_plan_line_item, llRequestLine, false);
-                            TextView tv_line_no = inflate.findViewById(R.id.tv_line_no);
-                            TextView tv_wuzi_no = inflate.findViewById(R.id.tv_wuzi_no);
-                            TextView tv_line_desc = inflate.findViewById(R.id.tv_line_desc);
-                            TextView tv_model = inflate.findViewById(R.id.tv_model);
-                            TextView tv_unit = inflate.findViewById(R.id.tv_unit);
-                            TextView tv_count = inflate.findViewById(R.id.tv_count);
-                            TextView tv_note = inflate.findViewById(R.id.tv_note);
-                            TextView tv_unit_cost = inflate.findViewById(R.id.tv_unit_cost);
-                            TextView tv_line_cost = inflate.findViewById(R.id.tv_line_cost);
+                        if (resultlist.size() > 0) {
+                                totalpage = purchaseMonthPlanLineBean.getResult().getTotalpage();
+                                totalresult = purchaseMonthPlanLineBean.getResult().getTotalresult();
+                                if (currentPageNum == 1) {
+                                    if (purchaseMonthPlanLineAdapter == null) {
+                                        purchaseMonthPlanLineAdapter = new PurchaseMonthPlanLineAdapter(PurchaseMonthPlanDetailActivity.this, purchaseMonthPlanLineBean.getResult().getResultlist());
+                                        recyclerView.setAdapter(purchaseMonthPlanLineAdapter);
+                                    } else {
+                                        purchaseMonthPlanLineAdapter.setData(purchaseMonthPlanLineBean.getResult().getResultlist());
+                                        purchaseMonthPlanLineAdapter.notifyDataSetChanged();
+                                    }
 
-                            tv_line_no.setText("计划行：" + resultlist.get(i).getPRLINENUM());
-                            tv_wuzi_no.setText("物资编码：" + resultlist.get(i).getITEMNUM());
-                            tv_line_desc.setText("物资描述：" + resultlist.get(i).getDESCRIPTION());
-                            tv_model.setText("规格型号：" + resultlist.get(i).getA_MODEL());
-                            tv_unit.setText("订购单位：" + resultlist.get(i).getORDERUNIT());
-                            tv_count.setText("数量：" + resultlist.get(i).getORDERQTY());
-                            tv_note.setText("备注：" + resultlist.get(i).getREMARK());
-                            tv_unit_cost.setText("单位成本：" + resultlist.get(i).getUNITCOST());
-                            tv_line_cost.setText("行成本：" + resultlist.get(i).getLINECOST());
+                                } else {
+                                    if (currentPageNum<=totalpage){
+                                        purchaseMonthPlanLineAdapter.addAllList(purchaseMonthPlanLineBean.getResult().getResultlist());
+                                        purchaseMonthPlanLineAdapter.notifyDataSetChanged();
+                                    }else {
+                                        ToastUtils.showShort("没有更多数据了");
+                                    }
+                                }
 
-                            llRequestLine.addView(inflate);
 
                         }
 
@@ -470,7 +510,7 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
                         statues = startWorkProcessBean.getNextStatus();
                         tvStatue.setText(startWorkProcessBean.getNextStatus());
                         tvApproval.setText("工作流审批");
-                        PostData data=new PostData();
+                        PostData data = new PostData();
                         data.setTag("采购月度计划");
                         EventBus.getDefault().post(data);
                     } else {
@@ -530,38 +570,6 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
                 LogUtils.d("不同意==");
             }
         });
-//        final TextView number_tv = (TextView) remarkView.findViewById(R.id.number_tv);
-//        title_tv.setText("给TA贴标签");
-//        input_et.setHint("请填写10个字以内的标签名称");
-//        finish_tv.setText("确定");
-//        number_tv.setText("0/10");
-
-        //用于检测输入的字数
-        input_et.addTextChangedListener(new TextWatcher() {
-            private CharSequence temp;
-            private int selectionStart;
-            private int selectionEnd;
-            private int num = 10;
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                temp = s;
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                int number = s.length();
-
-            }
-        });
-
-        //确定后，添加标签页
-
         finish_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -605,11 +613,11 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
          * 	</soapenv:Body>
          * </soapenv:Envelope>
          */
-        if (StringUtils.isEmpty(opinion)){
-            if (ifAgree==1){
-                opinion="同意";
-            }else {
-                opinion="驳回";
+        if (StringUtils.isEmpty(opinion)) {
+            if (ifAgree == 1) {
+                opinion = "同意";
+            } else {
+                opinion = "驳回";
             }
         }
         String request = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
@@ -661,5 +669,10 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
                 ToastUtils.showShort(startWorkProcessBean.getMsg());
             }
         });
+    }
+    private void finishRefresh() {
+        if (isRefresh) refreshLayout.finishRefresh();
+        else refreshLayout.finishLoadMore();
+
     }
 }

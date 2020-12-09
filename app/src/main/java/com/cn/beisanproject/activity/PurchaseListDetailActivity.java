@@ -269,7 +269,7 @@ public class PurchaseListDetailActivity extends AppCompatActivity {
         object.put("appid", "POLINE");
         object.put("objectname", "POLINE");
         object.put("curpage", 1);
-        object.put("showcount", 20);
+        object.put("showcount", 999);
         object.put("option", "read");
         object.put("orderby", "polinenum ASC");
         object.put("sqlSearch", "ponum='" + ponum + "' " + "and siteid='" + siteid + "'");

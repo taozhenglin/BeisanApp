@@ -794,7 +794,7 @@ public class StockCheckScanActivity extends AppCompatActivity implements QRCodeV
         object.put("appid", "UDSTOCKLINE");
         object.put("objectname", "UDSTOCKLINE");
         object.put("curpage", 0);
-        object.put("showcount", 20);
+        object.put("showcount", 999);
         object.put("option", "read");
         object.put("orderby", "LINENUM asc");
         String sqlSearch = "stocknum=" + mResultlistBean.getSTOCKNUM();

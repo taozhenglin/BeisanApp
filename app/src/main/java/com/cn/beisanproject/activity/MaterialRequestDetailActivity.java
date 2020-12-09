@@ -328,7 +328,7 @@ public class MaterialRequestDetailActivity extends AppCompatActivity implements 
         object.put("appid", "WPMATERIAL");
         object.put("objectname", "WPMATERIAL");
         object.put("curpage", 1);
-        object.put("showcount", 20);
+        object.put("showcount", 999);
         object.put("option", "read");
         object.put("orderby", "");
         String sqlSearch = "wonum in (select wonum from workorder where (wonum=%s or (parent=%s )) and siteid=%s ) ";

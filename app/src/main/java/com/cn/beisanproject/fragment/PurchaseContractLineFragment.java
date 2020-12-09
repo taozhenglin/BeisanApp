@@ -158,7 +158,7 @@ public class PurchaseContractLineFragment extends Fragment {
         object.put("appid", "CONTRACTLINE");
         object.put("objectname", "CONTRACTLINE");
         object.put("curpage", 1);
-        object.put("showcount", 20);
+        object.put("showcount", 999);
         object.put("option", "read");
         object.put("orderby", "contractlinenum asc");
         object.put("sqlSearch", "contractnum = " + "'"+contractnum+"'" + "and revisionnum =" + "'"+0+"'" + " and orgid = " + "'"+orgid+"'");

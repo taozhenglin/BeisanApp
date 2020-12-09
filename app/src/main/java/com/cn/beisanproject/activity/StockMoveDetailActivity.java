@@ -52,6 +52,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
 
+/**
+ * 库存转移详情
+ */
 public class StockMoveDetailActivity extends AppCompatActivity {
     @BindView(R.id.tv_back)
     TextView tvBack;
@@ -252,7 +255,7 @@ public class StockMoveDetailActivity extends AppCompatActivity {
         object.put("appid", "INVUSELINE");
         object.put("objectname", "INVUSELINE");
         object.put("curpage", 1);
-        object.put("showcount", 20);
+        object.put("showcount", 999);
         object.put("option", "read");
         object.put("orderby", "INVUSELINENUM ASC");
         object.put("sqlSearch", "INVUSENUM='" + INVUSENUM + "' " + "and siteid='" + siteid + "'");

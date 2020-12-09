@@ -156,7 +156,7 @@ public class ProjectInvoiceFragment extends Fragment {
         object.put("appid", "INVOICE");
         object.put("objectname", "INVOICE");
         object.put("curpage", 1);
-        object.put("showcount", 20);
+        object.put("showcount", 999);
         object.put("option", "read");
         object.put("orderby", "UDHTBH DESC");
         String sqlSearch = "UDHTBH=" + "'" + CONTNUM + "'";

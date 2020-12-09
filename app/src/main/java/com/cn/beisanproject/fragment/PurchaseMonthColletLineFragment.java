@@ -137,7 +137,7 @@ public class PurchaseMonthColletLineFragment extends Fragment {
         object.put("appid", "PRLINE");
         object.put("objectname", "PRLINE");
         object.put("curpage", 1);
-        object.put("showcount", 20);
+        object.put("showcount", 999);
         object.put("option", "read");
         object.put("orderby", "prnum ASC");
         String sqlSearch = "prnum in (select prnum from pr where a_sumnum=%s)";

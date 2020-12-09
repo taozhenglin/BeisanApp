@@ -338,7 +338,7 @@ public class ProjectContractDetailFragment extends Fragment {
         object.put("appid", "DOCLINKS");
         object.put("objectname", "DOCLINKS");
         object.put("curpage", 1);
-        object.put("showcount", 20);
+        object.put("showcount", 999);
         object.put("option", "read");
         object.put("orderby", "CREATEDATE DESC");
         String sqlSearch = " (ownertable='PURCHVIEW' and ownerid=%s) " +
