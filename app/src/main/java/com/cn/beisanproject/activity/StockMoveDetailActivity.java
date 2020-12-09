@@ -4,8 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +13,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
@@ -30,6 +31,7 @@ import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
+import com.cn.beisanproject.adapter.StockMoveLineAdapter;
 import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.ProjectMonthLineBean;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
@@ -40,6 +42,10 @@ import com.cn.beisanproject.modelbean.WaitDoListBean;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
 import com.guideelectric.loadingdialog.view.LoadingDialog;
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
+import com.scwang.smart.refresh.layout.api.RefreshLayout;
+import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.yinglan.keyboard.HideUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -92,12 +98,16 @@ public class StockMoveDetailActivity extends AppCompatActivity {
     TextView tvRequestTime;
     @BindView(R.id.ll_request_line)
     LinearLayout llRequestLine;
-    @BindView(R.id.sc)
-    ScrollView sc;
     @BindView(R.id.tv_approval)
     TextView tvApproval;
     @BindView(R.id.tvtitle)
     TextView tvTitle;
+    @BindView(R.id.iv_back)
+    ImageView ivBack;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
     private WaitDoListBean.ResultBean.ResultlistBean waitdolistbean;
     private StockMoveListBean.ResultBean.ResultlistBean mResultlistBean;
     private String INVUSENUM;
@@ -106,9 +116,16 @@ public class StockMoveDetailActivity extends AppCompatActivity {
     private String siteid;
     private String statues;
     private PopupWindow pop;
-    private int selected=1;
+    private int selected = 1;
     private String INVUSEID;
     private int isAgree = 1;
+    private int OWNERID;
+    private int totalpage;
+    private int totalresult;
+    private int currentPageNum = 1;
+    private StockMoveLineAdapter stockMoveLineAdapter;
+    private boolean isRefresh;
+    private LinearLayoutManager layoutManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -119,7 +136,8 @@ public class StockMoveDetailActivity extends AppCompatActivity {
         if (!StringUtils.isEmpty(getIntent().getStringExtra("from")) && getIntent().getStringExtra("from").equals("waitdolist")) {//来自代办事项列表
             needGet = true;
             waitdolistbean = (WaitDoListBean.ResultBean.ResultlistBean) getIntent().getExtras().get("ResultlistBean");
-            LogUtils.d("INVUSENUM=" + INVUSENUM);
+            OWNERID = waitdolistbean.getOWNERID();
+            LogUtils.d("OWNERID=" + OWNERID);
         } else {
             mResultlistBean = (StockMoveListBean.ResultBean.ResultlistBean) getIntent().getExtras().get("ResultlistBean");//来自首页列表
             INVUSENUM = mResultlistBean.getINVUSENUM();
@@ -136,10 +154,12 @@ public class StockMoveDetailActivity extends AppCompatActivity {
                 }
             }
         }
-        //键盘自动隐藏
-        HideUtil.init(this);
         //隐藏标题栏
         getSupportActionBar().hide();
+        StatusBarUtils.setWhiteStatusBarColor(this, R.color.guide_blue);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
         StatusBarUtils.setWhiteStatusBarColor(this, R.color.guide_blue);
         ld = new LoadingDialog(this);
         initEvent();
@@ -148,6 +168,26 @@ public class StockMoveDetailActivity extends AppCompatActivity {
     private void initView() {
         tvCommonTitle.setText("库存转移");
         tvTitle.setText("库存转移明细行");
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                //刷新数据
+                isRefresh = true;
+                currentPageNum = 1;
+                getRequestLine();
+
+
+            }
+        });
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                isRefresh = false;
+                currentPageNum++;
+                getRequestLine();
+
+            }
+        });
     }
 
     private void initEvent() {
@@ -187,8 +227,8 @@ public class StockMoveDetailActivity extends AppCompatActivity {
         object.put("curpage", 1);
         object.put("showcount", 20);
         object.put("option", "read");
-        object.put("orderby", "INVUSENUM desc");
-        object.put("sqlSearch", "INVUSENUM = " + "'" + waitdolistbean.getOWNERID() + "'");
+        object.put("orderby", "INVUSENUM DESC");
+        object.put("sqlSearch", "INVUSEID = " + "'" + OWNERID + "'");
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
         HashMap<String, String> map = new HashMap<>();
@@ -208,32 +248,35 @@ public class StockMoveDetailActivity extends AppCompatActivity {
                     StockMoveDetailBean stockMoveDetailBean = JSONObject.parseObject(response, new TypeReference<StockMoveDetailBean>() {
                     });
                     if (stockMoveDetailBean.getErrcode().equals("GLOBAL-S-0")) {
-                        StockMoveDetailBean.ResultBean.ResultlistBean resultlistBean = stockMoveDetailBean.getResult().getResultlist().get(0);
-                        INVUSENUM = resultlistBean.getINVUSENUM();
-                        siteid = resultlistBean.getSITEID();
-                        statues=resultlistBean.getSTATUS();
-                        if (statues.equals("关闭") || statues.equals("已取消") || statues.equals("已关闭") || statues.equals("取消")) {
-                            tvApproval.setVisibility(View.GONE);
-                        } else {
-                            if (statues.equals("已输入")) {
-                                tvApproval.setText("启动工作流");
+                        if (stockMoveDetailBean.getResult().getResultlist().size() > 0) {
+                            StockMoveDetailBean.ResultBean.ResultlistBean resultlistBean = stockMoveDetailBean.getResult().getResultlist().get(0);
+                            INVUSENUM = resultlistBean.getINVUSENUM();
+                            siteid = resultlistBean.getSITEID();
+                            statues = resultlistBean.getSTATUS();
+                            if (statues.equals("关闭") || statues.equals("已取消") || statues.equals("已关闭") || statues.equals("取消")) {
+                                tvApproval.setVisibility(View.GONE);
                             } else {
-                                tvApproval.setText("工作流审批");
+                                if (statues.equals("已输入")) {
+                                    tvApproval.setText("启动工作流");
+                                } else {
+                                    tvApproval.setText("工作流审批");
+                                }
                             }
+                            tvPurchaseRequest.setText("编号：" + resultlistBean.getINVUSENUM());
+                            tvStatue.setText(resultlistBean.getSTATUS());
+                            tvDesc.setText("职能部门：" + resultlistBean.getA_TODEPT());
+                            tvHuizongStatues.setText("使用方向：" + resultlistBean.getA_USEFOR());
+                            tvType.setText("申请人：" + resultlistBean.getREPORTEDBY());
+                            tvHuizongDate.setText("申请部门：" + resultlistBean.getA_DEPT());
+                            tvSumCost.setText("申请日期：" + resultlistBean.getREPORTDATE());
+                            tvDept.setText("申请班组：" + resultlistBean.getCREWID());
+                            tvRequsetDep.setText("原库房 ：" + resultlistBean.getFROMSTORELOC());
+                            tvRequsetBy.setVisibility(View.GONE);
+                            tvRequsetTeam.setVisibility(View.GONE);
+                            tvGetTime.setVisibility(View.GONE);
+                            tvRequestTime.setVisibility(View.GONE);
                         }
-                        tvPurchaseRequest.setText("编号：" + resultlistBean.getINVUSENUM());
-                        tvStatue.setText(resultlistBean.getSTATUS());
-                        tvDesc.setText("职能部门：" + resultlistBean.getA_TODEPT());
-                        tvHuizongStatues.setText("使用方向：" + resultlistBean.getA_USEFOR());
-                        tvType.setText("申请人：" + resultlistBean.getREPORTEDBY());
-                        tvHuizongDate.setText("申请部门：" + resultlistBean.getA_DEPT());
-                        tvSumCost.setText("申请日期：" + resultlistBean.getREPORTDATE());
-                        tvDept.setText("申请班组：" + resultlistBean.getCREWID());
-                        tvRequsetDep.setText("原库房 ：" + resultlistBean.getFROMSTORELOC());
-                        tvRequsetBy.setVisibility(View.GONE);
-                        tvRequsetTeam.setVisibility(View.GONE);
-                        tvGetTime.setVisibility(View.GONE);
-                        tvRequestTime.setVisibility(View.GONE);
+
                         getRequestLine();
                     }
                 }
@@ -255,7 +298,7 @@ public class StockMoveDetailActivity extends AppCompatActivity {
         object.put("appid", "INVUSELINE");
         object.put("objectname", "INVUSELINE");
         object.put("curpage", 1);
-        object.put("showcount", 999);
+        object.put("showcount", 20);
         object.put("option", "read");
         object.put("orderby", "INVUSELINENUM ASC");
         object.put("sqlSearch", "INVUSENUM='" + INVUSENUM + "' " + "and siteid='" + siteid + "'");
@@ -268,48 +311,69 @@ public class StockMoveDetailActivity extends AppCompatActivity {
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure==" + e.toString());
                 ld.close();
+                finishRefresh();
             }
 
             @Override
             public void onResponse(String response) {
                 LogUtils.d("onResponse==" + response);
                 ld.close();
-                ProjectMonthLineBean projectMonthLineBean;
+                finishRefresh();
                 if (!response.isEmpty()) {
-                    StockMoveLineBean stockMoveLineBean = JSONObject.parseObject(response, new TypeReference<StockMoveLineBean>() {
-                    });
-//
+                    StockMoveLineBean stockMoveLineBean = JSONObject.parseObject(response, new TypeReference<StockMoveLineBean>() {});
                     if (stockMoveLineBean.getErrcode().equals("GLOBAL-S-0")) {
                         List<StockMoveLineBean.ResultBean.ResultlistBean> resultlist = stockMoveLineBean.getResult().getResultlist();
-                        llRequestLine.removeAllViews();
-                        for (int i = 0; i < resultlist.size(); i++) {
-                            View inflate = LayoutInflater.from(StockMoveDetailActivity.this).inflate(R.layout.stock_move_line_item, llRequestLine, false);
-                            TextView tv_no = inflate.findViewById(R.id.tv_no);
-                            TextView tv_use_statue = inflate.findViewById(R.id.tv_use_statue);
-                            TextView tv_line_type = inflate.findViewById(R.id.tv_line_type);
-                            TextView tv_count = inflate.findViewById(R.id.tv_count);
-                            TextView tv_desc = inflate.findViewById(R.id.tv_desc);
-                            TextView tv_ori_store = inflate.findViewById(R.id.tv_ori_store);
-                            TextView tv_ori_num = inflate.findViewById(R.id.tv_ori_num);
-                            TextView tv_target_store = inflate.findViewById(R.id.tv_target_store);
-                            TextView tv_target_draw = inflate.findViewById(R.id.tv_target_draw);
-                            TextView tv_target_num = inflate.findViewById(R.id.tv_target_num);
+                        if (resultlist.size() > 0) {
+                            totalpage = stockMoveLineBean.getResult().getTotalpage();
+                            totalresult = stockMoveLineBean.getResult().getTotalresult();
+                            if (currentPageNum == 1) {
+                                if (stockMoveLineAdapter == null) {
+                                    stockMoveLineAdapter = new StockMoveLineAdapter(StockMoveDetailActivity.this, stockMoveLineBean.getResult().getResultlist());
+                                    recyclerView.setAdapter(stockMoveLineAdapter);
+                                } else {
+                                    stockMoveLineAdapter.setData(stockMoveLineBean.getResult().getResultlist());
+                                    stockMoveLineAdapter.notifyDataSetChanged();
+                                }
 
-                            tv_no.setText("物资编码：" + resultlist.get(i).getITEMNUM());
-                            tv_use_statue.setText("使用情况类型：" + resultlist.get(i).getUSETYPE());
-                            tv_line_type.setText("行类型：" + resultlist.get(i).getLINETYPE());
-                            tv_count.setText("数量：" + resultlist.get(i).getQUANTITY());
-                            tv_desc.setText("物资描述：" + resultlist.get(i).getDESCRIPTION());
-                            tv_ori_store.setText("原货柜：" + resultlist.get(i).getFROMBIN());
-                            tv_ori_num.setText("原批次：" + resultlist.get(i).getFROMLOT());
-                            tv_target_store.setText("目标库房：" + resultlist.get(i).getTOSTORELOC());
-                            tv_target_draw.setText("目标货柜：" + resultlist.get(i).getTOBIN());
-                            tv_target_num.setText("目标批次：" + resultlist.get(i).getTOLOT());
+                            } else {
+                                if (currentPageNum <= totalpage) {
+                                    stockMoveLineAdapter.addAllList(stockMoveLineBean.getResult().getResultlist());
+                                    stockMoveLineAdapter.notifyDataSetChanged();
+                                } else {
+                                    ToastUtils.showShort("没有更多数据了");
+                                }
+                            }
 
-
-                            llRequestLine.addView(inflate);
 
                         }
+//                        for (int i = 0; i < resultlist.size(); i++) {
+//                            View inflate = LayoutInflater.from(StockMoveDetailActivity.this).inflate(R.layout.stock_move_line_item, llRequestLine, false);
+//                            TextView tv_no = inflate.findViewById(R.id.tv_no);
+//                            TextView tv_use_statue = inflate.findViewById(R.id.tv_use_statue);
+//                            TextView tv_line_type = inflate.findViewById(R.id.tv_line_type);
+//                            TextView tv_count = inflate.findViewById(R.id.tv_count);
+//                            TextView tv_desc = inflate.findViewById(R.id.tv_desc);
+//                            TextView tv_ori_store = inflate.findViewById(R.id.tv_ori_store);
+//                            TextView tv_ori_num = inflate.findViewById(R.id.tv_ori_num);
+//                            TextView tv_target_store = inflate.findViewById(R.id.tv_target_store);
+//                            TextView tv_target_draw = inflate.findViewById(R.id.tv_target_draw);
+//                            TextView tv_target_num = inflate.findViewById(R.id.tv_target_num);
+//
+//                            tv_no.setText("物资编码：" + resultlist.get(i).getITEMNUM());
+//                            tv_use_statue.setText("使用情况类型：" + resultlist.get(i).getUSETYPE());
+//                            tv_line_type.setText("行类型：" + resultlist.get(i).getLINETYPE());
+//                            tv_count.setText("数量：" + resultlist.get(i).getQUANTITY());
+//                            tv_desc.setText("物资描述：" + resultlist.get(i).getDESCRIPTION());
+//                            tv_ori_store.setText("原货柜：" + resultlist.get(i).getFROMBIN());
+//                            tv_ori_num.setText("原批次：" + resultlist.get(i).getFROMLOT());
+//                            tv_target_store.setText("目标库房：" + resultlist.get(i).getTOSTORELOC());
+//                            tv_target_draw.setText("目标货柜：" + resultlist.get(i).getTOBIN());
+//                            tv_target_num.setText("目标批次：" + resultlist.get(i).getTOLOT());
+//
+//
+//                            llRequestLine.addView(inflate);
+//
+//                        }
 
 
                     }
@@ -557,11 +621,11 @@ public class StockMoveDetailActivity extends AppCompatActivity {
     }
 
     private void goAproval(int selected, String opinion) {
-        if (StringUtils.isEmpty(opinion)){
-            if (selected==1){
-                opinion="同意";
-            }else {
-                opinion="驳回";
+        if (StringUtils.isEmpty(opinion)) {
+            if (selected == 1) {
+                opinion = "同意";
+            } else {
+                opinion = "驳回";
             }
         }
         ld.show();
@@ -612,23 +676,25 @@ public class StockMoveDetailActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 ld.close();
                 LogUtils.d("onResponse==" + response);
-                if (response.contains("<return>")&&response.contains("</return>")) {
+                if (response.contains("<return>") && response.contains("</return>")) {
                     int start = response.indexOf("<return>");
                     int end = response.indexOf("</return>");
                     String substring = response.substring(start + 8, end);
                     LogUtils.d("substring==" + substring);
-                    StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {});
+                    StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
+                    });
                     if (startWorkProcessBean.getMsg().equals("审批成功")) {
                         statues = startWorkProcessBean.getNextStatus();
                         tvStatue.setText(startWorkProcessBean.getNextStatus());
-                        startWorkProcessBean.setTag("库存转移");//领料单列表刷新
-                        EventBus.getDefault().post(startWorkProcessBean);
+                        PostData postData = new PostData();
+                        postData.setTag("库存转移");//领料单列表刷新
+                        EventBus.getDefault().post(postData);
                     } else {
 
                     }
                     ToastUtils.showShort(startWorkProcessBean.getMsg());
 
-                }else
+                } else
                     ToastUtils.showShort(R.string.UNKNOW_ERROR);
             }
         });
@@ -688,7 +754,7 @@ public class StockMoveDetailActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 LogUtils.d("onResponse==" + response);
                 ld.close();
-                if (response.contains("<return>")&&response.contains("</return>")){
+                if (response.contains("<return>") && response.contains("</return>")) {
                     int start = response.indexOf("<return>");
                     int end = response.indexOf("</return>");
                     String substring = response.substring(start + 8, end);
@@ -699,12 +765,12 @@ public class StockMoveDetailActivity extends AppCompatActivity {
                         tvApproval.setText("工作流审批");
                         statues = startWorkProcessBean.getNextStatus();
                         tvStatue.setText(startWorkProcessBean.getNextStatus());
-                        PostData postData=new PostData();
+                        PostData postData = new PostData();
                         postData.setTag("库存转移");//库存转移列表刷新
                         EventBus.getDefault().post(postData);
                     }
                     ToastUtils.showShort(startWorkProcessBean.getMsg());
-                }else
+                } else
                     ToastUtils.showShort(R.string.UNKNOW_ERROR);
 
 
@@ -715,5 +781,10 @@ public class StockMoveDetailActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+    private void finishRefresh() {
+        if (isRefresh) refreshLayout.finishRefresh();
+        else refreshLayout.finishLoadMore();
+
     }
 }

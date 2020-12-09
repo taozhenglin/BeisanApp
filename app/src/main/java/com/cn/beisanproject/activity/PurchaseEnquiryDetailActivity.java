@@ -390,6 +390,9 @@ public class PurchaseEnquiryDetailActivity extends AppCompatActivity implements 
                             tv_start.setText("工作流审批");
                             statues = startWorkProcessBean.getNextStatus();
                             tv_statues.setText(startWorkProcessBean.getNextStatus());
+                            PostData postData=new PostData();
+                            postData.setTag("采购询价单");
+                            EventBus.getDefault().post(postData);
                             getBaoJiaSupport();
                         } else {
 

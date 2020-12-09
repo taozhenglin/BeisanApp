@@ -557,6 +557,9 @@ public class EqumentRequestDetailActivity extends AppCompatActivity {
                     }
                     status = startWorkProcessBean.getNextStatus();
                     tvRequestStatue.setText(startWorkProcessBean.getNextStatus());
+                    PostData postData=new PostData();
+                    postData.setTag("设备台账增减申请");
+                    EventBus.getDefault().post(postData);
                 } else {
 
                 }

@@ -260,7 +260,7 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
                             tv_check_starttime.setText("创建时间: " + resultlistBean.getENTERDATE());
                             tv_check_endtime.setText("接收类型: " + resultlistBean.getTYPE());
                             tv_created_by.setText("项目主管部门: " + resultlistBean.getDEPT());
-                            tv_owner_companny.setText(""+resultlistBean.getUDCOMPANYDESC());
+                            tv_owner_companny.setText("所属公司："+resultlistBean.getUDCOMPANYDESC());
                         }
 
 

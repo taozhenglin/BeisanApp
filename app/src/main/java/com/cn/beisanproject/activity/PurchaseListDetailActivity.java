@@ -610,8 +610,9 @@ public class PurchaseListDetailActivity extends AppCompatActivity {
                     statues = startWorkProcessBean.getNextStatus();
                     tvStatue.setText(startWorkProcessBean.getNextStatus());
 //                    tvApproval.setVisibility(View.GONE);
-                    startWorkProcessBean.setTag("采购单");
-                    EventBus.getDefault().post(startWorkProcessBean);
+                    PostData postData=new PostData();
+                    postData.setTag("采购单");
+                    EventBus.getDefault().post(postData);
                     getPurchaseLine();
                 } else {
 

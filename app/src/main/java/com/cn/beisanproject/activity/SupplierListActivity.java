@@ -22,6 +22,7 @@ import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.adapter.PurchseContractAdapter;
 import com.cn.beisanproject.adapter.SupplierAdapter;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.PurchseContractListBean;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
 import com.cn.beisanproject.modelbean.SupplierListBean;
@@ -233,9 +234,9 @@ public class SupplierListActivity extends AppCompatActivity implements View.OnCl
         EventBus.getDefault().unregister(this);
     }
     @Subscribe (threadMode = ThreadMode.MAIN)
-    public void onEvent( StartWorkProcessBean startWorkProcessBean){
+    public void onEvent( PostData postData){
         LogUtils.d("onEvent==");
-        if (startWorkProcessBean.getTag().equals("供应商申请")){
+        if (postData.getTag().equals("供应商申请")){
             query();
         }
     }

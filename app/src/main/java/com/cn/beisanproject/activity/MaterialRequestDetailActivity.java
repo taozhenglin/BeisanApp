@@ -680,8 +680,9 @@ public class MaterialRequestDetailActivity extends AppCompatActivity implements 
                     if (startWorkProcessBean.getMsg().equals("审批成功")) {
                         statues = startWorkProcessBean.getNextStatus();
                         tv_material_statue.setText(startWorkProcessBean.getNextStatus());
-                        startWorkProcessBean.setTag("领料单");//领料单列表刷新
-                        EventBus.getDefault().post(startWorkProcessBean);
+                        PostData postData=new PostData();
+                        postData.setTag("领料单");//领料单列表刷新
+                        EventBus.getDefault().post(postData);
                     } else {
 
                     }
@@ -898,8 +899,9 @@ public class MaterialRequestDetailActivity extends AppCompatActivity implements 
                     tv_start.setText("工作流审批");
                     statues = startWorkProcessBean.getNextStatus();
                     tv_material_statue.setText(startWorkProcessBean.getNextStatus());
-                    startWorkProcessBean.setTag("领料单");//领料单列表刷新
-                    EventBus.getDefault().post(startWorkProcessBean);
+                    PostData postData=new PostData();
+                    postData.setTag("领料单");//领料单列表刷新
+                    EventBus.getDefault().post(postData);
                 }
                 ToastUtils.showShort(startWorkProcessBean.getMsg());
             }

@@ -405,7 +405,8 @@ public class SupplierDetailActivity extends AppCompatActivity {
                             statues=startWorkProcessBean.getNextStatus();
                             tvApproval.setText("工作流审批");
                             tvRequestStatue.setText(startWorkProcessBean.getNextStatus());
-                            startWorkProcessBean.setTag("供应商申请");
+                            PostData postData=new PostData();
+                            postData.setTag("供应商申请");
                             EventBus.getDefault().post(startWorkProcessBean);
                         }else {
 

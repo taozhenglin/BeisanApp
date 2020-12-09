@@ -618,8 +618,9 @@ public class PurchaseMonthColletDetailActivity extends AppCompatActivity impleme
                 });
                 if (startWorkProcessBean.getMsg().equals("审批成功")) {
                     statue = startWorkProcessBean.getNextStatus();
-                    startWorkProcessBean.setTag("采购月度计划汇总");
-                    EventBus.getDefault().post(startWorkProcessBean);
+                    PostData postData=new PostData();
+                    postData.setTag("采购月度计划汇总");
+                    EventBus.getDefault().post(postData);
                 } else {
 
                 }

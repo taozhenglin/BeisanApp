@@ -23,6 +23,7 @@ import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.adapter.ProjectMothAdapter;
 import com.cn.beisanproject.adapter.PurchaseEnquiryAdapter;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.ProjectMonthListBean;
 import com.cn.beisanproject.modelbean.PurchaseEnquiryListBean;
 import com.cn.beisanproject.net.CallBackUtil;
@@ -33,6 +34,9 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.yinglan.keyboard.HideUtil;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 
@@ -216,6 +220,12 @@ public class PurchaseEnquiryListActivity extends AppCompatActivity implements Vi
                 currentPageNum=1;
                 query();
                 break;
+        }
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getNotify(PostData postData) {
+        if (postData.getTag().equals("采购询价单")) {
+            query();
         }
     }
 }

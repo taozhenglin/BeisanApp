@@ -4,11 +4,12 @@ import java.util.List;
 
 public class StockMoveLineBean {
 
+
     /**
      * errcode : GLOBAL-S-0
      * errmsg : 请求成功
      * personid : null
-     * result : {"curpage":1,"resultlist":[{"DESCRIPTION":"柴油滤芯2","FROMBIN":"TEMP","FROMLOT":"YD31830-4-20200108","INVUSENUM":"1030","ITEMNUM":"435730012","LINETYPE":"项目","QUANTITY":"1.00","SITEID":"1000","TOBIN":"TEMP","TOLOT":"YD31830-4-20200108","TOSTORELOC":"LJ","USETYPE":"转移"},{"DESCRIPTION":"柴油滤芯2","FROMBIN":"TEMP","FROMLOT":"YD31830-4-20200108","INVUSENUM":"1030","ITEMNUM":"435730012","LINETYPE":"项目","QUANTITY":"2.00","SITEID":"1000","TOBIN":"","TOLOT":"YD31830-4-20200108","TOSTORELOC":"LJ","USETYPE":"转移"}],"showcount":20,"totalpage":1,"totalresult":2}
+     * result : {"curpage":1,"resultlist":[{"DESCRIPTION":"刹车冷却油滤芯","FROMBIN":"TEMP","FROMLOT":"B3CT27692-7-20180315","INVUSENUM":"1294","ITEMNUM":"435770009","LINETYPE":"项目","QUANTITY":"4.00","SITEID":"1000","TOBIN":"","TOLOT":"B3CT27692-7-20180315","TOSTORELOC":"LJ","USETYPE":"转移"}],"showcount":20,"totalpage":1,"totalresult":1}
      */
 
     private String errcode;
@@ -51,10 +52,10 @@ public class StockMoveLineBean {
     public static class ResultBean {
         /**
          * curpage : 1
-         * resultlist : [{"DESCRIPTION":"柴油滤芯2","FROMBIN":"TEMP","FROMLOT":"YD31830-4-20200108","INVUSENUM":"1030","ITEMNUM":"435730012","LINETYPE":"项目","QUANTITY":"1.00","SITEID":"1000","TOBIN":"TEMP","TOLOT":"YD31830-4-20200108","TOSTORELOC":"LJ","USETYPE":"转移"},{"DESCRIPTION":"柴油滤芯2","FROMBIN":"TEMP","FROMLOT":"YD31830-4-20200108","INVUSENUM":"1030","ITEMNUM":"435730012","LINETYPE":"项目","QUANTITY":"2.00","SITEID":"1000","TOBIN":"","TOLOT":"YD31830-4-20200108","TOSTORELOC":"LJ","USETYPE":"转移"}]
+         * resultlist : [{"DESCRIPTION":"刹车冷却油滤芯","FROMBIN":"TEMP","FROMLOT":"B3CT27692-7-20180315","INVUSENUM":"1294","ITEMNUM":"435770009","LINETYPE":"项目","QUANTITY":"4.00","SITEID":"1000","TOBIN":"","TOLOT":"B3CT27692-7-20180315","TOSTORELOC":"LJ","USETYPE":"转移"}]
          * showcount : 20
          * totalpage : 1
-         * totalresult : 2
+         * totalresult : 1
          */
 
         private int curpage;
@@ -105,16 +106,16 @@ public class StockMoveLineBean {
 
         public static class ResultlistBean {
             /**
-             * DESCRIPTION : 柴油滤芯2
+             * DESCRIPTION : 刹车冷却油滤芯
              * FROMBIN : TEMP
-             * FROMLOT : YD31830-4-20200108
-             * INVUSENUM : 1030
-             * ITEMNUM : 435730012
+             * FROMLOT : B3CT27692-7-20180315
+             * INVUSENUM : 1294
+             * ITEMNUM : 435770009
              * LINETYPE : 项目
-             * QUANTITY : 1.00
+             * QUANTITY : 4.00
              * SITEID : 1000
-             * TOBIN : TEMP
-             * TOLOT : YD31830-4-20200108
+             * TOBIN :
+             * TOLOT : B3CT27692-7-20180315
              * TOSTORELOC : LJ
              * USETYPE : 转移
              */

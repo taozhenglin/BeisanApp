@@ -526,11 +526,14 @@ public class CountEqmentRequestDetailActivity extends AppCompatActivity {
                     StartWorkProcessBean startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
                     });
                     if (startWorkProcessBean.getMsg().equals("审批成功")) {
-                        if (isAgree == 1 && startWorkProcessBean.getNextStatus().equals("已确认")) {
-                            tvApproval.setVisibility(View.GONE);
-                        }
+//                        if (isAgree == 1 && startWorkProcessBean.getNextStatus().equals("已确认")) {
+//                            tvApproval.setVisibility(View.GONE);
+//                        }
                         status = startWorkProcessBean.getNextStatus();
                         tvRequestStatue.setText(startWorkProcessBean.getNextStatus());
+                        PostData postData=new PostData();
+                        postData.setTag("计量设备台账增减申请");
+                        EventBus.getDefault().post(postData);
                     } else {
 
                     }

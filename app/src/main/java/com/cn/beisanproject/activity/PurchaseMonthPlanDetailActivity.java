@@ -349,10 +349,8 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
                 LogUtils.d("onResponse==" + response);
                 ld.close();
                 finishRefresh();
-                ProjectMonthLineBean projectMonthLineBean;
                 if (!response.isEmpty()) {
                     PurchaseMonthPlanLineBean purchaseMonthPlanLineBean = JSONObject.parseObject(response, new TypeReference<PurchaseMonthPlanLineBean>() {});
-
                     if (purchaseMonthPlanLineBean.getErrcode().equals("GLOBAL-S-0")) {
                         List<PurchaseMonthPlanLineBean.ResultBean.ResultlistBean> resultlist = purchaseMonthPlanLineBean.getResult().getResultlist();
                         if (resultlist.size() > 0) {
@@ -660,8 +658,9 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
                 if (startWorkProcessBean.getMsg().equals("审批成功")) {
                     statues = startWorkProcessBean.getNextStatus();
                     tvStatue.setText(startWorkProcessBean.getNextStatus());
-                    startWorkProcessBean.setTag("采购月度计划");
-                    EventBus.getDefault().post(startWorkProcessBean);
+                    PostData postData=new PostData();
+                    postData.setTag("采购月度计划");
+                    EventBus.getDefault().post(postData);
                     getRequestLine();
                 } else {
 

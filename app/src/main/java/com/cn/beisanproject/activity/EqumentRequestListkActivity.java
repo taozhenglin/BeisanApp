@@ -23,6 +23,7 @@ import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.adapter.EqumentRequestAdapter;
 import com.cn.beisanproject.adapter.ProjectContractChangeAdapter;
 import com.cn.beisanproject.modelbean.EqumentRequestListBean;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.ProjectContractChangeBean;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
@@ -32,6 +33,9 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.yinglan.keyboard.HideUtil;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 
@@ -210,5 +214,11 @@ public class EqumentRequestListkActivity extends AppCompatActivity implements Vi
         if (isRefresh) refreshLayout.finishRefresh();
         else refreshLayout.finishLoadMore();
 
+    }
+    // 刷新列表
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getNotify(PostData postData) {
+        if (postData.getTag().equals("设备台账增减申请"))
+            query();
     }
 }
