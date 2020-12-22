@@ -41,6 +41,7 @@ import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.Utils.Tools;
 import com.cn.beisanproject.fragment.ProjectContractDetailFragment;
 import com.cn.beisanproject.fragment.ProjectInvoiceFragment;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.ProjectContractDetailBean;
 import com.cn.beisanproject.modelbean.ProjectContractListBean;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
@@ -549,8 +550,10 @@ public class ProjectContractDetailActivity extends AppCompatActivity implements 
                     if (startWorkProcessBean.getMsg().equals("审批成功")) {
                         statue = startWorkProcessBean.getNextStatus();
                         tv_start.setText("工作流审批");
-                        startWorkProcessBean.setTag("项目合同");
-                        EventBus.getDefault().post(startWorkProcessBean);
+                        PostData postData=new PostData();
+                        postData.setTag("项目合同");
+                        postData.setNextStatus(statue);
+                        EventBus.getDefault().post(postData);
                     } else {
 
                     }
@@ -626,8 +629,10 @@ public class ProjectContractDetailActivity extends AppCompatActivity implements 
                         if (startWorkProcessBean.getMsg().equals("流程启动成功！")) {
                             statue = startWorkProcessBean.getNextStatus();
                             tv_start.setText("工作流审批");
-                            startWorkProcessBean.setTag("项目合同");
-                            EventBus.getDefault().post(startWorkProcessBean);
+                            PostData postData=new PostData();
+                            postData.setTag("项目合同");
+                            postData.setNextStatus(statue);
+                            EventBus.getDefault().post(postData);
                         } else {
 
                         }

@@ -71,7 +71,7 @@ public class PersonalCenterFragment extends Fragment implements View.OnClickList
         btnLogOut = view.findViewById(R.id.btnLogOut);
         tv_name.setText(userLoginDetails.getDisplayName());
         tv_num.setText(userLoginDetails.getUserName());
-        tv_current_env.setText("开发环境");
+        tv_current_env.setText("正式环境");
         String appVersionName = AppUtils.getAppVersionName();
         LogUtils.d("222222 appVersionName=" + appVersionName);
         tv_Version.setText(appVersionName);

@@ -42,6 +42,7 @@ import com.cn.beisanproject.activity.ProjectMonthDetailActivity;
 import com.cn.beisanproject.activity.PurchaseContractDetailActivity;
 import com.cn.beisanproject.modelbean.AssaginListBean;
 import com.cn.beisanproject.modelbean.CommonAttachBean;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.PurchseAttachBean;
 import com.cn.beisanproject.modelbean.PurchseContrDetailBean;
 import com.cn.beisanproject.modelbean.PurchseContractDetailBean;
@@ -355,10 +356,10 @@ public class PurchaseContractDetailFragment extends Fragment {
 //        LogUtils.d("startWorkProcessBean=="+startWorkProcessBean);
 //    }
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(StartWorkProcessBean startWorkProcessBean) {
+    public void onEvent(PostData postData) {
         LogUtils.d("onEvent==");
-        if (startWorkProcessBean.getTag().equals("采购合同")) {
-            tv_contract_statue.setText(startWorkProcessBean.getNextStatus());
+        if (postData.getTag().equals("采购合同")) {
+            tv_contract_statue.setText(postData.getNextStatus());
             getContractAttach();
         }
 

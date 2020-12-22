@@ -19,6 +19,7 @@ import com.cn.beisanproject.Base.Constants;
 import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.HighLightUtils;
 import com.cn.beisanproject.Utils.LogUtils;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.ProjectContractListBean;
 import com.cn.beisanproject.modelbean.ProjectContractDetailBean;
 import com.cn.beisanproject.modelbean.ProjectInvoiceAttachBean;
@@ -208,10 +209,10 @@ public class ProjectInvoiceFragment extends Fragment {
         });
     }
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent( StartWorkProcessBean startWorkProcessBean){
+    public void onEvent( PostData postData){
         LogUtils.d("onEvent==");
-        if (startWorkProcessBean.getTag().equals("项目合同")){
-            tv_contract_statue.setText(startWorkProcessBean.getNextStatus());
+        if (postData.getTag().equals("项目合同")){
+            tv_contract_statue.setText(postData.getNextStatus());
             getInvoiceDetail();
         }
 

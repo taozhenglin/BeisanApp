@@ -447,6 +447,7 @@ public class PurchaseMonthColletDetailActivity extends AppCompatActivity impleme
                         statue= startWorkProcessBean.getNextStatus();
                         PostData data=new PostData();
                         data.setTag("采购月度计划汇总");
+                        data.setNextStatus(statue);
                         EventBus.getDefault().post(data);
                         tv_start.setText("工作流审批");
                     } else {
@@ -620,6 +621,7 @@ public class PurchaseMonthColletDetailActivity extends AppCompatActivity impleme
                     statue = startWorkProcessBean.getNextStatus();
                     PostData postData=new PostData();
                     postData.setTag("采购月度计划汇总");
+                    postData.setNextStatus(statue);
                     EventBus.getDefault().post(postData);
                 } else {
 

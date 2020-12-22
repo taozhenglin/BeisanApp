@@ -19,6 +19,7 @@ import com.cn.beisanproject.Base.Constants;
 import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.activity.PurchaseMonthColletDetailActivity;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.ProjectMonthCollectBean;
 import com.cn.beisanproject.modelbean.ProjectMonthColletedBean;
 import com.cn.beisanproject.modelbean.PurchaseMonthColletedDeatailBean;
@@ -271,10 +272,10 @@ public class PurchaseMonthColletDetailFragment extends Fragment {
 
     }
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent( StartWorkProcessBean startWorkProcessBean){
+    public void onEvent( PostData postData){
         LogUtils.d("onEvent==");
-        if (startWorkProcessBean.getTag().equals("采购月度计划汇总")){
-            tv_contract_statue.setText(startWorkProcessBean.getNextStatus());
+        if (postData.getTag().equals("采购月度计划汇总")){
+            tv_contract_statue.setText(postData.getNextStatus());
             getCollectedList();
             getNeedCollectList();
         }

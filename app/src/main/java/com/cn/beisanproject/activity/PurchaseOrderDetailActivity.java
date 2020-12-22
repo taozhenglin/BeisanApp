@@ -565,6 +565,7 @@ public class PurchaseOrderDetailActivity extends AppCompatActivity implements Vi
                         statue = startWorkProcessBean.getNextStatus();
                         PostData postData=new PostData();
                         postData.setTag("采购订单");
+                        postData.setNextStatus(statue);
                         EventBus.getDefault().post(postData);
                     } else {
 

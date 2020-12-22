@@ -544,10 +544,10 @@ public class ProjectContractDetailFragment extends Fragment {
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(StartWorkProcessBean startWorkProcessBean) {
+    public void onEvent(PostData postData) {
         LogUtils.d("onEvent==");
-        if (startWorkProcessBean.getTag().equals("项目合同")) {
-            tv_contract_statue.setText(startWorkProcessBean.getNextStatus());
+        if (postData.getTag().equals("项目合同")) {
+            tv_contract_statue.setText(postData.getNextStatus());
             getContractAttach();
         }
     }

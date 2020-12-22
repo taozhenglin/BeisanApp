@@ -129,9 +129,6 @@ public class MainActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 LogUtils.d("222222 onPageSelected","当前位置："+position);
                 tv_common_title.setText(mTopBarTitle[position]);
-
-
-
             }
 
             @Override

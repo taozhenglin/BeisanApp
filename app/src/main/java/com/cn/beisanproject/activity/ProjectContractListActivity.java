@@ -21,6 +21,7 @@ import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.adapter.ProjectContractAdapter;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.ProjectContractListBean;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
 import com.cn.beisanproject.net.CallBackUtil;
@@ -211,9 +212,9 @@ public class ProjectContractListActivity extends AppCompatActivity implements Vi
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent( StartWorkProcessBean startWorkProcessBean){
+    public void onEvent( PostData postData){
         LogUtils.d("onEvent==");
-        if (startWorkProcessBean.getTag().equals("项目合同")){
+        if (postData.getTag().equals("项目合同")){
             query();
         }
     }

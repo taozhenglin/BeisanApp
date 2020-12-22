@@ -535,8 +535,10 @@ public class PurchaseContractDetailActivity extends AppCompatActivity implements
                     });
                     if (startWorkProcessBean.getMsg().equals("审批成功")) {
                         statue = startWorkProcessBean.getNextStatus();
-                        startWorkProcessBean.setTag("采购合同");
-                        EventBus.getDefault().post(startWorkProcessBean);
+                        PostData postData=new PostData();
+                        postData.setTag("采购合同");
+                        postData.setNextStatus(statue);
+                        EventBus.getDefault().post(postData);
                     } else {
 
                     }
@@ -613,6 +615,7 @@ public class PurchaseContractDetailActivity extends AppCompatActivity implements
                             tv_start.setText("工作流审批");
                             PostData data=new PostData();
                             data.setTag("采购合同");
+                            data.setNextStatus(statue);
                             EventBus.getDefault().post(data);
                         } else {
 
