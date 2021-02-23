@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -73,7 +74,7 @@ import okhttp3.Call;
  */
 public class ProjectMonthColletDetailActivity extends AppCompatActivity implements View.OnClickListener {
     ProjectMonthCollectBean.ResultBean.ResultlistBean mResultlistBean;
-    private TextView tv_back;
+    private LinearLayout ll_back;
     private TextView tv_common_title;
     TextView tv_start;
     private String contractId;
@@ -123,7 +124,7 @@ public class ProjectMonthColletDetailActivity extends AppCompatActivity implemen
         }
 
 
-        initListener();
+//        initListener();
     }
 
     private void getDetail() {
@@ -182,15 +183,17 @@ public class ProjectMonthColletDetailActivity extends AppCompatActivity implemen
     }
 
     private void initListener() {
-        tv_start.setOnClickListener(this);
-        tv_back.setOnClickListener(this);
+//        tv_start.setOnClickListener(this);
+//        ll_back.setOnClickListener(this);
     }
 
     private void initView() {
-        tv_back = findViewById(R.id.tv_back);
+        ll_back = findViewById(R.id.ll_back);
         tv_common_title = findViewById(R.id.tv_common_title);
         tv_common_title.setText("项目月度计划汇总");
         tv_start = findViewById(R.id.tv_start);
+        tv_start.setOnClickListener(this);
+        ll_back.setOnClickListener(this);
         if ( statue.equals("已完成") || statue.equals("已取消")||statue.equals("完成") || statue.equals("取消")){
             tv_start.setVisibility(View.GONE);
         } else {

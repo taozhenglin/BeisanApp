@@ -203,7 +203,7 @@ public class PurchaseMonthPlanListActivity extends AppCompatActivity implements 
                                 }
 
                             } else {
-                                if (totalpage>1&&totalresult>20){
+                                if (currentPageNum<=totalpage){
                                     purchaseMonthPlanAdapter.addAllList(purchaseMonthPlanListBean.getResult().getResultlist());
                                     purchaseMonthPlanAdapter.notifyDataSetChanged();
                                 }else {

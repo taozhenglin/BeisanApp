@@ -178,26 +178,26 @@ public class WaitDoFragment extends Fragment implements View.OnClickListener {
                     if (response.startsWith("Error")) {
                         ToastUtils.showShort(R.string.GETDATAFAILED);
                     } else {
-                        waitDoListBean = JSONObject.parseObject(response, new TypeReference<WaitDoListBean>() {
-                        });
+                        waitDoListBean = JSONObject.parseObject(response, new TypeReference<WaitDoListBean>() {});
                         if (waitDoListBean.getErrcode().equals("GLOBAL-S-0")) {
                             totalepage = waitDoListBean.getResult().getTotalpage();
                             int totalresult = waitDoListBean.getResult().getTotalresult();
                             resultlist = waitDoListBean.getResult().getResultlist();
+                            PostData postData = new PostData();
+                            postData.setCount(totalresult);
+                            postData.setTag("waitdocount");
+                            EventBus.getDefault().post(postData);
+                            SharedPreferencesUtil.setInt(mContext, "waitdototalresult", totalresult);
                             if (resultlist.size() > 0) {
                                 for (int i = 0; i < resultlist.size(); i++) {
                                     resultlist.get(i).setChecked(false);
                                 }
-                                PostData postData = new PostData();
-                                postData.setCount(totalresult);
-                                postData.setTag("waitdocount");
-                                SharedPreferencesUtil.setInt(mContext, "waitdototalresult", totalresult);
+
 //                            if (totalresult > 0) {
 //                                ShortcutBadger.applyCount(mContext, totalresult); //for 1.1.4+
 //                            }else{
 //                                ShortcutBadger.removeCount(mContext);
 //                            }
-                                EventBus.getDefault().post(postData);
                                 if (currentPageNum == 1) {
                                     if (mWaitDoAdapter == null) {
                                         mWaitDoAdapter = new WaitDoAdapter(mContext, resultlist);
@@ -218,6 +218,7 @@ public class WaitDoFragment extends Fragment implements View.OnClickListener {
                                 }
                             } else {
                                 ll_top.setVisibility(View.GONE);
+                                refreshLayout.setVisibility(View.GONE);
                             }
 
                         }

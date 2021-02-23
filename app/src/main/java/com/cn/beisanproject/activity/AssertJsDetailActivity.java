@@ -33,12 +33,9 @@ import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
-import com.cn.beisanproject.adapter.AssertDetailLineAdapter;
 import com.cn.beisanproject.adapter.AssertJsDetailLineAdapter;
 import com.cn.beisanproject.modelbean.AssertCheckJsListBean;
-import com.cn.beisanproject.modelbean.AssertDetailLineBean;
 import com.cn.beisanproject.modelbean.AssertJsDetailLineBean;
-import com.cn.beisanproject.modelbean.CountEqmentRequestListBean;
 import com.cn.beisanproject.modelbean.CountEqumentRequestListBean;
 import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
@@ -54,8 +51,6 @@ import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.List;
@@ -333,7 +328,6 @@ public class AssertJsDetailActivity extends AppCompatActivity implements View.On
                                     assertDetailLineAdapter.setData(resultlist);
                                     assertDetailLineAdapter.notifyDataSetChanged();
                                 }
-
                             } else {
                                 if (currentPageNum<=totalPage){
                                     assertDetailLineAdapter.addAllList(resultlist);

@@ -10,27 +10,28 @@ public class StyleManager {
 
     public static StyleManager getDefault() {
         return new StyleManager(true, 0, LoadingDialog.Speed.SPEED_TWO, -1, -1, 1000L,
-                true, "加载中...", "加载成功", "加载失败");
+                true, "加载中...", "加载成功", "加载失败",1);
     }
 
-    public StyleManager() {
-    }
-
-    public StyleManager(boolean open, int repeatTime, LoadingDialog.Speed speed,
-                        int contentSize, int textSize, long showTime, boolean interceptBack,
-                        String loadText, String successText, String failedText) {
-        this.openAnim = open;
-        this.repeatTime = repeatTime;
-        this.speed = speed;
-        this.contentSize = contentSize;
-        this.textSize = textSize;
-        this.showTime = showTime;
-        this.interceptBack = interceptBack;
-        this.loadText = loadText;
-        this.successText = successText;
-        this.failedText = failedText;
-
-    }
+//    public StyleManager() {
+//    }
+//
+//    public StyleManager(boolean open, int repeatTime, LoadingDialog.Speed speed,
+//                        int contentSize, int textSize, long showTime, boolean interceptBack,
+//                        String loadText, String successText, String failedText) {
+//        this.openAnim = open;
+//        this.repeatTime = repeatTime;
+//        this.speed = speed;
+//        this.contentSize = contentSize;
+//        this.textSize = textSize;
+//        this.showTime = showTime;
+//        this.interceptBack = interceptBack;
+//        this.loadText = loadText;
+//        this.successText = successText;
+//        this.failedText = failedText;
+//
+//
+//    }
 
     public StyleManager(boolean open, int repeatTime, LoadingDialog.Speed speed,
                         int contentSize, int textSize, long showTime, boolean interceptBack,
@@ -83,7 +84,7 @@ public class StyleManager {
 
     private String failedText = "加载失败";
 
-    private int loadStyle = LoadingDialog.STYLE_RING;
+    private int loadStyle = LoadingDialog.STYLE_LINE;
 
     public StyleManager setLoadStyle(int loadStyle) {
         this.loadStyle = loadStyle;

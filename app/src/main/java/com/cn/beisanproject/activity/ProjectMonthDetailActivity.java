@@ -205,8 +205,8 @@ public class ProjectMonthDetailActivity extends AppCompatActivity {
             tvYusuanNdesc.setText("预算描述:" + mResultlistBean.getA_BUDGETDESC());
             tvHuizongDate.setText("汇总年月:" + mResultlistBean.getA_PRKEY());
             tvSumAmount.setText("总金额:" + mResultlistBean.getTOTALCOST());
-            tvDept.setText("主管部门:" + mResultlistBean.getA_DEPT());
-            tvRequsetDep.setText("申请部门:" + mResultlistBean.getA_PURCATALOG());
+            tvDept.setText("主管部门:" + mResultlistBean.getA_PURCATALOG());
+            tvRequsetDep.setText("申请部门:" + mResultlistBean.getA_DEPT());
             tvRequsetTeam.setText("申请班组:");
             tvRequsetType.setText("申请类型:" + mResultlistBean.getA_PURTYPE());
             tvOwnerCompanny.setText("所属公司:" + mResultlistBean.getA_COMPANY());
@@ -615,8 +615,8 @@ public class ProjectMonthDetailActivity extends AppCompatActivity {
                         tvYusuanNdesc.setText("预算描述:" + resultlistBean.getA_BUDGETDESC());
                         tvHuizongDate.setText("汇总年月:" + resultlistBean.getA_PRKEY());
                         tvSumAmount.setText("总金额:" + resultlistBean.getTOTALCOST());
-                        tvDept.setText("主管部门:" + resultlistBean.getA_DEPT());
-                        tvRequsetDep.setText("申请部门:" + resultlistBean.getA_PURCATALOG());
+                        tvDept.setText("主管部门:" + resultlistBean.getA_PURCATALOG());
+                        tvRequsetDep.setText("申请部门:" + resultlistBean.getA_DEPT());
                         tvRequsetTeam.setText("申请班组:");
                         tvRequsetType.setText("申请类型:" + resultlistBean.getA_PURTYPE());
                         tvOwnerCompanny.setText("所属公司:" + resultlistBean.getA_COMPANY());
@@ -756,8 +756,7 @@ public class ProjectMonthDetailActivity extends AppCompatActivity {
                         int end = response.indexOf("</return>");
                         String substring = response.substring(start + 8, end);
                         LogUtils.d("substring==" + substring);
-                        startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {
-                        });
+                        startWorkProcessBean = JSONObject.parseObject(substring, new TypeReference<StartWorkProcessBean>() {});
                         if (startWorkProcessBean.getMsg().equals("流程启动成功！")) {
                             status = startWorkProcessBean.getNextStatus();
                             tvStatue.setText(startWorkProcessBean.getNextStatus());
@@ -771,8 +770,6 @@ public class ProjectMonthDetailActivity extends AppCompatActivity {
                         ToastUtils.showShort(startWorkProcessBean.getMsg());
                     }else
                         ToastUtils.showShort(R.string.UNKNOW_ERROR);
-
-
                 }
 
 

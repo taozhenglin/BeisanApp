@@ -31,7 +31,6 @@ import com.guideelectric.loadingdialog.view.LoadingDialog;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
