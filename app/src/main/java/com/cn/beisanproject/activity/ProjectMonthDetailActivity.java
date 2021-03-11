@@ -135,6 +135,8 @@ public class ProjectMonthDetailActivity extends AppCompatActivity {
     TextView tvApproval;
     private boolean needGet;
     private String prnum;
+    String prid;
+
     private String siteid;
     String company;
     String orgid;
@@ -165,11 +167,13 @@ public class ProjectMonthDetailActivity extends AppCompatActivity {
             company = mResultlistBean.getA_COMPANY();
             orgid = mResultlistBean.getORGID();
             contractnum = mResultlistBean.getCONTRACTREFNUM();
+            prid= mResultlistBean.getPRID()+"";
+
             OWNERID = mResultlistBean.getPRID() + "";
             prnum = mResultlistBean.getPRNUM();
             siteid = mResultlistBean.getSITEID();
             status = mResultlistBean.getSTATUS();
-            if ( status.equals("已取消")||status.equals("取消")||status.equals("关闭")||status.equals("已关闭")) {
+            if ( status.equals("已取消")||status.equals("取消")||status.equals("关闭")||status.equals("已关闭")) {//已批准状态也可以继续点
                 tvApproval.setVisibility(View.GONE);
             } else {
                 if (status.equals("等待批准")) {
@@ -593,19 +597,21 @@ public class ProjectMonthDetailActivity extends AppCompatActivity {
                         tvProjectRequest.setText("项目立项:" + resultlistBean.getPRNUM());
 
                         prnum = resultlistBean.getPRNUM();
+                        prid= resultlistBean.getPRID()+"";
                         siteid = resultlistBean.getSITEID();
                         company = resultlistBean.getA_COMPANY();
                         orgid = resultlistBean.getORGID();
                         contractnum = resultlistBean.getCONTRACTREFNUM();
                         status = resultlistBean.getSTATUS();
-                        if (status.equals("已批准") || status.equals("已取消")) {
+                        if ( status.equals("已取消")||status.equals("取消")||status.equals("关闭")||status.equals("已关闭")) {//已批准状态也可以继续点
                             tvApproval.setVisibility(View.GONE);
-                        }
-                        if (status.equals("等待批准")) {
-                            tvApproval.setText("启动工作流");
-                        }
-                        if (!status.equals("等待批准") && !status.equals("已批准") && !status.equals("已取消")) {
-                            tvApproval.setText("流程审批");
+                        } else {
+                            if (status.equals("等待批准")) {
+                                tvApproval.setText("启动工作流");
+                            } else {
+                                tvApproval.setText("流程审批");
+
+                            }
                         }
                         tvStatue.setText(resultlistBean.getSTATUS());
                         tvDesc.setText("描述:" + resultlistBean.getDESCRIPTION());
@@ -730,12 +736,12 @@ public class ProjectMonthDetailActivity extends AppCompatActivity {
                 "         <max:processname>PRPROJ</max:processname>\n" +
                 "         <max:mbo>PR</max:mbo>\n" +
                 "         <max:keyValue>%s</max:keyValue>\n" +
-                "         <max:key>PRNUM</max:key>\n" +
+                "         <max:key>PRID</max:key>\n" +
                 "         <max:loginid>%s</max:loginid>\n" +
                 "      </max:wfservicestartWF>\n" +
                 "   </soap:Body>\n" +
                 "</soap:Envelope>";
-        request = String.format(request, prnum, SharedPreferencesUtil.getString(this, "personId"));
+        request = String.format(request, prid, SharedPreferencesUtil.getString(this, "personId"));
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=utf-8");
         headermap.put("SOAPAction", "urn:action");
@@ -913,7 +919,7 @@ public class ProjectMonthDetailActivity extends AppCompatActivity {
                 "<max:processname>PRPROJ</max:processname>" +
                 "<max:mboName>PR</max:mboName>" +
                 "<max:keyValue>%s</max:keyValue>" +
-                "<max:key>PRNUM</max:key>" +
+                "<max:key>PRID</max:key>" +
                 "<max:ifAgree>%s</max:ifAgree>" +
                 "<max:opinion>%s</max:opinion>" +
                 "<max:loginid>%s</max:loginid>" +
@@ -921,7 +927,7 @@ public class ProjectMonthDetailActivity extends AppCompatActivity {
                 "</soapenv:Body>" +
                 "</soapenv:Envelope>";
         // ifAgree :1 同意  2 不同意   opinion:输入内容
-        request = String.format(request, prnum, ifAgree, opinion, SharedPreferencesUtil.getString(this, "personId"));
+        request = String.format(request, prid, ifAgree, opinion, SharedPreferencesUtil.getString(this, "personId"));
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=utf-8");
         headermap.put("SOAPAction", "urn:action");
@@ -946,6 +952,9 @@ public class ProjectMonthDetailActivity extends AppCompatActivity {
                     if (startWorkProcessBean.getMsg().equals("审批成功")) {
                         status = startWorkProcessBean.getNextStatus();
                         tvStatue.setText(startWorkProcessBean.getNextStatus());
+                        PostData postData=new PostData();
+                        postData.setTag("项目立项/项目月度计划");
+                        EventBus.getDefault().post(postData);
                         getAttachMent();
                         getPlanLine();
                     } else {

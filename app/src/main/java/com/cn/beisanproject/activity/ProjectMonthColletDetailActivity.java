@@ -41,6 +41,7 @@ import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.Utils.Tools;
 import com.cn.beisanproject.fragment.ProjectMonthColletDetailFragment;
 import com.cn.beisanproject.fragment.ProjectMonthColletLineFragment;
+import com.cn.beisanproject.modelbean.PostData;
 import com.cn.beisanproject.modelbean.ProjectMonthCollectBean;
 import com.cn.beisanproject.modelbean.PurchaseEnquiryListBean;
 import com.cn.beisanproject.modelbean.StartWorkProcessBean;
@@ -382,9 +383,9 @@ public class ProjectMonthColletDetailActivity extends AppCompatActivity implemen
                         });
                         if (startWorkProcessBean.getMsg().equals("流程启动成功！")) {
                             statue = startWorkProcessBean.getNextStatus();
-                            tv_start.setText("工作流审批");
-                            startWorkProcessBean.setTag("项目月度计划汇总");
-                            EventBus.getDefault().post(startWorkProcessBean);
+                            PostData postData=new PostData();
+                            postData.setTag("项目月度计划汇总");
+                            EventBus.getDefault().post(postData);
                         } else {
 
                         }
@@ -559,8 +560,9 @@ public class ProjectMonthColletDetailActivity extends AppCompatActivity implemen
                 });
                 if (startWorkProcessBean.getMsg().equals("审批成功")) {
                     statue = startWorkProcessBean.getNextStatus();
-                    startWorkProcessBean.setTag("项目月度计划汇总");
-                    EventBus.getDefault().post(startWorkProcessBean);
+                    PostData postData=new PostData();
+                    postData.setTag("项目月度计划汇总");
+                    EventBus.getDefault().post(postData);
                 } else {
 
                 }

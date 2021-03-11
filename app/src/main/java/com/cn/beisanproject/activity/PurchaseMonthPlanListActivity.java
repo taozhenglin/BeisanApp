@@ -215,8 +215,6 @@ public class PurchaseMonthPlanListActivity extends AppCompatActivity implements 
                             ToastUtils.showShort("无数据");
                         }
 
-
-
                     }
 
                 }
