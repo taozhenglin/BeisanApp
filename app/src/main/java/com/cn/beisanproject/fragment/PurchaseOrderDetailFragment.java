@@ -187,7 +187,7 @@ public class PurchaseOrderDetailFragment extends Fragment {
             contractnum = mPurchseContractDetailBean.getResult().getResultlist().get(0).getCONTRACTNUM();
             orgid = mPurchseContractDetailBean.getResult().getResultlist().get(0).getORGID();
             company = mPurchseContractDetailBean.getResult().getResultlist().get(0).getVENDOR();
-            tv_contract_no.setText("合同编号：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getCONTRACTNUM());
+            tv_contract_no.setText("订单编号：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getCONTRACTNUM());
             tv_contract_statue.setText(mPurchseContractDetailBean.getResult().getResultlist().get(0).getSTATUS());
             if (mPurchseContractDetailBean.getResult().getResultlist().get(0).getSTATUS().equals("总经理审批")) {
                 ll_assginman.setEnabled(true);
@@ -205,7 +205,7 @@ public class PurchaseOrderDetailFragment extends Fragment {
             tv_contract_yi.setText("乙方：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getHTYF());
             tv_company.setText("公司：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getA_COMP());
             tv_request_department.setText("申请部门：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getA_DEPT());
-            tv_contract_created.setText("合同编制人：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getHTJF());
+            tv_contract_created.setText("合同编制人：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getENTERBYDESC());
             tv_contract_signtime.setText("合同签订日期：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getJ_CONTRACTDATE());
             tv_contract_cost.setText("合同金额：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getTOTALCOST());
             tv_contract_starttime.setText("合同开始日期：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getSTARTDATE());
@@ -217,7 +217,7 @@ public class PurchaseOrderDetailFragment extends Fragment {
             contractnum = mResultlistBean.getCONTRACTNUM();
             orgid = mResultlistBean.getORGID();
             company = mResultlistBean.getVENDOR();
-            tv_contract_no.setText("合同编号：" + mResultlistBean.getCONTRACTNUM());
+            tv_contract_no.setText("订单编号：" + mResultlistBean.getCONTRACTNUM());
             tv_contract_statue.setText(mResultlistBean.getSTATUS());
             if (mResultlistBean.getSTATUS().equals("总经理审批")) {
                 ll_assginman.setEnabled(true);
@@ -229,12 +229,12 @@ public class PurchaseOrderDetailFragment extends Fragment {
             tv_xunjia_no.setText("询价单号：" + mResultlistBean.getA_RFQNUM());
             tv_xunjia_desc.setText("询价描述：" + mResultlistBean.getA_RFQDESC());
             tv_isyear_contract.setText("是否年度招标合同：" + mResultlistBean.getHASINSURANCE());
-            tv_department.setText("主管部门: ");
+            tv_department.setText("主管部门: "+ mResultlistBean.getJFQZDB());
             tv_contract_jia.setText("甲方：" + mResultlistBean.getHTJF());
             tv_contract_yi.setText("乙方：" + mResultlistBean.getVENDORDESC());
-            tv_company.setText("公司：");
-            tv_request_department.setText("申请部门：");
-            tv_contract_created.setText("合同编制人：" + mResultlistBean.getHTJF());
+            tv_company.setText("公司："+ mResultlistBean.getA_COMP());
+            tv_request_department.setText("申请部门："+ mResultlistBean.getA_DEPT());
+            tv_contract_created.setText("合同编制人：" + mResultlistBean.getENTERBYDESC());
             tv_contract_signtime.setText("合同签订日期：" + mResultlistBean.getJ_CONTRACTDATE());
             tv_contract_cost.setText("合同金额：" + mResultlistBean.getTOTALCOST());
             tv_contract_starttime.setText("合同开始日期：" + mResultlistBean.getSTARTDATE());

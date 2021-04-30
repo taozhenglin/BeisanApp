@@ -89,7 +89,7 @@ public class ProjectMonthColletDetailFragment extends Fragment {
         if (mNeedGet) {
             PRNUM = mProjectMonthCollectBean.getPRNUM();
             A_PRKEY= mProjectMonthCollectBean.getA_PRKEY();
-            tv_contract_no.setText("项目汇总：" + mProjectMonthCollectBean.getPRNUM());
+            tv_contract_no.setText("汇总编号：" + mProjectMonthCollectBean.getPRNUM());
             tv_contract_statue.setText(mProjectMonthCollectBean.getSTATUS());
             tv_contract_desc.setText("描述：" + mProjectMonthCollectBean.getDESCRIPTION());
             tv_collet_date.setText("汇总年月：" + mProjectMonthCollectBean.getA_PRKEY());
@@ -99,7 +99,7 @@ public class ProjectMonthColletDetailFragment extends Fragment {
         } else {
             PRNUM = mResultlistBean.getPRNUM();
             A_PRKEY= mResultlistBean.getA_PRKEY();
-            tv_contract_no.setText("项目汇总：" + mResultlistBean.getPRNUM());
+            tv_contract_no.setText("汇总编号：" + mResultlistBean.getPRNUM());
             tv_contract_statue.setText(mResultlistBean.getSTATUS());
             tv_contract_desc.setText("描述：" + mResultlistBean.getDESCRIPTION());
             tv_collet_date.setText("汇总年月：" + mResultlistBean.getA_PRKEY());

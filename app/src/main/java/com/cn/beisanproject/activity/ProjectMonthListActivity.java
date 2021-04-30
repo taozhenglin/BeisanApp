@@ -87,7 +87,7 @@ public class ProjectMonthListActivity extends AppCompatActivity implements View.
         tv_common_title = findViewById(R.id.tv_common_title);
         tv_common_title.setText("项目立项/项目月度计划");
         edt_search_contract = findViewById(R.id.edt_search_contract);
-        edt_search_contract.setHint("项目申请/描述");
+        edt_search_contract.setHint("项目申请编号/描述");
     }
 
     private void initEvent() {

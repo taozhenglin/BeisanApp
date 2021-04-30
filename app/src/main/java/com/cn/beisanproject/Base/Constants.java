@@ -1,6 +1,5 @@
 package com.cn.beisanproject.Base;
 
-import com.blankj.utilcode.util.StringUtils;
 
 public class Constants {
     public static final String SHARE_PREFERENCES_NAME = "BeiSanCompanny";

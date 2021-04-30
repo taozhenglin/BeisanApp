@@ -101,6 +101,7 @@ public class ProjectMonthColletListActivity extends AppCompatActivity implements
         tv_common_title = findViewById(R.id.tv_common_title);
         tv_common_title.setText("项目月度计划汇总");
         edt_search_contract = findViewById(R.id.edt_search_contract);
+        edt_search_contract.setHint("汇总编号/描述");
     }
 
     private void initEvent() {

@@ -44,7 +44,7 @@ public class ProjectMothAdapter extends RecyclerView.Adapter<ProjectMothAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        SpannableString highlightNum = HighLightUtils.highlight(mContext, "项目申请：" + mList.get(position).getPRNUM(), mHightlight, "#00ff00", 0, 0);
+        SpannableString highlightNum = HighLightUtils.highlight(mContext, "项目申请编号：" + mList.get(position).getPRNUM(), mHightlight, "#00ff00", 0, 0);
         holder.tvProjectRequest.setText(highlightNum);
         if (mList.get(position).getSTATUS().equals("已批准")) {
             holder.iv_contract_statue.setVisibility(View.VISIBLE);

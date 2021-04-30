@@ -174,14 +174,14 @@ public class PurchaseMonthPlanListActivity extends AppCompatActivity implements 
         OkhttpUtil.okHttpGet(url, map, headermap, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
-                LogUtils.d("onFailure=" + e.toString());
+                LogUtils.d("onFailure==" + e.toString());
                 finishRefresh();
                 ld.close();
             }
 
             @Override
             public void onResponse(String response) {
-                LogUtils.d("onResponse=" + response);
+                LogUtils.d("onResponse==" + response);
                 ld.close();
                 PurchaseMonthPlanListBean purchaseMonthPlanListBean;
                 finishRefresh();

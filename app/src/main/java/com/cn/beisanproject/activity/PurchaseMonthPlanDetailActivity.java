@@ -188,7 +188,7 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
             tvDept.setText("主管部门：" + mResultlistBean.getA_PURCATALOG());
             tvRequsetDep.setText("申请部门：" + mResultlistBean.getA_DEPT());
             tvRequsetBy.setText("申请人：" + mResultlistBean.getREQUESTEDBY());
-            tvRequsetTeam.setText("申请班组：");
+            tvRequsetTeam.setText("申请班组："+ mResultlistBean.getA_CREWID());
             tvGetTime.setText("要求到货时间：" + mResultlistBean.getREQUIREDDATE());
             tvRequestTime.setText("申请时间：" + mResultlistBean.getISSUEDATE());
             getRequestLine();
@@ -297,7 +297,7 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
                         tvDept.setText("主管部门：" + resultlistBean.getA_PURCATALOG());
                         tvRequsetDep.setText("申请部门：" + resultlistBean.getA_DEPT());
                         tvRequsetBy.setText("申请人：" + resultlistBean.getREQUESTEDBY());
-                        tvRequsetTeam.setText("申请班组：");
+                        tvRequsetTeam.setText("申请班组："+ resultlistBean.getA_CREWID());
                         tvGetTime.setText("要求到货时间：" + resultlistBean.getREQUIREDDATE());
                         tvRequestTime.setText("申请时间：" + resultlistBean.getISSUEDATE());
                         getRequestLine();
@@ -626,7 +626,7 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
                 "<max:processname>PR</max:processname>" +
                 "<max:mboName>PR</max:mboName>" +
                 "<max:keyValue>%s</max:keyValue>" +
-                "<max:key>PRNUM</max:key>" +
+                "<max:key>PRID</max:key>" +
                 "<max:ifAgree>%s</max:ifAgree>" +
                 "<max:opinion>%s</max:opinion>" +
                 "<max:loginid>%s</max:loginid>" +
@@ -634,7 +634,7 @@ public class PurchaseMonthPlanDetailActivity extends AppCompatActivity {
                 "</soapenv:Body>" +
                 "</soapenv:Envelope>";
         // ifAgree ：1 同意  2 不同意   opinion：输入内容
-        request = String.format(request, PRNUM, ifAgree, opinion, SharedPreferencesUtil.getString(this, "personId"));
+        request = String.format(request, PRID, ifAgree, opinion, SharedPreferencesUtil.getString(this, "personId"));
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=utf-8");
         headermap.put("SOAPAction", "urn:action");

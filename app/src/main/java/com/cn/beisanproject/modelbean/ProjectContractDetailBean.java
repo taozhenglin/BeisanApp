@@ -170,6 +170,16 @@ public class ProjectContractDetailBean {
             private String VENDOR;
             private String VENDORDESC;
             private String ZBJ;
+            String UDHTLY;
+
+            public String getUDHTLY() {
+                return UDHTLY;
+            }
+
+            public void setUDHTLY(String UDHTLY) {
+                this.UDHTLY = UDHTLY;
+            }
+
 
             public String getQIANMING() {
                 return QIANMING;

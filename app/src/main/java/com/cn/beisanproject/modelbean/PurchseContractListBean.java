@@ -170,6 +170,16 @@ public class PurchseContractListBean implements Serializable {
             private String VENDOR;
             private String VENDORDESC;
             private String ZBJ;
+
+            public String getUDHTLY() {
+                return UDHTLY;
+            }
+
+            public void setUDHTLY(String UDHTLY) {
+                this.UDHTLY = UDHTLY;
+            }
+
+            String UDHTLY;
             public String getQIANMING() {
                 return QIANMING;
             }

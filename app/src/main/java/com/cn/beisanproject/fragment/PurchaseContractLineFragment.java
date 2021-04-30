@@ -53,7 +53,8 @@ public class PurchaseContractLineFragment extends Fragment {
     TextView tv_company;
     TextView tv_request_department;
     TextView tv_contract_created;
-    TextView tv_contract_signtime;
+    TextView tv_contract_signtime,tv_contract_ly;
+
     TextView tv_contract_starttime;
     TextView tv_contract_endtime;
     private TextView tv_contract_cost;
@@ -118,8 +119,9 @@ public class PurchaseContractLineFragment extends Fragment {
             tv_contract_statue.setText(mPurchseContractDetailBean.getResult().getResultlist().get(0).getSTATUS());
             tv_contract_desc.setText("合同描述：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getDESCRIPTION());
             tv_request_department.setText("申请部门："+mPurchseContractDetailBean.getResult().getResultlist().get(0).getA_DEPT());
-            tv_contract_created.setText("合同编制人：");
-            tv_contract_signtime.setText("合同签订日期：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getJ_CONTRACTDATE());
+            tv_contract_created.setText("合同编制人："+mPurchseContractDetailBean.getResult().getResultlist().get(0).getENTERBYDESC());
+            tv_contract_signtime.setText("合同类型："+mPurchseContractDetailBean.getResult().getResultlist().get(0).getUDHTLX());
+            tv_contract_ly.setText("合同来源："+mPurchseContractDetailBean.getResult().getResultlist().get(0).getUDHTLY());
             tv_contract_cost.setText("合同金额：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getTOTALCOST());
             tv_contract_starttime.setText("合同开始日期：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getSTARTDATE());
             tv_contract_endtime.setText("合同结束日期：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getENDDATE());
@@ -131,9 +133,10 @@ public class PurchaseContractLineFragment extends Fragment {
             tv_contract_no.setText("合同编号：" + mResultlistBean.getCONTRACTNUM());
             tv_contract_statue.setText(mResultlistBean.getSTATUS());
             tv_contract_desc.setText("合同描述：" + mResultlistBean.getDESCRIPTION());
-            tv_request_department.setText("申请部门：");
-            tv_contract_created.setText("合同编制人：");
-            tv_contract_signtime.setText("合同签订日期：" + mResultlistBean.getJ_CONTRACTDATE());
+            tv_request_department.setText("申请部门：" + mResultlistBean.getA_DEPT());
+            tv_contract_created.setText("合同编制人：" + mResultlistBean.getENTERBYDESC());
+            tv_contract_signtime.setText("合同类型："+mResultlistBean.getUDHTLX());
+            tv_contract_ly.setText("合同来源："+mResultlistBean.getUDHTLY());
             tv_contract_cost.setText("合同金额：" + mResultlistBean.getTOTALCOST());
             tv_contract_starttime.setText("合同开始日期：" + mResultlistBean.getSTARTDATE());
             tv_contract_endtime.setText("合同结束日期：" + mResultlistBean.getENDDATE());

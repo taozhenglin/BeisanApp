@@ -115,7 +115,7 @@ public class PurchaseOrdertLineFragment extends Fragment {
             tv_contract_statue.setText(mPurchseContractDetailBean.getResult().getResultlist().get(0).getSTATUS());
             tv_contract_desc.setText("合同描述：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getDESCRIPTION());
             tv_request_department.setText("申请部门："+mPurchseContractDetailBean.getResult().getResultlist().get(0).getA_DEPT());
-            tv_contract_created.setText("合同编制人：");
+            tv_contract_created.setText("合同编制人："+mPurchseContractDetailBean.getResult().getResultlist().get(0).getENTERBYDESC());
             tv_contract_signtime.setText("合同签订日期：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getJ_CONTRACTDATE());
             tv_contract_cost.setText("合同金额：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getTOTALCOST());
             tv_contract_starttime.setText("合同开始日期：" + mPurchseContractDetailBean.getResult().getResultlist().get(0).getSTARTDATE());
@@ -128,8 +128,8 @@ public class PurchaseOrdertLineFragment extends Fragment {
             tv_contract_no.setText("合同编号：" + mResultlistBean.getCONTRACTNUM());
             tv_contract_statue.setText(mResultlistBean.getSTATUS());
             tv_contract_desc.setText("合同描述：" + mResultlistBean.getDESCRIPTION());
-            tv_request_department.setText("申请部门：");
-            tv_contract_created.setText("合同编制人：");
+            tv_request_department.setText("申请部门："+mResultlistBean.getA_DEPT());
+            tv_contract_created.setText("合同编制人："+mResultlistBean.getENTERBYDESC());
             tv_contract_signtime.setText("合同签订日期：" + mResultlistBean.getJ_CONTRACTDATE());
             tv_contract_cost.setText("合同金额：" + mResultlistBean.getTOTALCOST());
             tv_contract_starttime.setText("合同开始日期：" + mResultlistBean.getSTARTDATE());

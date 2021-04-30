@@ -96,6 +96,8 @@ public class MaterialRequestListActivity extends AppCompatActivity implements Vi
 //        iv_fun.setBackgroundResource(R.drawable.add);
         tv_common_title.setText("领料单");
         edt_search_contract = findViewById(R.id.edt_search_contract);
+        edt_search_contract.setHint("领料单编号/描述");
+
     }
 
     private void initEvent() {
