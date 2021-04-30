@@ -27,11 +27,14 @@ import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.modelbean.LoginBean;
+import com.cn.beisanproject.modelbean.PostData;
+import com.cn.beisanproject.modelbean.StartWorkProcessBean;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
 import com.guideelectric.loadingdialog.view.LoadingDialog;
 import com.yinglan.keyboard.HideUtil;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 
 import java.util.HashMap;
@@ -243,12 +246,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         OkhttpUtil.okHttpPost(url, map, headermap, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
-                LogUtils.d("222222 onFailure " + e.toString());
+                LogUtils.d("222222 onFailure ==" + e.toString());
                 ToastUtils.showShort("登陆失败");
             }
             @Override
             public void onResponse(String response) {
-                LogUtils.d("222222 onResponse" + response);
+                LogUtils.d("222222 onResponse==" + response);
 
                 if (!response.isEmpty()) {
                     try {

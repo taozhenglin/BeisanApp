@@ -43,7 +43,6 @@
                 android:id="@+id/tv_contract_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_contract_no"
                 android:layout_marginTop="@dimen/dp3"
                 android:text="合同描述："
                 android:textSize="@dimen/sp14" />
@@ -120,7 +119,6 @@
                     android:id="@+id/tv_request_department"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_contract_desc"
                     android:layout_weight="1"
                     android:text="申请部门："
                     android:textSize="@dimen/sp14" />
@@ -138,16 +136,21 @@
                 android:id="@+id/tv_contract_signtime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_request_department"
                 android:layout_marginTop="@dimen/dp3"
-                android:text="合同签订日期："
+                android:text="合同类型："
+                android:textSize="@dimen/sp14" />
+            <TextView
+                android:id="@+id/tv_contract_ly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp3"
+                android:text="合同来源："
                 android:textSize="@dimen/sp14" />
 
             <TextView
                 android:id="@+id/tv_contract_cost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_contract_signtime"
                 android:layout_marginTop="@dimen/dp3"
                 android:text="合同金额："
                 android:textSize="@dimen/sp14" />
@@ -156,7 +159,6 @@
                 android:id="@+id/tv_contract_starttime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_contract_cost"
                 android:layout_marginTop="@dimen/dp3"
                 android:text="合同开始日期："
                 android:textSize="@dimen/sp14" />
@@ -165,7 +167,6 @@
                 android:id="@+id/tv_contract_endtime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_contract_starttime"
                 android:layout_marginTop="@dimen/dp3"
                 android:text="合同结束日期："
                 android:textSize="@dimen/sp14" />

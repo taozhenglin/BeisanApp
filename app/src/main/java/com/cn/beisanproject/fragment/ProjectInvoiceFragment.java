@@ -95,6 +95,7 @@ public class ProjectInvoiceFragment extends Fragment {
             tv_contract_no.setText("合同编号：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getCONTRACTNUM());
             tv_contract_statue.setText(mProjectContractDetailBean.getResult().getResultlist().get(0).getSTATUS());
             tv_contract_desc.setText("合同描述：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getDESCRIPTION());
+            tv_request_department.setText("申请部门: " + mProjectContractDetailBean.getResult().getResultlist().get(0).getA_DEPT());
             tv_department.setText("主管部门: " + mProjectContractDetailBean.getResult().getResultlist().get(0).getJFQZDB());
             tv_contract_jia.setText("甲方：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getHTJF());
             tv_contract_yi.setText("乙方：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getVENDORDESC());
@@ -108,6 +109,8 @@ public class ProjectInvoiceFragment extends Fragment {
             tv_contract_no.setText("合同编号：" + mResultlistBean.getCONTRACTNUM());
             tv_contract_statue.setText(mResultlistBean.getSTATUS());
             tv_contract_desc.setText("合同描述：" + mResultlistBean.getDESCRIPTION());
+            tv_request_department.setText("申请部门: " + mResultlistBean.getA_DEPT());
+
             tv_department.setText("主管部门: " + mResultlistBean.getJFQZDB());
             tv_contract_jia.setText("甲方：" + mResultlistBean.getHTJF());
             tv_contract_yi.setText("乙方：" + mResultlistBean.getVENDORDESC());

@@ -200,7 +200,7 @@ public class ProjectMonthDetailActivity extends AppCompatActivity {
             getDetail();
         } else {
             //直接赋值
-            tvProjectRequest.setText("项目立项:" + mResultlistBean.getPRNUM());
+            tvProjectRequest.setText("编号:" + mResultlistBean.getPRNUM());
             tvStatue.setText(mResultlistBean.getSTATUS());
             tvDesc.setText("描述:" + mResultlistBean.getDESCRIPTION());
             tvType.setText("立项类型:" + mResultlistBean.getLXLX());
@@ -594,7 +594,7 @@ public class ProjectMonthDetailActivity extends AppCompatActivity {
 
                     if (projectMonthListBean.getErrcode().equals("GLOBAL-S-0")) {
                         ProjectMonthListBean.ResultBean.ResultlistBean resultlistBean = projectMonthListBean.getResult().getResultlist().get(0);
-                        tvProjectRequest.setText("项目立项:" + resultlistBean.getPRNUM());
+                        tvProjectRequest.setText("编号:" + resultlistBean.getPRNUM());
 
                         prnum = resultlistBean.getPRNUM();
                         prid= resultlistBean.getPRID()+"";

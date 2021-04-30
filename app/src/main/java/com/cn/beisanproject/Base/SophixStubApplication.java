@@ -59,7 +59,7 @@ public class SophixStubApplication extends SophixApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        SophixManager.getInstance().queryAndLoadNewPatch();
+//        SophixManager.getInstance().queryAndLoadNewPatch();
         initPGY(this);
     }
     private void initPGY(SophixStubApplication sophixStubApplication) {

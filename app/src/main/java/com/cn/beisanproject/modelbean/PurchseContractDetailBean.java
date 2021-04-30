@@ -170,6 +170,26 @@ public class PurchseContractDetailBean {
             private String VENDOR;
             private String VENDORDESC;
             private String ZBJ;
+
+            public String getUDHTLY() {
+                return UDHTLY;
+            }
+
+            public void setUDHTLY(String UDHTLY) {
+                this.UDHTLY = UDHTLY;
+            }
+
+            String UDHTLY;
+
+            public String getDISPLAYNAME() {
+                return DISPLAYNAME;
+            }
+
+            public void setDISPLAYNAME(String DISPLAYNAME) {
+                this.DISPLAYNAME = DISPLAYNAME;
+            }
+
+            String DISPLAYNAME;
             public String getQIANMING() {
                 return QIANMING;
             }

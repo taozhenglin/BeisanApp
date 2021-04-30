@@ -86,6 +86,8 @@ public class ProjectContractListActivity extends AppCompatActivity implements Vi
         tv_common_title = findViewById(R.id.tv_common_title);
         tv_common_title.setText("项目合同");
         edt_search_contract = findViewById(R.id.edt_search_contract);
+        edt_search_contract.setHint("合同序列号/描述");
+
     }
 
     private void initEvent() {

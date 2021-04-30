@@ -295,7 +295,7 @@ public class ProjectMonthColletDetailActivity extends AppCompatActivity implemen
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_back:
+            case R.id.ll_back:
                 finish();
             case R.id.tv_start:
                 if (statue.equals("等待批准")) {

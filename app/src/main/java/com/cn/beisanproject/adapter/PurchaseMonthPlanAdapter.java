@@ -81,8 +81,8 @@ public class PurchaseMonthPlanAdapter extends RecyclerView.Adapter<PurchaseMonth
         SpannableString highlightDesc = HighLightUtils.highlight(mContext, "描述："+mList.get(position).getDESCRIPTION(), mHightlight, "#00ff00", 0, 0);
         holder.tvDesc.setText(highlightDesc);
         holder.tvHuizongStatue.setText("汇总状态"+mList.get(position).getR_PRSTATUS());
-        holder.tvRequestType.setText("申请类型"+mList.get(position).getA_PURTYPE());
-        holder.tvHuizongDate.setText("汇总年月"+mList.get(position).getA_PRKEY());
+        holder.tvRequestType.setText("申请类型:"+mList.get(position).getA_PURTYPE());
+        holder.tvHuizongDate.setText("汇总年月:"+mList.get(position).getA_PRKEY());
         holder.tvSumAmount.setText("总金额："+mList.get(position).getTOTALCOST());
         holder.tvDept.setText("主管部门："+mList.get(position).getA_DEPT());
         holder.tvRequsetDep.setText("申请部门："+mList.get(position).getA_DEPT());

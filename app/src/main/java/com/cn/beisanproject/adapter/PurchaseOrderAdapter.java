@@ -45,7 +45,7 @@ public class PurchaseOrderAdapter extends RecyclerView.Adapter<PurchaseOrderAdap
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         LogUtils.d("onBindViewHolder==");
-        SpannableString highlightno = HighLightUtils.highlight(mContext, "合同编号：" + mList.get(position).getCONTRACTNUM(), mHightlight, "#00ff00", 0, 0);
+        SpannableString highlightno = HighLightUtils.highlight(mContext, "订单编号：" + mList.get(position).getCONTRACTNUM(), mHightlight, "#00ff00", 0, 0);
 
         holder.tv_contract_no.setText(highlightno);
         SpannableString highlightdes = HighLightUtils.highlight(mContext, "合同描述：" + mList.get(position).getDESCRIPTION(), mHightlight, "#00ff00", 0, 0);
@@ -89,7 +89,7 @@ public class PurchaseOrderAdapter extends RecyclerView.Adapter<PurchaseOrderAdap
         holder.tv_contract_yi.setText(highlightYi);
         holder.tv_contract_starttime.setText("开始时间："+mList.get(position).getSTARTDATE());
         holder.tv_contract_endtime.setText("结束时间："+mList.get(position).getENDDATE());
-        holder.tv_contract_by.setText("合同编制人："+mList.get(position).getENTERBY());
+        holder.tv_contract_by.setText("合同编制人："+mList.get(position).getENTERBYDESC());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

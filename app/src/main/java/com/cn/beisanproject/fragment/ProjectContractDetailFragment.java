@@ -140,9 +140,9 @@ public class ProjectContractDetailFragment extends Fragment {
             tv_assginman.setText("授权代表:"+mProjectContractDetailBean.getResult().getResultlist().get(0).getQIANMING());
             tv_contract_desc.setText("合同描述：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getDESCRIPTION());
             tv_xunjia_no.setText("询价单号：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getA_RFQNUM());
-            tv_xunjia_desc.setText("询价描述：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getA_RFQDESC());
-            tv_yusuan_no.setText("预算编号：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getA_BUDGETNUM());
-            tv_yusuan_desc.setText("预算描述：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getA_BUDGETDESC());
+            tv_xunjia_desc.setText("询价单描述：" +mProjectContractDetailBean.getResult().getResultlist().get(0).getA_RFQDESC());
+            tv_yusuan_no.setVisibility(View.GONE);
+            tv_yusuan_desc.setVisibility(View.GONE);;
             tv_department.setText("主管部门: " + mProjectContractDetailBean.getResult().getResultlist().get(0).getJFQZDB());
             tv_contract_jia.setText("甲方：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getHTJF());
             tv_contract_yi.setText("乙方：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getVENDORDESC());
@@ -150,12 +150,12 @@ public class ProjectContractDetailFragment extends Fragment {
             tv_contract_type.setText("合同类型：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getUDHTLX());
             tv_company.setText("公司：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getA_COMP());
             tv_request_department.setText("申请部门：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getA_DEPT());
-            tv_contract_created.setText("合同编制人：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getHTJF());
-            tv_contract_tax.setText("合同税率：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getZBJ());
+            tv_contract_created.setText("合同编制人：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getENTERBYDESC());
+            tv_contract_tax.setText("合同来源："+mProjectContractDetailBean.getResult().getResultlist().get(0).getUDHTLY());
             tv_contract_cost.setText("合同金额(不含税)：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getTOTALBASECOST());
             tv_total_cost.setText("合同总金额：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getTOTALCOST());
-            tv_dead_line.setText("质保金到期日:");
-            tv_contract_signtime.setText("合同签订日期：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getJ_CONTRACTDATE());
+            tv_dead_line.setVisibility(View.GONE);
+            tv_contract_signtime.setVisibility(View.GONE);
             tv_contract_starttime.setText("合同开始日期：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getSTARTDATE());
             tv_contract_endtime.setText("合同结束日期：" + mProjectContractDetailBean.getResult().getResultlist().get(0).getENDDATE());
         } else {
@@ -175,9 +175,9 @@ public class ProjectContractDetailFragment extends Fragment {
             tv_assginman.setText("授权代表:"+mResultlistBean.getQIANMING());
             tv_contract_desc.setText("合同描述：" + mResultlistBean.getDESCRIPTION());
             tv_xunjia_no.setText("询价单号：" + mResultlistBean.getA_RFQNUM());
-            tv_xunjia_desc.setText("询价描述：" + mResultlistBean.getA_RFQDESC());
-            tv_yusuan_no.setText("预算编号：" + mResultlistBean.getA_BUDGETNUM());
-            tv_yusuan_desc.setText("预算描述：" + mResultlistBean.getA_BUDGETDESC());
+            tv_xunjia_desc.setText("询价单描述：" +mResultlistBean.getA_RFQDESC());
+            tv_yusuan_no.setVisibility(View.GONE);
+            tv_yusuan_desc.setVisibility(View.GONE);
             tv_department.setText("主管部门: " + mResultlistBean.getJFQZDB());
             tv_contract_jia.setText("甲方：" + mResultlistBean.getHTJF());
             tv_contract_yi.setText("乙方：" + mResultlistBean.getVENDORDESC());
@@ -185,14 +185,15 @@ public class ProjectContractDetailFragment extends Fragment {
             tv_contract_type.setText("合同类型：" + mResultlistBean.getUDHTLX());
             tv_company.setText("公司：" + mResultlistBean.getA_COMP());
             tv_request_department.setText("申请部门：" + mResultlistBean.getA_DEPT());
-            tv_contract_created.setText("合同编制人：" + mResultlistBean.getHTJF());
-            tv_contract_tax.setText("合同税率：" + mResultlistBean.getZBJ());
+            tv_contract_created.setText("合同编制人：" + mResultlistBean.getENTERBYDESC());
+            tv_contract_tax.setText("合同来源"+mResultlistBean.getUDHTLY());
             tv_contract_cost.setText("合同金额(不含税)：" + mResultlistBean.getTOTALBASECOST());
             tv_total_cost.setText("合同总金额：" + mResultlistBean.getTOTALCOST());
-            tv_dead_line.setText("质保金到期日:");
-            tv_contract_signtime.setText("合同签订日期：" + mResultlistBean.getJ_CONTRACTDATE());
+            tv_dead_line.setVisibility(View.GONE);
+            tv_contract_signtime.setVisibility(View.GONE);
             tv_contract_starttime.setText("合同开始日期：" + mResultlistBean.getSTARTDATE());
             tv_contract_endtime.setText("合同结束日期：" + mResultlistBean.getENDDATE());
+
         }
         ll_assginman.setOnClickListener(new View.OnClickListener() {
             @Override
