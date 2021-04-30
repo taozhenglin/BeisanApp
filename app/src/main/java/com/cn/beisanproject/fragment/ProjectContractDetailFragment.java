@@ -193,6 +193,7 @@ public class ProjectContractDetailFragment extends Fragment {
             tv_contract_signtime.setVisibility(View.GONE);
             tv_contract_starttime.setText("合同开始日期：" + mResultlistBean.getSTARTDATE());
             tv_contract_endtime.setText("合同结束日期：" + mResultlistBean.getENDDATE());
+
         }
         ll_assginman.setOnClickListener(new View.OnClickListener() {
             @Override
