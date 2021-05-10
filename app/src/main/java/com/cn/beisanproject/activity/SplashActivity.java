@@ -98,11 +98,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 //                Constants. COMMONSOAP="http://192.168.1.181:7009/WFSERVICE";
 //                Constants. COMMONSOAP2="http://192.168.1.181:7009/MOBILESERVICE";
 //            } else {
-//                Constants.BASE_URL = "http://csct.nbport.com.cn:9080";
-//                Constants.LOGIN = "/login";
-//                Constants.COMMONURL = "http://csct.nbport.com.cn:9080/api";
-//                Constants.COMMONSOAP = "http://csct.nbport.com.cn:9080/WFSERVICE";
-//                Constants.COMMONSOAP2 = "http://csct.nbport.com.cn:9080/MOBILESERVICE";
+//
 //            }
 //        }
         mContext = MyApplication.getInstance();
@@ -194,7 +190,6 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
          * and assignstatus='活动' and processname in('PO','RFQ','CONTPURCH','PRSUM','PR','GPDTZ','VENAPPLY','JLTZ','MATREQ','SBTZ','SSTZ','XMHT','UDXMHTBG','PRPROJ','XBJ','PROJSUM','XXHTZ','CONTRACTPO','INVUSEZY')"}
          */
         LogUtils.d("query");
-        String url = "http://csct.nbport.com.cn:9080/api";
         JSONObject object = new JSONObject();
         object.put("appid", "WFASSIGNMENT");
         object.put("objectname", "WFASSIGNMENT");
@@ -212,7 +207,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         HashMap<String, String> map = new HashMap<>();
         map.put("data", String.valueOf(object));
 
-        OkhttpUtil.okHttpGet(url, map, headermap, new CallBackUtil.CallBackString() {
+        OkhttpUtil.okHttpGet(Constants.COMMONURL, map, headermap, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure=" + e.toString());
