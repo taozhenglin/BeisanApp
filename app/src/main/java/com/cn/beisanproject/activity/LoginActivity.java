@@ -21,16 +21,20 @@ import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.cn.beisanproject.Base.Constants;
+import com.cn.beisanproject.Base.MyApplication;
 import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
 import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
 import com.cn.beisanproject.modelbean.LoginBean;
+import com.cn.beisanproject.modelbean.PostData;
+import com.cn.beisanproject.modelbean.StartWorkProcessBean;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
 import com.guideelectric.loadingdialog.view.LoadingDialog;
 import com.yinglan.keyboard.HideUtil;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 
 import java.util.HashMap;
@@ -50,6 +54,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private ImageView iv_clear1;
     private ImageView iv_clear2;
     private boolean showPwd = false;
+    ImageView iv_agree;
+    ImageView iv_disagree;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,8 +69,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onResume() {
         super.onResume();
-        LogUtils.d("222222 uesrname = "+SharedPreferencesUtil.getString(this, "username"));
-        LogUtils.d("222222 pwd = "+SharedPreferencesUtil.getString(this, "pwd"));
+        LogUtils.d("222222 uesrname = " + SharedPreferencesUtil.getString(this, "username"));
+        LogUtils.d("222222 pwd = " + SharedPreferencesUtil.getString(this, "pwd"));
 
         etUser.setText(SharedPreferencesUtil.getString(this, "username"));
         etPwd.setText(SharedPreferencesUtil.getString(this, "pwd"));
@@ -75,6 +81,30 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         tvVersion.setOnClickListener(this);
         iv_clear1.setOnClickListener(this);
         iv_clear2.setOnClickListener(this);
+
+//        iv_agree.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                iv_agree.setBackgroundResource(R.drawable.selected);
+//                iv_disagree.setBackgroundResource(R.drawable.unselected);
+//              Constants.BASE_URL="http://10.169.87.216";
+//                Constants. LOGIN="/login";
+//                Constants. COMMONURL="http://10.169.87.216/api";
+//                Constants. COMMONSOAP="http://10.169.87.216:7001/meaweb/services/WFSERVICE";
+//                Constants. COMMONSOAP2="http://10.169.87.216:7001/meaweb/services/MOBILESERVICE";
+//                SharedPreferencesUtil.setString(MyApplication.applicationContext, "envirment", "测试");
+//            }
+//        });
+//        iv_disagree.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                iv_disagree.setBackgroundResource(R.drawable.selected);
+//                iv_agree.setBackgroundResource(R.drawable.unselected);
+//
+//                SharedPreferencesUtil.setString(MyApplication.applicationContext, "envirment", "开发");
+//
+//            }
+//        });
     }
 
     private void initView() {
@@ -85,6 +115,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         tvVersion = findViewById(R.id.tvVersion);
         iv_clear1 = findViewById(R.id.iv_clear1);
         iv_clear2 = findViewById(R.id.iv_clear2);
+        iv_agree = (ImageView) findViewById(R.id.iv_agree);
+        iv_disagree = (ImageView) findViewById(R.id.iv_disagree);
+
+//        if (StringUtils.isEmpty(SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment"))) {
+//            iv_agree.setBackgroundResource(R.drawable.selected);
+//            iv_disagree.setBackgroundResource(R.drawable.unselected);
+//        } else {
+//            if (SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment").equals("测试")) {
+//                iv_agree.setBackgroundResource(R.drawable.selected);
+//                iv_disagree.setBackgroundResource(R.drawable.unselected);
+//            } else {
+//                iv_disagree.setBackgroundResource(R.drawable.selected);
+//                iv_agree.setBackgroundResource(R.drawable.unselected);
+//
+//            }
+//        }
 
         //键盘自动隐藏
         HideUtil.init(this);
@@ -106,16 +152,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (v.getId() == R.id.login) {
 //            presenter.onLoginClick(etUser.getText().toString(), etPwd.getText().toString());
             LogUtils.d("点击了登录");
-            if (StringUtils.isEmpty(etUser.getText().toString())){
+            if (StringUtils.isEmpty(etUser.getText().toString())) {
                 ToastUtils.showShort("请输入用户名");
                 return;
             }
-            if (StringUtils.isEmpty(etPwd.getText().toString())){
+            if (StringUtils.isEmpty(etPwd.getText().toString())) {
                 ToastUtils.showShort("请输入密码");
                 return;
             }
             try {
-                login(etUser.getText().toString().toUpperCase(), etPwd.getText().toString().toUpperCase());
+//                login(etUser.getText().toString().toUpperCase(), etPwd.getText().toString().toUpperCase());
+                login(etUser.getText().toString().toUpperCase(),etPwd.getText().toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -185,40 +232,39 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         map.put("loginid", name);
         map.put("password", pwd);
         map.put("imei", "android");
-        String url = Constants.BASE_URL+Constants.LOGIN;
-        JSONObject object = new JSONObject();
-//        object.put("loginid", name);
-//        object.put("password", pwd);
-//        object.put("imei", "android");
-
+        String url = Constants.BASE_URL + Constants.LOGIN;
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
         OkhttpUtil.okHttpPost(url, map, headermap, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
-                LogUtils.d("222222 onFailure " + e.toString());
+                LogUtils.d("222222 onFailure ==" + e.toString());
                 ToastUtils.showShort("登陆失败");
-
             }
-
             @Override
             public void onResponse(String response) {
-                LogUtils.d("222222 onResponse" + response);
+                LogUtils.d("222222 onResponse==" + response);
 
                 if (!response.isEmpty()) {
-                    LoginBean loginBean = JSONObject.parseObject(response, new TypeReference<LoginBean>() {});
-                    if (loginBean.getErrcode().equals("USER-S-101")) {
-                        SharedPreferencesUtil.setString(LoginActivity.this, "username", loginBean.getResult().getUserLoginDetails().getUserName());
-                        SharedPreferencesUtil.setString(LoginActivity.this,"pwd",pwd);
-                        SharedPreferencesUtil.setString(LoginActivity.this,"personId",loginBean.getResult().getUserLoginDetails().getPersonId());
-                        SharedPreferencesUtil.saveObject(LoginActivity.this,"userLoginDetails",loginBean.getResult().getUserLoginDetails());
-                        LogUtils.d("userLoginDetails="+loginBean.getResult().getUserLoginDetails());
+                    try {
+                        LoginBean loginBean = JSONObject.parseObject(response, new TypeReference<LoginBean>() {});
+                        if (loginBean.getErrcode().equals("USER-S-101")) {
+                            SharedPreferencesUtil.setString(LoginActivity.this, "username", loginBean.getResult().getUserLoginDetails().getUserName());
+                            SharedPreferencesUtil.setString(LoginActivity.this, "pwd", pwd);
+                            SharedPreferencesUtil.setString(LoginActivity.this, "personId", loginBean.getResult().getUserLoginDetails().getPersonId());
+                            SharedPreferencesUtil.saveObject(LoginActivity.this, "userLoginDetails", loginBean.getResult().getUserLoginDetails());
+                            LogUtils.d("userLoginDetails=" + loginBean.getResult().getUserLoginDetails());
 
-                        Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }else {
-                        ToastUtils.showShort(loginBean.getErrmsg());
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            ToastUtils.showShort("登录成功");
+
+                            finish();
+                        } else {
+                            ToastUtils.showShort(loginBean.getErrmsg());
+                        }
+                    }catch (com.alibaba.fastjson.JSONException exception){
+                        ToastUtils.showShort(exception.toString());
                     }
                 }
 
@@ -229,6 +275,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onBackPressed() {
-       finish();
+        finish();
     }
 }
