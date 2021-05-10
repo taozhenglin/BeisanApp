@@ -1,256 +1,220 @@
 package com.cn.beisanproject.activity;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.cn.beisanproject.Base.Constants;
-import com.cn.beisanproject.Base.MyApplication;
 import com.cn.beisanproject.R;
 import com.cn.beisanproject.Utils.LogUtils;
-import com.cn.beisanproject.Utils.SharedPreferencesUtil;
 import com.cn.beisanproject.Utils.StatusBarUtils;
-import com.cn.beisanproject.adapter.AttachListAdapter;
-import com.cn.beisanproject.modelbean.LoginBean;
-import com.cn.beisanproject.modelbean.WaitDoListBean;
+import com.cn.beisanproject.adapter.ProjecYsAdapter;
+import com.cn.beisanproject.adapter.ProjectMothAdapter;
+import com.cn.beisanproject.modelbean.PostData;
+import com.cn.beisanproject.modelbean.ProjectMonthListBean;
+import com.cn.beisanproject.modelbean.ProjectYsListBean;
 import com.cn.beisanproject.net.CallBackUtil;
 import com.cn.beisanproject.net.OkhttpUtil;
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
+import com.scwang.smart.refresh.layout.api.RefreshLayout;
+import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import okhttp3.Call;
 
-public class SplashActivity extends AppCompatActivity implements View.OnClickListener {
-    private Context mContext;
+/**
+ * Created by tzl
+ * on 2020/11/11
+ */
+public class ProjectYsListActivity extends AppCompatActivity implements View.OnClickListener {
+    private RecyclerView recyclerView;
+    private SmartRefreshLayout refreshLayout;
+    private RecyclerView.LayoutManager layoutManager;
+    private int currentPageNum = 1;
+    private ProjecYsAdapter projecYsAdapter;
+    private LinearLayout ll_back;
+    private TextView tv_common_title;
 
-    ImageView ivImage;
-    TextView tvTime;
-    LinearLayout llGuide;
-    private Timer timer;
-    int count = 3;
-    @SuppressLint("HandlerLeak")
-    Handler handler = new Handler() {
-        @Override
-        public void handleMessage(@NonNull Message msg) {
-            int arg1 = msg.arg1;
-
-            if (arg1 > -1) {
-                tvTime.setText(arg1 + "");
-                LogUtils.d("222222arg1=" + arg1);
-            }
-            if (arg1 == 0) {
-                if (timer != null) {
-                    timer.cancel();
-                    timer = null;
-                }
-                String username = SharedPreferencesUtil.getString(mContext, "username");
-                String pwd = SharedPreferencesUtil.getString(mContext, "pwd");
-                LogUtils.d("222222 username = " + username + "pwd=" + pwd);
-                if (!StringUtils.isEmpty(username)) {
-                    login(username.toUpperCase(), pwd);
-                } else {
-                    Intent intent = new Intent(mContext, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            }
-            super.handleMessage(msg);
-        }
-    };
-
+    //    private EditText edt_search_contract;
+    private boolean isRefresh = true;//是否刷新数据
+    private EditText edt_search_contract;
+    private TextView tv_search;
+    int totalpage ;
+    int totalresult;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash_activity);
-        ivImage = findViewById(R.id.iv_image);
-        tvTime = findViewById(R.id.tv_time);
-        llGuide = findViewById(R.id.ll_guide);
-        llGuide.setOnClickListener(this);
+        setContentView(R.layout.project_month_list_activity);
+
         //隐藏标题栏
         getSupportActionBar().hide();
-        StatusBarUtils.setWhiteStatusBarColor(this, R.color.white);
-//        if (StringUtils.isEmpty(SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment"))) {
-//        } else {
-//            if (SharedPreferencesUtil.getString(MyApplication.applicationContext, "envirment").equals("测试")) {
-//                Constants.BASE_URL="http://192.168.1.181:7009";
-//                Constants. LOGIN="/login";
-//                Constants. COMMONURL="http://192.168.1.181:7009/api";
-//                Constants. COMMONSOAP="http://192.168.1.181:7009/WFSERVICE";
-//                Constants. COMMONSOAP2="http://192.168.1.181:7009/MOBILESERVICE";
-//            } else {
-//
-//            }
-//        }
-        mContext = MyApplication.getInstance();
-        if (timer != null) {
-            timer.cancel();
-            timer = null;
-        }
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-//                LogUtils.d("222222count="+count);
-                if (count > -1) {
-                    count -= 1;
-                    Message message = handler.obtainMessage();
-                    message.arg1 = count;
-                    handler.sendMessage(message);
-                }
-            }
-        }, 1500, 1000);
-        queryData();
+        StatusBarUtils.setWhiteStatusBarColor(this, R.color.guide_blue);
+        initView();
+        initEvent();
+        initListener();
+        EventBus.getDefault().register(this);
+
+    }
+    private void initListener() {
+        ll_back.setOnClickListener(this);
+        tv_search.setOnClickListener(this);
     }
 
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        handler.removeCallbacksAndMessages(null);
+    private void initView() {
+        recyclerView = findViewById(R.id.recyclerView);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        refreshLayout = findViewById(R.id.refreshLayout);
+        ll_back = findViewById(R.id.ll_back);
+        tv_search = findViewById(R.id.tv_search);
+        tv_common_title = findViewById(R.id.tv_common_title);
+        tv_common_title.setText("项目验收");
+        edt_search_contract = findViewById(R.id.edt_search_contract);
+        edt_search_contract.setHint("验收编号/描述");
     }
 
-    public void login(String name, final String pwd) {
-        LogUtils.d("response222222 login");
-        HashMap<String, String> map = new HashMap<>();
-        map.put("loginid", name);
-        map.put("password", pwd);
-        map.put("imei", "android");
-        String url = Constants.BASE_URL + Constants.LOGIN;
-        JSONObject object = new JSONObject();
-//        object.put("loginid", name);
-//        object.put("password", pwd);
-//        object.put("imei", "android");
-
-        HashMap<String, String> headermap = new HashMap<>();
-        headermap.put("Content-Type", "text/plan;charset=UTF-8");
-        OkhttpUtil.okHttpPost(url, map, headermap, new CallBackUtil.CallBackString() {
+    private void initEvent() {
+        query();
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
-            public void onFailure(Call call, Exception e) {
-                LogUtils.d("222222 onFailure " + e.toString());
-                ToastUtils.showShort("自动登陆失败");
-                Intent intent = new Intent(mContext, LoginActivity.class);
-                startActivity(intent);
-                finish();
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                //刷新数据
+                isRefresh = true;
+                currentPageNum = 1;
+                query();
+
 
             }
-
+        });
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
-            public void onResponse(String response) {
-                LogUtils.d("222222 onResponse" + response);
-
-                if (!response.isEmpty()) {
-                    LoginBean loginBean = JSONObject.parseObject(response, new TypeReference<LoginBean>() {
-                    });
-                    if (loginBean.getErrcode().equals("USER-S-101")) {
-                        SharedPreferencesUtil.setString(mContext, "username", loginBean.getResult().getUserLoginDetails().getUserName());
-                        SharedPreferencesUtil.setString(mContext, "pwd", pwd);
-                        SharedPreferencesUtil.setString(mContext, "personId", loginBean.getResult().getUserLoginDetails().getPersonId());
-                        SharedPreferencesUtil.saveObject(mContext, "userLoginDetails", loginBean.getResult().getUserLoginDetails());
-                        LogUtils.d("userLoginDetails=" + loginBean.getResult().getUserLoginDetails());
-
-                        Intent intent = new Intent(mContext, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        ToastUtils.showShort(loginBean.getErrmsg());
-                    }
-                }
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                isRefresh = false;
+                currentPageNum++;
+                query();
 
             }
         });
 
     }
-
-    private void queryData() {
+    private void query() {
         /**
-         * ---代办任务记录
-         * {"appid":"WFASSIGNMENT","objectname":"WFASSIGNMENT","curpage":1,"showcount":20,"option":"read","orderby":"startdate desc",
-         * "sqlSearch":"  exists (select personid from maxuser where loginid='HUYUE'
-         * and wfassignment.assigncode=maxuser.personid)
-         * and assignstatus='活动' and processname in('PO','RFQ','CONTPURCH','PRSUM','PR','GPDTZ','VENAPPLY','JLTZ','MATREQ','SBTZ','SSTZ','XMHT','UDXMHTBG','PRPROJ','XBJ','PROJSUM','XXHTZ','CONTRACTPO','INVUSEZY')"}
+         * -- 项目验收查询
+         * {"appid":"UDPRYS","objectname":"UDPRYS","curpage":1,"showcount":20,"option":"read","orderby":"UDPRYSNUM DESC"}
          */
         LogUtils.d("query");
+        LogUtils.d("currentPageNum" + currentPageNum);
+        String url = Constants.COMMONURL;
         JSONObject object = new JSONObject();
-        object.put("appid", "WFASSIGNMENT");
-        object.put("objectname", "WFASSIGNMENT");
-        object.put("curpage", 0);
+        object.put("appid", "UDPRYS");
+        object.put("objectname", "UDPRYS");
+        object.put("curpage", currentPageNum);
         object.put("showcount", 20);
         object.put("option", "read");
-        object.put("orderby", "startdate desc");
-        String sqlSearch = " exists (select personid from maxuser where loginid=%s " +
-                "and wfassignment.assigncode=maxuser.personid)  " +
-                "and assignstatus='活动' and processname in('PO','RFQ','CONTPURCH','PRSUM','PR','GPDTZ','VENAPPLY','JLTZ','MATREQ','SBTZ','SSTZ','XMHT','UDXMHTBG','PRPROJ','XBJ','PROJSUM','XXHTZ','CONTRACTPO','INVUSEZY','UDFIXYSRG','UDFIXBF','UDFIXZZ','UDPRYS')";
-        sqlSearch = String.format(sqlSearch, "'" + SharedPreferencesUtil.getString(mContext, "personId") + "'");
-        object.put("sqlSearch", sqlSearch);
+        object.put("orderby", "UDPRYSNUM DESC");
+        JSONObject sinorsearchobject = new JSONObject();//模糊查询要用到  均传用户输入内容
+        sinorsearchobject.put("UDPRYSNUM", edt_search_contract.getText().toString());
+        sinorsearchobject.put("DESCRIPTION ",  edt_search_contract.getText().toString());
+        object.put("sinorsearch", sinorsearchobject);
         HashMap<String, String> headermap = new HashMap<>();
         headermap.put("Content-Type", "text/plan;charset=UTF-8");
         HashMap<String, String> map = new HashMap<>();
         map.put("data", String.valueOf(object));
 
-        OkhttpUtil.okHttpGet(Constants.COMMONURL, map, headermap, new CallBackUtil.CallBackString() {
+        OkhttpUtil.okHttpGet(url, map, headermap, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
                 LogUtils.d("onFailure=" + e.toString());
+                finishRefresh();
             }
 
             @Override
             public void onResponse(String response) {
-                LogUtils.longD("onResponse==" ,response);
-
-                WaitDoListBean waitDoListBean = null;
+                LogUtils.d("onResponse=" + response);
+                ProjectYsListBean projectYsListBean;
+                finishRefresh();
                 if (!response.isEmpty()) {
-                    if (response.startsWith("Error")) {
-                        ToastUtils.showShort(R.string.GETDATAFAILED);
-                    } else {
-                        waitDoListBean = JSONObject.parseObject(response, new TypeReference<WaitDoListBean>() {
-                        });
-                        if (waitDoListBean.getErrcode().equals("GLOBAL-S-0")) {
-                            int totalresult = waitDoListBean.getResult().getTotalresult();
-                            LogUtils.d("totalresult==" + totalresult);
-                            SharedPreferencesUtil.setInt(SplashActivity.this, "waitdototalresult", totalresult);
-                        }
-                    }
-                }
-            }
-        });
+                    projectYsListBean = JSONObject.parseObject(response, new TypeReference<ProjectYsListBean>() {});
 
+                    if (projectYsListBean.getErrcode().equals("GLOBAL-S-0")) {
+                        if (currentPageNum == 1) {
+                            totalpage = projectYsListBean.getResult().getTotalpage();
+                            totalresult = projectYsListBean.getResult().getTotalresult();
+                            if (projecYsAdapter==null){
+                                projecYsAdapter = new ProjecYsAdapter(ProjectYsListActivity.this, projectYsListBean.getResult().getResultlist(), edt_search_contract.getText().toString());
+                                recyclerView.setAdapter(projecYsAdapter);
+                            }else {
+                                projecYsAdapter.setData(projectYsListBean.getResult().getResultlist(),edt_search_contract.getText().toString());
+                                projecYsAdapter.notifyDataSetChanged();
+                            }
+
+                        } else {
+                            if (currentPageNum<=totalpage){
+                                projecYsAdapter.addAllList(projectYsListBean.getResult().getResultlist());
+                                projecYsAdapter.notifyDataSetChanged();
+                            }else {
+                                ToastUtils.showShort("没有更多数据了");
+                            }
+
+                        }
+
+
+                    }
+
+                }
+
+            }
+
+
+        });
     }
 
     @Override
     public void onClick(View view) {
-        if (timer != null) {
-            timer.cancel();
-            timer = null;
+        switch (view.getId()) {
+            case R.id.ll_back:
+                finish();
+                break;
+            case R.id.tv_search:
+                currentPageNum=1;
+                query();
+                break;
         }
-        String username = SharedPreferencesUtil.getString(mContext, "username");
-        String pwd = SharedPreferencesUtil.getString(mContext, "pwd");
-        LogUtils.d("222222 username = " + username + "  pwd=" + pwd);
-        if (!StringUtils.isEmpty(username)) {
-            login(username.toUpperCase(), pwd);
-        } else {
-            Intent intent = new Intent(mContext, LoginActivity.class);
-            startActivity(intent);
-            finish();
-        }
+
+    }
+    private void finishRefresh() {
+        if (isRefresh) refreshLayout.finishRefresh();
+        else refreshLayout.finishLoadMore();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+    // 刷新列表
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getNotify(PostData postData) {
+        if (postData.getTag().equals("项目验收"))
+            query();
     }
 }
