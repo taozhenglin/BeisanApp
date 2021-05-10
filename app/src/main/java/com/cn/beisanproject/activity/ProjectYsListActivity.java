@@ -119,7 +119,6 @@ public class ProjectYsListActivity extends AppCompatActivity implements View.OnC
     private void query() {
         /**
          * -- 项目验收查询
-         * http://csct.nbport.com.cn:9080/mobile/common/api?data=
          * {"appid":"UDPRYS","objectname":"UDPRYS","curpage":1,"showcount":20,"option":"read","orderby":"UDPRYSNUM DESC"}
          */
         LogUtils.d("query");
