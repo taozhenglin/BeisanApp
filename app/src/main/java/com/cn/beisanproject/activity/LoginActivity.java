@@ -100,11 +100,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //            public void onClick(View view) {
 //                iv_disagree.setBackgroundResource(R.drawable.selected);
 //                iv_agree.setBackgroundResource(R.drawable.unselected);
-//                Constants.BASE_URL = "http://csct.nbport.com.cn:9080";
-//                Constants.LOGIN = "/login";
-//                Constants.COMMONURL = "http://csct.nbport.com.cn:9080/api";
-//                Constants.COMMONSOAP = "http://csct.nbport.com.cn:9080/WFSERVICE";
-//                Constants.COMMONSOAP2 = "http://csct.nbport.com.cn:9080/MOBILESERVICE";
+//
 //                SharedPreferencesUtil.setString(MyApplication.applicationContext, "envirment", "开发");
 //
 //            }
@@ -132,11 +128,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //            } else {
 //                iv_disagree.setBackgroundResource(R.drawable.selected);
 //                iv_agree.setBackgroundResource(R.drawable.unselected);
-//                Constants.BASE_URL = "http://csct.nbport.com.cn:9080/maximo/mobile";
-//                Constants.LOGIN = "/system/login";
-//                Constants.COMMONURL = "http://csct.nbport.com.cn:9080/maximo/mobile/common/api";
-//                Constants.COMMONSOAP = "http://csct.nbport.com.cn:9080/maximo/meaweb/services/WFSERVICE";
-//                Constants.COMMONSOAP2 = "http://csct.nbport.com.cn:9080/maximo/meaweb/services/MOBILESERVICE";
+//
 //            }
 //        }
 
